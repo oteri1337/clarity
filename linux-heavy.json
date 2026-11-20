@@ -708,10 +708,6 @@
         "videos": []
       },
       {
-        "name": "Bash Scripting",
-        "videos": []
-      },
-      {
         "name": "Disk Encryption",
         "videos": []
       }
@@ -729,16 +725,118 @@
         "videos": []
       },
       {
-        "name": "Databases",
-        "videos": []
-      },
-      {
-        "name": "Version Control",
-        "videos": []
-      },
-      {
-        "name": "Authentication & Encrypted App",
-        "videos": []
+        "name": "Comprehensive",
+        "videos": [
+          {
+            "channel_name": "RKSR1960",
+            "name": "MariaDB Administration Tutorial",
+            "channel_link": "https://www.youtube.com/@RKSR1960",
+            "link": "https://www.youtube.com/watch?v=hDKnsUrz0nM&list=PLnrmLjoInKWgUTezOTaIIrAwCIfO8JbTR",
+            "minutes": "417",
+            "description": "course · 63 lessons · 6h 57m · the first 63 lessons, a few minutes each — MariaDB administration that mostly applies to MySQL too, first at the command line and then in HeidiSQL: installing MariaDB on Windows and CentOS and moving its data directory, a Galera cluster, upgrading and migrating from MySQL, creating, renaming and dropping users, granting and revoking permissions on databases, tables and columns, GRANT OPTION and roles, seeing what a user can do, backups with mysqldump (every database, one database or table, zipped, timestamped, scheduled with crontab) and restoring them, resetting the root password, and the error, general, slow-query and binary logs; then in HeidiSQL, connecting, creating databases and tables, importing and exporting CSV and JSON, managing users and permissions, watching running queries, query history, scripting a database, loading large SQL files, synchronising two databases and changing server settings. From 2017–2018",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Mughees Ahmed",
+            "name": "MySQL DBA Tutorial",
+            "channel_link": "https://www.youtube.com/@mughees52",
+            "link": "https://www.youtube.com/watch?v=Szr4DrM4E8Q&list=PLd5sTGXltJ-l9PKT2Bynhg0Ou2uESOJiH",
+            "minutes": "578",
+            "description": "course · 31 lessons · 9h 38m · the numbered MySQL 8 DBA course on Linux, lessons 1–31 — MySQL’s architecture, storage engines and InnoDB’s internals, installing it from the Yum repository, RPM packages and generic binaries, connecting, creating databases and tables and loading sample data, creating users, password management, granting privileges and GRANT OPTION, roles and mandatory roles, transactions, isolation levels and InnoDB locking, the binary log and extracting statements from it, backups with mysqldump, mysqlpump and mydumper, and point-in-time recovery. From 2020–2021",
+            "type": "playlist"
+          },
+
+          {
+            "channel_name": "Database Star",
+            "name": "pgAdmin Tutorial - How to Use pgAdmin",
+            "channel_link": "https://www.youtube.com/@DatabaseStar",
+            "link": "https://www.youtube.com/watch?v=WFT5MaZN6g4",
+            "minutes": "15",
+            "description": "15 min · getting started with pgAdmin, the GUI that comes with Postgres — downloading it and setting the master password, the main window, connecting to a server, the toolbar, the query tool, saving and opening queries, editing data, the explain plan, searching for objects, other features and preferences. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "DBeaver",
+            "name": "How to get started with DBeaver",
+            "channel_link": "https://www.youtube.com/@DBeaver_video",
+            "link": "https://www.youtube.com/playlist?list=PLkh7-EMxQiV1jVGEEiXOVnutZo02GGmaJ",
+            "minutes": "114",
+            "description": "playlist · 27 videos · 1h 54m · DBeaver’s own short guides to its database GUI, which works with MySQL, MariaDB and PostgreSQL alike — installing it on Windows, Linux and macOS, creating a connection, the navigation tree and projects, the data editor and its grid, importing data and migrating it between databases, the value, metadata and references panels, building reports and charts, ER diagrams, the SQL editor and visual query builder, AI chat, and scheduled tasks. Several videos show paid DBeaver PRO features. From 2022",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "GitGuardian",
+            "name": "How to permanently remove files from git and rewrite your git history",
+            "channel_link": "https://www.youtube.com/@GitGuardian",
+            "link": "https://www.youtube.com/watch?v=msUDPYsbABY",
+            "minutes": "12",
+            "description": "12 min · getting a committed file out of git for good, after first revoking any secret it held. git reset --soft and a force push undo a commit you have only just made; for a file spread through older commits and other branches, BFG Repo-Cleaner deletes it by name across the whole history, checked with git log --oneline and a detached checkout before the force push. He warns first that rewriting history breaks things for anyone else working on the repository. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "GitGuardian",
+            "name": "2 million .git directories exposed: why .git folders are sensitive",
+            "channel_link": "https://www.youtube.com/@GitGuardian",
+            "link": "https://www.youtube.com/watch?v=H-_KtGqSk3I",
+            "minutes": "9",
+            "description": "9 min · what a .git folder holds — the whole history, the commit data and the remote’s address — why that is dangerous when the folder sits on a web server, and how these folders end up publicly reachable, drawing on Cybernews research that found about two million of them. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "GitGuardian",
+            "name": "What are GitHooks? Explained in 5 minutes",
+            "channel_link": "https://www.youtube.com/@GitGuardian",
+            "link": "https://www.youtube.com/watch?v=1OFiiPretCM",
+            "minutes": "6",
+            "description": "6 min · an excerpt from the opening of a longer GitHooks guide — where hooks fire (pre-commit and pre-push on your machine, pre-receive on the server), local hooks against global ones, the sample hooks git init puts in .git/hooks, and turning one on by removing .sample, which here blocks a commit with trailing whitespace. From 2023",
+            "type": "video"
+          },
+          {
+            "channel_name": "GitGuardian",
+            "name": "Complete guide to GitHooks — creating your own pre-commit hooks",
+            "channel_link": "https://www.youtube.com/@GitGuardian",
+            "link": "https://www.youtube.com/watch?v=ObksvAZyWdo",
+            "minutes": "30",
+            "description": "30 min · writing git hooks yourself. After where hooks fire and the samples in .git/hooks, he writes a pre-commit hook from scratch — chmod u+x first, the step people miss — has it fetch a dad joke with curl on every commit, block the commit when git grep finds a 20-character AWS key, then hand the commit to ggshield instead. The last part makes a global hook with git config --global core.hooksPath, shows that it replaces each repository’s own hook rather than adding to it, and calls the local hook from the global one so both run. Ends by pointing to the pre-commit framework for chaining hooks together. From 2023",
+            "type": "video"
+          },
+          {
+            "channel_name": "GitGuardian",
+            "name": "Detect secrets with a pre-commit git hook using ggshield and the pre-commit framework",
+            "channel_link": "https://www.youtube.com/@GitGuardian",
+            "link": "https://www.youtube.com/watch?v=8bDKn3y7Br4",
+            "minutes": "13",
+            "description": "13 min · the pre-commit framework, which builds hooks from a .pre-commit-config.yaml and can layer several checks into one, set up here with ggshield to block commits that contain secrets — pinning a release instead of tracking main, pre-commit install, a commit stopped by an AWS key, then letting a false positive through with ggshield ignore --last-found and skipping a folder of examples with paths-ignore. ggshield needs a free GitGuardian API key. From 2021",
+            "type": "video"
+          },
+          {
+            "channel_name": "GitGuardian",
+            "name": "How to create a pre-push git hook to detect hardcoded secrets",
+            "channel_link": "https://www.youtube.com/@GitGuardian",
+            "link": "https://www.youtube.com/watch?v=uc70CE1MXvM",
+            "minutes": "13",
+            "description": "13 min · ggshield’s secret scan run as a pre-push hook, with pre-commit install --hook-type pre-push, so a run of commits is scanned once when you push rather than at every commit. The trade-off he points out is that a secret caught at push time is already in your local history and has to be rewritten out of it. The API key goes in a .env file that .gitignore keeps out of the repository. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "Maxim Orlov",
+            "name": "Deploy to your server using Git",
+            "channel_link": "https://www.youtube.com/@maximization",
+            "link": "https://www.youtube.com/watch?v=H6UU7TsyrGs",
+            "minutes": "8",
+            "description": "8 min · push-to-deploy with nothing but git — an empty bare repository on the server, a post-receive hook that puts the pushed code in place, the server added as a remote, and a git push that deploys. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "SuperSimpleDev",
+            "name": "How to put an HTML website online (on the Internet)",
+            "channel_link": "https://www.youtube.com/@SuperSimpleDev",
+            "link": "https://www.youtube.com/watch?v=p1QU3kLFPdg",
+            "minutes": "30",
+            "description": "30 min · hosting a plain HTML and CSS site for free with GitHub Pages — a public repository (Pages is only free for public ones), the code uploaded by drag and drop in the browser rather than with git, Pages switched on for the main branch, and why the home page has to be called index.html for the bare address to work. The second half adds your own domain: buying one from a registrar, how a domain name becomes an IP address through DNS, A records pointing at GitHub Pages’ IP addresses, a CNAME record for www, what TTL means, linking the domain in the repository’s settings, and turning on free HTTPS. From 2022",
+            "type": "video"
+          }
+        ]
       }
     ]
   }
