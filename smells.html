@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smells</title>
+<title>Air Fresheners</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f766e'/%3E%3Cg fill='none' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 24.5c-2.25-2.5-2.25-5 0-7.5s2.25-5 0-7.5M16 24.5c-2.25-2.5-2.25-5 0-7.5s2.25-5 0-7.5M22 24.5c-2.25-2.5-2.25-5 0-7.5s2.25-5 0-7.5'/%3E%3C/g%3E%3C/svg%3E">
 <meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#121214" media="(prefers-color-scheme: dark)">
@@ -99,7 +99,6 @@ svg.i { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-widt
 .foot a { color: var(--muted); }
 .brand { display: flex; align-items: baseline; gap: 10px; text-decoration: none; }
 .brand b { font-size: 26px; font-weight: 600; letter-spacing: -0.02em; }
-.brand span { font-size: 14px; color: var(--muted); }
 .badge { padding: 2px 8px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 600; letter-spacing: 0.02em; }
 .topnav { display: flex; align-items: center; gap: 18px; margin-left: auto; font-size: 15px; }
 .topnav a { text-decoration: none; color: var(--ink-soft); }
@@ -118,13 +117,15 @@ svg.i { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-widt
 .narrow { max-width: 640px; }
 .note { color: var(--muted); }
 
-/* ---- public reviews: every photo the same height, text underneath. Each keeps its own width (so nothing is
-   cropped); only a photo wider than its column is trimmed at the sides to fit. ---- */
-.reviews { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 48px 28px; align-items: start; }
+/* ---- public reviews: across the full page width; every photo fills the same tall frame (its column's full
+   width, twice as tall as wide, at most 75% of the screen height), text underneath. A photo of another shape is
+   cropped to fit: the sides evenly, or more from the bottom than the top so nozzles and caps stay in. ---- */
+.main:has(> .reviews) { max-width: none; }
+.reviews { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 44px 24px; align-items: start; }
 .review { display: flex; flex-direction: column; min-width: 0; }
-.review .shot { align-self: flex-start; max-width: 100%; border-radius: 8px; }
+.review .shot { display: block; border-radius: 8px; }
 .review img {
-  display: block; width: auto; max-width: 100%; height: min(420px, 60vh); object-fit: cover;
+  display: block; width: 100%; aspect-ratio: 1 / 2; max-height: 75vh; object-fit: cover; object-position: 50% 30%;
   border-radius: 8px; background: var(--soft);
 }
 .review h2 { margin: 14px 0 0; font-size: 19px; font-weight: 600; line-height: 1.3; overflow-wrap: anywhere; }
@@ -235,7 +236,6 @@ dialog .actions { justify-content: flex-end; margin-top: 20px; }
 }
 @media (max-width: 600px) {
   .reviews { grid-template-columns: minmax(0, 1fr); }
-  .brand span { display: none; }
   /* Brand and theme on one row, admin links on their own below. */
   .top .mode { order: 2; margin-left: auto; }
   .topnav { order: 3; width: 100%; margin-left: 0; gap: 18px; font-size: 15px; }
@@ -258,7 +258,7 @@ try {
 <div class="site">
   <header class="top">
     <a class="mode home" href="index.html" aria-label="Home" title="Home"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V19a1 1 0 0 0 1 1h3.5v-5.5h4V20h3.5a1 1 0 0 0 1-1V9.5"/></svg></a>
-    <a class="brand" href="#/"><b>Smells</b><span>air freshener reviews</span></a>
+    <a class="brand" href="#/"><b>Air Fresheners</b></a>
     <span class="badge" id="admin-badge" hidden>Admin</span>
     <nav class="topnav" id="topnav" aria-label="Admin" hidden>
       <a href="#/admin" data-nav="admin">Air fresheners</a>
@@ -271,7 +271,7 @@ try {
   <main class="main" id="view"><p class="note">Loading…</p></main>
 
   <footer class="foot">
-    <span>© <span id="year"></span> Smells</span>
+    <span>© <span id="year"></span> Air Fresheners</span>
     <a href="#/admin">Admin</a>
   </footer>
 </div>
@@ -689,7 +689,7 @@ view.addEventListener('click', (e) => {
 
 function renderSetup() {
   view.innerHTML = `<div class="card narrow">
-    <h1>Set up Smells</h1>
+    <h1>Set up Air Fresheners</h1>
     <p class="lede">This PocketBase doesn’t have the <code>${COLLECTION}</code> collection yet. Setting up creates it: anyone can read the reviews; only superusers can add, edit or delete them. Photos can be JPG, PNG, WebP or GIF up to ${MAX_IMAGE_MB}&nbsp;MB.</p>
     <div class="error" id="setup-error" role="alert" hidden></div>
     <div class="actions"><button type="button" class="btn" id="setup">Set up</button></div>
@@ -704,7 +704,7 @@ view.addEventListener('click', async (e) => {
   btn.textContent = 'Setting up…';
   try {
     await api('/api/collections', { method: 'POST', body: SCHEMA, auth: true });
-    toast('Smells is set up. Add your first review.');
+    toast('Air Fresheners is set up. Add your first review.');
     viewAdmin();
   } catch (err) {
     if (expired(err)) return;
