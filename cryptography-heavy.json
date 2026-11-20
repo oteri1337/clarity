@@ -1,0 +1,154 @@
+{
+  "1": {
+    "name": "Cryptography Fundamentals",
+    "sections": [
+      {
+        "name": "Introduction, Security Principles & Classical Ciphers",
+        "videos": [
+          {
+            "channel_name": "Neso Academy",
+            "name": "Abstract Algebra & Number Theory",
+            "channel_link": "https://www.youtube.com/@nesoacademy",
+            "link": "https://www.youtube.com/playlist?list=PLBlnK6fEyqRjjeHdm0cwu6E-nhhEluuVA",
+            "minutes": "288",
+            "description": "course · 28 lessons · 4h 48m · chapter 2 of Neso Academy’s Cryptography & Network Security — prime numbers in cryptography, modular arithmetic and modular exponentiation, the GCD by the Euclidean algorithm, relatively prime numbers, Euler’s totient function, Fermat’s little theorem and Euler’s theorem, primitive roots, multiplicative inverses with the extended Euclidean algorithm, the Chinese remainder theorem, the discrete logarithm problem, Fermat factoring, the Fermat and Miller-Rabin primality tests, and groups, cyclic groups, rings and finite fields, all with worked examples. From 2021",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Neso Academy",
+            "name": "Introduction to Cryptography",
+            "channel_link": "https://www.youtube.com/@nesoacademy",
+            "link": "https://www.youtube.com/playlist?list=PLBlnK6fEyqRhBsP45jUdcqBivf25hyVkU",
+            "minutes": "334",
+            "description": "course · 28 lessons · 5h 34m · chapter 1 of Neso Academy’s Cryptography & Network Security — the CIA triad, the OSI security architecture, security attacks, services and mechanisms, a model for network security, the key terms of cryptography, cryptanalysis and brute-force attacks, then the classical ciphers worked by hand: Caesar, monoalphabetic, Playfair, Hill, Vigenère, Vernam and the one-time pad, rail fence and row-column transposition, plus steganography with an LSB demo and solved questions. From 2021",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Eddie Hazel",
+            "name": "Dan Boneh Encryption Course",
+            "channel_link": "https://www.youtube.com/@eddiehazel1259",
+            "link": "https://www.youtube.com/playlist?list=PLGmVJusJqjIk5SLpo7RY8FuaHpA694hQG",
+            "minutes": "674",
+            "description": "playlist · 46 videos · 11h 14m · the symmetric-key half of Dan Boneh’s Stanford course Cryptography I from Coursera, re-uploaded by another channel and complete in order — what cryptography is and its history, a crash course in discrete probability, information-theoretic security and the one-time pad, stream ciphers and pseudorandom generators with the attacks on them and real-world examples, semantic security, block ciphers (DES, exhaustive-search and other attacks, AES, block ciphers built from PRGs), PRPs, PRFs and the modes of operation (one-time key, many-time key, CBC, CTR), message authentication codes (MACs from PRFs, CBC-MAC and NMAC, padding, PMAC and the Carter-Wegman MAC), collision resistance (the birthday attack, Merkle-Damgård, building compression functions, HMAC, timing attacks on MAC checks), authenticated encryption (active and chosen-ciphertext attacks, combining ciphers with MACs, a TLS case study, CBC padding attacks, non-atomic decryption), and key derivation, deterministic encryption with SIV and wide PRPs, tweakable encryption and format-preserving encryption. It stops before key exchange and public-key encryption. From 2012",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "TLS, PKI & Forward Secrecy",
+        "videos": [
+          {
+            "channel_name": "Practical Networking",
+            "name": "Practical TLS",
+            "channel_link": "https://www.youtube.com/@PracticalNetworking",
+            "link": "https://www.youtube.com/playlist?list=PLIFyRwBY_4bTwRX__Zn4-letrtpSj1mzY",
+            "minutes": "254",
+            "description": "course · 24 lessons · 4h 14m · Ed Harmoush’s free lessons from his SSL and TLS course — what SSL, TLS and HTTPS are and how they protect data (confidentiality, integrity, authentication, anti-replay and non-repudiation), the client, server and certificate authority, the TLS and SSL versions, hashing and HMAC, symmetric against asymmetric encryption, signatures and key exchange, PKI, RSA proved with an example, Diffie-Hellman, DSA, the complete TLS sequence, cipher suites, HSTS against SSL stripping, the full TLS handshake, and what TLS 1.3 changes in cipher suites, the handshake, renegotiation and resumption. From 2021–2023",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "Key Derivation, Key Management Services, HSMs & Secrets",
+        "videos": [
+          {
+            "channel_name": "TrickSumo",
+            "name": "AWS KMS Course",
+            "channel_link": "https://www.youtube.com/@TrickSumo",
+            "link": "https://www.youtube.com/playlist?list=PLqbNDdqyX9E0gLzcguFFA9zshbsc5T1eZ",
+            "minutes": "138",
+            "description": "course · 18 lessons · 2h 18m · AWS Key Management Service hands-on, listed newest first so the introduction is the last video — symmetric against asymmetric keys, AWS-owned, AWS-managed and customer-managed keys, envelope encryption explained and built in CloudShell, key policies against IAM permissions, encrypting S3 objects and Lambda environment variables, grants, locking down Secrets Manager with your own keys, auditing key use with CloudTrail, key rotation and deletion, signing JWTs with an RSA key pair, and two serverless projects built on KMS. From 2025",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "Quantum Computing, the Quantum Threat & Migration",
+        "videos": [
+          {
+            "channel_name": "Computerphile",
+            "name": "Quantum Computing",
+            "channel_link": "https://www.youtube.com/@Computerphile",
+            "link": "https://www.youtube.com/playlist?list=PLzH6n4zXucko55y-YFE4ng1CLiui_3DUr",
+            "minutes": "57",
+            "description": "playlist · 4 videos · 57 min · the four principles behind quantum computing, the state of quantum computers in 2023, quantum computing in reality beyond the hype, and quantum simulation. From 2023–2026",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "Longer Courses & Lectures",
+        "videos": [
+          {
+            "channel_name": "Neso Academy",
+            "name": "Block Cipher",
+            "channel_link": "https://www.youtube.com/@nesoacademy",
+            "link": "https://www.youtube.com/playlist?list=PLBlnK6fEyqRhni6U8qK_b5kzo1J8E5Ao8",
+            "minutes": "257",
+            "description": "course · 23 lessons · 4h 17m · chapter 3 of Neso Academy’s Cryptography & Network Security — stream against block ciphers, the Feistel structure, DES round by round (the F function, key scheduling, the avalanche effect), AES (encryption and decryption, the round transformation, key expansion, security), triple DES, the modes of operation (ECB, CBC, CFB, OFB, CTR), pseudorandom number generators, and Golomb’s randomness postulates. From 2023",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Qiskit",
+            "name": "Understanding Quantum Information & Computation",
+            "channel_link": "https://www.youtube.com/@qiskit",
+            "link": "https://www.youtube.com/watch?v=3-c4xJa7Flk&list=PLOFEBzvs-VvqKKMXX4vbi4EB1uaErFMSO",
+            "minutes": "934",
+            "description": "course · 16 lessons · 15h 34m · John Watrous’s full course — single and multiple systems, quantum circuits, entanglement in action, quantum query algorithms, algorithmic foundations, phase estimation and factoring, Grover’s algorithm, density matrices, quantum channels, general measurements, purifications and fidelity, correcting quantum errors, the stabilizer formalism, quantum error correction, and fault-tolerant computation. From 2022–2025",
+            "type": "playlist"
+          }
+        ]
+      }
+    ]
+  },
+  "2": {
+    "name": "Applied Cryptography & Encrypted Databases",
+    "sections": [
+      {
+        "name": "Indexes, Pagination, Transactions & Query Optimization",
+        "videos": [
+          {
+            "channel_name": "ByteByteGo",
+            "name": "Database",
+            "channel_link": "https://www.youtube.com/@ByteByteGo",
+            "link": "https://www.youtube.com/playlist?list=PLCRMIe5FDPsdnSszazqVIQFh99t1ExH19",
+            "minutes": "39",
+            "description": "playlist · 7 videos · 39 min · choosing the right database, LSM trees, why single-threaded Redis is fast, the data structures behind databases, the order SQL executes in and how that guides query optimization, ACID with examples, and a roadmap for learning SQL. From 2022–2024",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "Full-Text, Fuzzy, Faceted, Geospatial & Vector Search",
+        "videos": [
+          {
+            "channel_name": "Official Elastic Community",
+            "name": "Mini Beginner's Crash Course to Elasticsearch and Kibana",
+            "channel_link": "https://www.youtube.com/@OfficialElasticCommunity",
+            "link": "https://www.youtube.com/watch?v=hO7HBVZJX_Q&list=PL_mJOmq4zsHbcdoeAwNWuhEWwDARMMBta",
+            "minutes": "227",
+            "description": "course · 22 lessons · 3h 47m · season 1 of Elastic’s beginner crash course, about ten minutes a lesson — what Elasticsearch and Kibana are and when to use them, nodes, clusters and shards, CRUD operations, search relevance (precision, recall and score), match, match-phrase, multi-match and bool queries, metric and bucket aggregations (date histograms, ranges, terms and combinations), and mapping string fields and defining your own mappings. From 2021",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Supabase",
+            "name": "PostGIS",
+            "channel_link": "https://www.youtube.com/@Supabase",
+            "link": "https://www.youtube.com/watch?v=MWfB0t5u3V0&list=PL5S4mPUpp4OsTvSjF2kw7iqEOIpFRq-e8",
+            "minutes": "13",
+            "description": "playlist · 2 videos · 13 min · getting started with PostGIS, and running geographical queries with Supabase and PostGIS. From 2023–2024",
+            "type": "playlist"
+          }
+        ]
+      }
+    ]
+  },
+  "3": {
+    "name": "Fundamentals from Other Creators",
+    "sections": []
+  },
+  "4": {
+    "name": "Cryptography in Short Lessons",
+    "sections": []
+  }
+}

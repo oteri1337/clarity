@@ -1,0 +1,520 @@
+{
+  "1": {
+    "name": "Radio",
+    "sections": [
+      {
+        "name": "Communication Systems",
+        "videos": [
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Introduction to Analog and Digital Communication | The Basic Block Diagram of Communication System",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=qhjj6WG7Rgc",
+            "minutes": "9",
+            "description": "9 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "What is Modulation ? Why Modulation is Required ? Types of Modulation Explained.",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=mHvV_Tv8HDQ",
+            "minutes": "12",
+            "description": "12 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Classification of Signals Explained | Types of Signals in Communication",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=E4E1GftPD1M",
+            "minutes": "12",
+            "description": "12 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Simplex, Half-Duplex and Full-Duplex Communication | Transmission Modes in Communication System",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=RzAXEQ4XsSI",
+            "minutes": "6",
+            "description": "6 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Bit Rate vs Baud Rate | Difference between Bit Rate and Baud Rate",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=I9herbJvc54",
+            "minutes": "3",
+            "description": "3 min",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Signals & Spectrum: Fourier",
+        "videos": [
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Introduction to Fourier Series | Trigonometric Fourier Series Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=RFOGJB564Kk",
+            "minutes": "19",
+            "description": "19 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Exponential Fourier Series Explained | Concept of Negative Frequency Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=CcM4Q66dLtU",
+            "minutes": "18",
+            "description": "18 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Fourier Transform Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=D3fjGYzrExk",
+            "minutes": "9",
+            "description": "9 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Fourier Transform of Useful Functions (Unit impulse, Unit Step, Signum and Rectangular Function)",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=_Sd3sXGUAdY",
+            "minutes": "16",
+            "description": "16 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Fourier Transform Properties Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=Hs6T1webIKs",
+            "minutes": "18",
+            "description": "18 min",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Amplitude Modulation",
+        "videos": [
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Introduction to Amplitude Modulation | Double Side Band Suppressed (DSB-SC) Carrier Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=3wBlB-TFwkQ",
+            "minutes": "15",
+            "description": "15 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Amplitude Modulation (AM) Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=Yryi1bbmUjU",
+            "minutes": "24",
+            "description": "24 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Square Law Modulator and AM generation using Analog Multiplier | Generation of AM signal",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=OIE7h6nn1aM",
+            "minutes": "12",
+            "description": "12 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Generation of AM signal: Switching Modulator Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=M4P5QCEo9WM",
+            "minutes": "11",
+            "description": "11 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "AM Demodulation - Envelope Detector Explained (with Simulation)",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=4JrryefRNFk",
+            "minutes": "13",
+            "description": "13 min",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Sidebands & Multiplexing",
+        "videos": [
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Single Sideband Modulation (SSB-SC) Explained | Hilbert Transform | Single Sideband Demodulation",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=0PyLguMXRfc",
+            "minutes": "20",
+            "description": "20 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "SSB Generation Methods : Phase Shift Method and  Filter Method Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=UCa7rOFp8js",
+            "minutes": "16",
+            "description": "16 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Single Sideband Modulation: Weaver's Method (Third Method) for SSB Generation",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=r4x9TTAPSeU",
+            "minutes": "18",
+            "description": "18 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Vestigial Sideband (VSB) Modulation Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=poYG4yNGlEk",
+            "minutes": "15",
+            "description": "15 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Frequency Division Multiplexing (FDM) Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=UwWmDwbsDBs",
+            "minutes": "9",
+            "description": "9 min",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Oscillators, VCOs & PLLs",
+        "videos": [
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "How Oscillator Works ? The Working Principle of the Oscillator Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=XVS8Puf4tiw",
+            "minutes": "9",
+            "description": "9 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Colpitts Oscillator Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=1fgw-ONlAcc",
+            "minutes": "18",
+            "description": "18 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Crystal Oscillator Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=YzcKQWwkzWs",
+            "minutes": "16",
+            "description": "16 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Types of Crystal Oscillators Explained | TCXO, OCXO, VCXO Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=zkPHaP_AcKM",
+            "minutes": "16",
+            "description": "16 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Voltage Controlled Oscillator (VCO) Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=EeYL6lJsNT8",
+            "minutes": "12",
+            "description": "12 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "What is Phase Lock Loop (PLL)? How Phase Lock Loop Works ? PLL Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=Q5dC9TbzR9k",
+            "minutes": "16",
+            "description": "16 min",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Filters",
+        "videos": [
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "RC Low Pass Filter Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=_2L0l-E1Wx0",
+            "minutes": "15",
+            "description": "15 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "RC High Pass Filter Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=9Dx0b0ukNAM",
+            "minutes": "13",
+            "description": "13 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Active Low Pass Filter and Active High Pass Filter Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=gEeF8sEQTEc",
+            "minutes": "17",
+            "description": "17 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Band Pass Filter and Band Stop Filter Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=dmPIydL0lyM",
+            "minutes": "13",
+            "description": "13 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Filter Approximations: Overview of Butterworth, Chebyshev, Elliptic and Bessel Filter Approximation",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=JXcbbBMrLYE",
+            "minutes": "10",
+            "description": "10 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Butterworth Filter : Design of Low Pass and High Pass Filters",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=lc6QT8VjqVc",
+            "minutes": "17",
+            "description": "17 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Chebyshev Filter : Design of Low Pass and High Pass Filters",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=6JbOAxCAxGo",
+            "minutes": "22",
+            "description": "22 min",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Coupled Coils & Radio Diodes",
+        "videos": [
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Self Inductance and Mutual Inductance Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=hoTInTKij0o",
+            "minutes": "11",
+            "description": "11 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Dot Convention in Magnetically Coupled Circuits",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=sILgO4sQmRs",
+            "minutes": "16",
+            "description": "16 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Mutually Coupled Inductors in Series (Derivation / Proof and Examples)",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=49OL_3L7BFA",
+            "minutes": "9",
+            "description": "9 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Mutually Coupled Inductors in Parallel (Derivation / Proof and Examples)",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=NacczEJj_iI",
+            "minutes": "16",
+            "description": "16 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Varactor Diode Explained (Working, Specifications and Applications of Varactor Diode)",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=OnVNOGL1nOc",
+            "minutes": "11",
+            "description": "11 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Schottky Diode Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=nV3bBrQnws0",
+            "minutes": "11",
+            "description": "11 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Peak Detector Circuit Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=w4531AVjBYY",
+            "minutes": "10",
+            "description": "10 min",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Amplifiers",
+        "videos": [
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "BJT Small Signal Analysis: Common Emitter Fixed Bias and Voltage Divider Bias",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=wbDUDRlmUuM",
+            "minutes": "19",
+            "description": "19 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "BJT- Common Base Amplifier Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=MckBbhfxdkk",
+            "minutes": "18",
+            "description": "18 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "BJT Cascode Amplifier Explained | Small-signal analysis of Cascode Amplifier",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=Hs1augUS2bQ",
+            "minutes": "36",
+            "description": "36 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "BJT:  Differential Amplifier Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=yXJADXuWtlI",
+            "minutes": "17",
+            "description": "17 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "MOSFET Common Source Amplifier - Small Signal Analysis ( Voltage Divider Bias )",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=T-0X1N9N5V8",
+            "minutes": "22",
+            "description": "22 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "MOSFET Common Gate Amplifier (Small Signal Analysis) Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=2zr5ykXpyXY",
+            "minutes": "18",
+            "description": "18 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Cascode Amplifier using MOSFET Explained (Cascode Amplifier with Cascode Current Source)",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=uFxXgDCLhGw",
+            "minutes": "24",
+            "description": "24 min",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Two-Port Networks",
+        "videos": [
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Introduction to Two-Port Networks",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=ru2ItcD6unI",
+            "minutes": "6",
+            "description": "6 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Z Parameters Explained | Condition for Reciprocity and Symmetry for Z- Parameters",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=AfszO1HZqzo",
+            "minutes": "16",
+            "description": "16 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Y- Parameters Explained | Condition of Reciprocity and Symmetry for Y- parameters",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=Ph0UlER9S08",
+            "minutes": "14",
+            "description": "14 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "h- parameters (Hybrid Parameters) Explained | Condition for Reciprocity and Symmetry",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=EC83XRahOSg",
+            "minutes": "14",
+            "description": "14 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "ABCD Parameters (Transmission Parameters) Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=qnHaOwYfzgE",
+            "minutes": "12",
+            "description": "12 min",
+            "type": "video"
+          }
+        ]
+      }
+    ]
+  }
+}

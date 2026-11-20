@@ -1,0 +1,1020 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smells</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f766e'/%3E%3Cg fill='none' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 24.5c-2.25-2.5-2.25-5 0-7.5s2.25-5 0-7.5M16 24.5c-2.25-2.5-2.25-5 0-7.5s2.25-5 0-7.5M22 24.5c-2.25-2.5-2.25-5 0-7.5s2.25-5 0-7.5'/%3E%3C/g%3E%3C/svg%3E">
+<meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121214" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap">
+<style>
+/* Layout: a header (brand, admin links, theme), one view, a footer. The public
+   view is the review grid; #/admin is sign-in, the list and the add/edit form.
+   Reviews live in PocketBase. */
+:root {
+  --bg: #fafaf9;
+  --surface: #ffffff;
+  --soft: #f0f0ee;
+  --ink: #16161a;
+  --ink-soft: #4f4f57;
+  --muted: #6b6b73;
+  --faint: #a3a3ab;
+  --rule: #e6e6e3;
+  --accent: #0f766e;
+  --accent-soft: #e3f3f1;
+  --star: #f59e0b;
+  --star-off: #e4e4e0;
+  --danger: #c4382b;
+  --danger-soft: #fbeceb;
+  --on-danger: #ffffff;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.05), 0 12px 32px rgb(0 0 0 / 0.12);
+  --font: 'Signika Negative', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #121214;
+    --surface: #1c1c20;
+    --soft: #26262b;
+    --ink: #ececef;
+    --ink-soft: #b6b6bf;
+    --muted: #8f8f99;
+    --faint: #5c5c66;
+    --rule: #2a2a30;
+    --accent: #2dd4bf;
+    --accent-soft: #123532;
+    --star: #fbbf24;
+    --star-off: #3a3a41;
+    --danger: #ff7a6b;
+    --danger-soft: #3a1d1b;
+    --on-danger: #1c1c20;
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 12px 32px rgb(0 0 0 / 0.5);
+    color-scheme: dark;
+  }
+}
+:root[data-theme='dark'] {
+  --bg: #121214;
+  --surface: #1c1c20;
+  --soft: #26262b;
+  --ink: #ececef;
+  --ink-soft: #b6b6bf;
+  --muted: #8f8f99;
+  --faint: #5c5c66;
+  --rule: #2a2a30;
+  --accent: #2dd4bf;
+  --accent-soft: #123532;
+  --star: #fbbf24;
+  --star-off: #3a3a41;
+  --danger: #ff7a6b;
+  --danger-soft: #3a1d1b;
+  --on-danger: #1c1c20;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 12px 32px rgb(0 0 0 / 0.5);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 16px/1.5 var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+button, input, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+[hidden] { display: none !important; }
+svg.i { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+.site { min-height: 100%; display: flex; flex-direction: column; }
+
+/* ---- header & footer ---- */
+.top, .foot { display: flex; align-items: center; gap: 12px 22px; flex-wrap: wrap; padding: 20px 40px; }
+.top { border-bottom: 1px solid var(--rule); }
+.foot { justify-content: space-between; border-top: 1px solid var(--rule); color: var(--muted); font-size: 14px; }
+.foot a { color: var(--muted); }
+.brand { display: flex; align-items: baseline; gap: 10px; text-decoration: none; }
+.brand b { font-size: 26px; font-weight: 600; letter-spacing: -0.02em; }
+.brand span { font-size: 14px; color: var(--muted); }
+.badge { padding: 2px 8px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 600; letter-spacing: 0.02em; }
+.topnav { display: flex; align-items: center; gap: 18px; margin-left: auto; font-size: 15px; }
+.topnav a { text-decoration: none; color: var(--ink-soft); }
+.topnav a:hover, .topnav a[aria-current='page'] { color: var(--ink); }
+.topnav a[aria-current='page'] { font-weight: 600; }
+.mode {
+  width: 38px; height: 38px; flex: none; display: grid; place-items: center;
+  border: 0; border-radius: 10px; background: var(--soft); color: var(--muted);
+}
+.mode:hover { color: var(--ink); }
+.topnav + .mode { margin-left: 0; }
+.top > .mode.home { order: 0; margin-left: 0; } /* the home link stays first, before the brand */
+.top > .mode:only-of-type { margin-left: auto; }
+
+.main { flex: 1; width: 100%; max-width: 1200px; margin: 0 auto; padding: 40px; }
+.narrow { max-width: 640px; }
+.note { color: var(--muted); }
+
+/* ---- public reviews: the photo at its natural proportions, text underneath ---- */
+.reviews { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 48px 28px; align-items: start; }
+.review { display: flex; flex-direction: column; min-width: 0; }
+.review .shot { align-self: flex-start; max-width: 100%; border-radius: 8px; }
+.review img {
+  display: block; width: auto; max-width: 100%; height: auto; max-height: 60vh;
+  border-radius: 8px; background: var(--soft);
+}
+.review h2 { margin: 14px 0 0; font-size: 19px; font-weight: 600; line-height: 1.3; overflow-wrap: anywhere; }
+.review .stars { margin-top: 6px; }
+.review p { margin: 12px 0 0; font-size: 16px; line-height: 1.55; white-space: pre-line; overflow-wrap: anywhere; color: var(--ink-soft); }
+
+.stars { display: inline-flex; gap: 2px; vertical-align: middle; }
+.stars svg { display: block; width: 17px; height: 17px; fill: var(--star-off); }
+.stars .on svg { fill: var(--star); }
+
+/* ---- panels, forms, buttons ---- */
+.card { background: var(--surface); border: 1px solid var(--rule); border-radius: 14px; padding: 24px; }
+.card h1 { margin: 0 0 6px; font-size: 24px; font-weight: 600; letter-spacing: -0.01em; }
+.card .lede { margin: 0 0 18px; color: var(--ink-soft); }
+.card code { font-size: 14px; padding: 1px 6px; border-radius: 5px; background: var(--soft); overflow-wrap: anywhere; }
+.card pre { margin: 10px 0 0; padding: 12px 14px; border-radius: 9px; background: var(--soft); font-size: 13.5px; overflow-x: auto; }
+.list-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px 16px; margin-bottom: 8px; }
+.list-head h1 { margin: 0; }
+.list-head .count { color: var(--muted); font-weight: 400; }
+.where { margin-top: 14px; font-size: 14px; color: var(--muted); overflow-wrap: anywhere; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: 40px; padding: 0 16px; border-radius: 10px; border: 1px solid transparent;
+  background: var(--ink); color: var(--bg); font-size: 15px; font-weight: 500; text-decoration: none; white-space: nowrap;
+}
+.btn:hover { opacity: 0.9; }
+.btn:disabled { opacity: 0.55; cursor: default; }
+.btn.ghost { background: var(--surface); color: var(--ink); border-color: var(--rule); }
+.btn.ghost:hover { background: var(--soft); opacity: 1; }
+.btn.danger { background: var(--surface); color: var(--danger); border-color: var(--rule); }
+.btn.danger:hover { background: var(--danger-soft); border-color: var(--danger); opacity: 1; }
+.btn.danger-solid { background: var(--danger); color: var(--on-danger); }
+.btn.small { height: 34px; padding: 0 12px; font-size: 14px; }
+
+.form { display: flex; flex-direction: column; gap: 18px; }
+.field { display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: var(--ink-soft); }
+.field .hint { color: var(--muted); }
+.field input[type='text'], .field input[type='email'], .field input[type='password'], .field input[type='url'], .field textarea {
+  width: 100%; padding: 10px 12px; border: 1px solid var(--rule); border-radius: 10px;
+  background: var(--surface); font-size: 16px; color: var(--ink);
+}
+.field textarea { resize: vertical; min-height: 180px; line-height: 1.5; }
+.field input[type='file'] { font-size: 14px; }
+.field input:focus, .field textarea:focus { outline: 2px solid var(--accent); outline-offset: 0; border-color: transparent; }
+.preview { display: block; width: 240px; max-width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 8px; border: 1px solid var(--rule); background: var(--soft); }
+
+/* Photo picker: a drop box around a hidden file input. Clicking it opens the picker;
+   a photo dragged anywhere onto the form lands here (the box lights up while dragging). */
+.drop {
+  position: relative; display: flex; align-items: center; gap: 14px; min-height: 112px; padding: 14px;
+  border: 1.5px dashed var(--faint); border-radius: 12px; background: var(--surface); color: var(--muted);
+  cursor: pointer; transition: border-color 0.15s, background-color 0.15s;
+}
+.drop:not(.has-photo) { justify-content: center; text-align: center; }
+.drop:hover { border-color: var(--muted); }
+.drop.over { border-color: var(--accent); border-style: solid; background: var(--accent-soft); }
+.drop:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+.drop > * { pointer-events: none; }
+.drop input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.drop .preview { width: 120px; flex: none; }
+.drop-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; font-size: 14px; overflow-wrap: anywhere; }
+.drop-text strong { color: var(--ink); font-size: 15px; font-weight: 600; }
+.coarse { display: none; }
+@media (pointer: coarse) { .fine { display: none; } .coarse { display: inline; } }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.error { padding: 10px 14px; border-radius: 10px; background: var(--danger-soft); color: var(--danger); font-size: 14px; overflow-wrap: anywhere; }
+.progress { flex: 1 1 140px; height: 4px; border-radius: 2px; background: var(--soft); overflow: hidden; }
+.progress i { display: block; height: 100%; width: 0; background: var(--accent); transition: width 0.15s; }
+
+/* Star picker: real radio buttons, so arrow keys work once one is focused. */
+.star-input { margin: 0; padding: 0; border: 0; min-width: 0; }
+.star-input legend { padding: 0; margin-bottom: 6px; font-size: 14px; color: var(--ink-soft); }
+.star-input .pick { display: flex; align-items: center; gap: 2px; }
+.star-input label { position: relative; display: block; padding: 2px; border-radius: 6px; cursor: pointer; }
+.star-input input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.star-input svg { display: block; width: 32px; height: 32px; fill: var(--star-off); transition: fill 0.1s, transform 0.1s; }
+.star-input label.on svg { fill: var(--star); }
+.star-input label:hover svg { transform: scale(1.1); }
+.star-input label:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 1px; }
+.star-input .value { margin-left: 10px; color: var(--muted); font-size: 14px; }
+
+/* ---- admin list ---- */
+.rows { list-style: none; margin: 0; padding: 0; }
+.row { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-top: 1px solid var(--rule); }
+.row img { width: 64px; height: 64px; flex: none; object-fit: cover; border-radius: 8px; background: var(--soft); }
+.row .text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.row .text strong { font-weight: 600; overflow-wrap: anywhere; }
+.row .excerpt { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.row .date { color: var(--muted); font-size: 13px; }
+.row .acts { display: flex; gap: 8px; }
+
+/* ---- overlays ---- */
+dialog { border: 1px solid var(--rule); border-radius: 14px; padding: 22px; max-width: 420px; width: calc(100vw - 32px); background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
+dialog::backdrop { background: rgb(0 0 0 / 0.35); }
+dialog h2 { margin: 0 0 6px; font-size: 19px; font-weight: 600; }
+dialog p { margin: 0; color: var(--ink-soft); }
+dialog .actions { justify-content: flex-end; margin-top: 20px; }
+.toast {
+  position: fixed; left: 50%; bottom: 24px; z-index: 60; transform: translateX(-50%);
+  max-width: calc(100vw - 32px); padding: 10px 16px; border-radius: 10px;
+  background: var(--ink); color: var(--bg); font-size: 15px; box-shadow: var(--shadow);
+}
+
+@media (max-width: 900px) {
+  .top, .foot { padding: 16px; }
+  .main { padding: 24px 16px; }
+}
+@media (max-width: 600px) {
+  .reviews { grid-template-columns: minmax(0, 1fr); }
+  .brand span { display: none; }
+  /* Brand and theme on one row, admin links on their own below. */
+  .top .mode { order: 2; margin-left: auto; }
+  .topnav { order: 3; width: 100%; margin-left: 0; gap: 18px; font-size: 15px; }
+  .row { flex-wrap: wrap; }
+  .row .acts { width: 100%; }
+  .row .acts .btn { flex: 1; }
+  .card { padding: 20px 16px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<script>
+// Apply a saved light/dark choice before the page paints.
+try {
+  const theme = localStorage.getItem('smells-theme');
+  if (theme === 'dark' || theme === 'light') document.documentElement.dataset.theme = theme;
+} catch {}
+</script>
+</head>
+<body>
+<div class="site">
+  <header class="top">
+    <a class="mode home" href="index.html" aria-label="Home" title="Home"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V19a1 1 0 0 0 1 1h3.5v-5.5h4V20h3.5a1 1 0 0 0 1-1V9.5"/></svg></a>
+    <a class="brand" href="#/"><b>Smells</b><span>air freshener reviews</span></a>
+    <span class="badge" id="admin-badge" hidden>Admin</span>
+    <nav class="topnav" id="topnav" aria-label="Admin" hidden>
+      <a href="#/admin" data-nav="admin">Air fresheners</a>
+      <a href="#/" data-nav="reviews">View site</a>
+      <a href="#/signout" id="signout">Sign out</a>
+    </nav>
+    <button type="button" class="mode" id="theme-btn"></button>
+  </header>
+
+  <main class="main" id="view"><p class="note">Loading…</p></main>
+
+  <footer class="foot">
+    <span>© <span id="year"></span> Smells</span>
+    <a href="#/admin">Admin</a>
+  </footer>
+</div>
+
+<dialog id="confirm">
+  <h2 id="confirm-title"></h2>
+  <p id="confirm-text"></p>
+  <div class="actions">
+    <button type="button" class="btn ghost" id="confirm-no">Cancel</button>
+    <button type="button" class="btn danger-solid" id="confirm-yes"></button>
+  </div>
+</dialog>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+'use strict';
+
+// ---------- Settings ----------
+// The PocketBase settings live in pocketbase.json next to this page: the server,
+// the collection, and the rating, photo and thumbnail limits. loadConfig() fills
+// these in before anything else runs. The file is public, so no passwords in it.
+
+let COLLECTION, MAX_RATING, MAX_IMAGE_MB, MAX_IMAGE_BYTES, IMAGE_TYPES, DEFAULT_SERVER;
+// Grid photos come from a thumb that only ever scales down ("f" = fit inside),
+// list rows from a square crop. Both must be listed on the image field.
+let THUMB_GRID, THUMB_ROW;
+let SCHEMA, records;
+const SERVER_KEY = 'smells-server';
+const SESSION_KEY = 'smells-admin';
+const THEME_KEY = 'smells-theme';
+
+async function loadConfig() {
+  const res = await fetch('pocketbase.json', { cache: 'no-cache' });
+  if (!res.ok) throw new Error(`pocketbase.json answered ${res.status}`);
+  const c = await res.json();
+  DEFAULT_SERVER = String(c.server).replace(/\/+$/, '');
+  COLLECTION = c.collection;
+  MAX_RATING = c.maxRating;
+  MAX_IMAGE_MB = c.maxImageMB;
+  MAX_IMAGE_BYTES = c.maxImageMB * 1024 * 1024;
+  IMAGE_TYPES = c.imageTypes;
+  THUMB_GRID = c.thumbs.grid;
+  THUMB_ROW = c.thumbs.row;
+  SCHEMA = schema();
+  records = `/api/collections/${COLLECTION}/records`;
+}
+
+// The collection this page creates the first time an admin signs in. Anyone can
+// read reviews; only PocketBase superusers can add, edit or delete them (the
+// original site's single admin).
+const schema = () => ({
+  name: COLLECTION,
+  type: 'base',
+  listRule: '',
+  viewRule: '',
+  createRule: null,
+  updateRule: null,
+  deleteRule: null,
+  fields: [
+    { name: 'name', type: 'text', required: true, max: 150 },
+    { name: 'rating', type: 'number', required: true, min: 1, max: MAX_RATING, onlyInt: true },
+    { name: 'review', type: 'text', max: 20000 },
+    { name: 'image', type: 'file', required: true, maxSelect: 1, maxSize: MAX_IMAGE_BYTES, mimeTypes: IMAGE_TYPES, thumbs: [THUMB_GRID, THUMB_ROW] },
+    { name: 'created', type: 'autodate', onCreate: true, onUpdate: false },
+    { name: 'updated', type: 'autodate', onCreate: true, onUpdate: true },
+  ],
+});
+
+const FIELD_LABELS = { name: 'Name', rating: 'Rating', review: 'Review', image: 'Image' };
+
+const STAR = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.5l2.94 5.96 6.56.95-4.75 4.63 1.12 6.54L12 17.5l-5.87 3.08 1.12-6.54L2.5 9.41l6.56-.95z"/></svg>';
+const ICONS = {
+  sun: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.8v2M12 19.2v2M2.8 12h2M19.2 12h2M5.5 5.5l1.4 1.4M17.1 17.1l1.4 1.4M5.5 18.5l1.4-1.4M17.1 6.9l1.4-1.4"></path></svg>',
+  moon: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.6A8 8 0 1 1 9.4 4a6.5 6.5 0 0 0 10.6 10.6z"></path></svg>',
+};
+
+// ---------- Helpers ----------
+
+const $ = (id) => document.getElementById(id);
+const view = $('view');
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+
+function readStore(key) {
+  try {
+    return localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+function writeStore(key, value) {
+  try {
+    if (value == null) localStorage.removeItem(key);
+    else localStorage.setItem(key, value);
+  } catch {}
+}
+
+// PocketBase dates are UTC, "2026-10-31 02:23:36.113Z".
+function fmtDate(s) {
+  const d = new Date(String(s).replace(' ', 'T'));
+  return Number.isNaN(+d) ? '' : d.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
+}
+
+function stars(value) {
+  if (!value) return '';
+  let html = '';
+  for (let n = 1; n <= MAX_RATING; n++) html += `<span class="${n <= value ? 'on' : ''}">${STAR}</span>`;
+  return `<span class="stars" role="img" aria-label="${value} out of ${MAX_RATING} stars">${html}</span>`;
+}
+
+const fileUrl = (rec, thumb) => `${server}/api/files/${encodeURIComponent(rec.collectionName || COLLECTION)}/${encodeURIComponent(rec.id)}/${encodeURIComponent(rec.image)}${thumb ? `?thumb=${thumb}` : ''}`;
+
+let toastTimer;
+function toast(message) {
+  const el = $('toast');
+  el.textContent = message;
+  el.hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => (el.hidden = true), 3500);
+}
+
+// ---------- PocketBase ----------
+// The server is whichever answers first: one you saved, this page's own origin
+// (when PocketBase serves it from pb_public), then the local default.
+
+let server = null;
+let session = null; // { token, email }
+
+class PbError extends Error {
+  constructor(status, data) {
+    const fields = data?.data && typeof data.data === 'object' ? Object.entries(data.data) : [];
+    const detail = fields.filter(([, v]) => v?.message).map(([k, v]) => `${FIELD_LABELS[k] || k}: ${v.message}`);
+    super(detail.length ? detail.join(' ') : data?.message || 'Something went wrong.');
+    this.status = status;
+  }
+}
+
+async function findServer() {
+  const candidates = [readStore(SERVER_KEY), /^https?:$/.test(location.protocol) ? location.origin : null, DEFAULT_SERVER].filter(Boolean);
+  for (const url of [...new Set(candidates)]) {
+    try {
+      const res = await fetch(url + '/api/health', { signal: AbortSignal.timeout(3000) });
+      const body = res.ok ? await res.json() : null;
+      if (body && body.code === 200) return url;
+    } catch {}
+  }
+  return null;
+}
+
+async function api(path, { method = 'GET', body, auth = false } = {}) {
+  const headers = {};
+  if (auth && session) headers.Authorization = session.token;
+  if (body && !(body instanceof FormData)) {
+    headers['Content-Type'] = 'application/json';
+    body = JSON.stringify(body);
+  }
+  let res;
+  try {
+    res = await fetch(server + path, { method, headers, body });
+  } catch {
+    throw new PbError(0, { message: `Couldn’t reach PocketBase at ${server}.` });
+  }
+  if (res.status === 204) return null;
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new PbError(res.status, data);
+  return data;
+}
+
+// Uploads go through XHR for a progress bar; photos can be several MB.
+function upload(method, path, form, onProgress) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open(method, server + path);
+    if (session) xhr.setRequestHeader('Authorization', session.token);
+    xhr.upload.onprogress = (e) => e.lengthComputable && onProgress(e.loaded / e.total);
+    xhr.onload = () => {
+      let data = {};
+      try {
+        data = JSON.parse(xhr.responseText || '{}');
+      } catch {}
+      if (xhr.status >= 200 && xhr.status < 300) resolve(data);
+      else reject(new PbError(xhr.status, data));
+    };
+    xhr.onerror = () => reject(new PbError(0, { message: `Couldn’t reach PocketBase at ${server}.` }));
+    xhr.send(form);
+  });
+}
+
+
+// Every review, newest first, or null when the collection doesn't exist yet.
+async function listReviews() {
+  const all = [];
+  for (let page = 1; ; page++) {
+    let res;
+    try {
+      res = await api(`${records}?sort=-created&perPage=500&page=${page}`);
+    } catch (err) {
+      if (err.status === 404) return null;
+      throw err;
+    }
+    all.push(...res.items);
+    if (page >= res.totalPages) return all;
+  }
+}
+
+// ---------- Admin session ----------
+// The admin is a PocketBase superuser. Tokens last a day; each visit swaps the
+// saved one for a fresh one, so a regular admin stays signed in.
+
+function loadSession() {
+  try {
+    const s = JSON.parse(readStore(SESSION_KEY));
+    if (!s?.token) return null;
+    const { exp } = JSON.parse(atob(s.token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')));
+    return exp * 1000 > Date.now() ? s : null;
+  } catch {
+    return null;
+  }
+}
+
+function saveSession(next) {
+  session = next;
+  writeStore(SESSION_KEY, next ? JSON.stringify(next) : null);
+  paintChrome();
+}
+
+async function refreshSession() {
+  if (!session) return;
+  try {
+    const res = await api('/api/collections/_superusers/auth-refresh', { method: 'POST', auth: true });
+    saveSession({ token: res.token, email: res.record.email });
+  } catch (err) {
+    if (err.status) saveSession(null); // rejected, not just offline
+  }
+}
+
+async function signIn(email, password) {
+  const res = await api('/api/collections/_superusers/auth-with-password', { method: 'POST', body: { identity: email, password } });
+  saveSession({ token: res.token, email: res.record.email });
+}
+
+// A 401/403 on a write means the token is no longer good.
+function expired(err) {
+  if (err.status !== 401 && err.status !== 403) return false;
+  saveSession(null);
+  toast('Your admin session has ended. Sign in again.');
+  if (location.hash === '#/admin') route();
+  else location.hash = '#/admin';
+  return true;
+}
+
+// ---------- Router ----------
+
+const current = { path: '' };
+
+function route() {
+  const path = location.hash.replace(/^#\/?/, '');
+  const changed = current.path !== path;
+  current.path = path;
+  paintChrome();
+  if (path === 'signout') {
+    saveSession(null);
+    location.replace('#/');
+    return;
+  }
+  if (!server) renderOffline();
+  else if (path === '') viewReviews();
+  else if (path === 'server') viewServer();
+  else if (path.startsWith('admin')) {
+    if (!session) viewSignIn();
+    else if (path === 'admin') viewAdmin();
+    else if (path === 'admin/new') viewForm(null);
+    else if (path.startsWith('admin/edit/')) viewForm(decodeURIComponent(path.slice('admin/edit/'.length)));
+    else viewAdmin();
+  } else location.replace('#/');
+  if (changed) window.scrollTo(0, 0);
+}
+
+function paintChrome() {
+  const adminPage = current.path.startsWith('admin') && !!session;
+  $('admin-badge').hidden = !adminPage;
+  $('topnav').hidden = !session;
+  document.querySelectorAll('[data-nav]').forEach((a) => {
+    const on = (a.dataset.nav === 'admin') === adminPage;
+    if (on) a.setAttribute('aria-current', 'page');
+    else a.removeAttribute('aria-current');
+  });
+}
+
+// ---------- Public reviews ----------
+
+async function viewReviews() {
+  view.innerHTML = '<p class="note">Loading…</p>';
+  let items;
+  try {
+    items = await listReviews();
+  } catch (err) {
+    return renderError(err);
+  }
+  if (current.path !== '') return;
+  if (items === null) {
+    view.innerHTML = `<div class="card narrow"><h1>Not set up yet</h1><p class="lede" style="margin:0">There are no reviews here yet. If this is your site, <a href="#/admin">sign in</a> to set it up.</p></div>`;
+    return;
+  }
+  if (!items.length) {
+    view.innerHTML = '<p class="note">No reviews yet — check back soon.</p>';
+    return;
+  }
+  view.innerHTML = `<div class="reviews">${items
+    .map(
+      (r) => `<article class="review">
+        <a class="shot" href="${esc(fileUrl(r))}" target="_blank" rel="noopener" title="Open the full photo">
+          <img src="${esc(fileUrl(r, THUMB_GRID))}" alt="${esc(r.name)}" loading="lazy" decoding="async">
+        </a>
+        <h2>${esc(r.name)}</h2>
+        ${stars(r.rating)}
+        ${r.review ? `<p>${esc(r.review)}</p>` : ''}
+      </article>`
+    )
+    .join('')}</div>`;
+}
+
+// ---------- Sign in ----------
+
+function viewSignIn() {
+  view.innerHTML = `<form class="card narrow form" id="signin" style="max-width:420px;margin:0 auto">
+    <div>
+      <h1>Admin sign in</h1>
+      <p class="lede" style="margin:0">Use your PocketBase superuser account.</p>
+    </div>
+    <div class="error" id="signin-error" role="alert" hidden></div>
+    <label class="field">Email <input type="email" name="email" required autocomplete="username"></label>
+    <label class="field">Password <input type="password" name="password" required autocomplete="current-password"></label>
+    <div class="actions"><button class="btn" type="submit">Sign in</button><a class="btn ghost" href="#/">Back to reviews</a></div>
+    <p class="where">Signing in to ${esc(server)} · <a href="#/server">change</a></p>
+  </form>`;
+  view.querySelector('[name="email"]').focus();
+}
+
+view.addEventListener('submit', async (e) => {
+  if (e.target.id !== 'signin') return;
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('[type="submit"]');
+  btn.disabled = true;
+  btn.textContent = 'Signing in…';
+  try {
+    await signIn(form.elements.email.value.trim(), form.elements.password.value);
+    route();
+  } catch (err) {
+    $('signin-error').textContent = err.status === 400 ? 'That email and password didn’t match a PocketBase superuser.' : err.message;
+    $('signin-error').hidden = false;
+    btn.disabled = false;
+    btn.textContent = 'Sign in';
+  }
+});
+
+// ---------- Admin list ----------
+
+async function viewAdmin() {
+  view.innerHTML = '<p class="note">Loading…</p>';
+  let items;
+  try {
+    items = await listReviews();
+  } catch (err) {
+    return renderError(err);
+  }
+  if (current.path !== 'admin') return;
+  if (items === null) return renderSetup();
+  view.innerHTML = `<div class="card">
+    <div class="list-head">
+      <h1>Air fresheners <span class="count">· ${items.length}</span></h1>
+      <a class="btn" href="#/admin/new">Add air freshener</a>
+    </div>
+    ${
+      items.length
+        ? `<ul class="rows">${items
+            .map(
+              (r) => `<li class="row" data-id="${esc(r.id)}">
+          <img src="${esc(fileUrl(r, THUMB_ROW))}" alt="" loading="lazy">
+          <div class="text">
+            <strong>${esc(r.name)}</strong>
+            ${stars(r.rating)}
+            ${r.review ? `<span class="excerpt">${esc(r.review)}</span>` : ''}
+            <span class="date">Added ${esc(fmtDate(r.created))}</span>
+          </div>
+          <div class="acts">
+            <a class="btn ghost small" href="#/admin/edit/${encodeURIComponent(r.id)}">Edit</a>
+            <button type="button" class="btn danger small" data-delete="${esc(r.id)}" data-name="${esc(r.name)}">Delete</button>
+          </div>
+        </li>`
+            )
+            .join('')}</ul>`
+        : '<p class="note">Nothing here yet. Add your first review.</p>'
+    }
+    <p class="where">Signed in as ${esc(session.email)} · PocketBase at ${esc(server)} · <a href="#/server">change</a></p>
+  </div>`;
+}
+
+view.addEventListener('click', (e) => {
+  const btn = e.target.closest('[data-delete]');
+  if (!btn) return;
+  const { delete: id, name } = btn.dataset;
+  confirmAction(`Delete “${name}”?`, 'The review and its photo are removed from PocketBase. This can’t be undone.', 'Delete', async () => {
+    try {
+      await api(`${records}/${encodeURIComponent(id)}`, { method: 'DELETE', auth: true });
+      toast(`Deleted ${name}.`);
+      viewAdmin();
+    } catch (err) {
+      if (!expired(err)) toast(err.message);
+    }
+  });
+});
+
+// ---------- First run ----------
+
+function renderSetup() {
+  view.innerHTML = `<div class="card narrow">
+    <h1>Set up Smells</h1>
+    <p class="lede">This PocketBase doesn’t have the <code>${COLLECTION}</code> collection yet. Setting up creates it: anyone can read the reviews; only superusers can add, edit or delete them. Photos can be JPG, PNG, WebP or GIF up to ${MAX_IMAGE_MB}&nbsp;MB.</p>
+    <div class="error" id="setup-error" role="alert" hidden></div>
+    <div class="actions"><button type="button" class="btn" id="setup">Set up</button></div>
+    <p class="where">PocketBase at ${esc(server)}</p>
+  </div>`;
+}
+
+view.addEventListener('click', async (e) => {
+  if (e.target.id !== 'setup') return;
+  const btn = e.target;
+  btn.disabled = true;
+  btn.textContent = 'Setting up…';
+  try {
+    await api('/api/collections', { method: 'POST', body: SCHEMA, auth: true });
+    toast('Smells is set up. Add your first review.');
+    viewAdmin();
+  } catch (err) {
+    if (expired(err)) return;
+    $('setup-error').textContent = err.message;
+    $('setup-error').hidden = false;
+    btn.disabled = false;
+    btn.textContent = 'Set up';
+  }
+});
+
+// ---------- Add / edit ----------
+
+const formState = { id: null, rating: 0, file: null, previewUrl: null, current: null };
+
+async function viewForm(id) {
+  let rec = null;
+  if (id) {
+    view.innerHTML = '<p class="note">Loading…</p>';
+    try {
+      rec = await api(`${records}/${encodeURIComponent(id)}`);
+    } catch (err) {
+      return renderError(err.status === 404 ? new PbError(404, { message: 'That review doesn’t exist any more.' }) : err);
+    }
+  }
+  if (formState.previewUrl) URL.revokeObjectURL(formState.previewUrl);
+  Object.assign(formState, { id, rating: rec?.rating || 0, file: null, previewUrl: null, current: rec ? fileUrl(rec, THUMB_GRID) : null });
+  view.innerHTML = `<form class="card form narrow" id="review-form" novalidate>
+    <h1>${id ? 'Edit air freshener' : 'Add air freshener'}</h1>
+    <div class="error" id="form-error" role="alert" hidden></div>
+    <label class="field">Name
+      <input type="text" name="name" required maxlength="150" value="${esc(rec?.name || '')}" placeholder="e.g. Glade Lavender & Vanilla">
+    </label>
+    <div class="field"><span id="photo-label">Photo ${id ? '<span class="hint">— leave empty to keep the current one</span>' : ''}</span>
+      <label class="drop${formState.current ? ' has-photo' : ''}" id="drop">
+        <input type="file" name="image" accept="${IMAGE_TYPES.join(',')}" aria-labelledby="photo-label" aria-describedby="drop-text">
+        <img class="preview" id="preview" alt="" ${formState.current ? `src="${esc(formState.current)}"` : 'hidden'}>
+        <span class="drop-text" id="drop-text">${dropText(null)}</span>
+      </label>
+    </div>
+    <fieldset class="star-input" id="star-input">
+      <legend>Rating</legend>
+      <div class="pick">${Array.from({ length: MAX_RATING }, (_, i) => i + 1)
+        .map((n) => `<label data-n="${n}"><input type="radio" name="rating" value="${n}" aria-label="${n} ${n === 1 ? 'star' : 'stars'}" ${formState.rating === n ? 'checked' : ''}>${STAR}</label>`)
+        .join('')}<span class="value" id="star-value" aria-hidden="true"></span></div>
+    </fieldset>
+    <label class="field"><span>Review <span class="hint">— optional</span></span>
+      <textarea name="review" rows="10" maxlength="20000" placeholder="How does it smell? How long does it last? Worth it?">${esc(rec?.review || '')}</textarea>
+    </label>
+    <div class="actions">
+      <button type="submit" class="btn">${id ? 'Save changes' : 'Publish review'}</button>
+      <a class="btn ghost" href="#/admin">Cancel</a>
+      <span class="progress" id="progress" hidden><i></i></span>
+    </div>
+  </form>`;
+  paintStars(0);
+  view.querySelector('[name="name"]').focus();
+}
+
+// Stars light up to the hovered one, else to the chosen rating.
+function paintStars(hover) {
+  const shown = hover || formState.rating;
+  document.querySelectorAll('#star-input label').forEach((l) => l.classList.toggle('on', +l.dataset.n <= shown));
+  const value = $('star-value');
+  if (value) value.textContent = shown ? `${shown} / ${MAX_RATING}` : 'Not rated';
+}
+
+view.addEventListener('pointerover', (e) => {
+  const star = e.target.closest('#star-input label');
+  if (star) paintStars(+star.dataset.n);
+});
+view.addEventListener('pointerout', (e) => {
+  if (e.target.closest('#star-input') && !e.relatedTarget?.closest?.('#star-input')) paintStars(0);
+});
+
+view.addEventListener('change', (e) => {
+  if (e.target.name === 'rating') {
+    formState.rating = +e.target.value;
+    paintStars(0);
+  } else if (e.target.name === 'image') {
+    // Cancelling the picker keeps the photo already chosen.
+    if (e.target.files[0] && !choosePhoto(e.target.files[0])) e.target.value = '';
+  }
+});
+
+// ---- Photo: chosen with the picker or dragged onto the form ----
+
+const fileSize = (bytes) => (bytes < 1024 * 1024 ? `${Math.max(1, Math.round(bytes / 1024))} KB` : `${(bytes / 1024 / 1024).toFixed(1)} MB`);
+const TYPES_TEXT = 'JPG, PNG, WebP or GIF';
+
+// What the drop box says: "fine" bits show with a mouse, "coarse" ones on touch screens.
+function dropText(file) {
+  if (file) return `<strong>${esc(file.name)}</strong><span class="hint">${fileSize(file.size)} · <span class="fine">drag another here or click to replace</span><span class="coarse">tap to replace</span></span>`;
+  const verb = formState.current ? 'a new photo' : 'a photo';
+  return `<strong><span class="fine">Drag ${verb} here</span><span class="coarse">Choose ${verb}</span></strong>`
+    + `<span class="hint"><span class="fine">or click to choose · </span>${TYPES_TEXT}, up to ${MAX_IMAGE_MB} MB</span>`;
+}
+
+function formError(message) {
+  const box = $('form-error');
+  box.textContent = message;
+  box.hidden = false;
+  box.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+}
+
+// Checks the file, then shows it in the box. Returns false (and says why) if it can't be used.
+function choosePhoto(file) {
+  if (!IMAGE_TYPES.includes(file.type)) return formError(`“${file.name}” isn’t a photo the page can use — it must be a ${TYPES_TEXT}.`), false;
+  if (file.size > MAX_IMAGE_BYTES) return formError(`“${file.name}” is ${fileSize(file.size)} — photos must be ${MAX_IMAGE_MB} MB or smaller.`), false;
+  $('form-error').hidden = true;
+  formState.file = file;
+  if (formState.previewUrl) URL.revokeObjectURL(formState.previewUrl);
+  formState.previewUrl = URL.createObjectURL(file);
+  $('preview').src = formState.previewUrl;
+  $('preview').hidden = false;
+  $('drop').classList.add('has-photo');
+  $('drop-text').innerHTML = dropText(file);
+  return true;
+}
+
+// Dragging files anywhere over the page while the form is open lights up the box,
+// and dropping them there (or anywhere else) uses the first one. Without the form,
+// the browser's own handling is left alone.
+const dragsFiles = (e) => Array.from(e.dataTransfer?.types || []).includes('Files');
+let dragDepth = 0;
+window.addEventListener('dragenter', (e) => {
+  if (!$('drop') || !dragsFiles(e)) return;
+  dragDepth++;
+  $('drop').classList.add('over');
+});
+window.addEventListener('dragleave', (e) => {
+  if (!$('drop') || !dragsFiles(e)) return;
+  if (--dragDepth <= 0) {
+    dragDepth = 0;
+    $('drop').classList.remove('over');
+  }
+});
+window.addEventListener('dragover', (e) => {
+  if (!$('drop') || !dragsFiles(e)) return;
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'copy';
+});
+window.addEventListener('drop', (e) => {
+  dragDepth = 0;
+  if (!$('drop') || !dragsFiles(e)) return;
+  e.preventDefault();
+  $('drop').classList.remove('over');
+  if (e.dataTransfer.files[0]) choosePhoto(e.dataTransfer.files[0]);
+});
+
+view.addEventListener('submit', async (e) => {
+  if (e.target.id !== 'review-form') return;
+  e.preventDefault();
+  const form = e.target;
+  const fail = formError;
+  const name = form.elements.name.value.trim();
+  const { file, id, rating } = formState;
+  if (!name) return fail('Give it a name.');
+  if (!id && !file) return fail('Add a photo.');
+  if (file && !IMAGE_TYPES.includes(file.type)) return fail('The photo must be a JPG, PNG, WebP or GIF.');
+  if (file && file.size > MAX_IMAGE_BYTES) return fail(`The photo must be ${MAX_IMAGE_MB} MB or smaller.`);
+  if (!rating) return fail('Pick a star rating.');
+  $('form-error').hidden = true;
+
+  const data = new FormData();
+  data.append('name', name);
+  data.append('rating', rating);
+  data.append('review', form.elements.review.value.trim());
+  if (file) data.append('image', file);
+
+  const btn = form.querySelector('[type="submit"]');
+  const label = btn.textContent;
+  const bar = $('progress');
+  btn.disabled = true;
+  btn.textContent = 'Saving…';
+  bar.hidden = !file;
+  try {
+    await upload(id ? 'PATCH' : 'POST', id ? `${records}/${encodeURIComponent(id)}` : records, data, (p) => (bar.firstElementChild.style.width = `${Math.round(p * 100)}%`));
+    if (formState.previewUrl) URL.revokeObjectURL(formState.previewUrl);
+    formState.previewUrl = null;
+    toast(id ? `Saved ${name}.` : `Published ${name}.`);
+    location.hash = '#/admin';
+  } catch (err) {
+    if (expired(err)) return;
+    btn.disabled = false;
+    btn.textContent = label;
+    bar.hidden = true;
+    fail(err.message);
+  }
+});
+
+// ---------- Server ----------
+
+function renderOffline() {
+  const tried = readStore(SERVER_KEY) || DEFAULT_SERVER;
+  view.innerHTML = `<div class="card narrow">
+    <h1>Can’t reach PocketBase</h1>
+    <p class="lede">The reviews are stored in PocketBase, and there’s no answer at <code>${esc(tried)}</code>${/^https?:$/.test(location.protocol) ? ` or <code>${esc(location.origin)}</code>` : ''}. Start it, then try again:</p>
+    <pre>pocketbase serve --dir ~/pocketbase/smells</pre>
+    ${serverForm(tried)}
+  </div>`;
+}
+
+function viewServer() {
+  view.innerHTML = `<div class="card narrow">
+    <h1>PocketBase server</h1>
+    <p class="lede">Where this page reads and saves reviews. Saved in this browser only.</p>
+    ${serverForm(server)}
+  </div>`;
+}
+
+function serverForm(value) {
+  return `<form class="form" id="server-form" style="margin-top:18px">
+    <div class="error" id="server-error" role="alert" hidden></div>
+    <label class="field">Address <input type="url" name="url" required value="${esc(value)}" placeholder="${DEFAULT_SERVER}"></label>
+    <div class="actions"><button class="btn" type="submit">Connect</button>${server ? '<a class="btn ghost" href="#/">Back</a>' : ''}</div>
+  </form>`;
+}
+
+view.addEventListener('submit', async (e) => {
+  if (e.target.id !== 'server-form') return;
+  e.preventDefault();
+  const btn = e.target.querySelector('[type="submit"]');
+  const url = e.target.elements.url.value.trim().replace(/\/+$/, '');
+  const previous = readStore(SERVER_KEY);
+  btn.disabled = true;
+  btn.textContent = 'Connecting…';
+  writeStore(SERVER_KEY, url);
+  const found = await findServer();
+  if (found === url) {
+    if (found !== server) saveSession(null); // a superuser token only works on its own server
+    server = found;
+    toast(`Connected to ${url}.`);
+    location.hash = '#/';
+    route();
+    return;
+  }
+  writeStore(SERVER_KEY, previous);
+  btn.disabled = false;
+  btn.textContent = 'Connect';
+  $('server-error').textContent = `No PocketBase answered at ${url}.`;
+  $('server-error').hidden = false;
+});
+
+function renderError(err) {
+  if (err.status === 0) {
+    server = null;
+    return renderOffline();
+  }
+  view.innerHTML = `<div class="card narrow"><h1>Something went wrong</h1><p class="lede" style="margin:0">${esc(err.message)} <a href="#/">Back to reviews</a></p></div>`;
+}
+
+// ---------- Confirm ----------
+
+const confirmDialog = $('confirm');
+let onConfirm = null;
+function confirmAction(title, text, yesLabel, fn) {
+  $('confirm-title').textContent = title;
+  $('confirm-text').textContent = text;
+  $('confirm-yes').textContent = yesLabel;
+  onConfirm = fn;
+  confirmDialog.showModal();
+  $('confirm-no').focus();
+}
+$('confirm-no').addEventListener('click', () => confirmDialog.close());
+$('confirm-yes').addEventListener('click', () => {
+  const fn = onConfirm;
+  onConfirm = null;
+  confirmDialog.close();
+  fn?.();
+});
+
+// ---------- Light / dark ----------
+
+const root = document.documentElement;
+const darkQuery = matchMedia('(prefers-color-scheme: dark)');
+const isDark = () => (root.dataset.theme ? root.dataset.theme === 'dark' : darkQuery.matches);
+function paintThemeButton() {
+  const dark = isDark();
+  const label = dark ? 'Switch to light mode' : 'Switch to dark mode';
+  $('theme-btn').innerHTML = dark ? ICONS.sun : ICONS.moon;
+  $('theme-btn').setAttribute('aria-label', label);
+  $('theme-btn').title = label;
+}
+$('theme-btn').addEventListener('click', () => {
+  const next = isDark() ? 'light' : 'dark';
+  root.dataset.theme = next;
+  writeStore(THEME_KEY, next);
+  paintThemeButton();
+});
+darkQuery.addEventListener('change', paintThemeButton);
+
+// ---------- Start ----------
+
+$('year').textContent = new Date().getFullYear();
+paintThemeButton();
+addEventListener('hashchange', route);
+(async () => {
+  try {
+    await loadConfig();
+  } catch (err) {
+    view.innerHTML = `<div class="card narrow">
+      <h1>Can’t read pocketbase.json</h1>
+      <p class="lede">This page reads its PocketBase settings from <code>pocketbase.json</code> next to it (${esc(err.message)}). Serve the folder over http(s) with that file in it, then reload.</p>
+    </div>`;
+    return;
+  }
+  session = loadSession();
+  server = await findServer();
+  if (server) await refreshSession();
+  route();
+})();
+</script>
+</body>
+</html>

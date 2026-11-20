@@ -1,0 +1,11 @@
+{
+  "server": "https://ars1y127iy9mass.pwz5.pocketbasecloud.com",
+  "collection": "air_fresheners",
+  "maxRating": 5,
+  "maxImageMB": 8,
+  "imageTypes": ["image/jpeg", "image/png", "image/webp", "image/gif"],
+  "thumbs": {
+    "grid": "720x1080f",
+    "row": "128x128"
+  }
+}

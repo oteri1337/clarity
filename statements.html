@@ -1,0 +1,3820 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Statements</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235b4bd1'/%3E%3Cg fill='none' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5.75 12.25L16 6.5l10.25 5.75z'/%3E%3Cpath d='M10 15.25v6.25M16 15.25v6.25M22 15.25v6.25M6.25 25h19.5'/%3E%3C/g%3E%3C/svg%3E">
+<meta name="theme-color" content="#f4f4f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: header (name, tabs, import / backup / theme), then one view at a time.
+   Views: Overview (charts), Label (people to tag), Transfers, Tags, Banks, plus
+   drill-downs for a person, tag, month, day or bank. */
+:root {
+  --bg: #f4f4f2;
+  --surface: #ffffff;
+  --soft: #ebebe7;
+  --hover: #f6f6f3;
+  --ink: #1a1a18;
+  --ink-soft: #5d6059;
+  --muted: #6b6a65;
+  --faint: #a9a7a0;
+  --rule: rgba(26, 26, 24, 0.11);
+  --rule-strong: rgba(26, 26, 24, 0.2);
+  --accent: #3d5afe;
+  --accent-soft: #e8ecff;
+  --in: #0a7a43;
+  --in-mark: #13a06c;
+  --out-mark: #eb6834;
+  --danger: #c4382b;
+  --danger-soft: #fbeceb;
+  --on-danger: #ffffff;
+  --chip: #efeee9;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.05), 0 12px 32px rgb(0 0 0 / 0.12);
+  --bank-gtbank: #c2410c;
+  --bank-kuda: #7c3aed;
+  --bank-moniepoint: #2563eb;
+  --bank-alat: #dc2626;
+  --bank-barter: #ca8a04;
+  --bank-opay: #059669;
+  --bank-chipper: #1a1a18;
+  --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #141416;
+    --surface: #1e1e22;
+    --soft: #29292e;
+    --hover: #24242a;
+    --ink: #e8e8e4;
+    --ink-soft: #b4b6ae;
+    --muted: #8f9189;
+    --faint: #5f615b;
+    --rule: rgba(232, 232, 228, 0.1);
+    --rule-strong: rgba(232, 232, 228, 0.2);
+    --accent: #8fa2ff;
+    --accent-soft: #232a4d;
+    --in: #45c98a;
+    --in-mark: #199e70;
+    --out-mark: #d95926;
+    --danger: #ff7a6b;
+    --danger-soft: #3a1d1b;
+    --on-danger: #1e1e22;
+    --chip: #2b2b31;
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 12px 32px rgb(0 0 0 / 0.5);
+    --bank-gtbank: #f97316;
+    --bank-kuda: #a78bfa;
+    --bank-moniepoint: #60a5fa;
+    --bank-alat: #f87171;
+    --bank-barter: #eab308;
+    --bank-opay: #34d399;
+    --bank-chipper: #d4d4d0;
+    color-scheme: dark;
+  }
+}
+:root[data-theme='dark'] {
+  --bg: #141416;
+  --surface: #1e1e22;
+  --soft: #29292e;
+  --hover: #24242a;
+  --ink: #e8e8e4;
+  --ink-soft: #b4b6ae;
+  --muted: #8f9189;
+  --faint: #5f615b;
+  --rule: rgba(232, 232, 228, 0.1);
+  --rule-strong: rgba(232, 232, 228, 0.2);
+  --accent: #8fa2ff;
+  --accent-soft: #232a4d;
+  --in: #45c98a;
+  --in-mark: #199e70;
+  --out-mark: #d95926;
+  --danger: #ff7a6b;
+  --danger-soft: #3a1d1b;
+  --on-danger: #1e1e22;
+  --chip: #2b2b31;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 12px 32px rgb(0 0 0 / 0.5);
+  --bank-gtbank: #f97316;
+  --bank-kuda: #a78bfa;
+  --bank-moniepoint: #60a5fa;
+  --bank-alat: #f87171;
+  --bank-barter: #eab308;
+  --bank-opay: #34d399;
+  --bank-chipper: #d4d4d0;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 15px/1.5 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+[hidden] { display: none !important; }
+.mono { font-family: var(--mono); font-size: 0.92em; }
+.num { font-variant-numeric: tabular-nums; }
+.muted { color: var(--muted); }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+.shell { max-width: 1120px; margin: 0 auto; padding: 28px 20px 96px; }
+
+/* ---- header ---- */
+.top { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 22px; }
+.brand { text-decoration: none; }
+.brand h1 { margin: 0; font: 600 30px/1 var(--sans); letter-spacing: -0.02em; }
+.brand p { margin: 5px 0 0; font: 400 12px/1.3 var(--mono); color: var(--muted); }
+.tabs { display: flex; gap: 2px; padding: 3px; border-radius: 10px; background: var(--soft); overflow-x: auto; scrollbar-width: none; }
+.tabs a {
+  display: flex; align-items: center; gap: 6px;
+  height: 32px; padding: 0 12px; border-radius: 8px;
+  color: var(--ink-soft); font-size: 14px; text-decoration: none; white-space: nowrap;
+  transition: background-color 0.12s, color 0.12s;
+}
+.tabs a:hover { color: var(--ink); }
+.tabs a[aria-current='page'] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgb(0 0 0 / 0.07); }
+.badge {
+  min-width: 20px; height: 18px; padding: 0 6px; border-radius: 9px;
+  background: var(--accent); color: var(--surface);
+  font: 500 11px/18px var(--sans); text-align: center; font-variant-numeric: tabular-nums;
+}
+.tools { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: 36px; padding: 0 14px; border-radius: 9px;
+  border: 1px solid var(--rule-strong); background: var(--surface);
+  font-size: 14px; font-weight: 500; text-decoration: none; white-space: nowrap;
+  transition: background-color 0.12s, border-color 0.12s;
+}
+.btn:hover { background: var(--hover); }
+.btn.primary { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.btn.primary:hover { opacity: 0.9; }
+.btn.danger { color: var(--danger); }
+.btn.danger:hover { background: var(--danger-soft); border-color: var(--danger); }
+.btn.danger-solid { background: var(--danger); border-color: var(--danger); color: var(--on-danger); }
+.btn.danger-solid:hover { opacity: 0.9; }
+.btn.small { height: 30px; padding: 0 11px; font-size: 13px; border-radius: 8px; }
+.btn:disabled { opacity: 0.5; cursor: default; }
+.icon-btn {
+  width: 36px; height: 36px; flex: none; display: grid; place-items: center;
+  border: 0; border-radius: 9px; background: var(--soft); color: var(--ink-soft);
+  transition: color 0.12s;
+}
+.icon-btn:hover { color: var(--ink); }
+
+/* ---- generic blocks ---- */
+.view { margin-top: 26px; }
+.card { background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; padding: 18px 20px; min-width: 0; }
+.view > * + * { margin-top: 16px; }
+.sect {
+  display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 4px 14px;
+  margin: 0 0 12px; font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+}
+.sect .n { letter-spacing: 0; text-transform: none; font-variant-numeric: tabular-nums; }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.view-head { margin-bottom: 20px; }
+.view-head h2 { margin: 0; font: 600 24px/1.2 var(--sans); letter-spacing: -0.015em; overflow-wrap: anywhere; }
+.view-head .lede { margin: 6px 0 0; color: var(--ink-soft); max-width: 640px; }
+.view-head .crumbs { margin: 0 0 6px; font-size: 13px; color: var(--muted); }
+.view-head .crumbs a { color: var(--muted); }
+.subline { margin-top: 6px; color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; }
+.empty-note { padding: 22px 0 8px; color: var(--muted); font-size: 14px; }
+.amt { font-family: var(--mono); font-size: 14px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.amt.in { color: var(--in); }
+.link { color: var(--accent); text-decoration: none; font-weight: 500; }
+.link:hover { text-decoration: underline; }
+
+.bank-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--faint); margin-right: 6px; vertical-align: 1px; flex: none; }
+
+/* ---- segmented filters ---- */
+.toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 14px; }
+.seg { display: inline-flex; gap: 2px; padding: 3px; border-radius: 9px; background: var(--soft); font-size: 13px; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+.seg button {
+  height: 28px; padding: 0 10px; border: 0; border-radius: 7px; background: none; color: var(--ink-soft); white-space: nowrap;
+  transition: background-color 0.12s, color 0.12s;
+}
+.seg button:hover { color: var(--ink); }
+.seg button[aria-pressed='true'] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgb(0 0 0 / 0.07); }
+.seg .n { color: var(--muted); margin-left: 4px; font-variant-numeric: tabular-nums; }
+.search {
+  flex: 1 1 220px; min-width: 0; height: 34px; padding: 0 12px;
+  border: 1px solid var(--rule-strong); border-radius: 9px; background: var(--surface); font-size: 14px;
+}
+.search::placeholder { color: var(--faint); }
+select.sel { height: 34px; padding: 0 8px; border: 1px solid var(--rule-strong); border-radius: 9px; background: var(--surface); font-size: 13px; }
+
+/* ---- empty state ---- */
+.hero { padding: 0; overflow: hidden; }
+.drop {
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px;
+  margin: 18px; padding: 54px 24px 46px;
+  border: 1.5px dashed var(--rule-strong); border-radius: 12px; cursor: pointer;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+.drop:hover { border-color: var(--accent); background: var(--accent-soft); }
+.drop .doc { width: 44px; height: 44px; color: var(--accent); stroke-width: 1.4; }
+.drop h2 { margin: 6px 0 0; font: 600 22px/1.25 var(--sans); letter-spacing: -0.01em; }
+.drop p { margin: 0; max-width: 460px; color: var(--ink-soft); }
+.drop .btn { margin-top: 10px; }
+.privacy { display: flex; gap: 10px; align-items: flex-start; margin: 0; padding: 14px 22px 18px; color: var(--ink-soft); font-size: 13.5px; }
+.privacy svg { margin-top: 1px; color: var(--in); }
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.steps li { list-style: none; padding: 16px 18px; border-radius: 12px; border: 1px solid var(--rule); background: var(--surface); }
+.steps b { display: block; font-weight: 600; margin-bottom: 2px; }
+.steps span { color: var(--ink-soft); font-size: 14px; }
+.steps i { font: 500 12px/1 var(--mono); color: var(--muted); font-style: normal; display: block; margin-bottom: 8px; }
+.steps { padding: 0; margin-bottom: 0; }
+
+/* ---- importer ---- */
+.importer { margin-top: 22px; }
+.imp-list { list-style: none; margin: 0; padding: 0; }
+.imp {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 14px; align-items: center;
+  padding: 10px 0; border-top: 1px solid var(--rule);
+}
+.imp:first-child { border-top: 0; padding-top: 0; }
+.imp .file { font-weight: 500; overflow-wrap: anywhere; }
+.imp .note { font-size: 13px; color: var(--ink-soft); }
+.imp.error .note { color: var(--danger); }
+.imp.done .note { color: var(--in); }
+.imp .bar { grid-column: 1 / -1; height: 2px; border-radius: 2px; background: var(--soft); overflow: hidden; margin-top: 6px; }
+.imp .bar i { display: block; height: 100%; width: 0; background: var(--accent); transition: width 0.2s; }
+.imp .x { width: 30px; height: 30px; display: grid; place-items: center; border: 0; border-radius: 8px; background: none; color: var(--muted); }
+.imp .x:hover { background: var(--soft); color: var(--ink); }
+.unlock { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.unlock input { flex: 1 1 200px; height: 32px; padding: 0 10px; border: 1px solid var(--rule-strong); border-radius: 8px; background: var(--surface); }
+.imp-sum { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); }
+.imp-list[hidden] + .imp-sum { margin-top: 0; padding-top: 0; border-top: 0; }
+.imp-sum p { margin: 0; color: var(--ink-soft); font-size: 14px; }
+
+/* ---- stat tiles ---- */
+.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin: 0; }
+.kpi { padding: 16px 18px; }
+.kpi dt { font-size: 13px; color: var(--ink-soft); }
+.kpi dd { margin: 4px 0 0; font: 600 26px/1.15 var(--sans); letter-spacing: -0.02em; overflow-wrap: anywhere; }
+.kpi .sub { margin-top: 4px; font-size: 13px; color: var(--muted); }
+.kpi .key { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: 0; }
+.meter { height: 6px; border-radius: 3px; background: var(--accent-soft); overflow: hidden; margin-top: 10px; }
+.meter i { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
+
+.years { display: flex; flex-wrap: wrap; gap: 6px; }
+.years button {
+  height: 30px; padding: 0 12px; border-radius: 15px; border: 1px solid var(--rule-strong);
+  background: var(--surface); color: var(--ink-soft); font-size: 13px; font-variant-numeric: tabular-nums;
+}
+.years button:hover { color: var(--ink); }
+.years button[aria-pressed='true'] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+
+/* ---- month chart: money in above the line, money out below, one scale ---- */
+.legend { display: flex; gap: 14px; font-size: 12px; color: var(--ink-soft); letter-spacing: 0; text-transform: none; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+.year + .year { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--rule); }
+.year-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; margin-bottom: 10px; }
+.year-head h3 { margin: 0; font: 600 17px/1.2 var(--sans); font-variant-numeric: tabular-nums; }
+.year-head span { font-size: 13px; color: var(--muted); }
+.year-head b { font-weight: 500; color: var(--ink-soft); }
+.delta.up { color: var(--in); }
+.mchart { display: grid; grid-template-columns: 52px minmax(0, 1fr); column-gap: 6px; }
+.maxis { display: grid; grid-template-rows: var(--up) var(--down) 24px; font-size: 11px; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+.maxis span:first-child { align-self: start; margin-top: -2px; }
+.maxis span:nth-child(2) { align-self: end; margin-bottom: -2px; }
+.mgrid { position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); }
+.mgrid::before { content: ''; position: absolute; left: 0; right: 0; top: var(--up); height: 1px; margin-top: -0.5px; background: var(--rule-strong); }
+.mgrid::after { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--rule); }
+.mcol { display: grid; grid-template-rows: var(--up) var(--down) 24px; border-radius: 6px; text-decoration: none; outline-offset: -2px; }
+.mcol:hover, .mcol:focus-visible { background: var(--hover); }
+.mcell { display: flex; justify-content: center; }
+.mcell.up { align-items: flex-end; padding-bottom: 1px; }
+.mcell.down { align-items: flex-start; padding-top: 1px; }
+.mbar { width: min(22px, 58%); }
+.mbar.in { background: var(--in-mark); border-radius: 4px 4px 0 0; }
+.mbar.out { background: var(--out-mark); border-radius: 0 0 4px 4px; }
+.mlabel { align-self: center; text-align: center; font-size: 11px; color: var(--muted); }
+.mcol.empty .mlabel { color: var(--faint); }
+details.table { margin-top: 10px; font-size: 13px; }
+details.table summary { cursor: pointer; color: var(--muted); width: max-content; }
+details.table summary:hover { color: var(--ink); }
+.tablewrap { overflow-x: auto; }
+table.data { width: 100%; border-collapse: collapse; margin-top: 8px; font-variant-numeric: tabular-nums; }
+table.data th, table.data td { padding: 6px 10px 6px 0; text-align: right; border-top: 1px solid var(--rule); white-space: nowrap; }
+table.data th:first-child, table.data td:first-child { text-align: left; }
+table.data th { font-weight: 500; color: var(--muted); border-top: 0; }
+
+.tip {
+  position: fixed; z-index: 30; pointer-events: none; min-width: 170px;
+  padding: 10px 12px; border-radius: 10px; background: var(--surface); border: 1px solid var(--rule);
+  box-shadow: var(--shadow); font-size: 13px;
+}
+.tip .t { color: var(--muted); margin-bottom: 4px; }
+.tip .r { display: flex; align-items: center; gap: 8px; }
+.tip .r b { font: 500 13px/1.6 var(--mono); }
+.tip .r span { color: var(--ink-soft); }
+.tip .r i { width: 10px; height: 2px; border-radius: 1px; flex: none; }
+.tip .f { margin-top: 4px; padding-top: 4px; border-top: 1px solid var(--rule); color: var(--ink-soft); }
+
+/* ---- horizontal bars (by tag) ---- */
+.hbars { list-style: none; margin: 0; padding: 0; }
+.hbars a, .hbars .hb-row {
+  display: grid; grid-template-columns: minmax(84px, 9.5rem) minmax(0, 1fr) auto 3.2rem; align-items: center; gap: 12px;
+  padding: 6px 6px; margin: 0 -6px; border-radius: 7px; text-decoration: none; font-size: 14px;
+}
+.hbars a:hover, .hbars a:focus-visible { background: var(--hover); }
+.hb-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hb-track { height: 10px; }
+.hb-bar { display: block; height: 100%; min-width: 2px; border-radius: 0 4px 4px 0; }
+.hb-bar.out { background: var(--out-mark); }
+.hb-bar.in { background: var(--in-mark); }
+.hb-bar.rest { background: var(--faint); }
+.hb-val { font: 500 13px/1 var(--mono); font-variant-numeric: tabular-nums; text-align: right; }
+.hb-pct { font-size: 12px; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+.hbars .muted-row .hb-name { color: var(--muted); }
+
+/* ---- people + transfer rows ---- */
+.rows { list-style: none; margin: 0; padding: 0; }
+.prow, .tx {
+  display: grid; gap: 4px 16px; align-items: start;
+  padding: 12px 8px; margin: 0 -8px; border-top: 1px solid var(--rule); border-radius: 8px;
+}
+.rows > li:first-child { border-top-color: transparent; }
+.prow { grid-template-columns: 1.6rem minmax(0, 1fr) minmax(0, auto) auto; align-items: center; }
+.prow .rank { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+.prow.norank { grid-template-columns: minmax(0, 1fr) minmax(0, auto) auto; }
+.prow.just-tagged, .tx.just-tagged { background: var(--hover); }
+.name { font-weight: 500; text-decoration: none; overflow-wrap: anywhere; }
+a.name:hover { text-decoration: underline; }
+.name.none { color: var(--muted); font-weight: 400; }
+.meta { font-size: 13px; color: var(--muted); overflow-wrap: anywhere; }
+.sums { display: flex; flex-direction: column; align-items: flex-end; gap: 1px; }
+.tags { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 5px; }
+.chip {
+  display: inline-flex; align-items: center; height: 24px; border-radius: 12px; background: var(--chip);
+  font-size: 12.5px; white-space: nowrap;
+}
+.chip a { padding: 0 4px 0 10px; text-decoration: none; }
+.chip a:hover { text-decoration: underline; }
+.chip button { width: 22px; height: 22px; margin-right: 1px; border: 0; border-radius: 11px; background: none; color: var(--muted); font-size: 14px; line-height: 1; }
+.chip button:hover { color: var(--danger); background: var(--danger-soft); }
+.chip.solo a { padding-right: 10px; }
+.tag-add {
+  height: 24px; padding: 0 10px; border-radius: 12px; border: 1px dashed var(--rule-strong);
+  background: none; color: var(--ink-soft); font-size: 12.5px; white-space: nowrap;
+}
+.tag-add:hover { border-style: solid; border-color: var(--accent); color: var(--accent); }
+.tag-add.plus { width: 24px; padding: 0; }
+
+.tx { grid-template-columns: 5.2rem minmax(0, 1fr) minmax(0, auto) auto; }
+.tx .when { font-size: 13px; line-height: 1.4; color: var(--muted); font-variant-numeric: tabular-nums; }
+.tx .when a { display: block; color: var(--ink-soft); text-decoration: none; }
+.tx .when a:hover { text-decoration: underline; }
+.tx .remarks {
+  margin-top: 2px; font-size: 13px; color: var(--ink-soft); overflow-wrap: anywhere; cursor: pointer;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.tx .remarks.open { display: block; }
+.tx .src { margin-top: 3px; font-size: 12px; color: var(--muted); }
+.tx.charge .name, .tx.charge .amt { color: var(--muted); }
+.tx .amt { text-align: right; line-height: 1.4; }
+.charge-tag { margin-left: 6px; padding: 1px 6px; border-radius: 5px; background: var(--chip); color: var(--muted); font-size: 11px; font-weight: 400; vertical-align: 1px; }
+.more { padding: 16px 0 4px; text-align: center; color: var(--muted); font-size: 13px; }
+
+.summary { display: flex; flex-wrap: wrap; gap: 6px 22px; align-items: baseline; margin-bottom: 8px; font-size: 14px; color: var(--ink-soft); }
+.summary b { font: 500 14px/1 var(--mono); color: var(--ink); }
+.summary b.in { color: var(--in); }
+
+/* ---- person / tag / month heads ---- */
+.head-tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 12px; }
+.head-tags .tags { justify-content: flex-start; }
+.rename { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 14px; font-size: 13px; color: var(--ink-soft); }
+.rename input { height: 32px; width: 240px; max-width: 100%; padding: 0 10px; border: 1px solid var(--rule-strong); border-radius: 8px; background: var(--surface); }
+.stats { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 16px; }
+.stats div { font-size: 13px; color: var(--muted); }
+.stats b { display: block; font: 500 17px/1.3 var(--mono); color: var(--ink); }
+.stats b.in { color: var(--in); }
+.pager { display: flex; gap: 6px; margin-top: 12px; }
+.people-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+
+/* ---- tags page ---- */
+.tg-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; }
+.tg-head .chip { height: 28px; font-size: 14px; font-weight: 500; }
+.tg-head .chip a { padding: 0 12px; }
+.tg-head .meta { flex: 1; }
+.tg-group + .tg-group { margin-top: 16px; }
+
+/* ---- banks page ---- */
+.banks { list-style: none; margin: 0; padding: 0; }
+.bank { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 16px; align-items: center; padding: 14px 0; border-top: 1px solid var(--rule); }
+.bank:first-child { border-top: 0; padding-top: 2px; }
+.bank .name { font-size: 16px; }
+.bank .acts { display: flex; gap: 6px; }
+.history { list-style: none; margin: 0; padding: 0; font-size: 13.5px; }
+.history li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 12px; padding: 8px 0; border-top: 1px solid var(--rule); }
+.history li:first-child { border-top: 0; }
+.data-acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+
+/* ---- tag picker ---- */
+.picker {
+  position: absolute; z-index: 40; width: 260px; padding: 8px;
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; box-shadow: var(--shadow);
+}
+.picker input { width: 100%; height: 34px; padding: 0 10px; border: 1px solid var(--rule-strong); border-radius: 8px; background: var(--surface); font-size: 14px; }
+.picker ul { list-style: none; margin: 6px 0 0; padding: 0; max-height: 272px; overflow-y: auto; }
+.picker li { display: flex; align-items: center; gap: 8px; padding: 0 8px; height: 32px; border-radius: 7px; font-size: 14px; cursor: pointer; }
+.picker li.active { background: var(--accent-soft); }
+.picker li .ck { width: 14px; color: var(--accent); font-weight: 600; flex: none; }
+.picker li em { margin-left: auto; font-size: 12px; font-style: normal; color: var(--muted); }
+.picker .group { padding: 8px 8px 2px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); height: auto; cursor: default; }
+.picker .foot { margin-top: 6px; padding: 6px 8px 0; border-top: 1px solid var(--rule); font-size: 11.5px; color: var(--muted); }
+
+/* ---- overlays ---- */
+.dropzone {
+  position: fixed; inset: 0; z-index: 50; display: grid; place-items: center;
+  background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(2px);
+}
+.dropzone div { padding: 32px 40px; border: 2px dashed var(--accent); border-radius: 16px; background: var(--surface); font: 500 18px/1.3 var(--sans); }
+.toast {
+  position: fixed; left: 50%; bottom: 24px; z-index: 60; transform: translateX(-50%);
+  max-width: calc(100vw - 32px); padding: 10px 16px; border-radius: 10px;
+  background: var(--ink); color: var(--bg); font-size: 14px; box-shadow: var(--shadow);
+}
+.banner { margin-top: 18px; padding: 10px 14px; border-radius: 10px; background: var(--danger-soft); color: var(--danger); font-size: 14px; }
+dialog { border: 1px solid var(--rule); border-radius: 14px; padding: 22px; max-width: 420px; width: calc(100vw - 32px); background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
+dialog::backdrop { background: rgb(0 0 0 / 0.35); }
+dialog h3 { margin: 0 0 6px; font-size: 17px; }
+dialog p { margin: 0; color: var(--ink-soft); font-size: 14px; }
+dialog .acts { display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px; }
+
+@media (max-width: 900px) {
+  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid2 { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 720px) {
+  .shell { padding: 20px 16px 88px; }
+  .top { gap: 12px; }
+  .brand h1 { font-size: 26px; }
+  .tabs { order: 3; width: 100%; }
+  .tabs a { flex: 1 0 auto; justify-content: center; gap: 4px; padding: 0 7px; font-size: 13.5px; }
+  .seg { width: 100%; }
+  .seg button { flex: 1 0 auto; padding: 0 8px; }
+  .tools .label-long { display: none; }
+  .steps { grid-template-columns: minmax(0, 1fr); }
+  .card { padding: 16px; }
+  .prow, .prow.norank { grid-template-columns: minmax(0, 1fr) auto; }
+  .prow .rank { display: none; }
+  .prow .tags, .tx .tags { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; }
+  .tx { grid-template-columns: minmax(0, 1fr) auto; }
+  .tx .when { grid-column: 1 / -1; display: flex; gap: 8px; }
+  .tx .when a { display: inline; }
+  .hbars a, .hbars .hb-row { grid-template-columns: minmax(70px, 7rem) minmax(0, 1fr) auto; }
+  .hb-pct { display: none; }
+  .mchart { grid-template-columns: 40px minmax(0, 1fr); }
+  .mlabel .long { display: none; }
+  /* Pinned to the top so the on-screen keyboard can't cover it. */
+  .picker.sheet { position: fixed; left: 8px !important; right: 8px; top: 8px !important; width: auto; }
+  .picker.sheet ul { max-height: 38vh; }
+}
+@media (min-width: 721px) { .mlabel .short { display: none; } }
+@media (hover: none) { .picker .foot { display: none; } }
+@media (max-width: 480px) {
+  .kpis { grid-template-columns: minmax(0, 1fr); }
+  .kpi dd { font-size: 22px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<script>
+// Apply a saved light/dark choice before the page paints.
+try {
+  const theme = localStorage.getItem('statements-theme');
+  if (theme === 'dark' || theme === 'light') document.documentElement.dataset.theme = theme;
+} catch {}
+</script>
+</head>
+<body>
+<div class="shell">
+  <header class="top">
+    <a class="icon-btn" href="index.html" aria-label="Home" title="Home"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V19a1 1 0 0 0 1 1h3.5v-5.5h4V20h3.5a1 1 0 0 0 1-1V9.5"/></svg></a>
+    <a class="brand" href="#/">
+      <h1>Statements</h1>
+      <p>read on your device · nothing uploaded</p>
+    </a>
+    <nav class="tabs" id="tabs" aria-label="Views">
+      <a href="#/" data-view="overview">Overview</a>
+      <a href="#/label" data-view="label">Label <span class="badge" id="label-count" hidden></span></a>
+      <a href="#/transfers" data-view="transfers">Transfers</a>
+      <a href="#/tags" data-view="tags">Tags</a>
+      <a href="#/banks" data-view="banks">Banks</a>
+    </nav>
+    <div class="tools">
+      <button type="button" class="btn primary" id="import-btn">
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4.5M7.8 8.7 12 4.5l4.2 4.2"></path><path d="M4.5 14.5v3.3a1.7 1.7 0 0 0 1.7 1.7h11.6a1.7 1.7 0 0 0 1.7-1.7v-3.3"></path></svg>
+        <span>Import<span class="label-long"> statements</span></span>
+      </button>
+      <button type="button" class="icon-btn" id="export-btn" aria-label="Download a backup" title="Download a backup" hidden>
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5V15M7.8 10.8 12 15l4.2-4.2"></path><path d="M4.5 14.5v3.3a1.7 1.7 0 0 0 1.7 1.7h11.6a1.7 1.7 0 0 0 1.7-1.7v-3.3"></path></svg>
+      </button>
+      <button type="button" class="icon-btn" id="figures-btn"></button>
+      <button type="button" class="icon-btn" id="theme-btn"></button>
+      <input type="file" id="file-input" accept=".pdf,application/pdf,.json,application/json" multiple hidden>
+    </div>
+  </header>
+
+  <div class="banner" id="storage-banner" role="alert" hidden>This browser isn’t letting the page save, so everything is lost when you close the tab. Download a backup before you go.</div>
+
+  <section class="card importer" id="importer" aria-live="polite" hidden>
+    <h2 class="sect"><span id="imp-title">Importing</span></h2>
+    <ul class="imp-list" id="imp-list"></ul>
+    <div class="imp-sum" id="imp-sum" hidden></div>
+  </section>
+
+  <main class="view" id="view"><p class="empty-note">Opening your statements…</p></main>
+</div>
+
+<div class="picker" id="picker" role="dialog" aria-label="Tags" hidden>
+  <input type="text" id="picker-q" placeholder="Find or create a tag" autocomplete="off" spellcheck="false" aria-label="Find or create a tag" aria-controls="picker-list">
+  <ul id="picker-list" role="listbox" aria-label="Tags"></ul>
+  <div class="foot">↑ ↓ to move · Enter to choose · Esc to close</div>
+</div>
+<div class="tip" id="tip" aria-hidden="true" hidden></div>
+<div class="dropzone" id="dropzone" hidden><div>Drop statements to import</div></div>
+<div class="toast" id="toast" role="status" hidden></div>
+<dialog id="confirm">
+  <h3 id="confirm-title"></h3>
+  <p id="confirm-text"></p>
+  <div class="acts">
+    <button type="button" class="btn" value="cancel" id="confirm-no">Cancel</button>
+    <button type="button" class="btn danger-solid" id="confirm-yes"></button>
+  </div>
+</dialog>
+
+<script id="parsers">
+// Bank statement parsers: a line-for-line port of the server's importer
+// (statements/server/Services/StatementImporter.php), which documents every
+// quirk below in full. pdf.js text in, transfer rows out; nothing leaves the page.
+const Parsers = (() => {
+  'use strict';
+
+  const MONTHS = { Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6, Jul: 7, Aug: 8, Sep: 9, Oct: 10, Nov: 11, Dec: 12 };
+
+  // ---------- PHP string semantics ----------
+  // The parsers were tuned against PHP, where strpos/substr/strlen and regex
+  // offsets count BYTES while mb_* count characters. ₦ is three bytes, so a
+  // byte-based column slice on a line carrying ₦ lands two characters left of a
+  // character slice, and the Kuda/ALAT column maths depends on exactly that.
+  // These helpers reproduce PHP so each parser reads like its original.
+
+  const enc = new TextEncoder();
+  const dec = new TextDecoder();
+  const isAscii = (s) => !/[^\x00-\x7f]/.test(s);
+  const hasAstral = (s) => /[\ud800-\udfff]/.test(s);
+  const bin = (s) => (isAscii(s) ? s : Array.from(enc.encode(s), (b) => String.fromCharCode(b)).join(''));
+  const asciiLower = (s) => s.replace(/[A-Z]+/g, (m) => m.toLowerCase());
+
+  const strlen = (s) => (isAscii(s) ? s.length : enc.encode(s).length);
+  const byteOff = (s, i) => (isAscii(s) ? i : enc.encode(s.slice(0, i)).length);
+  const mbStrlen = (s) => (hasAstral(s) ? Array.from(s).length : s.length);
+
+  // PHP's start/length clamping, shared by substr() and mb_substr().
+  function clampRange(len, start, length) {
+    if (start > len) return null;
+    if (start < 0) start = -start > len ? 0 : len + start;
+    if (length == null) length = len - start;
+    else if (length < 0) length = -length > len - start ? 0 : len - start + length;
+    else if (length > len - start) length = len - start;
+    return [start, length];
+  }
+
+  function substr(s, start, length = null) {
+    if (isAscii(s)) {
+      const r = clampRange(s.length, start, length);
+      return r ? s.slice(r[0], r[0] + r[1]) : '';
+    }
+    const b = enc.encode(s);
+    const r = clampRange(b.length, start, length);
+    return r ? dec.decode(b.subarray(r[0], r[0] + r[1])) : '';
+  }
+
+  function mbSubstr(s, start, length = null) {
+    const cps = hasAstral(s) ? Array.from(s) : null;
+    const r = clampRange(cps ? cps.length : s.length, start, length);
+    if (!r) return '';
+    return cps ? cps.slice(r[0], r[0] + r[1]).join('') : s.slice(r[0], r[0] + r[1]);
+  }
+
+  // strpos/stripos: byte offset, or null where PHP returns false.
+  function strpos(h, needle, from = 0) {
+    const i = bin(h).indexOf(bin(needle), from);
+    return i < 0 ? null : i;
+  }
+  function stripos(h, needle, from = 0) {
+    const i = asciiLower(bin(h)).indexOf(asciiLower(bin(needle)), from);
+    return i < 0 ? null : i;
+  }
+  function mbStrpos(h, needle) {
+    const i = h.indexOf(needle);
+    if (i < 0) return null;
+    return hasAstral(h) ? Array.from(h.slice(0, i)).length : i;
+  }
+  // mb_stripos($h, $needle) === 0
+  function mbStartsWithI(h, needle) {
+    const fold = (s) => Array.from(s, (c) => (c.toLowerCase().length === c.length ? c.toLowerCase() : c)).join('');
+    return fold(h).startsWith(fold(needle));
+  }
+
+  // preg_match_all(..., PREG_OFFSET_CAPTURE)[0]: each match with its byte offset.
+  const matchAllAt = (re, s) => Array.from(s.matchAll(re), (m) => ({ text: m[0], at: byteOff(s, m.index), m }));
+
+  // trim() family with PHP's default character list.
+  const WS = ' \t\n\r\0\x0B';
+  function ptrim(s, chars = WS) {
+    let a = 0;
+    let b = s.length;
+    while (a < b && chars.includes(s[a])) a++;
+    while (b > a && chars.includes(s[b - 1])) b--;
+    return s.slice(a, b);
+  }
+  function prtrim(s, chars = WS) {
+    let b = s.length;
+    while (b > 0 && chars.includes(s[b - 1])) b--;
+    return s.slice(0, b);
+  }
+  function pltrim(s, chars = WS) {
+    let a = 0;
+    while (a < s.length && chars.includes(s[a])) a++;
+    return s.slice(a);
+  }
+
+  // preg_split($re, $s, 2): the text before the first match, then the rest.
+  function splitOnce(re, s) {
+    const m = re.exec(s);
+    return m ? [s.slice(0, m.index), s.slice(m.index + m[0].length)] : [s];
+  }
+
+  const pad = (n, width = 2) => String(n).padStart(width, '0');
+  const ucfirst = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+
+  // mb_convert_case(mb_strtolower($s), MB_CASE_TITLE): a cased letter starts a
+  // word unless it follows another cased letter, with case-ignorable marks
+  // ('.:’ etc.) in between. Digits, hyphens and underscores break words.
+  const TITLE = { ß: 'Ss', ǆ: 'ǅ', ǉ: 'ǈ', ǌ: 'ǋ', ǳ: 'ǲ', ﬀ: 'Ff', ﬁ: 'Fi', ﬂ: 'Fl', ﬃ: 'Ffi', ﬄ: 'Ffl', ﬅ: 'St', ﬆ: 'St' };
+  function titleCase(s) {
+    let out = '';
+    let start = true;
+    for (const ch of s.toLowerCase()) {
+      const cased = /\p{Cased}/u.test(ch);
+      if (start) {
+        out += cased ? TITLE[ch] || ch.toUpperCase() : ch;
+        if (cased) start = false;
+      } else {
+        out += ch;
+        if (!cased && !/\p{Case_Ignorable}/u.test(ch)) start = true;
+      }
+    }
+    return out;
+  }
+
+  // ---------- Shared helpers ----------
+
+  function toKobo(s) {
+    s = ptrim(String(s ?? '').replaceAll(',', '').replaceAll('₦', '').replaceAll('NGN', ''));
+    if (s === '' || s === '-' || s === '--') return null;
+    if (s[0] === '.') s = '0' + s;
+    let neg = false;
+    if (s[0] === '-') {
+      neg = true;
+      s = s.slice(1);
+    }
+    if (!/^[0-9]+(\.[0-9]+)?$/.test(s)) return null;
+    const val = Math.round(parseFloat(s) * 100);
+    return neg ? -val : val;
+  }
+
+  function parseDayMonYearDate(s) {
+    const m = /^(\d{2})-([A-Za-z]{3})-(\d{4})$/.exec(s);
+    if (!m) return null;
+    const mon = MONTHS[ucfirst(m[2].toLowerCase())];
+    if (!mon) return null;
+    return `${pad(+m[3], 4)}-${pad(mon)}-${pad(+m[1])} 00:00:00`;
+  }
+
+  const ymdhms = (y, mo, d, h = 0, mi = 0, s = 0) => `${pad(y, 4)}-${pad(mo)}-${pad(d)} ${pad(h)}:${pad(mi)}:${pad(s)}`;
+
+  function sliceCol(line, start, end) {
+    if (start == null || start >= strlen(line)) return '';
+    if (end == null) return prtrim(substr(line, start));
+    return prtrim(substr(line, start, end - start));
+  }
+
+  // Character-based slice for rows carrying ₦ (see the Kuda parser).
+  function mbSliceCol(line, start, end) {
+    if (start == null) return '';
+    if (start >= mbStrlen(line)) return '';
+    if (end == null) return prtrim(mbSubstr(line, start));
+    return prtrim(mbSubstr(line, start, end - start));
+  }
+
+  // A number is never part of a name: pull a 10-digit NUBAN out of it, drop the
+  // digits and payment-channel noise, and Title Case what's left.
+  function cleanCounterpartyName(name, acct) {
+    name = name == null ? '' : String(name);
+    let m;
+    if ((acct == null || acct === '') && (m = /(?<!\d)\d{10}(?!\d)/.exec(name))) acct = m[0];
+    name = name.replace(/\d+/g, ' ');
+    name = name.replace(/\s*\/\s*/g, ' ');
+    name = name.replace(/\b(trf-)?chipper\s*cash\b/gi, ' ');
+    name = name.replace(/\b(trf-)?chippercash\b/gi, ' ');
+    name = name.replace(/\btrf-chipper\b/gi, ' ');
+    name = ptrim(name.replace(/\s{2,}/g, ' '));
+    name = ptrim(name, ' /,-');
+    if (name !== '') name = titleCase(name);
+    acct = typeof acct === 'string' && /^\d{10}$/.test(acct) ? acct : null;
+    return [name !== '' ? name : null, acct];
+  }
+
+  // Counterparty bank names get clipped by column overflow ("Gtba", "Opay D
+  // Services Limited"); map a recognisable prefix back to the real name.
+  const BANKS = [
+    [/^(gtb|gtba|guaranty)/i, 'GTBank Plc'],
+    [/^opay|digital\s+services\s+limited/i, 'Opay Digital Services Limited'],
+    [/^paycom/i, 'Paycom (OPay)'],
+    [/^palmpay/i, 'Palmpay'],
+    [/^(9\s*pay|9psb)/i, '9 Payment Service Bank (9PSB)'],
+    [/^(titan|paystack)/i, 'Titan Paystack'],
+    [/^moni/i, 'Moniepoint MFB'],
+    [/^kuda/i, 'Kuda MFB'],
+    [/^wema/i, 'Wema Bank'],
+    [/^(flutterwave|flut)/i, 'Flutterwave'],
+    [/^premium/i, 'Premium Trust Bank'],
+    [/^access/i, 'Access Bank'],
+    [/^zenith/i, 'Zenith Bank'],
+    [/^uba\b|united\s+ban|for\s+africa/i, 'United Bank for Africa'],
+    [/^first|^fbn\b|^fi\w*\s+of\s+nigeria/i, 'First Bank'],
+    [/^fcmb/i, 'FCMB'],
+    [/^fidelity/i, 'Fidelity Bank'],
+    [/^union\s*bank/i, 'Union Bank'],
+    [/^stanbic/i, 'Stanbic IBTC'],
+    [/^sterling/i, 'Sterling Bank'],
+    [/^polaris/i, 'Polaris Bank'],
+    [/^keystone/i, 'Keystone Bank'],
+    [/^ecobank/i, 'Ecobank'],
+    [/^providus/i, 'Providus Bank'],
+    [/^globus/i, 'Globus Bank'],
+    [/^parallex/i, 'Parallex Bank'],
+    [/^carbon/i, 'Carbon'],
+    [/^artax/i, 'Artax Digital'],
+    [/^chipper/i, 'Chipper Cash'],
+    [/^jaiz/i, 'Jaiz Bank'],
+    [/^lotus/i, 'Lotus Bank'],
+    [/^taj/i, 'Taj Bank'],
+    [/^sparkle/i, 'Sparkle'],
+    [/^rubies/i, 'Rubies MFB'],
+    [/^vfd/i, 'VFD MFB'],
+    [/^cbn\b/i, 'CBN'],
+  ];
+  function canonicalBank(bank) {
+    const b = ptrim(bank == null ? '' : String(bank));
+    if (b === '') return null;
+    for (const [re, name] of BANKS) if (re.test(b)) return name;
+    return b;
+  }
+
+  // ---------- Bank detection ----------
+
+  // Order matters: OPay before Moniepoint, because OPay statements that pay a
+  // Moniepoint account carry "TRF|2MPT…" references.
+  const RULES = [
+    ['Kuda', () => parseKuda, /Date\/Time\s+Money In\s+Money out/i],
+    ['Barter', () => parseBarter, /BARTER ACCOUNT STATEMENT|Flutterwave Technology/i],
+    ['Alat', () => parseAlat, /\bALAT\b|TIER 3 SAVINGS/i],
+    ['OPay', () => parseOPay, /OWealth\b|OPay Card Payment|Trans\.\s*Time\s+Value Date\s+Description|Wallet Account/i],
+    ['Moniepoint', () => parseMoniepoint, /CBA_DEBIT|CBA_CREDIT|Moniepoint Micr|Moniepoint MFB|\bMONIEPOINT\b|TRF\|2MPT/],
+    ['Chipper', () => parseChipper, /chippercash\.com|Chipper Tag/i],
+    ['GTBank', () => parseGTBank, /Trans\. Date\s+Value\. Date\s+Reference|Guaranty Trust Bank Plc Systems and Control/i],
+  ];
+
+  function detectBank(text) {
+    const head = substr(text.slice(0, 8000), 0, 8000);
+    for (const [bank, parser, re] of RULES) if (re.test(head)) return [bank, parser()];
+    return [null, null];
+  }
+
+  // ---------- GTBank ----------
+
+  function parseGTBank(text) {
+    const lines = text.split('\n');
+    let cols = null;
+    let headerIdx = null;
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      if (strpos(line, 'Trans. Date') != null && strpos(line, 'Value. Date') != null && strpos(line, 'Reference') != null && strpos(line, 'Debits') != null) {
+        cols = {
+          reference: strpos(line, 'Reference'),
+          debits: strpos(line, 'Debits'),
+          credits: strpos(line, 'Credits'),
+          balance: strpos(line, 'Balance'),
+          branch: strpos(line, 'Originating Branch'),
+          remarks: strpos(line, 'Remarks'),
+        };
+        headerIdx = i;
+        break;
+      }
+    }
+    if (cols === null) return [];
+
+    const rows = [];
+    let current = null;
+    const dateRe = /^\s*(\d{2}-[A-Za-z]{3}-\d{4})\s+(\d{2}-[A-Za-z]{3}-\d{4})/;
+    for (let i = headerIdx + 1; i < lines.length; i++) {
+      const raw = lines[i];
+      if (asciiLower(raw).includes('computer generated')) continue;
+      if (raw.includes('Customer Information Unit')) continue;
+      if (raw.includes('CUSTOMER STATEMENT')) continue;
+      if (raw.includes('Statement Period')) continue;
+      if (raw.includes('Trans. Date') && raw.includes('Value. Date')) continue;
+      if (ptrim(raw) === '') continue;
+
+      const m = dateRe.exec(raw);
+      if (m) {
+        if (current) rows.push(current);
+        current = {
+          trans_date: m[1],
+          reference: pltrim(pltrim(sliceCol(raw, cols.reference, cols.debits)), "'"),
+          debits: ptrim(sliceCol(raw, cols.debits, cols.credits)),
+          credits: ptrim(sliceCol(raw, cols.credits, cols.balance)),
+          balance: ptrim(sliceCol(raw, cols.balance, cols.branch)),
+          branch: ptrim(sliceCol(raw, cols.branch, cols.remarks)),
+          remarks: ptrim(sliceCol(raw, cols.remarks, null)),
+        };
+      } else {
+        if (current === null) continue;
+        const b = ptrim(sliceCol(raw, cols.branch, cols.remarks));
+        const r = ptrim(sliceCol(raw, cols.remarks, null));
+        if (b !== '') current.branch = ptrim(current.branch + ' ' + b);
+        if (r !== '') current.remarks = ptrim(current.remarks + ' ' + r);
+      }
+    }
+    if (current) rows.push(current);
+
+    const txns = [];
+    let prevBal = null;
+    for (const r of rows) {
+      const bal = toKobo(r.balance);
+      if (bal === null) continue;
+      const deb = toKobo(r.debits);
+      const cre = toKobo(r.credits);
+      let t;
+      let amount;
+      if (cre && !deb) {
+        t = 'credit';
+        amount = cre;
+      } else if (deb && !cre) {
+        t = 'debit';
+        amount = deb;
+      } else {
+        if (prevBal === null) continue;
+        const delta = bal - prevBal;
+        t = delta > 0 ? 'credit' : 'debit';
+        amount = Math.abs(delta);
+      }
+      const before = t === 'credit' ? bal - amount : bal + amount;
+      const dt = parseDayMonYearDate(r.trans_date);
+      if (dt === null) continue;
+      let remarks = r.remarks;
+      if (r.reference !== '') remarks = ptrim(remarks + ' | Ref: ' + r.reference, ' |');
+      if (r.branch !== '') remarks = ptrim(remarks + ' | Branch: ' + r.branch, ' |');
+      txns.push({ transfer_type: t, balance_after: bal, balance_before: before, remarks, created_at: dt });
+      prevBal = bal;
+    }
+    return txns;
+  }
+
+  // ---------- Kuda ----------
+
+  // Page furniture repeated on every page. When a transaction straddles a page
+  // break these lines land inside its group, so they're dropped outright.
+  const KUDA_CHROME = /Kuda MF Bank|Deposit Insurance Corporation|Central Bank of Nigeria|Kuda Technologies|Finsbury Pavement|EC2A\s*1NT|Account Number\s*:|Page\s+\d+\s+of\s+\d+/i;
+
+  function parseKuda(text) {
+    const lines = text.split('\n');
+
+    // The newer layout (2026+) has no "Category" header and wraps each
+    // transaction over three lines.
+    for (const line of lines) {
+      if (stripos(line, 'Date/Time') != null && stripos(line, 'Money In') != null && stripos(line, 'Money Out') != null && stripos(line, 'Balance') != null && stripos(line, 'Category') == null) {
+        return parseKudaWrapped(lines, line);
+      }
+    }
+
+    // Header capitalisation and spacing vary between exports.
+    const colAt = (line, re) => {
+      const m = re.exec(line);
+      return m ? byteOff(line, m.index) : null;
+    };
+    const colsFor = (line) => {
+      if (stripos(line, 'Date/Time') == null || stripos(line, 'Money In') == null || stripos(line, 'Money Out') == null || stripos(line, 'Balance') == null) return null;
+      return {
+        money_in: colAt(line, /Money\s+In/i),
+        money_out: colAt(line, /Money\s+Out/i),
+        category: colAt(line, /Category/i),
+        to_from: colAt(line, /To\s*\/\s*From/i),
+        description: colAt(line, /Description/i),
+        balance: colAt(line, /Balance/i),
+      };
+    };
+
+    let cols = null;
+    let headerIdx = null;
+    for (let i = 0; i < lines.length; i++) {
+      const c = colsFor(lines[i]);
+      if (c) {
+        cols = c;
+        headerIdx = i;
+        break;
+      }
+    }
+    if (cols === null) return [];
+
+    const dateRe = /^\s*(\d{2}\/\d{2}\/\d{2})\b/;
+    const timeRe = /^\s*(\d{2}:\d{2}:\d{2})\b/;
+    // "-₦2,770.00": the minus sits flush before the naira sign.
+    const nairaRe = /(-?)₦\s*(-?[\d,]+\.\d{2})/gu;
+
+    const groups = [];
+    let buffer = [];
+    let current = null;
+    let sawTime = false;
+    for (let i = headerIdx + 1; i < lines.length; i++) {
+      const raw = lines[i];
+      const stripped = ptrim(raw);
+      if (strlen(stripped) < 30 && raw.includes('Statement')) continue;
+      if (strlen(stripped) < 30 && raw.includes('Summary')) continue;
+      if (KUDA_CHROME.test(raw)) continue;
+
+      // Every page repeats the header and the columns drift between pages, so
+      // each group remembers the columns in force for its page.
+      const c = colsFor(raw);
+      if (c) {
+        cols = c;
+        continue;
+      }
+
+      if (dateRe.test(raw)) {
+        if (current !== null) groups.push(current);
+        current = { lines: [...buffer, raw], cols };
+        buffer = [];
+        sawTime = false;
+        continue;
+      }
+      if (current !== null) {
+        if (stripped === '') {
+          if (sawTime) {
+            groups.push(current);
+            current = null;
+            sawTime = false;
+          }
+        } else {
+          current.lines.push(raw);
+          if (timeRe.test(raw)) sawTime = true;
+        }
+      } else if (stripped !== '') {
+        buffer.push(raw);
+      }
+    }
+    if (current !== null) groups.push(current);
+
+    const txns = [];
+    for (const g of groups) {
+      cols = g.cols ?? cols;
+      const dateLine = g.lines.find((l) => dateRe.test(l));
+      if (dateLine === undefined) continue;
+      const dateS = dateRe.exec(dateLine)[1];
+
+      let timeS = null;
+      for (const l of g.lines) {
+        const tm = timeRe.exec(l);
+        if (tm) {
+          timeS = tm[1];
+          break;
+        }
+      }
+
+      const amountLine = g.lines.find((l) => l.includes('₦'));
+      if (amountLine === undefined) continue;
+      const nairas = Array.from(amountLine.matchAll(nairaRe), (m) => (m[1] === '-' ? '-' : '') + m[2]);
+      if (nairas.length < 2) continue;
+      let amount = toKobo(nairas[0]);
+      const balance = toKobo(nairas[nairas.length - 1]);
+      if (amount === null || balance === null) continue;
+      amount = Math.abs(amount);
+
+      // Amounts sit a character or two left of their heading, so split on the
+      // midpoint between the two money columns.
+      const amtPos = mbStrpos(amountLine, '₦');
+      const moneyMid = (cols.money_in + cols.money_out) / 2;
+      const t = amtPos >= moneyMid ? 'debit' : 'credit';
+      const before = t === 'credit' ? balance - amount : balance + amount;
+
+      // To/From and Description data sit ~2 characters left of their headings.
+      const tfStart = cols.to_from - 2;
+      const dsStart = cols.description !== null ? cols.description - 2 : cols.description;
+      const toFrom = [];
+      const description = [];
+      const category = [];
+      for (const l of g.lines) {
+        const cat = ptrim(mbSliceCol(l, cols.category, tfStart));
+        let tf = ptrim(mbSliceCol(l, tfStart, cols.description));
+        let ds = ptrim(mbSliceCol(l, dsStart, cols.balance));
+        // A negative balance's "-₦" bleeds into the description slice.
+        ds = ptrim(ds.replace(/\s*-?\s*₦[\d,.]*\s*$/gu, ''));
+        // The description's first letters can land at the tail of To/From
+        // ("transfer" -> "Tr"); drop them when they really start this line's
+        // description.
+        const bm = tf !== '' && ds !== '' ? /\s(\S{1,3})$/u.exec(tf) : null;
+        if (bm) {
+          const frag = bm[1];
+          if (mbStrlen(frag) < mbStrlen(ds) && mbStartsWithI(ds, frag)) {
+            tf = prtrim(mbSubstr(tf, 0, mbStrlen(tf) - mbStrlen(frag)));
+          }
+        }
+        if (cat !== '' && !/\d/.test(cat)) category.push(cat);
+        if (tf !== '') toFrom.push(tf);
+        if (ds !== '') description.push(ds);
+      }
+      const toFromFull = ptrim(toFrom.join(' '));
+
+      let cpName = null;
+      let cpAcct = null;
+      let cpBank = null;
+      if (toFromFull !== '') {
+        const cpm = /^(.+?)\s*\/\s*(\d*)\s*\/\s*(.+?)\s*$/.exec(toFromFull);
+        if (cpm) {
+          cpName = ptrim(cpm[1]) !== '' ? ptrim(cpm[1]) : null;
+          cpAcct = ptrim(cpm[2]) !== '' ? ptrim(cpm[2]) : null;
+          cpBank = ptrim(cpm[3]) !== '' ? ptrim(cpm[3]) : null;
+        } else {
+          cpName = toFromFull;
+        }
+      }
+
+      const remarks = [ptrim(category.join(' ')), ptrim(description.join(' '))].filter((x) => x !== '').join(' | ');
+
+      // An empty To/From can carry the counterparty in the narration as
+      // "Name:AccountNumber" (always multi-word, unlike Kuda's "kip:090405").
+      if (cpName === null || cpName === '') {
+        const rm = /([A-Za-z][A-Za-z.'’\-]+(?: [A-Za-z.'’\-]+)+)\s*:\s*(\d{6,})/u.exec(remarks);
+        if (rm) {
+          cpName = ptrim(rm[1]);
+          if (cpAcct === null || cpAcct === '') cpAcct = rm[2];
+        }
+      }
+      // Still nothing: a POS / bill / web payment, so the merchant is the description.
+      if (cpName === null || cpName === '') {
+        let descName = ptrim(description.join(' '));
+        descName = descName.replace(/\bkip:\S*/gi, '');
+        descName = ptrim(descName.replace(/\s{2,}/g, ' '));
+        if (descName !== '') cpName = descName;
+      }
+
+      const [d, mo, y] = dateS.split('/');
+      const year = +y < 50 ? 2000 + +y : 1900 + +y;
+      const [th, tmin, ts] = timeS ? timeS.split(':') : [0, 0, 0];
+
+      txns.push({
+        transfer_type: t,
+        // Kuda's ₦50 CBN levy rows read "Cbn/<acct>/<bank>" in To / From.
+        transfer_category: /^\s*cbn\s*\//i.test(toFromFull) ? 'charge' : 'transfer',
+        balance_after: balance,
+        balance_before: before,
+        remarks,
+        created_at: ymdhms(year, +mo, +d, +th, +tmin, +ts),
+        account_name: cpName,
+        account_number: cpAcct,
+        bank_name: cpBank,
+      });
+    }
+    return txns;
+  }
+
+  // Newer Kuda layout: date, the ₦ amount/description/balance row, and time on
+  // separate lines, with category and "Name/Account/Bank" wrapping across them.
+  function parseKudaWrapped(lines, header) {
+    // The category column is the SECOND "Money Out" heading.
+    const pOut = stripos(header, 'Money Out');
+    const pCat = stripos(header, 'Money Out', pOut + 1);
+    const pTo = stripos(header, 'To / From');
+    const pDesc = stripos(header, 'Description');
+    const tfStart = Math.max(0, pTo - 2);
+
+    const dateRe = /^\s*(\d{2}\/\d{2}\/\d{2})\b/;
+    const timeRe = /^\s*(\d{2}:\d{2}:\d{2})\b/;
+    const nairaRe = /₦\s*(-?[\d,]+\.\d{2})/gu;
+
+    const groups = [];
+    let current = null;
+    for (const raw of lines) {
+      if (KUDA_CHROME.test(raw)) continue;
+      if (stripos(raw, 'Date/Time') != null && stripos(raw, 'Balance') != null) continue;
+      if (dateRe.test(raw)) {
+        if (current) groups.push(current);
+        current = [raw];
+      } else if (current !== null && ptrim(raw) !== '') {
+        current.push(raw);
+      }
+    }
+    if (current) groups.push(current);
+
+    const txns = [];
+    for (const g of groups) {
+      let dateS = null;
+      let timeS = null;
+      for (const l of g) {
+        const m = dateS === null && dateRe.exec(l);
+        if (m) dateS = m[1];
+      }
+      for (const l of g) {
+        const m = timeS === null && timeRe.exec(l);
+        if (m) timeS = m[1];
+      }
+      if (dateS === null) continue;
+
+      // First ₦ = amount, last = balance.
+      const amountLine = g.find((l) => l.includes('₦'));
+      if (amountLine === undefined) continue;
+      const nm = matchAllAt(nairaRe, amountLine);
+      if (nm.length < 2) continue;
+      const amount = toKobo(nm[0].m[1]);
+      const last = nm[nm.length - 1];
+      const balance = toKobo(last.m[1]);
+      if (amount === null || balance === null) continue;
+      const amtPos = nm[0].at;
+      const balPos = last.at;
+
+      const type = amtPos < pOut - 2 ? 'credit' : 'debit';
+      const before = type === 'credit' ? balance - amount : balance + amount;
+
+      const catParts = [];
+      for (const l of g) {
+        const c = ptrim(sliceCol(l, pCat, tfStart));
+        if (c !== '') catParts.push(c);
+      }
+      const category = ptrim(catParts.join(' ').replace(/\s{2,}/g, ' '));
+
+      // To/From across every line of the group, kept to its own column so a
+      // neighbouring row's wrapped description can't bleed in.
+      const tfParts = [];
+      for (const l of g) {
+        const s = ptrim(sliceCol(l, tfStart, pDesc));
+        if (s !== '') tfParts.push(s);
+      }
+      const tfBlob = ptrim(tfParts.join(' ').replace(/\s{2,}/g, ' '));
+
+      // "transfer" is Kuda's generic filler.
+      const descBlob = ptrim(ptrim(sliceCol(amountLine, pDesc, balPos)).replace(/\s{2,}/g, ' '));
+      const desc = ptrim(descBlob.replace(/\btransfer\b/gi, ' ').replace(/\s{2,}/g, ' '));
+
+      const isCharge = /\bcbn\b|stamp duty|vat charge|\blevy\b/i.test(category + ' ' + tfBlob + ' ' + descBlob);
+
+      let cpName = null;
+      let cpAcct = null;
+      let cpBank = null;
+      const cpm = /^(.*?)\/\s*(\d{6,})\s*\/\s*(.*)$/.exec(tfBlob);
+      if (cpm) {
+        cpName = ptrim(cpm[1]) !== '' ? ptrim(cpm[1]) : null;
+        cpAcct = ptrim(cpm[2]) !== '' ? ptrim(cpm[2]) : null;
+        const bankGuess = ptrim(cpm[3]) !== '' ? ptrim(cpm[3]) : descBlob;
+        cpBank = bankGuess !== '' ? bankGuess : null;
+      }
+      // The category column can bleed a short tail into the name ("ds Adekunle").
+      if (cpName !== null) {
+        cpName = cpName.replace(/^[a-z]{1,4}\s+(?=[A-Z])/u, '');
+        if (ptrim(cpName) === '') cpName = null;
+      }
+      if (cpName === null && !isCharge && desc !== '') cpName = desc;
+
+      const [d, mo, y] = dateS.split('/');
+      const year = +y < 50 ? 2000 + +y : 1900 + +y;
+      const [th, tmin, ts] = timeS ? timeS.split(':') : [0, 0, 0];
+
+      txns.push({
+        transfer_type: type,
+        transfer_category: isCharge ? 'charge' : 'transfer',
+        balance_after: balance,
+        balance_before: before,
+        remarks: ptrim([category, desc].filter((x) => x !== '').join(' | ')),
+        created_at: ymdhms(year, +mo, +d, +th, +tmin, +ts),
+        account_name: cpName,
+        account_number: cpAcct,
+        bank_name: cpBank,
+      });
+    }
+    return txns;
+  }
+
+  // ---------- Barter (Flutterwave) ----------
+
+  // Grouped under "Month of MONTH, YEAR"; each transaction starts with a day
+  // row ("31st  11:45:12 PM  …  -2,000.00  55,171.41") whose signed amount is
+  // second from the right and balance right-most.
+  function parseBarter(text) {
+    const lines = text.split('\n');
+    const monthRe = /Month of (\w+),?\s+(\d{4})/i;
+    const dayRe = /^\s*(\d{1,2})(?:st|nd|rd|th)\s+(\d{1,2}):(\d{2}):(\d{2})\s+([AP]M)\b/;
+    const amountRe = /-?[\d,]+\.\d{2}/g;
+
+    let currentMonth = null;
+    let currentYear = null;
+    const groups = [];
+    let current = null;
+    for (const raw of lines) {
+      const mm = monthRe.exec(raw);
+      if (mm) {
+        currentMonth = MONTHS[ucfirst(mm[1].slice(0, 3).toLowerCase())] ?? null;
+        currentYear = +mm[2];
+        continue;
+      }
+      if (stripos(raw, 'Narration') != null && stripos(raw, 'Available Balance') != null) continue;
+
+      const dm = dayRe.exec(raw);
+      if (dm) {
+        if (current) groups.push(current);
+        let hour = +dm[2];
+        if (dm[5] === 'PM' && hour !== 12) hour += 12;
+        if (dm[5] === 'AM' && hour === 12) hour = 0;
+        current = {
+          day: +dm[1],
+          hour,
+          min: +dm[3],
+          sec: +dm[4],
+          month: currentMonth,
+          year: currentYear,
+          firstLine: raw,
+          firstTextStart: byteOff(raw, dm.index) + strlen(dm[0]),
+          extra: [],
+        };
+      } else if (current && ptrim(raw) !== '') {
+        current.extra.push(ptrim(raw));
+      }
+    }
+    if (current) groups.push(current);
+
+    const txns = [];
+    for (const g of groups) {
+      if (!g.month || !g.year) continue;
+      const am = matchAllAt(amountRe, g.firstLine);
+      if (am.length < 2) continue;
+      const balance = toKobo(am[am.length - 1].text);
+      const signed = toKobo(am[am.length - 2].text);
+      if (balance === null || signed === null || signed === 0) continue;
+
+      const type = signed < 0 ? 'debit' : 'credit';
+      const amount = Math.abs(signed);
+      const before = type === 'credit' ? balance - amount : balance + amount;
+
+      let narr = substr(g.firstLine, g.firstTextStart, am[0].at - g.firstTextStart);
+      narr = ptrim(narr.replace(/\s{2,}/g, ' '));
+      if (g.extra.length) {
+        narr = ptrim(narr + ' ' + g.extra.join(' '));
+        narr = ptrim(narr.replace(/\s{2,}/g, ' '));
+      }
+      // A row straddling a page break absorbs the "Copyright: …" footer.
+      narr = ptrim(narr.replace(/\s*Copyright:.*/gis, ''));
+
+      const [cpName, cpAcct, cpBank] = barterCounterparty(narr);
+      txns.push({
+        transfer_type: type,
+        balance_after: balance,
+        balance_before: before,
+        remarks: narr,
+        created_at: ymdhms(g.year, g.month, g.day, g.hour, g.min, g.sec),
+        account_name: cpName,
+        account_number: cpAcct,
+        bank_name: cpBank,
+      });
+    }
+    return txns;
+  }
+
+  function barterCounterparty(narr) {
+    const r = ptrim(narr);
+    let m = /(?<!\d)(\d{10})(?!\d)\s*\//.exec(r);
+    const acct = m ? m[1] : null;
+
+    if (/BillsPayment\b/i.test(r)) {
+      m = /\b(Airtel|MTN|9mobile|Glo|Etisalat)\b/i.exec(r);
+      return [m ? m[1] : null, null, null];
+    }
+
+    if ((m = /Received Money from\s+(.+)$/is.exec(r))) {
+      const rest = m[1];
+      let bank = null;
+      let name = null;
+      const bar = rest.indexOf('|');
+      if (bar >= 0) {
+        bank = ptrim(rest.slice(0, bar));
+        name = barterTrimName(rest.slice(bar + 1));
+      } else {
+        bank = barterTrimName(rest);
+      }
+      // Barter's placeholders for an unknown sender bank.
+      if (bank !== null && /^(GENERATED|NotOnBankList)$/i.test(bank)) bank = null;
+      return [name, acct, bank !== '' ? bank : null];
+    }
+
+    if ((m = /Transfer to\s+(.+)$/is.exec(r))) return [barterTrimName(m[1]), acct, null];
+
+    return [null, acct, null];
+  }
+
+  function barterTrimName(s) {
+    s = s.replace(/\s*-?\s*NIP:.*/gis, '');
+    s = splitOnce(/\s*(?:\d{6,}|\/)/, s)[0];
+    s = ptrim(s, ' -|,');
+    return s !== '' ? s : null;
+  }
+
+  // ---------- ALAT ----------
+
+  // Two layouts that differ only in how the date wraps: "11-Jan-2021" on the
+  // data row, or "05-Jan-" above it and "2021" below. Anchor on the data row
+  // (reference ID + amounts) and rebuild the date around it.
+  function parseAlat(text) {
+    const lines = text.split('\n');
+    const n = lines.length;
+    const headerRe = /Date\b.*?Transaction Details\b.*?Credit.*?Debit.*?Balance/i;
+    const singleLineDateRe = /^\s*(\d{2}-[A-Za-z]{3}-\d{4})\b/;
+    const shortDateRe = /^\s*(\d{2})-([A-Za-z]{3})-(?:\s|$)/;
+    const yearRe = /^\s*(\d{4})(?:\s|$)/;
+    const refRe = /\b[A-Z]\d{3,}\b/;
+    const amountRe = /[\d,]+\.\d{2}/g;
+
+    const txns = [];
+    let cols = null;
+    let prevBal = null;
+    for (let i = 0; i < n; i++) {
+      const line = lines[i];
+
+      // Every page repeats the header and the columns drift, so refresh them.
+      if (headerRe.test(line)) {
+        cols = {
+          credit: strpos(line, 'Credit'),
+          debit: strpos(line, 'Debit'),
+          balance: strpos(line, 'Balance'),
+        };
+        continue;
+      }
+      if (cols === null) continue;
+      if (stripos(line, 'computer generated') != null) continue;
+
+      const rm = refRe.exec(line);
+      if (!rm) continue;
+      const am = matchAllAt(amountRe, line);
+      if (!am.length) continue;
+
+      let dateStr = null;
+      const dm = singleLineDateRe.exec(line);
+      if (dm) {
+        dateStr = dm[1];
+      } else {
+        let dd = null;
+        let mon = null;
+        let yyyy = null;
+        for (let j = i - 1; j >= Math.max(0, i - 6); j--) {
+          if (ptrim(lines[j]) === '') continue;
+          const sm = shortDateRe.exec(lines[j]);
+          if (sm) {
+            dd = sm[1];
+            mon = sm[2];
+          }
+          break;
+        }
+        for (let j = i + 1; j <= Math.min(n - 1, i + 6); j++) {
+          if (ptrim(lines[j]) === '') continue;
+          const ym = yearRe.exec(lines[j]);
+          if (ym) yyyy = ym[1];
+          break;
+        }
+        if (dd && mon && yyyy) dateStr = `${dd}-${mon}-${yyyy}`;
+      }
+      if (dateStr === null) continue;
+
+      const creditMid = (cols.credit + cols.debit) / 2;
+      const debitMid = (cols.debit + cols.balance) / 2;
+      const bal = toKobo(am[am.length - 1].text);
+      if (bal === null) continue;
+
+      let creditStr = '';
+      let debitStr = '';
+      for (const tok of am.slice(0, -1)) {
+        if (tok.at < creditMid) creditStr = tok.text;
+        else if (tok.at < debitMid) debitStr = tok.text;
+      }
+      const cre = toKobo(creditStr);
+      const deb = toKobo(debitStr);
+
+      let type;
+      let amount;
+      if (deb && deb != 0) {
+        type = 'debit';
+        amount = Math.abs(deb);
+      } else if (cre && cre != 0) {
+        type = 'credit';
+        amount = Math.abs(cre);
+      } else {
+        if (prevBal === null) {
+          prevBal = bal;
+          continue;
+        }
+        const delta = bal - prevBal;
+        if (delta > 0) {
+          type = 'credit';
+          amount = delta;
+        } else if (delta < 0) {
+          type = 'debit';
+          amount = -delta;
+        } else {
+          prevBal = bal;
+          continue;
+        }
+      }
+      const before = type === 'credit' ? bal - amount : bal + amount;
+
+      const dt = parseDayMonYearDate(dateStr);
+      if (dt === null) continue;
+
+      // Details: the text between the reference and the first amount.
+      const refEnd = byteOff(line, rm.index) + strlen(rm[0]);
+      let details = ptrim(substr(line, refEnd, am[0].at - refEnd));
+      details = ptrim(details.replace(/\s+/g, ' '));
+
+      const [cpName, cpAcct, cpBank, cpCat] = alatCounterparty(details);
+      txns.push({
+        transfer_type: type,
+        transfer_category: cpCat,
+        balance_after: bal,
+        balance_before: before,
+        remarks: [details, 'Ref: ' + rm[0]].filter((x) => x !== '').join(' | '),
+        created_at: dt,
+        account_name: cpName,
+        account_number: cpAcct,
+        bank_name: cpBank,
+      });
+      prevBal = bal;
+    }
+    return txns;
+  }
+
+  // ALAT never gives the counterparty its own column; it's embedded in the
+  // narration in a handful of shapes. Fees and levies are charges.
+  function alatCounterparty(details) {
+    const d = ptrim(details);
+
+    if (
+      /^(vat|comm)\b/i.test(d) ||
+      /electronic money transfer levy/i.test(d) ||
+      /stamp duty/i.test(d) ||
+      /maintenance fee/i.test(d) ||
+      /account maintenance/i.test(d) ||
+      /sms alert/i.test(d) ||
+      /\bw\.?tax\b|wtax/i.test(d)
+    ) {
+      return [null, null, null, 'charge'];
+    }
+
+    let m;
+    // Inbound NIP credit: "NIP:<sender name>-<narration>".
+    if ((m = /^NIP:\s*(.+)$/is.exec(d))) {
+      const name = ptrim(splitOnce(/\s*-\s*/, m[1])[0]);
+      return [name !== '' ? name : null, null, null, 'transfer'];
+    }
+
+    // Outbound NIP: "ALAT NIP TRANSFER [REVERSAL] TO <X>…".
+    if ((m = /ALAT\s+NIP\s+TRANSFER\s+(?:REVERSAL\s+)?TO\s+(.+)$/is.exec(d))) {
+      const rest = ptrim(m[1]);
+      const fm = /^(.+?)\s+FROM\b/i.exec(rest);
+      if (fm) {
+        const name = ptrim(fm[1]);
+        return [name !== '' ? name : null, null, null, 'transfer'];
+      }
+      // Otherwise only the destination bank survives ALAT's narrow column.
+      const bank = ptrim(splitOnce(/\s*-\s*/, rest)[0]);
+      return [null, null, bank !== '' ? bank : null, 'transfer'];
+    }
+
+    // Internal ALAT → ALAT: "ALAT TRANSFER TO <name>-<acct>".
+    if ((m = /ALAT\s+TRANSFER\s+TO\s+(.+)$/is.exec(d))) {
+      const parts = splitOnce(/\s*-\s*/, ptrim(m[1]));
+      const name = ptrim(parts[0]);
+      const am = parts.length > 1 ? /(\d{6,})/.exec(parts[1]) : null;
+      return [name !== '' ? name : null, am ? am[1] : null, null, 'transfer'];
+    }
+
+    if ((m = /^(?:rev-)?(?:airtime|data)\s*alat\s*([A-Za-z]+)/i.exec(d))) {
+      const names = { MTN: 'MTN', AIRTEL: 'Airtel', ATL: 'Airtel', GLO: 'Glo', ETISALAT: '9mobile' };
+      return [names[m[1].toUpperCase()] ?? null, null, null, 'transfer'];
+    }
+    if (/ALAT\s+AIRTIME\s+RECHARGE/i.test(d)) return ['Airtime', null, null, 'transfer'];
+
+    // POS / web purchases: the merchant is clipped, leave it to the remarks.
+    return [null, null, null, 'transfer'];
+  }
+
+  // ---------- Moniepoint ----------
+
+  // The timestamp is split across four lines of the Date column ("2025-",
+  // "06-", "01T17:", "27:32") with the data row somewhere among them, so lines
+  // are segmented into blocks at each year marker.
+  function parseMoniepoint(text) {
+    const lines = text.split('\n');
+    const n = lines.length;
+    const refRe = /\S*_(DEBIT|CREDIT)_\d+(?:_EMTL_DC_\d+)?/;
+    const amountRe = /[\d,]+\.\d{2}/g;
+    const yearRe = /^\s*(\d{4})-(?!\d)/;
+    const monthRe = /^\s*(\d{2})-(?!\d)/;
+    const dayHrRe = /^\s*(\d{2})T(\d{2}):/;
+    const msRe = /^\s*(\d{2}):(\d{2})(?:\s|$)/;
+    const msAltRe = /^\s*(\d{2})(?:\s|$)/;
+
+    const starts = [];
+    for (let i = 0; i < n; i++) if (yearRe.test(lines[i])) starts.push(i);
+    starts.push(n);
+
+    const txns = [];
+    for (let b = 0; b < starts.length - 1; b++) {
+      const bStart = starts[b];
+      const bEnd = starts[b + 1];
+      let month = null;
+      let dayHr = null;
+      let minSec = null;
+      let dataIdx = -1;
+      let m = yearRe.exec(lines[bStart]);
+      const year = m ? m[1] : null;
+
+      // The data row can itself carry a date piece, so it isn't skipped.
+      for (let i = bStart + 1; i < bEnd; i++) {
+        const s = lines[i];
+        if (s === '') continue;
+        if (dataIdx === -1 && refRe.test(s)) dataIdx = i;
+        if (dayHr === null && (m = dayHrRe.exec(s))) {
+          dayHr = [m[1], m[2]];
+          continue;
+        }
+        if (month === null && (m = monthRe.exec(s))) {
+          month = m[1];
+          continue;
+        }
+        if (minSec === null && (m = msRe.exec(s))) {
+          minSec = [m[1], m[2]];
+          continue;
+        }
+        if (minSec === null && (m = msAltRe.exec(s))) {
+          minSec = [m[1], '00'];
+          continue;
+        }
+      }
+      if (dataIdx === -1 || !year || !month || !dayHr || !minSec) continue;
+
+      const line = lines[dataIdx];
+      const rm = refRe.exec(line);
+      const am = Array.from(line.matchAll(amountRe));
+      const amts = am.map((x) => x[0]);
+
+      // 4 amounts: debit, credit, before, after. 6 (TRANSFER rows): amount,
+      // debit, credit, before, after, charge.
+      let dStr, cStr, beforeStr, afterStr;
+      if (amts.length === 4) [dStr, cStr, beforeStr, afterStr] = amts;
+      else if (amts.length === 6) [, dStr, cStr, beforeStr, afterStr] = amts;
+      else continue;
+
+      const debitV = toKobo(dStr) ?? 0;
+      const creditV = toKobo(cStr) ?? 0;
+      const before = toKobo(beforeStr);
+      const after = toKobo(afterStr);
+      if (before === null || after === null) continue;
+
+      let type;
+      if (debitV > 0) type = 'debit';
+      else if (creditV > 0) type = 'credit';
+      else continue;
+
+      // Right of the last amount: Beneficiary / Source columns and Narration.
+      const lastAm = am[am.length - 1];
+      const tail = ptrim(line.slice(lastAm.index + lastAm[0].length));
+      const segs = tail.split(/\s{2,}/).map((x) => ptrim(x)).filter((x) => x !== '');
+
+      // Only a credit's 10-digit segment is the counterparty; on a debit it's
+      // our own account.
+      let cpAcct = null;
+      if (type === 'credit') cpAcct = segs.find((s) => /^\d{10}$/.test(s)) ?? null;
+
+      let narr = '';
+      for (const s of segs) if (/transfer|purchase at|card |payment|airtime|bill/i.test(s)) narr = s;
+      if (narr === '' && segs.length) narr = segs[segs.length - 1];
+
+      // A credit's counterparty is the sender ("FROM <name>"); a debit's is the
+      // recipient ("TO <name>" / "purchase at <merchant>").
+      let cpName = null;
+      let cpBank = null;
+      let mm;
+      if (type === 'credit') {
+        if ((mm = /\bFROM\s+(.+?)(?:\s+to\s+|\s*$)/i.exec(narr))) cpName = mm[1];
+      } else if ((mm = /\bTO\s+(.+?)\s*$/i.exec(narr))) {
+        cpName = mm[1];
+      } else if ((mm = /\bat\s+(.+?)\s*$/i.exec(narr))) {
+        cpName = mm[1];
+      }
+      if (cpName !== null) {
+        cpName = cpName.replace(/\s*\*{2,}.*$/g, '');
+        cpName = cpName.replace(/\s*\/.*$/g, '');
+        // Split a trailing Title-Case bank ("Kuda Bank") off the CAPS name.
+        const nm = /^(.*?[A-Z0-9])\s+([A-Z][a-z].*)$/.exec(ptrim(cpName));
+        if (nm && /bank|mfb|microfinance|opay|kuda|palmpay|moniepoint/i.test(nm[2])) {
+          cpName = nm[1];
+          cpBank = nm[2];
+        }
+        cpName = cpName.replace(/^T\s+/, '');
+        cpName = cpName.replace(/\s+\d{1,4}\s*$/g, '');
+        cpName = ptrim(cpName);
+        if (/^(trf|ref|pos|atm|nip|ussd|na)$/i.test(cpName) || /-\d{3,}/.test(cpName) || cpName.replace(/[^A-Za-z]/g, '').length < 2) {
+          cpName = null;
+        }
+      }
+      if (cpBank === null) {
+        for (const s of segs) {
+          if (s === narr || /^\d{10}$/.test(s)) continue;
+          if (/bank|mfb|microfinance|opay|kuda|palmpay|payment/i.test(s) && stripos(s, 'moniepoint') == null) {
+            cpBank = s;
+            break;
+          }
+        }
+      }
+
+      txns.push({
+        transfer_type: type,
+        balance_after: after,
+        balance_before: before,
+        remarks: (narr !== '' ? narr + ' | ' : '') + 'Ref: ' + ptrim(rm[0]),
+        created_at: `${year}-${month}-${dayHr[0]} ${dayHr[1]}:${minSec[0]}:${minSec[1]}`,
+        account_name: cpName !== null && cpName !== '' ? cpName : null,
+        account_number: cpAcct,
+        bank_name: cpBank,
+      });
+    }
+    return txns;
+  }
+
+  // ---------- Chipper ----------
+
+  function parseChipper(text) {
+    const lines = text.split('\n');
+    const mainRe = /^\s*(\d{4}-\d{2}-\d{2})\s+(\d+)\s+(.+?)\s+(-?[\d,]+\.\d{2})\s+(-?[\d,]+\.\d{2})\s+(-?[\d,]+\.\d{2})\s*$/;
+    const timeRe = /^\s*(\d{2}:\d{2})\b(.*)$/;
+    const skipRe = /team@chippercash\.com|Transaction Statement|^Page\s+\d+|^\s*DATE\s+TRANSACTION\s+ID\b/i;
+
+    const txns = [];
+    for (let i = 0; i < lines.length; i++) {
+      const m = mainRe.exec(lines[i]);
+      if (!m) continue;
+      const [, dateStr, txnId, descStart, creditStr, debitStr, balanceStr] = m;
+
+      let timeStr = null;
+      const descRest = [];
+      for (let j = i + 1; j < Math.min(lines.length, i + 8); j++) {
+        const s = lines[j];
+        if (ptrim(s) === '') continue;
+        if (skipRe.test(s)) continue;
+        if (mainRe.test(s)) break;
+        if (timeStr === null) {
+          const tm = timeRe.exec(s);
+          if (tm) {
+            timeStr = tm[1];
+            const rest = ptrim(tm[2]);
+            if (rest !== '') descRest.push(rest);
+            continue;
+          }
+        }
+        descRest.push(ptrim(s));
+        if (descRest.length >= 3) break;
+      }
+      if (!timeStr) continue;
+
+      const creditV = toKobo(creditStr) ?? 0;
+      const debitV = Math.abs(toKobo(debitStr) ?? 0);
+      const balanceV = toKobo(balanceStr);
+      if (balanceV === null) continue;
+
+      let t;
+      let before;
+      if (debitV > 0) {
+        t = 'debit';
+        before = balanceV + debitV;
+      } else if (creditV > 0) {
+        t = 'credit';
+        before = balanceV - creditV;
+      } else continue;
+
+      let fullDesc = ptrim(descStart);
+      if (descRest.length) fullDesc = ptrim(fullDesc + ' ' + descRest.join(' '));
+      fullDesc = fullDesc.replace(/\s+/g, ' ');
+      txns.push({
+        transfer_type: t,
+        balance_after: balanceV,
+        balance_before: before,
+        remarks: fullDesc !== '' ? `Ref: ${txnId} | ${fullDesc}` : `Ref: ${txnId}`,
+        created_at: `${dateStr} ${timeStr}:00`,
+      });
+    }
+    return txns;
+  }
+
+  // ---------- OPay ----------
+
+  // One logical row over three lines: a description wrap above and below the
+  // central "28 Jul 2025 21:33:53 …" data line. Debit/Credit use "--" as empty.
+  function parseOPay(text) {
+    const lines = text.split('\n');
+    const n = lines.length;
+
+    // The Savings Account (OWealth) section mirrors the wallet's movements and
+    // would double-count them.
+    let stopAt = n;
+    for (let i = 0; i < n; i++) {
+      if (/^\s*Savings Account\b/i.test(lines[i])) {
+        stopAt = i;
+        break;
+      }
+    }
+
+    const dateRe = /^\s*(\d{2})\s+([A-Za-z]{3})\s+(\d{4})\s+(\d{2}):(\d{2}):(\d{2})\b/;
+    const tailRe = /(--|[\d,]+\.\d{2})\s+(--|[\d,]+\.\d{2})\s+([\d,]+\.\d{2})\s+([A-Za-z][A-Za-z]+)\b/g;
+    const extractWrap = (s) => {
+      const pieces = ptrim(s).split(/\s{2,}/);
+      while (pieces.length && /^\d{2,}$/.test(pieces[pieces.length - 1])) pieces.pop();
+      return ptrim(pieces.join(' '));
+    };
+
+    const txns = [];
+    for (let i = 0; i < stopAt; i++) {
+      const line = lines[i];
+      const dm = dateRe.exec(line);
+      if (!dm) continue;
+      const mon = MONTHS[ucfirst(dm[2].toLowerCase())];
+      if (!mon) continue;
+      const dt = ymdhms(+dm[3], mon, +dm[1], +dm[4], +dm[5], +dm[6]);
+
+      // The right-most "[debit] [credit] [balance] [channel]" run is the money tail.
+      const tails = Array.from(line.matchAll(tailRe));
+      if (!tails.length) continue;
+      const tail = tails[tails.length - 1];
+      const balanceV = toKobo(tail[3]);
+      if (balanceV === null) continue;
+      const debitV = tail[1] === '--' ? 0 : toKobo(tail[1]) ?? 0;
+      const creditV = tail[2] === '--' ? 0 : toKobo(tail[2]) ?? 0;
+
+      let type;
+      let before;
+      if (debitV > 0) {
+        type = 'debit';
+        before = balanceV + debitV;
+      } else if (creditV > 0) {
+        type = 'credit';
+        before = balanceV - creditV;
+      } else continue;
+
+      let descSelf = '';
+      const tailPos = line.lastIndexOf(tail[0]);
+      if (tailPos >= 0) {
+        const afterDates = line
+          .slice(0, tailPos)
+          .replace(/^\s*\d{2}\s+[A-Za-z]{3}\s+\d{4}\s+\d{2}:\d{2}:\d{2}\s+(?:\d{2}\s+[A-Za-z]{3}\s+\d{4})?/, '');
+        descSelf = ptrim(afterDates.replace(/\s{2,}/g, ' '));
+      }
+      let prefix = '';
+      if (i > 0 && ptrim(lines[i - 1]) !== '' && !dateRe.test(lines[i - 1])) prefix = extractWrap(lines[i - 1]);
+      let suffix = '';
+      if (i + 1 < n && ptrim(lines[i + 1]) !== '' && !dateRe.test(lines[i + 1])) suffix = extractWrap(lines[i + 1]);
+
+      const fullDesc = ptrim([prefix, descSelf, suffix].filter((x) => x !== '').join(' ')).replace(/\s+/g, ' ');
+      const row = { transfer_type: type, balance_after: balanceV, balance_before: before, remarks: fullDesc, created_at: dt };
+
+      // "Transfer from|to NAME | BANK | ACCOUNT_NO | …"
+      const cm = /Transfer\s+(from|to)\s+([^|]+?)\s*\|\s*([^|]+?)\s*\|\s*([^\s|]+)/i.exec(fullDesc);
+      if (cm) {
+        const direction = cm[1].toLowerCase();
+        if ((direction === 'from' && type === 'credit') || (direction === 'to' && type === 'debit')) {
+          row.account_name = ptrim(cm[2]);
+          row.bank_name = ptrim(cm[3]);
+          row.account_number = ptrim(cm[4]);
+        }
+      }
+      txns.push(row);
+    }
+    return txns;
+  }
+
+  // ---------- Import ----------
+
+  // A statement's text → { bank, rows }. Rows get importText()'s finishing:
+  // the absolute amount, anything under ₦60 as a charge, and a clean
+  // counterparty name / NUBAN / canonical bank.
+  function importText(text) {
+    const [bank, parse] = detectBank(text);
+    if (!bank) return { bank: null, rows: [] };
+    const rows = [];
+    for (const t of parse(text)) {
+      if (!t.created_at) continue;
+      const row = { transfer_category: 'transfer', account_name: null, account_number: null, bank_name: null, ...t };
+      row.amount = Math.abs(row.balance_after - row.balance_before);
+      if (row.amount < 6000) row.transfer_category = 'charge';
+      [row.account_name, row.account_number] = cleanCounterpartyName(row.account_name, row.account_number);
+      row.bank_name = canonicalBank(row.bank_name);
+      rows.push(row);
+    }
+    return { bank, rows };
+  }
+
+  // ---------- PDF → text ----------
+  // Mimics `pdftotext -layout`: each text item's transform composed with the
+  // viewport (so rotated GTBank pages come out upright), bucketed into rows by
+  // y and placed into character columns by x. Same as client/src/pdfExtract.js.
+  const ROW_TOL = 3.0;
+  const CHAR_W = 5.0;
+
+  function layoutPage(pdfjsLib, content, viewport) {
+    if (!content.items || content.items.length === 0) return '';
+    const placed = [];
+    for (const it of content.items) {
+      if (!it.str) continue;
+      const tm = it.transform;
+      if (!tm || tm.length < 6) continue;
+      const m = pdfjsLib.Util.transform(viewport.transform, tm);
+      placed.push({ x: m[4], y: m[5], t: it.str });
+    }
+    if (placed.length === 0) return '';
+
+    placed.sort((a, b) => a.y - b.y || a.x - b.x);
+    const rows = [];
+    let current = null;
+    for (const it of placed) {
+      if (!current || Math.abs(it.y - current.y) > ROW_TOL) {
+        current = { y: it.y, items: [] };
+        rows.push(current);
+      }
+      current.items.push(it);
+    }
+
+    const minX = Math.min(...placed.map((p) => p.x));
+    const lines = [];
+    for (const row of rows) {
+      row.items.sort((a, b) => a.x - b.x);
+      let line = '';
+      for (const it of row.items) {
+        const targetCol = Math.max(0, Math.round((it.x - minX) / CHAR_W));
+        if (line.length < targetCol) line += ' '.repeat(targetCol - line.length);
+        else if (line.length > 0 && line[line.length - 1] !== ' ') line += ' ';
+        line += it.t;
+      }
+      lines.push(line.replace(/\s+$/, ''));
+    }
+    return lines.join('\n');
+  }
+
+  return { importText, layoutPage, cleanCounterpartyName, canonicalBank, titleCase, BANK_NAMES: RULES.map((r) => r[0]) };
+})();
+</script>
+<script>
+'use strict';
+
+// ---------- Constants ----------
+
+// The spending tags the server app ships with (CounterpartyTag::TAGS). New ones
+// can be created from the tag picker.
+const DEFAULT_TAGS = [
+  'transport', 'fuel', 'groceries', 'food', 'clubbing',
+  'shopping', 'clothes', 'hair', 'pedicure', 'manicure', 'electronics', 'gadgets', 'rent',
+  'family', 'friend', 'man', 'woman', 'boy', 'girl', 'self', 'wife', 'husband',
+  'boyfriend', 'girlfriend', 'pos', 'airtime & data',
+  'charity', 'savings', 'investment', 'business income', 'business expense',
+  'client', 'staff salary', 'work payment', 'gratitude', 'referral bonus', 'cut', 'travel', 'coin',
+];
+// Anyone who has paid in more than ₦40,000 in one go is tagged "client" on import.
+const CLIENT_MIN = 40000 * 100;
+const BANK_LABELS = { Kuda: 'Kuda', GTBank: 'GTBank', OPay: 'OPay', Moniepoint: 'Moniepoint', Alat: 'ALAT', Barter: 'Barter', Chipper: 'Chipper Cash' };
+const SUPPORTED = 'Kuda, GTBank, OPay, Moniepoint, ALAT, Barter and Chipper Cash';
+const THEME_KEY = 'statements-theme';
+const PREFS_KEY = 'statements-prefs';
+const PDFJS = {
+  base: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/',
+  lib: 'sha384-/1qUCSGwTur9vjf/z9lmu/eCUYbpOTgSjmpbMQZ1/CtX2v/WcAIKqRv+U1DUCG6e',
+  worker: 'sha384-SnzOobpRMLXZ52iJvZm/C0fYw0OQemTXzTjIsdsfMcrCtCEe9qgzxTd3RSklO5x2',
+};
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const MON = MONTHS.map((m) => m.slice(0, 3));
+
+const ICONS = {
+  sun: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.8v2M12 19.2v2M2.8 12h2M19.2 12h2M5.5 5.5l1.4 1.4M17.1 17.1l1.4 1.4M5.5 18.5l1.4-1.4M17.1 6.9l1.4-1.4"></path></svg>',
+  moon: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.6A8 8 0 1 1 9.4 4a6.5 6.5 0 0 0 10.6 10.6z"></path></svg>',
+  doc: '<svg class="i doc" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3.5H7.2a1.7 1.7 0 0 0-1.7 1.7v13.6a1.7 1.7 0 0 0 1.7 1.7h9.6a1.7 1.7 0 0 0 1.7-1.7V8z"></path><path d="M14 3.5V8h4.5M12 17v-6M9.5 13.5 12 11l2.5 2.5"></path></svg>',
+  lock: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="9.5" rx="2"></rect><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"></path></svg>',
+  x: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"></path></svg>',
+  eye: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"></path><circle cx="12" cy="12" r="2.8"></circle></svg>',
+  eyeOff: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 3.5l17 17"></path><path d="M10.6 5.6A9.6 9.6 0 0 1 12 5.5c6 0 9.5 6.5 9.5 6.5a16.6 16.6 0 0 1-2.9 3.7M6.6 6.6C4 8.3 2.5 12 2.5 12s3.5 6.5 9.5 6.5a9.4 9.4 0 0 0 5.4-1.6"></path><path d="M9.9 9.9a2.8 2.8 0 0 0 4.2 4.2"></path></svg>',
+};
+
+// ---------- Helpers ----------
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+const enc = encodeURIComponent;
+const plural = (n, word, many = word + 's') => `${n.toLocaleString()} ${n === 1 ? word : many}`;
+const pad2 = (n) => String(n).padStart(2, '0');
+// Let the status text paint before a long synchronous parse. Animation frames
+// stop in a background tab, so a timer backs them up.
+const nextFrame = () =>
+  new Promise((r) => {
+    requestAnimationFrame(() => setTimeout(r, 0));
+    setTimeout(r, 60);
+  });
+
+// Money is kept in kobo, as signed integers. Every amount on the page goes
+// through naira() or compact(), so with figures hidden (the eye button) they
+// return a mask instead — the same length whatever the amount.
+const nf = new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' });
+const naira = (kobo) => (prefs.hideFigures ? '₦•••••' : nf.format(Math.abs(kobo) / 100));
+function compact(kobo) {
+  if (prefs.hideFigures) return '₦•••';
+  const n = Math.abs(kobo) / 100;
+  const [v, unit] = n >= 1e9 ? [n / 1e9, 'B'] : n >= 1e6 ? [n / 1e6, 'M'] : n >= 1e3 ? [n / 1e3, 'K'] : [n, ''];
+  const shown = !unit || v >= 100 ? Math.round(v) : v.toFixed(1).replace(/\.0$/, '');
+  return '₦' + shown + unit;
+}
+const signed = (t) => (t.transfer_type === 'credit' ? '+' : '−') + naira(t.amount);
+const percent = (part, whole) => (whole ? Math.round((part / whole) * 100) + '%' : '–');
+
+// created_at is "YYYY-MM-DD HH:MM:SS" as the statement printed it; never let a
+// time zone shift it.
+const fmtDate = (s) => `${+s.slice(8, 10)} ${MON[+s.slice(5, 7) - 1]} ${s.slice(0, 4)}`;
+const fmtTime = (s) => (s.slice(11) === '00:00:00' ? '' : s.slice(11, 16));
+const fmtMonth = (ym) => `${MONTHS[+ym.slice(5, 7) - 1]} ${ym.slice(0, 4)}`;
+function fmtRange(a, b) {
+  if (!a) return '';
+  if (a.slice(0, 10) === b.slice(0, 10)) return fmtDate(a);
+  return `${fmtDate(a)} – ${fmtDate(b)}`;
+}
+const bankVar = (bank) => {
+  const known = { GTBank: 'gtbank', Kuda: 'kuda', Moniepoint: 'moniepoint', Alat: 'alat', Barter: 'barter', OPay: 'opay', Chipper: 'chipper' }[bank];
+  return known ? `var(--bank-${known})` : 'var(--faint)';
+};
+const bankDot = (bank) => `<span class="bank-dot" style="background:${bankVar(bank)}" aria-hidden="true"></span>`;
+const bankLabel = (bank) => BANK_LABELS[bank] || bank;
+
+function readPrefs() {
+  try {
+    return JSON.parse(localStorage.getItem(PREFS_KEY)) || {};
+  } catch {
+    return {};
+  }
+}
+function savePrefs() {
+  try {
+    localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+  } catch {}
+}
+const prefs = readPrefs();
+
+// ---------- Storage ----------
+// Everything lives in this browser's IndexedDB: the (large) transfers list and
+// the small, often-edited rest (accounts, tags, names) under separate keys so a
+// tag change never rewrites every transfer.
+
+const kv = (() => {
+  let dbp;
+  const open = () =>
+    (dbp ??= new Promise((resolve, reject) => {
+      const req = indexedDB.open('clarity-statements', 1);
+      req.onupgradeneeded = () => req.result.createObjectStore('kv');
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
+    }));
+  const run = async (mode, fn) => {
+    const db = await open();
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction('kv', mode);
+      const req = fn(tx.objectStore('kv'));
+      tx.oncomplete = () => resolve(req.result);
+      tx.onerror = tx.onabort = () => reject(tx.error);
+    });
+  };
+  return {
+    get: (key) => run('readonly', (s) => s.get(key)),
+    set: (key, value) => run('readwrite', (s) => s.put(value, key)),
+    clear: () => run('readwrite', (s) => s.clear()),
+  };
+})();
+
+const freshData = () => ({
+  accounts: [], // { id, bank_name, account_number }
+  transfers: [], // the parsed rows, plus id and account_id
+  tags: [], // { party, tag }: party is an account number or a name, as in the server app
+  names: {}, // account number -> the name you gave it
+  tagList: [...DEFAULT_TAGS],
+  recent: [], // recently used tags, newest first
+  imports: [], // { file, bank, inserted, skipped, clients, at }
+  nextId: 1,
+  nextAccountId: 1,
+});
+let data = freshData();
+
+let saveTimer = null;
+let transfersDirty = false;
+function save(withTransfers = false) {
+  transfersDirty ||= withTransfers;
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(flushSave, 120);
+}
+async function flushSave() {
+  saveTimer = null;
+  const { transfers, ...meta } = data;
+  const writes = [kv.set('meta', meta)];
+  if (transfersDirty) writes.push(kv.set('transfers', transfers));
+  transfersDirty = false;
+  try {
+    await Promise.all(writes);
+    tabs?.postMessage('saved');
+  } catch {
+    $('storage-banner').hidden = false;
+  }
+}
+
+// Don't lose a just-made change if the tab is closed straight away.
+addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden' && saveTimer) {
+    clearTimeout(saveTimer);
+    flushSave();
+  }
+});
+
+// Another tab of this page saved: pick up its changes so neither tab
+// overwrites the other with stale data.
+const tabs = 'BroadcastChannel' in window ? new BroadcastChannel('clarity-statements') : null;
+tabs?.addEventListener('message', async () => {
+  if (importing || saveTimer) return;
+  await load();
+  buildIndex();
+  route();
+});
+
+async function load() {
+  try {
+    const [meta, transfers] = await Promise.all([kv.get('meta'), kv.get('transfers')]);
+    if (meta) data = { ...freshData(), ...meta };
+    if (Array.isArray(transfers)) data.transfers = transfers;
+    data.tagList = [...new Set([...DEFAULT_TAGS, ...data.tagList])];
+  } catch {
+    $('storage-banner').hidden = false;
+  }
+}
+
+// ---------- Index ----------
+// A party is one counterparty: its account number when the statement gave one,
+// else its lower-cased name (the server's party_key). Tags point at a party by
+// account number or by any name it has appeared under.
+
+let ix = { accounts: new Map(), parties: new Map(), aliases: new Map(), tagsOf: new Map() };
+
+const partyKeyOf = (t) => t.account_number || (t.account_name ? t.account_name.toLowerCase() : null);
+
+function topKey(counts) {
+  let best = null;
+  let n = -1;
+  for (const [k, c] of counts) if (c > n) [best, n] = [k, c];
+  return best;
+}
+
+function buildIndex() {
+  const parties = new Map();
+  const aliases = new Map(); // lower-cased name -> party keys that appeared under it
+  for (const t of data.transfers) {
+    const key = partyKeyOf(t);
+    if (!key) continue;
+    let p = parties.get(key);
+    if (!p) {
+      p = { key, acct: t.account_number || null, names: new Map(), banks: new Map(), list: [], count: 0, in: 0, out: 0, first: '', last: '' };
+      parties.set(key, p);
+    }
+    p.list.push(t);
+    if (t.account_name) {
+      p.names.set(t.account_name, (p.names.get(t.account_name) || 0) + 1);
+      const lower = t.account_name.toLowerCase();
+      if (!aliases.has(lower)) aliases.set(lower, new Set());
+      aliases.get(lower).add(key);
+    }
+    if (t.bank_name) p.banks.set(t.bank_name, (p.banks.get(t.bank_name) || 0) + 1);
+    if (t.transfer_category === 'charge') continue;
+    p.count++;
+    if (t.transfer_type === 'credit') p.in += t.amount;
+    else p.out += t.amount;
+    if (!p.first || t.created_at < p.first) p.first = t.created_at;
+    if (t.created_at > p.last) p.last = t.created_at;
+  }
+  for (const p of parties.values()) {
+    p.name = topKey(p.names);
+    p.bank = topKey(p.banks);
+  }
+  ix = { accounts: new Map(data.accounts.map((a) => [a.id, a])), parties, aliases, tagsOf: new Map() };
+  resolveTags();
+}
+
+function partiesFor(party) {
+  const keys = new Set();
+  if (/^\d{10}$/.test(party)) {
+    if (ix.parties.has(party)) keys.add(party);
+  } else {
+    for (const k of ix.aliases.get(String(party).toLowerCase()) || []) keys.add(k);
+  }
+  return keys;
+}
+
+function resolveTags() {
+  const tagsOf = new Map();
+  for (const { party, tag } of data.tags) {
+    for (const key of partiesFor(party)) {
+      if (!tagsOf.has(key)) tagsOf.set(key, new Set());
+      tagsOf.get(key).add(tag);
+    }
+  }
+  ix.tagsOf = tagsOf;
+}
+
+const tagsOf = (key) => (key && ix.tagsOf.get(key)) || new Set();
+const displayName = (p) => (p.acct && data.names[p.acct]) || p.name || p.acct;
+// People worth labelling: anyone with at least one real (non-charge) transfer.
+const labelable = () => [...ix.parties.values()].filter((p) => p.count > 0);
+
+// ---------- Tags ----------
+
+function addTag(key, tag) {
+  const p = ix.parties.get(key);
+  if (!p) return;
+  const party = p.acct || p.name;
+  if (!data.tags.some((m) => m.party === party && m.tag === tag)) data.tags.push({ party, tag });
+  if (!data.tagList.includes(tag)) data.tagList.push(tag);
+  data.recent = [tag, ...data.recent.filter((t) => t !== tag)].slice(0, 5);
+  resolveTags();
+  save();
+  tagsChanged(key);
+}
+
+function removeTag(key, tag) {
+  data.tags = data.tags.filter((m) => !(m.tag === tag && partiesFor(m.party).has(key)));
+  resolveTags();
+  save();
+  tagsChanged(key);
+}
+
+// Repaint every row for this party in place, so labelling never loses your
+// scroll position; panels that total by tag re-render.
+function tagsChanged(key) {
+  document.querySelectorAll(`[data-party="${CSS.escape(key)}"] .tags`).forEach((el) => {
+    el.innerHTML = tagCell(key);
+  });
+  paintLabelCount();
+  const v = current.view;
+  if (v === 'overview' || v === 'month') paintTagPanels();
+  else if (v === 'label') {
+    paintLabelSeg();
+    paintLabelProgress();
+  } else if (v === 'tags' || v === 'tag') route();
+}
+
+function tagCell(key) {
+  const tags = [...tagsOf(key)].sort();
+  const chips = tags
+    .map((tag) => `<span class="chip"><a href="#/tag/${enc(tag)}">${esc(tag)}</a><button type="button" data-act="untag" data-tag="${esc(tag)}" aria-label="Remove tag ${esc(tag)}" title="Remove">×</button></span>`)
+    .join('');
+  const add = tags.length
+    ? '<button type="button" class="tag-add plus" data-act="tag" aria-label="Add another tag" title="Add another tag">+</button>'
+    : '<button type="button" class="tag-add" data-act="tag">+ Tag</button>';
+  return chips + add;
+}
+
+// On import, anyone who paid in more than ₦40,000 in a single credit and has no
+// tag yet gets "client" (StatementImporter::tagCreditorsAsClient). Only the new
+// rows are checked, so removing the tag sticks.
+function tagNewClients(rows) {
+  let n = 0;
+  for (const t of rows) {
+    if (t.transfer_type !== 'credit' || t.amount <= CLIENT_MIN) continue;
+    const name = (t.account_name || '').trim();
+    if (/reversal/i.test(name)) continue;
+    const key = partyKeyOf(t);
+    if (!key || tagsOf(key).size) continue;
+    data.tags.push({ party: t.account_number || name, tag: 'client' });
+    resolveTags();
+    n++;
+  }
+  return n;
+}
+
+// ---------- Import ----------
+
+const fpKey = (t) => `${t.created_at}|${t.transfer_type}|${t.balance_after}|${t.balance_before}`;
+
+// Add parsed rows to one bank's account, skipping any already there (same
+// time, direction and balances), exactly as the server de-duplicates.
+function mergeRows(bankName, rows, { tagClients = true } = {}) {
+  let account = data.accounts.find((a) => a.bank_name === bankName);
+  if (!account) {
+    account = { id: data.nextAccountId++, bank_name: bankName, account_number: null };
+    data.accounts.push(account);
+  }
+  const seen = new Set();
+  for (const t of data.transfers) if (t.account_id === account.id) seen.add(fpKey(t));
+  const fresh = [];
+  let skipped = 0;
+  for (const r of rows) {
+    const k = fpKey(r);
+    if (seen.has(k)) {
+      skipped++;
+      continue;
+    }
+    seen.add(k);
+    fresh.push({
+      id: data.nextId++,
+      account_id: account.id,
+      created_at: r.created_at,
+      transfer_type: r.transfer_type,
+      transfer_category: r.transfer_category,
+      balance_before: r.balance_before,
+      balance_after: r.balance_after,
+      amount: r.amount,
+      remarks: r.remarks || null,
+      account_name: r.account_name,
+      account_number: r.account_number,
+      bank_name: r.bank_name,
+    });
+  }
+  for (const t of fresh) data.transfers.push(t);
+  buildIndex();
+  const clients = tagClients ? tagNewClients(fresh) : 0;
+  return { inserted: fresh.length, skipped, clients };
+}
+
+let pdfjsPromise = null;
+function loadPdfjs() {
+  pdfjsPromise ??= new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = PDFJS.base + 'pdf.min.js';
+    script.integrity = PDFJS.lib;
+    script.crossOrigin = 'anonymous';
+    script.onerror = () => reject(new Error('Couldn’t load the PDF reader. Check your connection and try again.'));
+    script.onload = async () => {
+      try {
+        // The worker is fetched with the same integrity check, then run from a
+        // blob so it works on any host.
+        const res = await fetch(PDFJS.base + 'pdf.worker.min.js', { integrity: PDFJS.worker });
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = URL.createObjectURL(await res.blob());
+        resolve(window.pdfjsLib);
+      } catch {
+        reject(new Error('Couldn’t load the PDF reader. Check your connection and try again.'));
+      }
+    };
+    document.head.append(script);
+  });
+  pdfjsPromise.catch(() => (pdfjsPromise = null));
+  return pdfjsPromise;
+}
+
+const queue = []; // { id, file, status, note, progress, result, password }
+let queueId = 0;
+let importing = false;
+
+function addFiles(fileList) {
+  const files = Array.from(fileList || []);
+  if (!files.length) return;
+  loadPdfjs().catch(() => {});
+  for (const file of files) {
+    if (queue.some((q) => q.file.name === file.name && q.file.size === file.size && q.status !== 'error')) continue;
+    queue.push({ id: ++queueId, file, status: 'queued', note: 'Waiting…', progress: 0 });
+  }
+  renderImporter();
+  runQueue();
+}
+
+async function runQueue() {
+  if (importing) return;
+  importing = true;
+  let item;
+  while ((item = queue.find((q) => q.status === 'queued'))) {
+    try {
+      if (/\.json$/i.test(item.file.name) || item.file.type === 'application/json') await importBackup(item);
+      else await importPdf(item);
+    } catch (err) {
+      item.status = 'error';
+      item.note = err.message || 'Something went wrong reading this file.';
+    }
+    renderImporter();
+  }
+  importing = false;
+  renderImporter();
+  route();
+}
+
+async function importPdf(item) {
+  item.status = 'reading';
+  item.note = 'Loading the PDF reader…';
+  renderImpRow(item);
+  const pdfjs = await loadPdfjs();
+  const bytes = await item.file.arrayBuffer();
+  let pdf;
+  try {
+    pdf = await pdfjs.getDocument({ data: bytes, isEvalSupported: false, password: item.password }).promise;
+  } catch (err) {
+    if (err?.name === 'PasswordException') {
+      item.status = 'locked';
+      item.note = item.password ? 'That password didn’t work. Try again.' : 'This PDF is password-protected.';
+      return;
+    }
+    throw new Error(err?.name === 'InvalidPDFException' ? 'This file isn’t a readable PDF.' : 'Couldn’t open this PDF.');
+  }
+  const pages = [];
+  for (let p = 1; p <= pdf.numPages; p++) {
+    item.note = `Reading page ${p} of ${pdf.numPages}`;
+    item.progress = p / pdf.numPages;
+    renderImpRow(item);
+    const page = await pdf.getPage(p);
+    const content = await page.getTextContent();
+    pages.push(Parsers.layoutPage(pdfjs, content, page.getViewport({ scale: 1 })));
+    page.cleanup();
+  }
+  await pdf.destroy();
+
+  item.status = 'parsing';
+  item.note = 'Finding transactions…';
+  renderImpRow(item);
+  await nextFrame();
+  const text = pages.join('\n');
+  if (!text.trim()) throw new Error('This PDF has no text in it (it may be a scan), so there’s nothing to read.');
+  const { bank, rows } = Parsers.importText(text);
+  if (!bank) throw new Error(`Not a statement this can read yet. It knows ${SUPPORTED}.`);
+  if (!rows.length) throw new Error(`Looks like a ${bankLabel(bank)} statement, but no transactions were found in it.`);
+
+  const res = mergeRows(bank, rows);
+  data.imports.unshift({ file: item.file.name, bank, ...res, at: new Date().toISOString() });
+  save(true);
+  askPersistence();
+  item.status = 'done';
+  item.result = { bank, ...res };
+  item.note = describeResult(item.result);
+}
+
+function describeResult(r) {
+  const bits = [`${bankLabel(r.bank)}: ${plural(r.inserted, 'new transfer')}`];
+  if (r.skipped) bits.push(`${r.skipped.toLocaleString()} already here`);
+  if (r.clients) bits.push(`${plural(r.clients, 'client')} tagged`);
+  return bits.join(' · ');
+}
+
+// Ask the browser not to evict the data under storage pressure.
+let askedPersist = false;
+function askPersistence() {
+  if (askedPersist || !navigator.storage?.persist) return;
+  askedPersist = true;
+  navigator.storage.persist().catch(() => {});
+}
+
+// ---------- Backups ----------
+// The server app's combined export ("unified.combined-statement"), plus this
+// page's tags and names. Either file restores here; duplicates are skipped.
+
+function exportBackup() {
+  if (!data.transfers.length && !data.tags.length) {
+    toast('There’s nothing to back up yet.');
+    return;
+  }
+  const bankOf = new Map(data.accounts.map((a) => [a.id, a.bank_name]));
+  const payload = {
+    version: 1,
+    kind: 'unified.combined-statement',
+    app: 'clarity-statements',
+    exported_at: new Date().toISOString(),
+    accounts: data.accounts.map((a) => ({ bank_name: a.bank_name, account_number: a.account_number })),
+    transfers: data.transfers.map((t) => ({
+      account: bankOf.get(t.account_id) ?? null,
+      created_at: t.created_at,
+      transfer_type: t.transfer_type,
+      transfer_category: t.transfer_category,
+      balance_before: t.balance_before,
+      balance_after: t.balance_after,
+      remarks: t.remarks,
+      account_name: t.account_name,
+      account_number: t.account_number,
+      bank_name: t.bank_name,
+    })),
+    tags: data.tags,
+    names: data.names,
+    tag_list: data.tagList.filter((t) => !DEFAULT_TAGS.includes(t)),
+  };
+  const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `statements-backup-${new Date().toLocaleDateString('en-CA')}.json`;
+  document.body.append(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  toast(`Downloaded a backup of ${plural(data.transfers.length, 'transfer')} and ${plural(data.tags.length, 'tag')}.`);
+}
+
+async function importBackup(item) {
+  item.status = 'parsing';
+  item.note = 'Reading backup…';
+  renderImpRow(item);
+  let payload;
+  try {
+    payload = JSON.parse(await item.file.text());
+  } catch {
+    throw new Error('This file isn’t valid JSON.');
+  }
+  if (payload?.kind !== 'unified.combined-statement' || !Array.isArray(payload.transfers)) {
+    throw new Error('This isn’t a Statements backup.');
+  }
+  const accounts = Array.isArray(payload.accounts) ? payload.accounts : [];
+  const byBank = new Map();
+  let bad = 0;
+  for (const t of payload.transfers) {
+    const before = Math.trunc(Number(t?.balance_before));
+    const after = Math.trunc(Number(t?.balance_after));
+    const type = t?.transfer_type;
+    const at = typeof t?.created_at === 'string' ? t.created_at.slice(0, 19) : '';
+    if ((type !== 'credit' && type !== 'debit') || !/^\d{4}-\d{2}-\d{2}/.test(at) || !Number.isFinite(before) || !Number.isFinite(after)) {
+      bad++;
+      continue;
+    }
+    // Server exports overwrite the source bank with the counterparty's; trust
+    // a lone account, otherwise do what the server's own restore does.
+    const bank = t.account || (accounts.length === 1 ? accounts[0].bank_name : t.bank_name) || 'Imported';
+    const amount = Math.abs(after - before);
+    const [name, acct] = Parsers.cleanCounterpartyName(t.account_name, t.account_number);
+    const row = {
+      created_at: at.length === 10 ? at + ' 00:00:00' : at,
+      transfer_type: type,
+      transfer_category: t.transfer_category === 'charge' || amount < 6000 ? 'charge' : 'transfer',
+      balance_before: before,
+      balance_after: after,
+      amount,
+      remarks: t.remarks ?? null,
+      account_name: name,
+      account_number: acct,
+      bank_name: Parsers.canonicalBank(t.bank_name),
+    };
+    if (!byBank.has(bank)) byBank.set(bank, []);
+    byBank.get(bank).push(row);
+  }
+  let inserted = 0;
+  let skipped = bad;
+  for (const [bank, rows] of byBank) {
+    const r = mergeRows(bank, rows, { tagClients: false });
+    inserted += r.inserted;
+    skipped += r.skipped;
+  }
+  let tagsAdded = 0;
+  for (const m of Array.isArray(payload.tags) ? payload.tags : []) {
+    if (typeof m?.party !== 'string' || typeof m?.tag !== 'string' || !m.party || !m.tag) continue;
+    if (data.tags.some((x) => x.party === m.party && x.tag === m.tag)) continue;
+    data.tags.push({ party: m.party, tag: m.tag });
+    tagsAdded++;
+  }
+  for (const tag of [...(payload.tag_list || []), ...data.tags.map((m) => m.tag)]) {
+    if (typeof tag === 'string' && tag && !data.tagList.includes(tag)) data.tagList.push(tag);
+  }
+  for (const [acct, name] of Object.entries(payload.names || {})) {
+    if (/^\d{10}$/.test(acct) && typeof name === 'string' && name.trim() && !data.names[acct]) data.names[acct] = name.trim();
+  }
+  buildIndex();
+  data.imports.unshift({ file: item.file.name, bank: 'Backup', inserted, skipped, clients: 0, at: new Date().toISOString() });
+  save(true);
+  item.status = 'done';
+  item.result = { bank: 'Backup', inserted, skipped, clients: 0 };
+  item.note = `Backup: ${plural(inserted, 'new transfer')}${skipped ? ` · ${skipped.toLocaleString()} already here` : ''}${tagsAdded ? ` · ${plural(tagsAdded, 'tag')} restored` : ''}`;
+}
+
+// ---------- Importer panel ----------
+
+// Once a batch finishes, files that went fine fold away behind a toggle;
+// problems and password prompts stay in view.
+let showDoneFiles = false;
+
+function renderImporter() {
+  const panel = $('importer');
+  panel.hidden = !queue.length;
+  if (!queue.length) return;
+  const busy = queue.some((q) => ['queued', 'reading', 'parsing'].includes(q.status));
+  const shown = busy || showDoneFiles ? queue : queue.filter((q) => q.status !== 'done');
+  $('imp-list').innerHTML = shown.map(impRow).join('');
+  $('imp-list').hidden = !shown.length;
+  $('imp-title').textContent = busy ? `Importing ${plural(queue.length, 'file')}` : 'Import finished';
+  const sum = $('imp-sum');
+  sum.hidden = busy;
+  if (busy) return;
+  const done = queue.filter((q) => q.status === 'done');
+  const added = done.reduce((s, q) => s + q.result.inserted, 0);
+  const dupes = done.reduce((s, q) => s + q.result.skipped, 0);
+  const clients = done.reduce((s, q) => s + q.result.clients, 0);
+  const left = labelable().filter((p) => !tagsOf(p.key).size).length;
+  const parts = [];
+  if (done.length) parts.push(`Added ${plural(added, 'transfer')} from ${plural(done.length, 'file')}`);
+  if (dupes) parts.push(`skipped ${dupes.toLocaleString()} already here`);
+  if (clients) parts.push(`tagged ${plural(clients, 'person', 'people')} who paid you over ₦40,000 as “client”`);
+  sum.innerHTML = `<p>${parts.length ? esc(parts.join(', ')) + '.' : 'Nothing was imported.'}</p>
+    <span style="display:flex;flex-wrap:wrap;gap:8px">
+      ${done.length ? `<button type="button" class="btn small" data-imp="toggle" aria-expanded="${showDoneFiles}">${showDoneFiles ? 'Hide files' : `Show ${plural(done.length, 'file')}`}</button>` : ''}
+      <button type="button" class="btn small" data-imp="dismiss">Dismiss</button>
+      ${left ? `<a class="btn small primary" href="#/label" data-imp="dismiss">Label ${plural(left, 'person', 'people')} →</a>` : ''}
+    </span>`;
+}
+
+function impRow(q) {
+  const busy = ['reading', 'parsing'].includes(q.status);
+  const remove = busy || q.status === 'queued' ? '' : `<button type="button" class="x" data-imp="remove" data-id="${q.id}" aria-label="Remove ${esc(q.file.name)} from the list">${ICONS.x}</button>`;
+  const unlock =
+    q.status === 'locked'
+      ? `<form class="unlock" data-id="${q.id}"><input type="password" name="pw" placeholder="PDF password" aria-label="Password for ${esc(q.file.name)}" autocomplete="off" required><button class="btn small primary">Unlock</button></form>`
+      : '';
+  return `<li class="imp ${q.status}" data-qid="${q.id}">
+    <div><div class="file">${esc(q.file.name)}</div><div class="note">${esc(q.note)}</div></div>
+    ${remove}
+    ${busy ? `<div class="bar"><i style="width:${Math.round(q.progress * 100)}%"></i></div>` : ''}
+    ${unlock}
+  </li>`;
+}
+
+// Page-by-page progress repaints just the one row.
+function renderImpRow(item) {
+  const row = document.querySelector(`[data-qid="${item.id}"]`);
+  if (!row) return renderImporter();
+  row.outerHTML = impRow(item);
+}
+
+$('importer').addEventListener('click', (e) => {
+  const btn = e.target.closest('[data-imp]');
+  if (!btn) return;
+  if (btn.dataset.imp === 'remove') {
+    const i = queue.findIndex((q) => String(q.id) === btn.dataset.id);
+    if (i >= 0) queue.splice(i, 1);
+  } else if (btn.dataset.imp === 'toggle') {
+    showDoneFiles = !showDoneFiles;
+  } else if (btn.dataset.imp === 'dismiss') {
+    for (let i = queue.length - 1; i >= 0; i--) if (!['queued', 'reading', 'parsing', 'locked'].includes(queue[i].status)) queue.splice(i, 1);
+    showDoneFiles = false;
+  }
+  renderImporter();
+});
+
+$('importer').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const item = queue.find((q) => String(q.id) === e.target.dataset.id);
+  if (!item) return;
+  item.password = e.target.elements.pw.value;
+  item.status = 'queued';
+  item.note = 'Unlocking…';
+  renderImporter();
+  runQueue();
+});
+
+// ---------- Router ----------
+
+const current = { view: 'overview', arg: null };
+let listObserver = null;
+
+function route() {
+  closePicker();
+  hideTip();
+  const raw = location.hash.replace(/^#\/?/, '');
+  const [view = '', ...rest] = raw.split('/');
+  let arg = rest.join('/');
+  try {
+    arg = decodeURIComponent(arg);
+  } catch {}
+  const changed = current.view !== (view || 'overview') || current.arg !== arg;
+  current.view = view || 'overview';
+  current.arg = arg;
+  const tab = { party: 'label', tag: 'tags', month: 'overview', day: 'overview', bank: 'banks' }[current.view] || current.view;
+  document.querySelectorAll('#tabs a').forEach((a) => {
+    const on = a.dataset.view === tab;
+    if (on) a.setAttribute('aria-current', 'page');
+    else a.removeAttribute('aria-current');
+  });
+  $('export-btn').hidden = !data.transfers.length;
+  paintLabelCount();
+  if (listObserver) listObserver.disconnect();
+
+  const views = { overview: viewOverview, label: viewLabel, transfers: viewTransfers, tags: viewTags, banks: viewBanks, party: viewParty, tag: viewTag, month: viewMonth, day: viewDay, bank: viewBank };
+  const render = views[current.view] || viewOverview;
+  if (!data.transfers.length && current.view !== 'banks' && current.view !== 'tags') renderEmpty();
+  else render(arg);
+  if (changed) window.scrollTo(0, 0);
+}
+
+function paintLabelCount() {
+  const n = labelable().filter((p) => !tagsOf(p.key).size).length;
+  const badge = $('label-count');
+  badge.hidden = !n;
+  badge.textContent = n > 999 ? '999+' : n;
+  badge.setAttribute('aria-label', `${n} untagged`);
+}
+
+const view = $('view');
+
+// ---------- Empty state ----------
+
+function renderEmpty() {
+  view.innerHTML = `
+    <section class="card hero">
+      <label class="drop" id="drop-target" for="file-input">
+        ${ICONS.doc}
+        <h2>Drop your bank statements here</h2>
+        <p>PDF statements from ${esc(SUPPORTED)}. Add as many as you like, from any year; repeats are skipped.</p>
+        <span class="btn primary">Choose PDFs</span>
+      </label>
+      <p class="privacy">${ICONS.lock}<span>Statements are read by this page, on this device. Nothing is uploaded and there’s no account to make, so no one else can see your money. Your data stays in this browser until you delete it.</span></p>
+    </section>
+    <ol class="steps">
+      <li><i>1</i><b>Import</b><span>Drop in PDFs. Every transfer is read with who it was to or from.</span></li>
+      <li><i>2</i><b>Label</b><span>Tag the people and places you pay: food, rent, family. One tag covers every transfer with them.</span></li>
+      <li><i>3</i><b>See it</b><span>Month by month in and out, where the money went by tag, and who you pay most.</span></li>
+    </ol>`;
+}
+
+// ---------- Overview ----------
+
+function yearsWithData() {
+  const ys = new Set();
+  for (const t of data.transfers) ys.add(t.created_at.slice(0, 4));
+  return [...ys].sort().reverse();
+}
+
+function totalsOf(rows) {
+  const s = { in: 0, out: 0, charges: 0, chargeCount: 0, count: rows.length, first: '', last: '' };
+  for (const t of rows) {
+    if (t.transfer_type === 'credit') s.in += t.amount;
+    else s.out += t.amount;
+    if (t.transfer_category === 'charge') {
+      s.charges += t.amount;
+      s.chargeCount++;
+    }
+    if (!s.first || t.created_at < s.first) s.first = t.created_at;
+    if (t.created_at > s.last) s.last = t.created_at;
+  }
+  return s;
+}
+
+let overviewRows = [];
+
+function viewOverview() {
+  const years = yearsWithData();
+  const year = years.includes(prefs.year) ? prefs.year : 'all';
+  overviewRows = year === 'all' ? data.transfers : data.transfers.filter((t) => t.created_at.startsWith(year));
+  const s = totalsOf(overviewRows);
+  const banks = new Set(overviewRows.map((t) => t.account_id)).size;
+
+  view.innerHTML = `
+    <div class="years" role="group" aria-label="Year">
+      ${['all', ...years].map((y) => `<button type="button" data-year="${y}" aria-pressed="${y === year}">${y === 'all' ? 'All years' : y}</button>`).join('')}
+    </div>
+    <dl class="kpis">
+      <div class="card kpi"><dt><span class="key" style="background:var(--in-mark)"></span>Money in</dt><dd title="${naira(s.in)}">${compact(s.in)}</dd><div class="sub">${naira(s.in)}</div></div>
+      <div class="card kpi"><dt><span class="key" style="background:var(--out-mark)"></span>Money out</dt><dd title="${naira(s.out)}">${compact(s.out)}</dd><div class="sub">${s.charges ? `incl. ${naira(s.charges)} in bank charges` : naira(s.out)}</div></div>
+      <div class="card kpi" id="kpi-labelled"></div>
+      <div class="card kpi"><dt>Covering</dt><dd>${plural(s.count, 'transfer')}</dd><div class="sub">${esc(fmtRange(s.first, s.last))} · ${plural(banks, 'bank')}</div></div>
+    </dl>
+    <section class="card">
+      <h2 class="sect"><span>Month by month</span><span class="legend"><span><i style="background:var(--in-mark)"></i>Money in</span><span><i style="background:var(--out-mark)"></i>Money out</span></span></h2>
+      ${monthCharts(year, years)}
+    </section>
+    <div class="grid2">
+      <section class="card"><h2 class="sect"><span>Money out by tag</span></h2><div id="tag-out"></div></section>
+      <section class="card"><h2 class="sect"><span>Money in by tag</span></h2><div id="tag-in"></div></section>
+    </div>
+    <div class="grid2">
+      <section class="card"><h2 class="sect"><span>Sent the most to</span></h2>${topPeople(overviewRows, 'debit')}</section>
+      <section class="card"><h2 class="sect"><span>Received the most from</span></h2>${topPeople(overviewRows, 'credit')}</section>
+    </div>`;
+  paintTagPanels();
+}
+
+function paintTagPanels() {
+  if (!$('tag-out')) return;
+  $('tag-out').innerHTML = tagBars(overviewRows, 'debit');
+  $('tag-in').innerHTML = tagBars(overviewRows, 'credit');
+  if (!$('kpi-labelled')) return;
+  // Share of the money you can label (not bank charges, and with someone named
+  // on the statement) whose counterparty carries a tag.
+  let total = 0;
+  let tagged = 0;
+  for (const t of overviewRows) {
+    const key = partyKeyOf(t);
+    if (t.transfer_category === 'charge' || !key) continue;
+    total += t.amount;
+    if (tagsOf(key).size) tagged += t.amount;
+  }
+  const share = total ? tagged / total : 0;
+  const left = labelable().filter((p) => !tagsOf(p.key).size).length;
+  $('kpi-labelled').innerHTML = `<dt>Labelled</dt><dd>${Math.round(share * 100)}%</dd>
+    <div class="meter" role="meter" aria-label="Share of money labelled" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(share * 100)}"><i style="width:${(share * 100).toFixed(1)}%"></i></div>
+    <div class="sub">${left ? `<a class="link" href="#/label">${plural(left, 'person', 'people')} to label →</a>` : 'Everyone is labelled'}</div>`;
+}
+
+// Average money in per month with any money in, by year, from every transfer,
+// so one selected year can still be compared with the year before.
+function averageInByYear() {
+  const byMonth = new Map();
+  for (const t of data.transfers) {
+    if (t.transfer_type !== 'credit') continue;
+    const ym = t.created_at.slice(0, 7);
+    byMonth.set(ym, (byMonth.get(ym) || 0) + t.amount);
+  }
+  const sums = new Map();
+  for (const [ym, v] of byMonth) {
+    const s = sums.get(ym.slice(0, 4)) || { v: 0, n: 0 };
+    s.v += v;
+    s.n++;
+    sums.set(ym.slice(0, 4), s);
+  }
+  return new Map([...sums].map(([y, s]) => [y, s.v / s.n]));
+}
+
+function monthCharts(year, years) {
+  const shown = year === 'all' ? years : [year];
+  const byYear = new Map(shown.map((y) => [y, Array.from({ length: 12 }, () => ({ in: 0, out: 0, n: 0, banks: new Map() }))]));
+  for (const t of overviewRows) {
+    const months = byYear.get(t.created_at.slice(0, 4));
+    if (!months) continue;
+    const m = months[+t.created_at.slice(5, 7) - 1];
+    m.n++;
+    if (t.transfer_type === 'credit') {
+      m.in += t.amount;
+      const bank = ix.accounts.get(t.account_id)?.bank_name || '?';
+      m.banks.set(bank, (m.banks.get(bank) || 0) + t.amount);
+    } else m.out += t.amount;
+  }
+  // One scale for every year, so bars compare across years.
+  let maxIn = 0;
+  let maxOut = 0;
+  for (const months of byYear.values()) {
+    for (const m of months) {
+      maxIn = Math.max(maxIn, m.in);
+      maxOut = Math.max(maxOut, m.out);
+    }
+  }
+  const H = 168;
+  const up = maxIn + maxOut ? Math.max(24, Math.round((H * maxIn) / (maxIn + maxOut))) : H / 2;
+  const down = Math.max(24, H - up);
+  const avgIn = averageInByYear();
+
+  return shown
+    .map((y) => {
+      const months = byYear.get(y);
+      const tin = months.reduce((s, m) => s + m.in, 0);
+      const tout = months.reduce((s, m) => s + m.out, 0);
+      const a = avgIn.get(y) || 0;
+      const pa = avgIn.get(String(+y - 1)) || 0;
+      const delta = pa ? ((a - pa) / pa) * 100 : null;
+      const cols = months
+        .map((m, i) => {
+          const hIn = maxIn ? (m.in / maxIn) * 100 : 0;
+          const hOut = maxOut ? (m.out / maxOut) * 100 : 0;
+          const banks = [...m.banks].sort((x, z) => z[1] - x[1]).map(([b, v]) => `${b}:${v}`).join('|');
+          return `<a class="mcol${m.n ? '' : ' empty'}" href="#/month/${y}-${pad2(i + 1)}" data-tip="${y}-${pad2(i + 1)}|${m.in}|${m.out}|${m.n}" data-banks="${esc(banks)}"
+              aria-label="${MONTHS[i]} ${y}: ${naira(m.in)} in, ${naira(m.out)} out, ${plural(m.n, 'transfer')}">
+            <span class="mcell up"><span class="mbar in" style="height:${m.in ? `max(2px, ${hIn.toFixed(2)}%)` : '0'}"></span></span>
+            <span class="mcell down"><span class="mbar out" style="height:${m.out ? `max(2px, ${hOut.toFixed(2)}%)` : '0'}"></span></span>
+            <span class="mlabel"><span class="long">${MON[i]}</span><span class="short">${MON[i][0]}</span></span>
+          </a>`;
+        })
+        .join('');
+      const rows = months
+        .map((m, i) => (m.n ? `<tr><td>${MONTHS[i]}</td><td>${naira(m.in)}</td><td>${naira(m.out)}</td><td>${m.in >= m.out ? '+' : '−'}${naira(m.in - m.out)}</td><td>${m.n.toLocaleString()}</td></tr>` : ''))
+        .join('');
+      return `<div class="year">
+        <div class="year-head">
+          <h3>${y}</h3>
+          <span>In <b>${naira(tin)}</b></span>
+          <span>Out <b>${naira(tout)}</b></span>
+          <span>Average in <b>${compact(a)}</b> a month${delta === null ? '' : ` <span class="delta ${delta >= 0 ? 'up' : ''}">${delta >= 0 ? '▲' : '▼'} ${Math.abs(delta).toFixed(1)}%</span> vs ${+y - 1}`}</span>
+        </div>
+        <div class="mchart" style="--up:${up}px;--down:${down}px">
+          <div class="maxis" aria-hidden="true"><span>${compact(maxIn)}</span><span>${compact(maxOut)}</span></div>
+          <div class="mgrid">${cols}</div>
+        </div>
+        <details class="table"><summary>Show ${y} as a table</summary><div class="tablewrap"><table class="data">
+          <thead><tr><th>Month</th><th>In</th><th>Out</th><th>Net</th><th>Transfers</th></tr></thead><tbody>${rows}</tbody>
+        </table></div></details>
+      </div>`;
+    })
+    .join('');
+}
+
+function tagBars(rows, type) {
+  const totals = new Map();
+  let unlabelled = 0;
+  let nameless = 0;
+  let total = 0;
+  for (const t of rows) {
+    if (t.transfer_type !== type || t.transfer_category === 'charge') continue;
+    total += t.amount;
+    const key = partyKeyOf(t);
+    if (!key) {
+      nameless += t.amount;
+      continue;
+    }
+    const tags = tagsOf(key);
+    if (!tags.size) unlabelled += t.amount;
+    for (const tag of tags) totals.set(tag, (totals.get(tag) || 0) + t.amount);
+  }
+  if (!total) return `<p class="empty-note">No money ${type === 'credit' ? 'in' : 'out'} here.</p>`;
+  const sorted = [...totals].sort((a, b) => b[1] - a[1]);
+  const items = sorted.slice(0, 8).map(([tag, v]) => ({ name: tag, v, href: `#/tag/${enc(tag)}` }));
+  const rest = sorted.slice(8);
+  if (rest.length) items.push({ name: `${rest.length} more tags`, v: rest.reduce((s, x) => s + x[1], 0), href: '#/tags', rest: true });
+  if (unlabelled) items.push({ name: 'Not labelled yet', v: unlabelled, href: '#/label', rest: true });
+  // GTBank and Chipper statements don't name the other side, so there's no one to tag.
+  if (nameless) items.push({ name: 'No name given', v: nameless, rest: true });
+  const max = Math.max(...items.map((i) => i.v));
+  const cls = type === 'credit' ? 'in' : 'out';
+  return `<ul class="hbars">${items
+    .map((i) => {
+      const inner = `<span class="hb-name">${esc(i.name)}</span>
+        <span class="hb-track"><span class="hb-bar ${i.rest ? 'rest' : cls}" style="width:${((i.v / max) * 100).toFixed(2)}%"></span></span>
+        <span class="hb-val">${compact(i.v)}</span>
+        <span class="hb-pct">${percent(i.v, total)}</span>`;
+      const title = `${esc(i.name)}: ${naira(i.v)}`;
+      return `<li class="${i.rest ? 'muted-row' : ''}">${i.href ? `<a href="${i.href}" title="${title}">${inner}</a>` : `<div class="hb-row" title="${title}">${inner}</div>`}</li>`;
+    })
+    .join('')}</ul>`;
+}
+
+function topPeople(rows, type, limit = 8) {
+  const sums = new Map();
+  for (const t of rows) {
+    if (t.transfer_type !== type || t.transfer_category === 'charge') continue;
+    const key = partyKeyOf(t);
+    if (!key) continue;
+    const e = sums.get(key) || { v: 0, n: 0 };
+    e.v += t.amount;
+    e.n++;
+    sums.set(key, e);
+  }
+  const list = [...sums].sort((a, b) => b[1].v - a[1].v).slice(0, limit);
+  if (!list.length) return '<p class="empty-note">No one yet.</p>';
+  return `<ol class="rows">${list
+    .map(([key, e], i) => {
+      const p = ix.parties.get(key);
+      return `<li class="prow" data-party="${esc(key)}">
+        <span class="rank">${i + 1}</span>
+        <div><a class="name" href="#/party/${enc(key)}">${esc(displayName(p))}</a><div class="meta">${plural(e.n, 'transfer')}</div></div>
+        <div class="tags">${tagCell(key)}</div>
+        <span class="amt ${type === 'credit' ? 'in' : ''}">${type === 'credit' ? '+' : '−'}${naira(e.v)}</span>
+      </li>`;
+    })
+    .join('')}</ol>`;
+}
+
+view.addEventListener('click', (e) => {
+  const y = e.target.closest('[data-year]');
+  if (!y) return;
+  prefs.year = y.dataset.year;
+  savePrefs();
+  viewOverview();
+});
+
+// Month tooltip: values lead, the month follows.
+const tip = $('tip');
+function showTip(col) {
+  const [ym, vin, vout, n] = col.dataset.tip.split('|');
+  const net = vin - vout;
+  tip.replaceChildren();
+  const add = (cls, text) => {
+    const el = document.createElement('div');
+    el.className = cls;
+    el.textContent = text;
+    tip.append(el);
+    return el;
+  };
+  add('t', fmtMonth(ym));
+  for (const [label, v, color] of [['in', +vin, 'var(--in-mark)'], ['out', +vout, 'var(--out-mark)']]) {
+    const r = add('r', '');
+    const key = document.createElement('i');
+    key.style.background = color;
+    const b = document.createElement('b');
+    b.textContent = naira(v);
+    const s = document.createElement('span');
+    s.textContent = label;
+    r.append(key, b, s);
+  }
+  const banks = col.dataset.banks ? col.dataset.banks.split('|').map((x) => x.split(':')) : [];
+  const via = banks.length > 1 ? ` · in via ${banks.map(([b]) => bankLabel(b)).join(', ')}` : '';
+  add('f', `Net ${net >= 0 ? '+' : '−'}${naira(net)} · ${plural(+n, 'transfer')}${via}`);
+  tip.hidden = false;
+  const r = col.getBoundingClientRect();
+  const w = tip.offsetWidth;
+  const h = tip.offsetHeight;
+  const left = Math.min(Math.max(8, r.left + r.width / 2 - w / 2), innerWidth - w - 8);
+  const top = r.top - h - 8 > 8 ? r.top - h - 8 : r.bottom + 8;
+  tip.style.left = left + 'px';
+  tip.style.top = top + 'px';
+}
+function hideTip() {
+  tip.hidden = true;
+}
+view.addEventListener('pointerover', (e) => {
+  const col = e.target.closest('.mcol');
+  if (col) showTip(col);
+});
+view.addEventListener('pointerout', (e) => {
+  const col = e.target.closest('.mcol');
+  if (col && !col.contains(e.relatedTarget)) hideTip();
+});
+view.addEventListener('focusin', (e) => {
+  const col = e.target.closest('.mcol');
+  if (col) showTip(col);
+});
+view.addEventListener('focusout', (e) => {
+  if (e.target.closest('.mcol')) hideTip();
+});
+addEventListener('scroll', hideTip, { passive: true });
+
+// ---------- Label ----------
+
+const labelState = { keys: [], q: '' };
+
+function viewLabel() {
+  prefs.show ??= 'untagged';
+  prefs.dir ??= 'both';
+  prefs.sort ??= 'total';
+  view.innerHTML = `
+    <header class="view-head">
+      <h2>Label people</h2>
+      <p class="lede">Tag who you pay and who pays you. A tag covers every transfer with that person, including ones you import later.</p>
+    </header>
+    <section class="card">
+      <div class="toolbar">
+        <div class="seg" role="group" aria-label="Show" id="seg-show"></div>
+        <div class="seg" role="group" aria-label="Direction" id="seg-dir">
+          <button type="button" data-dir="both">In and out</button>
+          <button type="button" data-dir="out">Money out</button>
+          <button type="button" data-dir="in">Money in</button>
+        </div>
+        <input type="search" class="search" id="label-q" placeholder="Find a name, account number or bank" value="${esc(labelState.q)}" aria-label="Find a person">
+        <select class="sel" id="label-sort" aria-label="Sort">
+          <option value="total">Most money</option>
+          <option value="count">Most transfers</option>
+          <option value="recent">Most recent</option>
+          <option value="name">Name</option>
+        </select>
+      </div>
+      <div class="summary" id="label-progress"></div>
+      <ul class="rows" id="label-list"></ul>
+      <div class="more" id="label-more"></div>
+    </section>`;
+  $('label-sort').value = prefs.sort;
+  computeLabelKeys();
+  renderLabelList();
+}
+
+function partyMatches(p, q) {
+  if (!q) return true;
+  if (p.acct && p.acct.includes(q)) return true;
+  if (displayName(p)?.toLowerCase().includes(q)) return true;
+  if (p.bank && p.bank.toLowerCase().includes(q)) return true;
+  for (const n of p.names.keys()) if (n.toLowerCase().includes(q)) return true;
+  return false;
+}
+
+const dirTotal = (p) => (prefs.dir === 'out' ? p.out : prefs.dir === 'in' ? p.in : p.out + p.in);
+
+// The list is a snapshot: someone you tag while looking at "Untagged" stays put
+// until you change the filter, so you can see what you just did.
+function computeLabelKeys() {
+  const q = labelState.q.trim().toLowerCase();
+  const list = labelable().filter((p) => {
+    const tagged = tagsOf(p.key).size > 0;
+    if (prefs.show === 'untagged' && tagged) return false;
+    if (prefs.show === 'tagged' && !tagged) return false;
+    if (prefs.dir === 'out' && !p.out) return false;
+    if (prefs.dir === 'in' && !p.in) return false;
+    return partyMatches(p, q);
+  });
+  const sorters = {
+    total: (a, b) => dirTotal(b) - dirTotal(a),
+    count: (a, b) => b.count - a.count || dirTotal(b) - dirTotal(a),
+    recent: (a, b) => (b.last > a.last ? 1 : b.last < a.last ? -1 : 0),
+    name: (a, b) => displayName(a).localeCompare(displayName(b)),
+  };
+  list.sort(sorters[prefs.sort] || sorters.total);
+  labelState.keys = list.map((p) => p.key);
+}
+
+function paintLabelSeg() {
+  const all = labelable();
+  const untagged = all.filter((p) => !tagsOf(p.key).size).length;
+  $('seg-show').innerHTML = [
+    ['untagged', 'To label', untagged],
+    ['tagged', 'Labelled', all.length - untagged],
+    ['all', 'Everyone', all.length],
+  ]
+    .map(([k, label, n]) => `<button type="button" data-show="${k}" aria-pressed="${prefs.show === k}">${label}<span class="n">${n.toLocaleString()}</span></button>`)
+    .join('');
+}
+
+function renderLabelList() {
+  paintLabelSeg();
+  document.querySelectorAll('#seg-dir button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.dir === prefs.dir));
+  paintLabelProgress();
+  const list = $('label-list');
+  if (!labelState.keys.length) {
+    list.innerHTML = '';
+    $('label-more').innerHTML = labelState.q
+      ? 'No one matches that search.'
+      : prefs.show === 'untagged'
+        ? 'Everyone here is labelled. 🎉'
+        : 'No one here yet.';
+    return;
+  }
+  mountChunks(list, $('label-more'), labelState.keys, (key) => partyRow(ix.parties.get(key)), 'people');
+}
+
+function paintLabelProgress() {
+  const el = $('label-progress');
+  if (!el) return;
+  const all = labelable();
+  const done = all.filter((p) => tagsOf(p.key).size).length;
+  let total = 0;
+  let tagged = 0;
+  for (const p of all) {
+    total += p.in + p.out;
+    if (tagsOf(p.key).size) tagged += p.in + p.out;
+  }
+  el.innerHTML = `<span><b>${done.toLocaleString()}</b> of ${plural(all.length, 'person', 'people')} labelled</span><span>covering <b>${percent(tagged, total)}</b> of the money</span>`;
+}
+
+function partyRow(p) {
+  if (!p) return '';
+  const meta = [p.acct ? `<span class="mono">${p.acct}</span>` : '', p.bank ? esc(p.bank) : '', plural(p.count, 'transfer'), `last ${fmtDate(p.last)}`].filter(Boolean).join(' · ');
+  return `<li class="prow norank" data-party="${esc(p.key)}">
+    <div><a class="name" href="#/party/${enc(p.key)}">${esc(displayName(p))}</a><div class="meta">${meta}</div></div>
+    <div class="tags">${tagCell(p.key)}</div>
+    <div class="sums">${p.out ? `<span class="amt">−${naira(p.out)}</span>` : ''}${p.in ? `<span class="amt in">+${naira(p.in)}</span>` : ''}</div>
+  </li>`;
+}
+
+view.addEventListener('click', (e) => {
+  const show = e.target.closest('[data-show]');
+  const dir = e.target.closest('[data-dir]');
+  if (!show && !dir) return;
+  if (show) prefs.show = show.dataset.show;
+  if (dir) prefs.dir = dir.dataset.dir;
+  savePrefs();
+  computeLabelKeys();
+  renderLabelList();
+});
+
+let searchTimer;
+view.addEventListener('input', (e) => {
+  if (e.target.id === 'label-q') {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => {
+      labelState.q = e.target.value;
+      computeLabelKeys();
+      renderLabelList();
+    }, 120);
+  } else if (e.target.id === 'tx-q') {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => {
+      listState.q = e.target.value;
+      renderTxList();
+    }, 160);
+  }
+});
+
+view.addEventListener('change', (e) => {
+  if (e.target.id === 'label-sort') {
+    prefs.sort = e.target.value;
+    savePrefs();
+    computeLabelKeys();
+    renderLabelList();
+  } else if (e.target.id === 'tx-type' || e.target.id === 'tx-sort') {
+    listState[e.target.id === 'tx-type' ? 'type' : 'sort'] = e.target.value;
+    renderTxList();
+  }
+});
+
+// Long lists render in chunks as you scroll.
+function mountChunks(list, more, items, render, noun) {
+  if (listObserver) listObserver.disconnect();
+  const STEP = 60;
+  let shown = 0;
+  list.innerHTML = '';
+  const step = () => {
+    list.insertAdjacentHTML('beforeend', items.slice(shown, shown + STEP).map(render).join(''));
+    shown = Math.min(items.length, shown + STEP);
+    more.textContent = shown < items.length ? `Showing ${shown.toLocaleString()} of ${items.length.toLocaleString()} ${noun}…` : '';
+  };
+  step();
+  if (shown >= items.length) return;
+  listObserver = new IntersectionObserver(
+    (entries) => {
+      if (!entries.some((en) => en.isIntersecting)) return;
+      step();
+      if (shown >= items.length) listObserver.disconnect();
+    },
+    { rootMargin: '600px' }
+  );
+  listObserver.observe(more);
+}
+
+// ---------- Transfer lists ----------
+// Transfers, a person, a tag, a month, a day and a bank all share one list:
+// direction and sort controls, totals for what's shown, and inline tagging.
+
+const listState = { rows: [], q: '', type: '', sort: 'new', search: false, source: true, party: null };
+
+function listShell({ search = false } = {}) {
+  return `<section class="card">
+    <div class="toolbar">
+      ${search ? `<input type="search" class="search" id="tx-q" placeholder="Search names, account numbers, banks and remarks" value="${esc(listState.q)}" aria-label="Search transfers">` : ''}
+      <select class="sel" id="tx-type" aria-label="Direction">
+        <option value="">In and out</option>
+        <option value="debit">Money out</option>
+        <option value="credit">Money in</option>
+      </select>
+      <select class="sel" id="tx-sort" aria-label="Sort">
+        <option value="new">Newest first</option>
+        <option value="old">Oldest first</option>
+        <option value="big">Largest first</option>
+        <option value="small">Smallest first</option>
+      </select>
+    </div>
+    <div class="summary" id="tx-summary"></div>
+    <ul class="rows" id="tx-list"></ul>
+    <div class="more" id="tx-more"></div>
+  </section>`;
+}
+
+function mountList(rows, opts = {}) {
+  listState.rows = rows;
+  listState.search = !!opts.search;
+  listState.source = data.accounts.length > 1 && !opts.oneBank;
+  listState.party = opts.party || null;
+  if (!opts.keepFilters) {
+    listState.type = '';
+    listState.sort = 'new';
+    if (!opts.search) listState.q = '';
+  }
+  $('tx-type').value = listState.type;
+  $('tx-sort').value = listState.sort;
+  renderTxList();
+}
+
+function txMatches(t, q) {
+  if (!q) return true;
+  if (t.remarks && t.remarks.toLowerCase().includes(q)) return true;
+  if (t.account_name && t.account_name.toLowerCase().includes(q)) return true;
+  if (t.account_number && t.account_number.includes(q)) return true;
+  if (t.bank_name && t.bank_name.toLowerCase().includes(q)) return true;
+  const named = t.account_number && data.names[t.account_number];
+  return !!named && named.toLowerCase().includes(q);
+}
+
+function renderTxList() {
+  const q = listState.search ? listState.q.trim().toLowerCase() : '';
+  let rows = listState.rows.filter((t) => (!listState.type || t.transfer_type === listState.type) && txMatches(t, q));
+  const by = {
+    new: (a, b) => (a.created_at < b.created_at ? 1 : a.created_at > b.created_at ? -1 : b.id - a.id),
+    old: (a, b) => (a.created_at > b.created_at ? 1 : a.created_at < b.created_at ? -1 : a.id - b.id),
+    big: (a, b) => b.amount - a.amount,
+    small: (a, b) => a.amount - b.amount,
+  };
+  rows = [...rows].sort(by[listState.sort] || by.new);
+  const s = totalsOf(rows);
+  $('tx-summary').innerHTML = rows.length
+    ? `<span>${plural(rows.length, 'transfer')}${s.first ? ` · ${esc(fmtRange(s.first, s.last))}` : ''}</span>
+       ${s.in ? `<span>In <b class="in">+${naira(s.in)}</b></span>` : ''}
+       ${s.out ? `<span>Out <b>−${naira(s.out)}</b></span>` : ''}`
+    : '';
+  if (!rows.length) {
+    $('tx-list').innerHTML = '';
+    $('tx-more').textContent = q ? 'Nothing matches that search.' : 'No transfers here.';
+    return;
+  }
+  mountChunks($('tx-list'), $('tx-more'), rows, txRow, 'transfers');
+}
+
+function txRow(t) {
+  const key = partyKeyOf(t);
+  const p = key && ix.parties.get(key);
+  const charge = t.transfer_category === 'charge';
+  const who = p
+    ? `<a class="name" href="#/party/${enc(key)}">${esc(displayName(p))}</a>`
+    : `<span class="name none">${charge ? 'Bank charge' : 'No name on the statement'}</span>`;
+  const meta = [t.account_number && (!p || displayName(p) !== t.account_number) ? `<span class="mono">${t.account_number}</span>` : '', t.bank_name ? esc(t.bank_name) : ''].filter(Boolean).join(' · ');
+  const acct = ix.accounts.get(t.account_id);
+  const time = fmtTime(t.created_at);
+  // On a person's own page their name, account and tags are in the header.
+  const own = key && key === listState.party;
+  return `<li class="tx${charge ? ' charge' : ''}"${key ? ` data-party="${esc(key)}"` : ''}>
+    <div class="when"><a href="#/day/${t.created_at.slice(0, 10)}" title="Everything on ${fmtDate(t.created_at)}">${fmtDate(t.created_at)}</a>${time ? `<span>${time}</span>` : ''}</div>
+    <div>
+      ${own ? (charge ? '<span class="charge-tag" style="margin:0">charge</span>' : '') : `${who}${charge && p ? '<span class="charge-tag">charge</span>' : ''}`}
+      ${meta && !own ? `<div class="meta">${meta}</div>` : ''}
+      ${t.remarks ? `<div class="remarks" title="Show all">${esc(t.remarks)}</div>` : ''}
+      ${listState.source && acct ? `<div class="src">${bankDot(acct.bank_name)}${esc(bankLabel(acct.bank_name))}</div>` : ''}
+    </div>
+    ${own ? '<div></div>' : `<div class="tags">${key && p ? tagCell(key) : ''}</div>`}
+    <div class="amt ${t.transfer_type === 'credit' ? 'in' : ''}">${signed(t)}</div>
+  </li>`;
+}
+
+function viewTransfers() {
+  view.innerHTML = `<header class="view-head"><h2>Transfers</h2><p class="lede">Every transfer from every statement. Search by name, account number, bank or remark.</p></header>${listShell({ search: true })}`;
+  mountList(data.transfers, { search: true, keepFilters: true });
+}
+
+// ---------- Person ----------
+
+function viewParty(key) {
+  const p = ix.parties.get(key);
+  if (!p) return notFound('That person isn’t in your statements.');
+  const rows = p.list;
+  const charges = rows.length - p.count;
+  const other = [...p.names.keys()].filter((n) => n !== displayName(p));
+  view.innerHTML = `
+    <header class="view-head" data-party="${esc(key)}">
+      <p class="crumbs"><a href="#/label">People</a></p>
+      <h2>${esc(displayName(p))}</h2>
+      <div class="subline">
+        ${p.acct ? `<span class="mono">${p.acct}</span>` : ''}
+        ${p.bank ? `<span>${esc(p.bank)}</span>` : ''}
+        ${p.first ? `<span>${esc(fmtRange(p.first, p.last))}</span>` : ''}
+      </div>
+      ${other.length ? `<div class="subline">Also appears as ${other.slice(0, 6).map(esc).join(', ')}${other.length > 6 ? '…' : ''}</div>` : ''}
+      <div class="head-tags"><div class="tags">${tagCell(key)}</div></div>
+      ${p.acct ? `<form class="rename" id="rename"><label for="rename-in">Call this account</label><input id="rename-in" value="${esc(data.names[p.acct] || '')}" placeholder="${esc(p.name || 'A name')}" autocomplete="off"><button class="btn small">Save</button><span id="rename-ok" class="muted"></span></form>` : ''}
+      <div class="stats">
+        ${p.out ? `<div><b>−${naira(p.out)}</b>Sent</div>` : ''}
+        ${p.in ? `<div><b class="in">+${naira(p.in)}</b>Received</div>` : ''}
+        <div><b>${p.count.toLocaleString()}</b>Transfers${charges ? ` (+${charges} charges)` : ''}</div>
+      </div>
+    </header>
+    ${listShell()}`;
+  mountList(rows, { party: key });
+}
+
+view.addEventListener('submit', (e) => {
+  if (e.target.id !== 'rename') return;
+  e.preventDefault();
+  const p = ix.parties.get(current.arg);
+  if (!p?.acct) return;
+  const name = $('rename-in').value.trim();
+  if (name) data.names[p.acct] = name;
+  else delete data.names[p.acct];
+  save();
+  route();
+  toast(name ? `Renamed to ${name} everywhere.` : 'Back to the name on the statement.');
+});
+
+// ---------- Tag ----------
+
+function viewTag(tag) {
+  const keys = [...ix.tagsOf].filter(([, set]) => set.has(tag)).map(([k]) => k);
+  const people = keys.map((k) => ix.parties.get(k)).filter(Boolean);
+  people.sort((a, b) => b.out + b.in - (a.out + a.in));
+  const rows = people.flatMap((p) => p.list);
+  view.innerHTML = `
+    <header class="view-head">
+      <p class="crumbs"><a href="#/tags">Tags</a></p>
+      <h2>${esc(tag)}</h2>
+      <div class="subline">${plural(people.length, 'person', 'people')} tagged</div>
+      <div class="people-chips">${people
+        .slice(0, 40)
+        .map((p) => `<span class="chip solo"><a href="#/party/${enc(p.key)}">${esc(displayName(p))}</a></span>`)
+        .join('')}${people.length > 40 ? `<span class="muted">and ${people.length - 40} more</span>` : ''}</div>
+    </header>
+    ${people.length ? listShell() : '<p class="empty-note">No one has this tag yet. Tag people from the Label tab.</p>'}`;
+  if (people.length) mountList(rows);
+}
+
+// ---------- Month & day ----------
+
+function viewMonth(ym) {
+  if (!/^\d{4}-\d{2}$/.test(ym)) return notFound('That isn’t a month.');
+  const rows = data.transfers.filter((t) => t.created_at.startsWith(ym));
+  const [y, m] = ym.split('-').map(Number);
+  const prev = m === 1 ? `${y - 1}-12` : `${y}-${pad2(m - 1)}`;
+  const next = m === 12 ? `${y + 1}-01` : `${y}-${pad2(m + 1)}`;
+  overviewRows = rows;
+  view.innerHTML = `
+    <header class="view-head">
+      <p class="crumbs"><a href="#/">Overview</a></p>
+      <h2>${fmtMonth(ym)}</h2>
+      <div class="pager"><a class="btn small" href="#/month/${prev}">← ${MON[+prev.slice(5) - 1]}</a><a class="btn small" href="#/month/${next}">${MON[+next.slice(5) - 1]} →</a></div>
+    </header>
+    ${rows.length ? `<div class="grid2">
+      <section class="card"><h2 class="sect"><span>Money out by tag</span></h2><div id="tag-out"></div></section>
+      <section class="card"><h2 class="sect"><span>Money in by tag</span></h2><div id="tag-in"></div></section>
+    </div>` : ''}
+    ${listShell()}`;
+  paintTagPanels();
+  mountList(rows);
+}
+
+function viewDay(day) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(day)) return notFound('That isn’t a day.');
+  const rows = data.transfers.filter((t) => t.created_at.startsWith(day));
+  view.innerHTML = `
+    <header class="view-head">
+      <p class="crumbs"><a href="#/month/${day.slice(0, 7)}">${fmtMonth(day.slice(0, 7))}</a></p>
+      <h2>${fmtDate(day)}</h2>
+    </header>
+    ${listShell()}`;
+  mountList(rows);
+}
+
+// ---------- Tags ----------
+
+const openTags = new Set(); // tag groups showing everyone, not just the top few
+const TAG_PREVIEW = 8;
+
+function viewTags() {
+  const groups = new Map(); // tag -> Set(party key)
+  for (const [key, set] of ix.tagsOf) {
+    for (const tag of set) {
+      if (!groups.has(tag)) groups.set(tag, new Set());
+      groups.get(tag).add(key);
+    }
+  }
+  const list = [...groups].map(([tag, keys]) => {
+    const people = [...keys].map((k) => ix.parties.get(k)).filter(Boolean);
+    return { tag, people, out: people.reduce((s, p) => s + p.out, 0), in: people.reduce((s, p) => s + p.in, 0), n: people.reduce((s, p) => s + p.count, 0) };
+  });
+  list.sort((a, b) => b.out + b.in - (a.out + a.in) || a.tag.localeCompare(b.tag));
+  // Tags pointing at people who aren't in the imported statements (yet).
+  const waiting = data.tags.filter((m) => !partiesFor(m.party).size).length;
+  view.innerHTML = `
+    <header class="view-head">
+      <h2>Tags</h2>
+      <p class="lede">Each tag and the people under it. Tags are kept when you delete transfers, and apply again to anything you import later.${waiting ? ` ${plural(waiting, 'tag')} ${waiting === 1 ? 'is' : 'are'} waiting for people you haven’t imported yet.` : ''}</p>
+    </header>
+    ${
+      list.length
+        ? list
+            .map(
+              (g) => `<section class="card tg-group">
+      <div class="tg-head">
+        <span class="chip solo"><a href="#/tag/${enc(g.tag)}">${esc(g.tag)}</a></span>
+        <span class="meta">${plural(g.people.length, 'person', 'people')} · ${plural(g.n, 'transfer')}</span>
+        <span class="sums" style="flex-direction:row;gap:12px">${g.out ? `<span class="amt">−${naira(g.out)}</span>` : ''}${g.in ? `<span class="amt in">+${naira(g.in)}</span>` : ''}</span>
+        <button type="button" class="btn small" data-act="drop-tag" data-tag="${esc(g.tag)}">Remove tag</button>
+      </div>
+      <ul class="rows" style="margin-top:8px">${g.people
+        .sort((a, b) => b.out + b.in - (a.out + a.in))
+        .slice(0, openTags.has(g.tag) ? Infinity : TAG_PREVIEW)
+        .map(
+          (p) => `<li class="prow norank" data-party="${esc(p.key)}">
+          <div><a class="name" href="#/party/${enc(p.key)}">${esc(displayName(p))}</a><div class="meta">${[p.acct ? `<span class="mono">${p.acct}</span>` : '', plural(p.count, 'transfer')].filter(Boolean).join(' · ')}</div></div>
+          <div class="tags"><span class="chip"><a href="#/tag/${enc(g.tag)}">${esc(g.tag)}</a><button type="button" data-act="untag" data-tag="${esc(g.tag)}" aria-label="Remove ${esc(displayName(p))} from ${esc(g.tag)}" title="Remove">×</button></span></div>
+          <div class="sums">${p.out ? `<span class="amt">−${naira(p.out)}</span>` : ''}${p.in ? `<span class="amt in">+${naira(p.in)}</span>` : ''}</div>
+        </li>`
+        )
+        .join('')}</ul>
+      ${g.people.length > TAG_PREVIEW ? `<button type="button" class="btn small" style="margin-top:10px" data-act="tag-all" data-tag="${esc(g.tag)}">${openTags.has(g.tag) ? 'Show fewer' : `Show all ${g.people.length.toLocaleString()} people`}</button>` : ''}
+    </section>`
+            )
+            .join('')
+        : `<section class="card"><p class="empty-note" style="padding-top:4px">${
+            waiting
+              ? 'Your tags show here once you import statements with the people they’re for.'
+              : `No tags yet. ${data.transfers.length ? '<a class="link" href="#/label">Start labelling →</a>' : 'Import a statement first.'}`
+          }</p></section>`
+    }`;
+}
+
+// ---------- Banks & data ----------
+
+function viewBanks() {
+  const stats = new Map(data.accounts.map((a) => [a.id, { ...totalsOf([]), latest: null }]));
+  for (const t of data.transfers) {
+    const s = stats.get(t.account_id);
+    if (!s) continue;
+    s.count++;
+    if (t.transfer_type === 'credit') s.in += t.amount;
+    else s.out += t.amount;
+    if (!s.first || t.created_at < s.first) s.first = t.created_at;
+    if (!s.latest || t.created_at > s.latest.created_at || (t.created_at === s.latest.created_at && t.id > s.latest.id)) s.latest = t;
+  }
+  view.innerHTML = `
+    <header class="view-head"><h2>Banks</h2><p class="lede">One account per bank, built from every statement you’ve imported for it.</p></header>
+    <section class="card">
+      ${
+        data.accounts.length
+          ? `<ul class="banks">${data.accounts
+              .map((a) => {
+                const s = stats.get(a.id);
+                return `<li class="bank">
+          <div>
+            <a class="name" href="#/bank/${a.id}">${bankDot(a.bank_name)}${esc(bankLabel(a.bank_name))}</a>
+            <div class="meta">${plural(s.count, 'transfer')}${s.first ? ` · ${esc(fmtRange(s.first, s.latest.created_at))}` : ''}${s.latest ? ` · balance ${naira(s.latest.balance_after)} on ${fmtDate(s.latest.created_at)}` : ''}</div>
+          </div>
+          <div class="acts"><a class="btn small" href="#/bank/${a.id}">Transfers</a><button type="button" class="btn small danger" data-act="drop-bank" data-id="${a.id}">Remove…</button></div>
+        </li>`;
+              })
+              .join('')}</ul>`
+          : '<p class="empty-note" style="padding-top:4px">No banks yet. Import a statement to add one.</p>'
+      }
+    </section>
+    <section class="card">
+      <h2 class="sect"><span>Your data</span></h2>
+      <p class="muted" style="margin:0;font-size:14px">Everything is stored in this browser only. Download a backup to move it to another device or keep it safe; import the file (or drop it here) to restore.</p>
+      <div class="data-acts">
+        <button type="button" class="btn" data-act="export">Download backup</button>
+        <label class="btn" for="file-input">Restore a backup</label>
+        <button type="button" class="btn danger" data-act="wipe" ${data.transfers.length ? '' : 'disabled'}>Delete all transfers…</button>
+        <button type="button" class="btn danger" data-act="erase">Erase everything…</button>
+      </div>
+      ${
+        data.imports.length
+          ? `<h2 class="sect" style="margin-top:22px"><span>Imported</span></h2><ul class="history">${data.imports
+              .slice(0, 30)
+              .map((h) => `<li><span>${esc(h.file)}</span><span class="muted">${esc(bankLabel(h.bank))} · ${plural(h.inserted, 'new transfer')}${h.skipped ? ` · ${h.skipped.toLocaleString()} skipped` : ''} · ${fmtDate(h.at.slice(0, 10))}</span></li>`)
+              .join('')}</ul>`
+          : ''
+      }
+    </section>`;
+}
+
+function viewBank(id) {
+  const a = ix.accounts.get(+id);
+  if (!a) return notFound('That bank isn’t here any more.');
+  const rows = data.transfers.filter((t) => t.account_id === a.id);
+  view.innerHTML = `
+    <header class="view-head">
+      <p class="crumbs"><a href="#/banks">Banks</a></p>
+      <h2>${bankDot(a.bank_name)}${esc(bankLabel(a.bank_name))}</h2>
+    </header>
+    ${listShell({ search: true })}`;
+  mountList(rows, { search: true, oneBank: true });
+}
+
+function notFound(message) {
+  view.innerHTML = `<section class="card"><p class="empty-note" style="padding-top:4px">${esc(message)} <a class="link" href="#/">Back to the overview</a></p></section>`;
+}
+
+// ---------- Row actions ----------
+
+view.addEventListener('click', (e) => {
+  const remarks = e.target.closest('.remarks');
+  if (remarks) {
+    remarks.classList.toggle('open');
+    return;
+  }
+  const btn = e.target.closest('[data-act]');
+  if (!btn) return;
+  const key = btn.closest('[data-party]')?.dataset.party;
+  const act = btn.dataset.act;
+  if (act === 'tag' && key) {
+    if (!picker.hidden && pick.anchor === btn) closePicker();
+    else openPicker(btn, key);
+  }
+  else if (act === 'untag' && key) removeTag(key, btn.dataset.tag);
+  else if (act === 'export') exportBackup();
+  else if (act === 'tag-all') {
+    const tag = btn.dataset.tag;
+    if (openTags.has(tag)) openTags.delete(tag);
+    else openTags.add(tag);
+    route();
+  }
+  else if (act === 'drop-tag') {
+    const tag = btn.dataset.tag;
+    confirmAction(`Remove “${tag}”?`, 'It comes off everyone tagged with it. The tag stays in the list for later.', 'Remove tag', () => {
+      data.tags = data.tags.filter((m) => m.tag !== tag);
+      resolveTags();
+      save();
+      route();
+      paintLabelCount();
+    });
+  } else if (act === 'drop-bank') {
+    const a = ix.accounts.get(+btn.dataset.id);
+    if (!a) return;
+    const n = data.transfers.filter((t) => t.account_id === a.id).length;
+    confirmAction(`Remove ${bankLabel(a.bank_name)}?`, `This deletes its ${plural(n, 'transfer')} from this browser. Your tags stay, and come back if you import its statements again.`, 'Remove bank', () => {
+      data.transfers = data.transfers.filter((t) => t.account_id !== a.id);
+      data.accounts = data.accounts.filter((x) => x.id !== a.id);
+      buildIndex();
+      save(true);
+      route();
+      toast(`Removed ${bankLabel(a.bank_name)}.`);
+    });
+  } else if (act === 'wipe') {
+    confirmAction('Delete all transfers?', `This deletes ${plural(data.transfers.length, 'transfer')} from this browser. Tags and names stay for when you import again. Download a backup first if you might want them back.`, 'Delete transfers', () => {
+      data.transfers = [];
+      data.accounts = [];
+      data.imports = [];
+      buildIndex();
+      save(true);
+      route();
+      toast('All transfers deleted. Your tags are still here.');
+    });
+  } else if (act === 'erase') {
+    confirmAction('Erase everything?', 'Transfers, tags, names and import history are all deleted from this browser. This can’t be undone.', 'Erase everything', async () => {
+      data = freshData();
+      buildIndex();
+      try {
+        await kv.clear();
+      } catch {}
+      route();
+      toast('Everything has been erased.');
+    });
+  }
+});
+
+// ---------- Tag picker ----------
+
+const picker = $('picker');
+const pickerQ = $('picker-q');
+const pick = { anchor: null, key: null, active: 0, options: [], viaKeys: false };
+
+function openPicker(anchor, key) {
+  pick.anchor = anchor;
+  pick.key = key;
+  pick.active = 0;
+  pick.viaKeys = false;
+  pickerQ.value = '';
+  picker.hidden = false;
+  renderPicker();
+  placePicker();
+  pickerQ.focus({ preventScroll: true });
+}
+
+function closePicker(restoreFocus = false) {
+  if (picker.hidden) return;
+  picker.hidden = true;
+  if (restoreFocus && pick.anchor?.isConnected) pick.anchor.focus({ preventScroll: true });
+}
+
+function placePicker() {
+  const small = innerWidth <= 720;
+  picker.classList.toggle('sheet', small);
+  if (small) return;
+  const r = pick.anchor.getBoundingClientRect();
+  const w = picker.offsetWidth;
+  const h = picker.offsetHeight;
+  const left = Math.min(Math.max(8, r.right - w), innerWidth - w - 8) + scrollX;
+  const below = r.bottom + 6 + h < innerHeight;
+  picker.style.left = left + 'px';
+  picker.style.top = (below ? r.bottom + 6 : r.top - h - 6) + scrollY + 'px';
+}
+
+function pickerOptions() {
+  const applied = tagsOf(pick.key);
+  const q = pickerQ.value.trim().toLowerCase().replace(/\s+/g, ' ');
+  const all = [...data.tagList].sort((a, b) => a.localeCompare(b));
+  let options;
+  if (q) {
+    options = all
+      .filter((t) => t.includes(q))
+      .sort((a, b) => Number(b.startsWith(q)) - Number(a.startsWith(q)) || a.localeCompare(b))
+      .map((tag) => ({ tag }));
+    if (!data.tagList.includes(q)) options.push({ tag: q.slice(0, 40), create: true });
+  } else {
+    const recent = data.recent.filter((t) => data.tagList.includes(t));
+    options = [
+      ...(recent.length ? [{ group: 'Recent' }] : []),
+      ...recent.map((tag) => ({ tag })),
+      ...(recent.length ? [{ group: 'All tags' }] : []),
+      ...all.filter((t) => !recent.includes(t)).map((tag) => ({ tag })),
+    ];
+  }
+  return options.map((o) => (o.tag ? { ...o, on: applied.has(o.tag) } : o));
+}
+
+function renderPicker() {
+  pick.options = pickerOptions();
+  const choices = pick.options.filter((o) => o.tag);
+  pick.active = Math.min(pick.active, Math.max(0, choices.length - 1));
+  let i = -1;
+  $('picker-list').innerHTML = pick.options
+    .map((o) => {
+      if (o.group) return `<li class="group" role="presentation">${o.group}</li>`;
+      i++;
+      return `<li role="option" id="pk-${i}" data-i="${i}" class="${i === pick.active ? 'active' : ''}" aria-selected="${o.on}">
+        <span class="ck" aria-hidden="true">${o.on ? '✓' : ''}</span>${esc(o.tag)}${o.create ? '<em>new tag</em>' : o.on ? '<em>remove</em>' : ''}
+      </li>`;
+    })
+    .join('');
+  pickerQ.setAttribute('aria-activedescendant', choices.length ? `pk-${pick.active}` : '');
+  // Keep the active option in view by scrolling the list only, never the page.
+  const li = $(`pk-${pick.active}`);
+  const ul = $('picker-list');
+  if (li) {
+    const top = li.offsetTop - ul.offsetTop;
+    if (top < ul.scrollTop) ul.scrollTop = top;
+    else if (top + li.offsetHeight > ul.scrollTop + ul.clientHeight) ul.scrollTop = top + li.offsetHeight - ul.clientHeight;
+  }
+}
+
+function choose(index) {
+  const choice = pick.options.filter((o) => o.tag)[index];
+  if (!choice) return;
+  const { key, anchor, viaKeys } = pick;
+  const row = anchor.closest('[data-party]');
+  const next = row?.nextElementSibling?.querySelector('[data-act="tag"]');
+  closePicker();
+  if (choice.on) removeTag(key, choice.tag);
+  else addTag(key, choice.tag);
+  if (row) {
+    row.classList.add('just-tagged');
+    setTimeout(() => row.classList.remove('just-tagged'), 900);
+  }
+  // From the keyboard, move straight on to the next person.
+  if (viaKeys && !choice.on && current.view === 'label' && next?.isConnected) next.focus();
+  else row?.querySelector('[data-act="tag"]')?.focus({ preventScroll: true });
+}
+
+pickerQ.addEventListener('input', () => {
+  pick.active = 0;
+  renderPicker();
+});
+pickerQ.addEventListener('keydown', (e) => {
+  const n = pick.options.filter((o) => o.tag).length;
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (!n) return;
+    pick.active = (pick.active + (e.key === 'ArrowDown' ? 1 : -1) + n) % n;
+    renderPicker();
+  } else if (e.key === 'Enter') {
+    e.preventDefault();
+    pick.viaKeys = true;
+    choose(pick.active);
+  } else if (e.key === 'Escape') {
+    e.preventDefault();
+    closePicker(true);
+  } else if (e.key === 'Tab') {
+    closePicker(true);
+    e.preventDefault();
+  }
+});
+$('picker-list').addEventListener('click', (e) => {
+  const li = e.target.closest('[data-i]');
+  if (li) choose(+li.dataset.i);
+});
+document.addEventListener('pointerdown', (e) => {
+  if (!picker.hidden && !picker.contains(e.target) && e.target.closest('[data-act="tag"]') !== pick.anchor) closePicker();
+});
+// A phone's keyboard opening resizes the window's height only; keep the picker
+// open for that.
+let lastWidth = innerWidth;
+addEventListener('resize', () => {
+  if (innerWidth !== lastWidth) closePicker();
+  lastWidth = innerWidth;
+});
+
+// ---------- Confirm & toast ----------
+
+const confirmDialog = $('confirm');
+let onConfirm = null;
+function confirmAction(title, text, yesLabel, fn) {
+  $('confirm-title').textContent = title;
+  $('confirm-text').textContent = text;
+  $('confirm-yes').textContent = yesLabel;
+  onConfirm = fn;
+  confirmDialog.showModal();
+  $('confirm-no').focus();
+}
+$('confirm-no').addEventListener('click', () => confirmDialog.close());
+$('confirm-yes').addEventListener('click', () => {
+  const fn = onConfirm;
+  onConfirm = null;
+  confirmDialog.close();
+  fn?.();
+});
+
+let toastTimer;
+function toast(message) {
+  const el = $('toast');
+  el.textContent = message;
+  el.hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => (el.hidden = true), 3600);
+}
+
+// ---------- Files in ----------
+
+$('import-btn').addEventListener('click', () => {
+  loadPdfjs().catch(() => {});
+  $('file-input').click();
+});
+$('import-btn').addEventListener('pointerenter', () => loadPdfjs().catch(() => {}), { once: true });
+$('file-input').addEventListener('change', (e) => {
+  addFiles(e.target.files);
+  e.target.value = '';
+});
+$('export-btn').addEventListener('click', exportBackup);
+
+let dragDepth = 0;
+const hasFiles = (e) => [...(e.dataTransfer?.types || [])].includes('Files');
+addEventListener('dragenter', (e) => {
+  if (!hasFiles(e)) return;
+  e.preventDefault();
+  dragDepth++;
+  $('dropzone').hidden = false;
+});
+addEventListener('dragover', (e) => {
+  if (hasFiles(e)) e.preventDefault();
+});
+addEventListener('dragleave', () => {
+  dragDepth = Math.max(0, dragDepth - 1);
+  if (!dragDepth) $('dropzone').hidden = true;
+});
+addEventListener('drop', (e) => {
+  if (!hasFiles(e)) return;
+  e.preventDefault();
+  dragDepth = 0;
+  $('dropzone').hidden = true;
+  addFiles(e.dataTransfer.files);
+});
+addEventListener('beforeunload', (e) => {
+  if (importing) e.preventDefault();
+});
+
+// "/" jumps to the search box.
+addEventListener('keydown', (e) => {
+  if (e.key !== '/' || e.metaKey || e.ctrlKey || e.altKey) return;
+  if (e.target.closest('input, textarea, select, [contenteditable]')) return;
+  const box = $('label-q') || $('tx-q');
+  if (box) {
+    e.preventDefault();
+    box.focus();
+  }
+});
+
+// ---------- Light / dark ----------
+
+const root = document.documentElement;
+const darkQuery = matchMedia('(prefers-color-scheme: dark)');
+const isDark = () => (root.dataset.theme ? root.dataset.theme === 'dark' : darkQuery.matches);
+function paintThemeButton() {
+  const dark = isDark();
+  const label = dark ? 'Switch to light mode' : 'Switch to dark mode';
+  $('theme-btn').innerHTML = dark ? ICONS.sun : ICONS.moon;
+  $('theme-btn').setAttribute('aria-label', label);
+  $('theme-btn').title = label;
+}
+$('theme-btn').addEventListener('click', () => {
+  const next = isDark() ? 'light' : 'dark';
+  root.dataset.theme = next;
+  try {
+    localStorage.setItem(THEME_KEY, next);
+  } catch {}
+  paintThemeButton();
+});
+darkQuery.addEventListener('change', paintThemeButton);
+
+// ---------- Hide figures ----------
+// For looking at the page where others can see the screen. Remembered, and
+// read before the first render, so hidden figures never flash up on load.
+
+function paintFiguresButton() {
+  const hidden = !!prefs.hideFigures;
+  const label = hidden ? 'Show figures' : 'Hide figures';
+  $('figures-btn').innerHTML = hidden ? ICONS.eye : ICONS.eyeOff;
+  $('figures-btn').setAttribute('aria-label', label);
+  $('figures-btn').title = label;
+}
+$('figures-btn').addEventListener('click', () => {
+  prefs.hideFigures = !prefs.hideFigures;
+  savePrefs();
+  paintFiguresButton();
+  route();
+});
+
+// ---------- Start ----------
+
+addEventListener('hashchange', route);
+paintThemeButton();
+paintFiguresButton();
+load().then(() => {
+  buildIndex();
+  route();
+});
+</script>
+</body>
+</html>
