@@ -1273,20 +1273,6 @@
       },
 
       {
-        "name": "Bash Scripting",
-        "videos": [
-          {
-            "channel_name": "You Suck at Programming",
-            "name": "The Complete Bash Scripting Course",
-            "channel_link": "https://www.youtube.com/@yousuckatprogramming",
-            "link": "https://www.youtube.com/playlist?list=PL-my9REMIFtGgiQAXqKPJ5UrLdSkxcLBT",
-            "minutes": "442",
-            "description": "playlist · 62 videos · 7h 22m · Dave Eddy’s full course, from the terminal up — files, hidden files, grep, less, man pages, vim and permissions, then scripting itself: variables, user input, functions, if with [ ] and [[ ]], for loops, case, indexed and associative arrays, IFS, command and process substitution, arithmetic, and stdin and stdout. Later chapters cover cut, tr, sed, awk and find, set -u and set -x, $PIPESTATUS, sourcing libraries, exit codes against output, parameter expansion, globbing and extglob, brace expansion, printf, regular expressions without grep, mapfile, trap, named pipes, ANSI colours and cursor control, the PS1 prompt and .bashrc, why not to parse ls, and a fork bomb to finish. Most episodes run 3 to 13 minutes, with a recap at the end of each chapter; the code and materials are at course.ysap.sh. From 2026",
-            "type": "playlist"
-          }
-        ]
-      },
-      {
         "name": "Disk Encryption",
         "videos": [
           {
@@ -1435,6 +1421,15 @@
       {
         "name": "Containers",
         "videos": [
+          {
+            "channel_name": "LinuxCloudHacks",
+            "name": "Kubernetes",
+            "channel_link": "https://www.youtube.com/@LinuxCloudHacks",
+            "link": "https://www.youtube.com/playlist?list=PLUF494I4KUvrhxoXoA2GAb1LCYPTAkDRP",
+            "minutes": "242",
+            "description": "course · 11 lessons · 4h 2m · Kubernetes on your own hardware, networking first — getting around a cluster with the k9s terminal UI, how pods talk and the service types (headless, ClusterIP, external IP, NodePort, LoadBalancer) with MetalLB handing out addresses, building a dual-stack IPv4 and IPv6 cluster on Ubuntu 24.04 (preparing the OS, the container runtime, bootstrapping from a config file, the Flannel network plugin, adding worker nodes), a fully routed cluster with Calico and BGP (measured against Flannel, ECMP, MetalLB in BGP mode and the external traffic policy), Calico network policies with labels and selectors, then K3s home labs — Traefik ingress reached through a Cloudflare tunnel, MetalLB with MikroTik and ExternalDNS giving local names (Pi-hole, code-server), private access to workloads through Tailscale, three ways to put a highly available K3s cluster on the internet (a floating IP with keepalived, MetalLB, Cloudflare tunnels), and Cloudflare WARP with hostname routes for zero-trust access to private services. From 2024–2025",
+            "type": "playlist"
+          },
           {
             "channel_name": "BashLab",
             "name": "Introduction to Namespace: UTS Namespace Explained",
@@ -1634,15 +1629,7 @@
             "type": "playlist"
           },
 
-          {
-            "channel_name": "LinuxCloudHacks",
-            "name": "Kubernetes",
-            "channel_link": "https://www.youtube.com/@LinuxCloudHacks",
-            "link": "https://www.youtube.com/playlist?list=PLUF494I4KUvrhxoXoA2GAb1LCYPTAkDRP",
-            "minutes": "242",
-            "description": "course · 11 lessons · 4h 2m · Kubernetes on your own hardware, networking first — getting around a cluster with the k9s terminal UI, how pods talk and the service types (headless, ClusterIP, external IP, NodePort, LoadBalancer) with MetalLB handing out addresses, building a dual-stack IPv4 and IPv6 cluster on Ubuntu 24.04 (preparing the OS, the container runtime, bootstrapping from a config file, the Flannel network plugin, adding worker nodes), a fully routed cluster with Calico and BGP (measured against Flannel, ECMP, MetalLB in BGP mode and the external traffic policy), Calico network policies with labels and selectors, then K3s home labs — Traefik ingress reached through a Cloudflare tunnel, MetalLB with MikroTik and ExternalDNS giving local names (Pi-hole, code-server), private access to workloads through Tailscale, three ways to put a highly available K3s cluster on the internet (a floating IP with keepalived, MetalLB, Cloudflare tunnels), and Cloudflare WARP with hostname routes for zero-trust access to private services. From 2024–2025",
-            "type": "playlist"
-          },
+
           {
             "channel_name": "theurbanpenguin",
             "name": "Streaming Linux Desktops in Docker",
@@ -1677,24 +1664,6 @@
             "link": "https://www.youtube.com/watch?v=h7Lz_aNqdCw",
             "minutes": "3",
             "description": "3 min · two ways to use the same namespaces and cgroups — LXC runs a whole persistent distribution like a lightweight VM you can SSH into and manage with systemd, while Docker packages one application into a reproducible image built from a Dockerfile; and you can run Docker inside LXC. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hussein Nasser",
-            "name": "PostgreSQL Internal Architecture Explained",
-            "channel_link": "https://www.youtube.com/@hnasr",
-            "link": "https://www.youtube.com/watch?v=Q56kljmIN14",
-            "minutes": "33",
-            "description": "33 min · how PostgreSQL is built inside: the listener and accept queue, which process accepts connections, which reads the stream and which executes queries. From 2023",
-            "type": "video"
-          },
-          {
-            "channel_name": "Nick Frostbutter",
-            "name": "Backup MySQL database with mysqldump FAST (from the command line)",
-            "channel_link": "https://www.youtube.com/@NickFrostbutter",
-            "link": "https://www.youtube.com/watch?v=IzEet1qxrKo",
-            "minutes": "2",
-            "description": "2 min · backing up a MySQL database quickly from the command line with mysqldump. From 2022",
             "type": "video"
           }
         ]
@@ -1732,269 +1701,35 @@
         ]
       },
       {
-        "name": "Databases",
+        "name": "Comprehensive",
         "videos": [
           {
-            "channel_name": "RKSR1960",
-            "name": "MariaDB Administration Tutorial",
-            "channel_link": "https://www.youtube.com/@RKSR1960",
-            "link": "https://www.youtube.com/watch?v=hDKnsUrz0nM&list=PLnrmLjoInKWgUTezOTaIIrAwCIfO8JbTR",
-            "minutes": "417",
-            "description": "course · 63 lessons · 6h 57m · the first 63 lessons, a few minutes each — MariaDB administration that mostly applies to MySQL too, first at the command line and then in HeidiSQL: installing MariaDB on Windows and CentOS and moving its data directory, a Galera cluster, upgrading and migrating from MySQL, creating, renaming and dropping users, granting and revoking permissions on databases, tables and columns, GRANT OPTION and roles, seeing what a user can do, backups with mysqldump (every database, one database or table, zipped, timestamped, scheduled with crontab) and restoring them, resetting the root password, and the error, general, slow-query and binary logs; then in HeidiSQL, connecting, creating databases and tables, importing and exporting CSV and JSON, managing users and permissions, watching running queries, query history, scripting a database, loading large SQL files, synchronising two databases and changing server settings. From 2017–2018",
-            "type": "playlist"
-          },
-          {
-            "channel_name": "Mughees Ahmed",
-            "name": "MySQL DBA Tutorial",
-            "channel_link": "https://www.youtube.com/@mughees52",
-            "link": "https://www.youtube.com/watch?v=Szr4DrM4E8Q&list=PLd5sTGXltJ-l9PKT2Bynhg0Ou2uESOJiH",
-            "minutes": "578",
-            "description": "course · 31 lessons · 9h 38m · the numbered MySQL 8 DBA course on Linux, lessons 1–31 — MySQL’s architecture, storage engines and InnoDB’s internals, installing it from the Yum repository, RPM packages and generic binaries, connecting, creating databases and tables and loading sample data, creating users, password management, granting privileges and GRANT OPTION, roles and mandatory roles, transactions, isolation levels and InnoDB locking, the binary log and extracting statements from it, backups with mysqldump, mysqlpump and mydumper, and point-in-time recovery. From 2020–2021",
+            "channel_name": "You Suck at Programming",
+            "name": "The Complete Bash Scripting Course",
+            "channel_link": "https://www.youtube.com/@yousuckatprogramming",
+            "link": "https://www.youtube.com/playlist?list=PL-my9REMIFtGgiQAXqKPJ5UrLdSkxcLBT",
+            "minutes": "442",
+            "description": "playlist · 62 videos · 7h 22m · Dave Eddy’s full course, from the terminal up — files, hidden files, grep, less, man pages, vim and permissions, then scripting itself: variables, user input, functions, if with [ ] and [[ ]], for loops, case, indexed and associative arrays, IFS, command and process substitution, arithmetic, and stdin and stdout. Later chapters cover cut, tr, sed, awk and find, set -u and set -x, $PIPESTATUS, sourcing libraries, exit codes against output, parameter expansion, globbing and extglob, brace expansion, printf, regular expressions without grep, mapfile, trap, named pipes, ANSI colours and cursor control, the PS1 prompt and .bashrc, why not to parse ls, and a fork bomb to finish. Most episodes run 3 to 13 minutes, with a recap at the end of each chapter; the code and materials are at course.ysap.sh. From 2026",
             "type": "playlist"
           },
           {
             "channel_name": "Ejoghomedaro Harris",
-            "name": "POSTGRES DATABASE ADMINISTRATION",
+            "name": "Postgres Database Administration",
             "channel_link": "https://www.youtube.com/@ejoghomedaroharris9329",
             "link": "https://www.youtube.com/playlist?list=PLwxrtuGg5dNGv4jvDY3TEddn2HIn4-uF9",
             "minutes": "809",
             "description": "playlist · 55 videos · 13h 29m · PostgreSQL administration, mostly in psql on Linux and listed out of order — its architecture, installing it on Windows, Linux and in Docker, moving the data directory, starting and stopping the service, postgresql.conf, pg_hba.conf, the password file and remote access, users and roles, the default user and internal authentication, schemas, tablespaces and clusters, creating databases and tables, a psql cheatsheet, indexes, EXPLAIN, pg_stat_statements, slow and blocked queries, logging and pgBadger, vacuum, autovacuum, bloat and pg_repack, write-ahead logging, backups (pg_dump, pg_dumpall, pg_basebackup, pgBackRest, Barman and point-in-time recovery), pg_upgrade, logical replication and failover with repmgr, connection pooling with PgBouncer, pg_cron, dblink, kernel parameters, comparing schemas in pgAdmin and in DBeaver, and Postgres against MySQL. From 2020–2021",
             "type": "playlist"
-          },
-          {
-            "channel_name": "Database Star",
-            "name": "pgAdmin Tutorial - How to Use pgAdmin",
-            "channel_link": "https://www.youtube.com/@DatabaseStar",
-            "link": "https://www.youtube.com/watch?v=WFT5MaZN6g4",
-            "minutes": "15",
-            "description": "15 min · getting started with pgAdmin, the GUI that comes with Postgres — downloading it and setting the master password, the main window, connecting to a server, the toolbar, the query tool, saving and opening queries, editing data, the explain plan, searching for objects, other features and preferences. From 2022",
-            "type": "video"
-          },
-          {
-            "channel_name": "DBeaver",
-            "name": "How to get started with DBeaver",
-            "channel_link": "https://www.youtube.com/@DBeaver_video",
-            "link": "https://www.youtube.com/playlist?list=PLkh7-EMxQiV1jVGEEiXOVnutZo02GGmaJ",
-            "minutes": "114",
-            "description": "playlist · 27 videos · 1h 54m · DBeaver’s own short guides to its database GUI, which works with MySQL, MariaDB and PostgreSQL alike — installing it on Windows, Linux and macOS, creating a connection, the navigation tree and projects, the data editor and its grid, importing data and migrating it between databases, the value, metadata and references panels, building reports and charts, ER diagrams, the SQL editor and visual query builder, AI chat, and scheduled tasks. Several videos show paid DBeaver PRO features. From 2022",
-            "type": "playlist"
           }
-        ]
-      },
-      {
-        "name": "Version Control",
-        "videos": [
+,
           {
-            "channel_name": "GitGuardian",
-            "name": "How to permanently remove files from git and rewrite your git history",
-            "channel_link": "https://www.youtube.com/@GitGuardian",
-            "link": "https://www.youtube.com/watch?v=msUDPYsbABY",
-            "minutes": "12",
-            "description": "12 min · getting a committed file out of git for good, after first revoking any secret it held. git reset --soft and a force push undo a commit you have only just made; for a file spread through older commits and other branches, BFG Repo-Cleaner deletes it by name across the whole history, checked with git log --oneline and a detached checkout before the force push. He warns first that rewriting history breaks things for anyone else working on the repository. From 2020",
-            "type": "video"
-          },
-          {
-            "channel_name": "GitGuardian",
-            "name": "2 million .git directories exposed: why .git folders are sensitive",
-            "channel_link": "https://www.youtube.com/@GitGuardian",
-            "link": "https://www.youtube.com/watch?v=H-_KtGqSk3I",
-            "minutes": "9",
-            "description": "9 min · what a .git folder holds — the whole history, the commit data and the remote’s address — why that is dangerous when the folder sits on a web server, and how these folders end up publicly reachable, drawing on Cybernews research that found about two million of them. From 2022",
-            "type": "video"
-          },
-          {
-            "channel_name": "GitGuardian",
-            "name": "What are GitHooks? Explained in 5 minutes",
-            "channel_link": "https://www.youtube.com/@GitGuardian",
-            "link": "https://www.youtube.com/watch?v=1OFiiPretCM",
-            "minutes": "6",
-            "description": "6 min · an excerpt from the opening of a longer GitHooks guide — where hooks fire (pre-commit and pre-push on your machine, pre-receive on the server), local hooks against global ones, the sample hooks git init puts in .git/hooks, and turning one on by removing .sample, which here blocks a commit with trailing whitespace. From 2023",
-            "type": "video"
-          },
-          {
-            "channel_name": "GitGuardian",
-            "name": "Complete guide to GitHooks — creating your own pre-commit hooks",
-            "channel_link": "https://www.youtube.com/@GitGuardian",
-            "link": "https://www.youtube.com/watch?v=ObksvAZyWdo",
-            "minutes": "30",
-            "description": "30 min · writing git hooks yourself. After where hooks fire and the samples in .git/hooks, he writes a pre-commit hook from scratch — chmod u+x first, the step people miss — has it fetch a dad joke with curl on every commit, block the commit when git grep finds a 20-character AWS key, then hand the commit to ggshield instead. The last part makes a global hook with git config --global core.hooksPath, shows that it replaces each repository’s own hook rather than adding to it, and calls the local hook from the global one so both run. Ends by pointing to the pre-commit framework for chaining hooks together. From 2023",
-            "type": "video"
-          },
-          {
-            "channel_name": "GitGuardian",
-            "name": "Detect secrets with a pre-commit git hook using ggshield and the pre-commit framework",
-            "channel_link": "https://www.youtube.com/@GitGuardian",
-            "link": "https://www.youtube.com/watch?v=8bDKn3y7Br4",
-            "minutes": "13",
-            "description": "13 min · the pre-commit framework, which builds hooks from a .pre-commit-config.yaml and can layer several checks into one, set up here with ggshield to block commits that contain secrets — pinning a release instead of tracking main, pre-commit install, a commit stopped by an AWS key, then letting a false positive through with ggshield ignore --last-found and skipping a folder of examples with paths-ignore. ggshield needs a free GitGuardian API key. From 2021",
-            "type": "video"
-          },
-          {
-            "channel_name": "GitGuardian",
-            "name": "How to create a pre-push git hook to detect hardcoded secrets",
-            "channel_link": "https://www.youtube.com/@GitGuardian",
-            "link": "https://www.youtube.com/watch?v=uc70CE1MXvM",
-            "minutes": "13",
-            "description": "13 min · ggshield’s secret scan run as a pre-push hook, with pre-commit install --hook-type pre-push, so a run of commits is scanned once when you push rather than at every commit. The trade-off he points out is that a secret caught at push time is already in your local history and has to be rewritten out of it. The API key goes in a .env file that .gitignore keeps out of the repository. From 2022",
-            "type": "video"
-          },
-          {
-            "channel_name": "Maxim Orlov",
-            "name": "Deploy to your server using Git",
-            "channel_link": "https://www.youtube.com/@maximization",
-            "link": "https://www.youtube.com/watch?v=H6UU7TsyrGs",
-            "minutes": "8",
-            "description": "8 min · push-to-deploy with nothing but git — an empty bare repository on the server, a post-receive hook that puts the pushed code in place, the server added as a remote, and a git push that deploys. From 2020",
-            "type": "video"
-          },
-          {
-            "channel_name": "SuperSimpleDev",
-            "name": "How to put an HTML website online (on the Internet)",
-            "channel_link": "https://www.youtube.com/@SuperSimpleDev",
-            "link": "https://www.youtube.com/watch?v=p1QU3kLFPdg",
-            "minutes": "30",
-            "description": "30 min · hosting a plain HTML and CSS site for free with GitHub Pages — a public repository (Pages is only free for public ones), the code uploaded by drag and drop in the browser rather than with git, Pages switched on for the main branch, and why the home page has to be called index.html for the bare address to work. The second half adds your own domain: buying one from a registrar, how a domain name becomes an IP address through DNS, A records pointing at GitHub Pages’ IP addresses, a CNAME record for www, what TTL means, linking the domain in the repository’s settings, and turning on free HTTPS. From 2022",
-            "type": "video"
-          }
-        ]
-      },
-      {
-        "name": "Authentication & Encrypted App",
-        "videos": [
-          {
-            "channel_name": "Hussein Nasser",
-            "name": "Five password authentications from least to most secure",
-            "channel_link": "https://www.youtube.com/@hnasr",
-            "link": "https://www.youtube.com/watch?v=_t8EPImx9LI",
-            "minutes": "25",
-            "description": "25 min · how a backend should store a password, one step safer at a time — plain text, a hash, a salted hash, bcrypt with its salt built in, and finally encrypting everything so no password is stored at all — built in Node and Postgres. From 2020",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hussein Nasser",
-            "name": "Cookies",
-            "channel_link": "https://www.youtube.com/@hnasr",
-            "link": "https://www.youtube.com/playlist?list=PLQnljOFTspQXaimjxx6uGLJz6lR25abZn",
-            "minutes": "195",
-            "description": "playlist · 8 videos · 3h 15m · how a web app keeps you signed in — an HTTP cookies crash course, the SameSite attribute and why browsers changed its default, cookies that refuse to be deleted, third-party cookies and how ads follow you, the SameSite exception made for single sign-on, and a JWT crash course built with Node and Postgres. From 2019–2020",
+            "channel_name": "Cameron McKenzie",
+            "name": "git commands tutorials",
+            "channel_link": "https://www.youtube.com/@cameronmcnz",
+            "link": "https://www.youtube.com/playlist?list=PL_RrEj88onS-SAZOGnaUlexOzgRqWrOPR",
+            "minutes": "584",
+            "description": "playlist · 106 videos · 9h 44m · one git task per video, mostly at the command line — init and bare repositories; clone by branch, by tag, shallow with --depth and into a chosen folder; log with oneline, graph, pretty and format, searching commit messages, a file’s history and the files a commit changed; config for user.name and user.email, global settings and where the config files live; status and the working tree; add and undoing it, removing a file, clean -fdx, .gitkeep and .gitignore, global ones included; stash list, untracked files, pop and its conflicts; branches created, checked out, switched, renamed and deleted locally and on the remote, and made from a tag, a commit or another branch; push with an upstream, fetch against pull; merges, fast-forwards, conflicts and aborting a merge; rebase, squash, revert, reflog and undoing commits; plus forks, git flow, and SSH keys and personal access tokens for GitHub, GitLab and Bitbucket. Most videos run 3 to 9 minutes. From 2020–2023",
             "type": "playlist"
-          },
-          {
-            "channel_name": "Codecourse",
-            "name": "Passwordless Authentication with Laravel",
-            "channel_link": "https://www.youtube.com/@codecourse",
-            "link": "https://www.youtube.com/playlist?list=PLfdtiltiRHWFY2IffzknG0ZRma0IZ7Wb_",
-            "minutes": "52",
-            "description": "playlist · 6 videos · 52 min · a signed link mailed instead of a password — generating the token, sending it, validating it on the way back, and flushing the ones nobody used",
-            "type": "playlist"
-          },
-          {
-            "channel_name": "Codecourse",
-            "name": "JWT Authentication from Scratch",
-            "channel_link": "https://www.youtube.com/@codecourse",
-            "link": "https://codecourse.com/courses/jwt-authentication-from-scratch",
-            "minutes": "84",
-            "description": "course · 14 episodes · 1h 24m · what a token actually is, assembled by hand — claims, issuer and expiry, encoding and signing, then the middleware that decodes one on every request. From 2018 and written against Slim, so take the mechanism rather than the library; behind a Codecourse subscription",
-            "type": "video"
-          },
-          {
-            "channel_name": "Codecourse",
-            "name": "API Authentication with Laravel Passport",
-            "channel_link": "https://www.youtube.com/@codecourse",
-            "link": "https://codecourse.com/courses/api-authentication-with-laravel-passport",
-            "minutes": "102",
-            "description": "course · 14 episodes · 1h 42m · personal access tokens, then the whole OAuth flow — scopes, refresh tokens and the consent screen. From 2017, so read the syntax as dated and watch it for the flow; it sits behind a Codecourse subscription",
-            "type": "video"
-          },
-          {
-            "channel_name": "Rukmi Patel",
-            "name": "Multi-factor authentication with PHP 8.1 and Google Authenticator",
-            "channel_link": "https://www.youtube.com/@rukmi205",
-            "link": "https://www.youtube.com/watch?v=lBYuM_O7qcE",
-            "minutes": "7",
-            "description": "7 min · the smallest working version of a TOTP second factor — the Vectorface GoogleAuthenticator package from Composer, a QR code for the authenticator app to scan, and a form that checks the six-digit code, allowing a minute of clock drift. The secret is hard-coded for the demo, which he flags as the thing not to copy: each user needs their own, generated once and stored with their account. From 2024",
-            "type": "video"
-          },
-          {
-            "channel_name": "Interactive Utopia",
-            "name": "Google Authenticator implementation with PHP",
-            "channel_link": "https://www.youtube.com/@InteractiveUtopia",
-            "link": "https://www.youtube.com/watch?v=3NFB_notQLA",
-            "minutes": "19",
-            "description": "19 min · TOTP as a standard rather than a Google service — nothing is sent to Google; the app and the server both follow RFC 6238. The pragmarx/google2fa package makes the secret and checks codes, bacon/bacon-qr-code draws the QR code on the server as a base64 image, and a small fetch call sends the code back to be checked. The demo keeps the secret in the session and sends the code in the URL; he says a real app should store the secret encrypted and POST the code. From 2022",
-            "type": "video"
-          },
-          {
-            "channel_name": "HazardEdit",
-            "name": "Implementing TOTP two-factor authentication with PHP and AJAX",
-            "channel_link": "https://www.youtube.com/@HazardEdit",
-            "link": "https://www.youtube.com/watch?v=uVdu4war_Uo",
-            "minutes": "15",
-            "description": "15 min · the PHPGangsta GoogleAuthenticator class, a jQuery login form that posts the code, and a check that accepts codes up to a minute and a half either side. Its most useful point comes early: a one-time password is only one-time if you record each code once it is used and refuse it while it is still valid, so someone who saw it cannot replay it. Its QR code comes from an online chart service, which hands your secret to a third party; drawing it on your own server avoids that. From 2017",
-            "type": "video"
-          },
-          {
-            "channel_name": "Penguin Digital",
-            "name": "Two-factor authentication with Laravel Fortify",
-            "channel_link": "https://www.youtube.com/@PenguinDigital",
-            "link": "https://www.youtube.com/watch?v=5-P5gBM6hDM",
-            "minutes": "18",
-            "description": "18 min · episode 7 of a series building a Laravel 8 login system on Fortify — the TwoFactorAuthenticatable trait, the two_factor_secret and two_factor_recovery_codes columns, an enable button that posts to /user/two-factor-authentication behind a password confirmation, the QR code from twoFactorQrCodeSvg, the recovery codes decrypted for the user to keep, a disable button, then the code prompt at login and signing in with a recovery code instead. From 2020",
-            "type": "video"
-          },
-          {
-            "channel_name": "Laravel",
-            "name": "Two-factor authentication now available in Laravel starter kits",
-            "channel_link": "https://www.youtube.com/@LaravelPHP",
-            "link": "https://www.youtube.com/watch?v=4osPfTw-FB0",
-            "minutes": "3",
-            "description": "3 min · two-factor authentication with nothing to build — Laravel’s React, Vue and Livewire starter kits now ship two-factor authentication on top of Fortify: turn it on in the settings page, scan the QR code, confirm a code, and every login after that asks for one. The options sit in config/fortify.php, including whether turning it on needs a confirmed code and a re-entered password. From 2025",
-            "type": "video"
-          },
-          {
-            "channel_name": "Maximus McCullough",
-            "name": "PHP data encryption and decryption in MySQL",
-            "channel_link": "https://www.youtube.com/@MaximusMcCullough",
-            "link": "https://www.youtube.com/watch?v=gnlXwkIEZQA",
-            "minutes": "8",
-            "description": "8 min · the smallest working version — encrypt on the way in, decrypt on the way out",
-            "type": "video"
-          },
-          {
-            "channel_name": "Maximus McCullough",
-            "name": "PHP data encryption: insert and retrieve",
-            "channel_link": "https://www.youtube.com/@MaximusMcCullough",
-            "link": "https://www.youtube.com/watch?v=7JGMYHBqkjU",
-            "minutes": "21",
-            "description": "21 min · encryption and decryption wired through a real form and database table",
-            "type": "video"
-          },
-          {
-            "channel_name": "Maximus McCullough",
-            "name": "Data encryption in PHP and MySQL with OpenSSL",
-            "channel_link": "https://www.youtube.com/@MaximusMcCullough",
-            "link": "https://www.youtube.com/watch?v=5MInr-fIkSY",
-            "minutes": "12",
-            "description": "12 min · openssl_encrypt, the cipher and IV choices, and where the key goes",
-            "type": "video"
-          },
-          {
-            "channel_name": "Maximus McCullough",
-            "name": "PHP encryption and decryption — proactive methods",
-            "channel_link": "https://www.youtube.com/@MaximusMcCullough",
-            "link": "https://www.youtube.com/watch?v=I3GFDG_cCTY",
-            "minutes": "25",
-            "description": "25 min · encryption that treats key handling as part of the problem",
-            "type": "video"
-          },
-          {
-            "channel_name": "Maximus McCullough",
-            "name": "Searching a PHP encrypted database",
-            "channel_link": "https://www.youtube.com/@MaximusMcCullough",
-            "link": "https://www.youtube.com/watch?v=il2LDXMY37s",
-            "minutes": "12",
-            "description": "12 min · querying over encrypted columns — watch how it narrows the rows, because decrypting all of them does not scale",
-            "type": "video"
           }
         ]
       }

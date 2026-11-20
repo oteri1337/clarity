@@ -143,8 +143,7 @@ a.by{color:var(--ghost);text-decoration:none}
     margin-bottom:5px;
 }
 
-.layer h2.ch-head{margin:0 0 22px}
-.layer.read h2.ch-head{margin:0 0 16px}
+.layer h2.ch-head{margin:0 0 22px} /* Heavy's too, so its sections line up with Light's */
 .layer.collapsed h2.ch-head{margin-bottom:0}
 .ch-toggle{
     display:flex;
@@ -213,6 +212,7 @@ a.by{color:var(--ghost);text-decoration:none}
 .sec-toggle{
     display:grid;
     grid-template-columns:auto 1fr auto; /* caret, the header text, then the progress ring */
+    min-height:28px; /* the ring's height, so a section with no ring (an empty one) is as tall as one with */
     column-gap:9px;
     align-items:center;
     width:100%;
