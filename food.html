@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Francis</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2312854c'/%3E%3Cg fill='none' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 11.5c-1.2-1-2.9-1.6-4.6-1.1C8.3 11.2 7.3 14.6 8.1 17.8c.9 3.5 3.3 6.7 5.6 6.7 1 0 1.4-.5 2.3-.5s1.3.5 2.3.5c2.3 0 4.7-3.2 5.6-6.7.8-3.2-.2-6.6-3.3-7.4-1.7-.5-3.4.1-4.6 1.1z'/%3E%3Cpath d='M16 11.5c0-1.6.5-2.9 1.6-3.9'/%3E%3C/g%3E%3C/svg%3E">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap');
+
+  :root{
+    --bg:#ffffff;
+    --panel:#ffffff;
+    --ink:#1b2521;
+    --muted:#6d7f76;
+    --line:#e3e9e6;
+    --accent:#12854c;
+    --accent-dim:#a9d9c0;
+    --warn:#a8631a;
+    --row-hover:#e6f0ea;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(900px 500px at 85% -10%, #f2f8f4 0%, transparent 60%),
+      var(--bg);
+    color:var(--ink);
+    font-family:'Signika Negative',sans-serif;
+    padding:32px 18px 80px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{width:min(98vw, 3200px);margin:0 auto;}
+  .eyebrow,.toggles{max-width:1400px;margin-left:auto;margin-right:auto;}
+  .controls{max-width:1400px;margin-left:auto;margin-right:auto;}
+  .tablewrap{margin-left:auto;margin-right:auto;}
+  header{margin-bottom:26px;position:relative;}
+  /* light/dark switch — top-right of the header; shows the theme it switches to */
+  .themetoggle{
+    position:absolute;top:6px;right:0;width:38px;height:38px;border-radius:50%;padding:0;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;
+    background:var(--panel);border:1px solid var(--line);color:var(--muted);transition:.15s;
+  }
+  .themetoggle:hover{border-color:var(--accent);color:var(--accent);}
+  .themetoggle.home{right:48px;text-decoration:none;} /* the home link, left of the theme toggle */
+  .themetoggle svg{width:18px;height:18px;}
+  .themetoggle .i-sun,:root[data-theme="dark"] .themetoggle .i-moon{display:none;}
+  :root[data-theme="dark"] .themetoggle .i-sun{display:block;}
+  .eyebrow{
+    font-size:clamp(32px,5.5vw,52px);letter-spacing:-.015em;
+    color:var(--accent);margin-bottom:2px;font-weight:600;line-height:1.08;
+    text-align:center;
+  }
+  .sub{color:var(--muted);font-size:13px;margin-top:12px;max-width:640px;line-height:1.6;}
+
+  .key{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:12px;margin-top:22px;
+  }
+  @media (min-width: 1200px) { .key{grid-template-columns:repeat(2,1fr);} }
+  @media (min-width: 2000px) { .key{grid-template-columns:repeat(3,1fr);} }
+  @media (max-width: 760px){
+    thead th:not(:first-child),tbody td:not(:first-child){min-width:66px;}
+  }
+  .basis{
+    max-width:1400px;margin:0 auto 12px;font-size:11.5px;color:var(--muted);
+    line-height:1.5;text-align:center;
+  }
+  .basis b{color:var(--ink);font-weight:600;}
+  .searchrow{display:flex;margin:0 auto 14px;max-width:1400px;}
+  .toggles{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;justify-content:center;}
+  .toggles.toggles-guides{margin-top:10px;}
+  .keytoggle{
+    display:flex;align-items:center;gap:9px;
+    background:var(--panel);border:1px solid var(--line);
+    color:var(--ink);padding:10px 15px;border-radius:10px;
+    font-family:inherit;font-size:12px;cursor:pointer;
+    transition:.15s;letter-spacing:.04em;
+  }
+  .keytoggle:hover{border-color:#2a6a8a;color:#2a6a8a;}
+  /* open state — tinted, so the row shows at a glance what's currently expanded */
+  .keytoggle:not(.collapsed){
+    background:rgba(42,106,138,.09);border-color:#2a6a8a;
+    color:#2a6a8a;font-weight:600;
+  }
+  .keytoggle:not(.collapsed) .kt-hint{color:#3f8a63;}
+  .keytoggle .kt-arrow{
+    transition:transform .2s;font-size:10px;color:#2a6a8a;
+    display:inline-block;
+  }
+  .keytoggle.collapsed .kt-arrow{transform:rotate(-90deg);}
+  .keytoggle .kt-hint{color:var(--muted);font-size:11px;}
+  .calcpanel{
+    max-width:1400px;margin:14px auto 0;
+    background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    border-top:2px solid var(--accent-dim);padding:16px 18px;
+  }
+  .calcrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+  .calcrow label{font-size:12px;color:var(--muted);}
+  .calcrow input{
+    width:110px;background:var(--panel);border:1px solid var(--line);
+    color:var(--ink);padding:9px 12px;border-radius:9px;font-family:inherit;font-size:14px;
+    font-variant-numeric:tabular-nums;
+  }
+  .unitwrap{display:flex;gap:5px;}
+  .unitbtn{
+    font-family:inherit;font-size:11px;padding:7px 12px;border-radius:8px;cursor:pointer;
+    background:var(--panel);border:1px solid var(--line);color:var(--muted);transition:.12s;
+  }
+  .unitbtn.on{background:rgba(18,133,76,.10);border-color:var(--accent);color:var(--accent);font-weight:600;}
+  .calcout{display:flex;flex-wrap:wrap;gap:10px;}
+  .calccard{
+    flex:1 1 200px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+    border-left:3px solid var(--accent-dim);
+  }
+  .calccard h4{font-size:12px;font-weight:600;color:var(--ink);margin-bottom:3px;}
+  .calccard .amt{
+    font-size:21px;font-weight:600;color:var(--accent);letter-spacing:-.01em;
+    font-variant-numeric:tabular-nums;
+  }
+  .calccard .per{font-size:10.5px;color:var(--muted);margin-top:2px;}
+  .calccard .who{font-size:11px;color:#3f4f47;line-height:1.5;margin-top:6px;}
+  .calcempty{font-size:12px;color:var(--muted);padding:4px 0;}
+  .calcnote{font-size:11px;color:var(--muted);line-height:1.55;margin-top:12px;max-width:900px;}
+  /* author display:flex outranks the UA [hidden] rule, so force it */
+  [hidden]{display:none !important;}
+  /* ---- dropdown menus for categories / eat-more / limit ---- */
+  .menus{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:1400px;margin:14px auto 0;}
+  .menu{position:relative;}
+  .menubtn{
+    display:flex;align-items:center;gap:8px;font-family:inherit;font-size:12px;cursor:pointer;
+    background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px;
+    color:var(--ink);transition:.15s;letter-spacing:.03em;
+  }
+  .menubtn .mcount{font-size:11px;color:var(--muted);}
+  .menubtn .mcaret{font-size:9px;transition:transform .2s;}
+  .menu.open .mcaret{transform:rotate(180deg);}
+  .menu[data-kind="cat"]   .menubtn{border-color:#ded5ef;}
+  .menu[data-kind="cat"].open .menubtn,.menu[data-kind="cat"] .menubtn:hover{border-color:#6c4ab2;color:#6c4ab2;}
+  .menu[data-kind="good"]  .menubtn{border-color:var(--accent-dim);}
+  .menu[data-kind="good"].open .menubtn,.menu[data-kind="good"] .menubtn:hover{border-color:var(--accent);color:var(--accent);}
+  .menu[data-kind="limit"] .menubtn{border-color:#e6c6bb;}
+  .menu[data-kind="limit"].open .menubtn,.menu[data-kind="limit"] .menubtn:hover{border-color:#c0603f;color:#c0603f;}
+  .menupanel{
+    display:none;position:absolute;z-index:50;top:calc(100% + 6px);left:0;min-width:230px;
+    max-height:60vh;overflow-y:auto;background:var(--panel);border:1px solid var(--line);
+    border-radius:11px;padding:7px;box-shadow:0 10px 30px rgba(20,45,32,.14);text-align:left;
+  }
+  .menu.open .menupanel{display:block;}
+  .menu[data-kind="cat"]   .menupanel{border-top:2px solid #6c4ab2;}
+  .menu[data-kind="good"]  .menupanel{border-top:2px solid var(--accent);}
+  .menu[data-kind="limit"] .menupanel{border-top:2px solid #c0603f;}
+  .mopt{
+    display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:7px;cursor:pointer;
+    font-size:12px;color:var(--ink);user-select:none;
+  }
+  .mopt:hover{background:var(--row-hover);}
+  .mbox{
+    width:15px;height:15px;border-radius:4px;border:1.5px solid var(--line);flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;line-height:1;
+  }
+  .mopt.on  .mbox{background:var(--accent);border-color:var(--accent);}
+  .mopt.on  .mbox::after{content:"✓";}
+  .menu[data-kind="cat"]   .mopt.on .mbox{background:#6c4ab2;border-color:#6c4ab2;}
+  .menu[data-kind="limit"] .mopt.on .mbox{background:#c0603f;border-color:#c0603f;}
+  .mopt.part .mbox{background:var(--panel);border-color:var(--muted);}
+  .mopt.part .mbox::after{content:"–";color:var(--muted);}
+  .msep{height:1px;background:var(--line);margin:5px 2px;}
+  .mopt.mall{font-weight:600;}
+  .mhead{font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);padding:6px 9px 3px;}
+  .colrow{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;
+    max-width:1400px;margin:0 auto 6px;
+  }
+  .collabel{
+    font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;
+    padding:3px 9px;border-radius:6px;flex-shrink:0;
+  }
+  .collabel.good{color:var(--accent);background:rgba(18,133,76,.08);}
+  .collabel.limit{color:#b04432;background:rgba(204,97,82,.09);}
+  .colgrid{
+    display:flex;flex-wrap:wrap;gap:7px;justify-content:center;
+  }
+  .colall{font-weight:600;letter-spacing:.04em;}
+  /* partial: some of the group hidden. Must not read as fully-on — so no green tint
+     and no checkmark, which the base .colchip rule would otherwise still apply. */
+  .colall.partial{
+    border-color:var(--line);background:var(--panel);
+    color:var(--muted);opacity:1;
+  }
+  .colall.partial::before{content:"– ";color:var(--muted);font-weight:600;}
+  .colchip{
+    font-size:10.5px;padding:4px 9px;border-radius:7px;
+    border:1px solid var(--accent-dim);background:rgba(18,133,76,.06);
+    color:var(--ink);cursor:pointer;font-family:inherit;transition:.12s;user-select:none;
+  }
+  .colchip::before{content:"✓ ";color:var(--accent);font-weight:600;}
+  #colgrid-limit .colchip{border-color:#e6c6bb;background:rgba(192,96,63,.05);}
+  #colgrid-limit .colchip::before{color:#c0603f;}
+  #colgrid-limit .colchip.off{border-color:var(--line);background:var(--panel);}
+  #colgrid-limit .colchip.off::before{color:var(--muted);}
+  #colgrid-limit .colall.partial{border-color:var(--line);background:var(--panel);}
+  .colchip.off{
+    border-color:var(--line);background:var(--panel);
+    color:var(--muted);opacity:.55;
+  }
+  .colchip.off::before{content:"+ ";color:var(--muted);}
+  .minfo{
+    margin-left:auto;flex-shrink:0;width:19px;height:19px;border-radius:50%;
+    border:1px solid var(--line);background:var(--panel);color:var(--muted);
+    font-size:11px;line-height:1;cursor:pointer;font-family:inherit;
+    display:flex;align-items:center;justify-content:center;padding:0;
+  }
+  .minfo:hover,.minfo:active{border-color:var(--accent);color:var(--accent);}
+  /* on touch the tooltip becomes a centred sheet — anchoring to a finger is useless */
+  .tip.sheet{
+    left:12px !important;right:12px !important;width:auto !important;
+    top:50% !important;transform:translateY(-50%);
+    max-height:76vh;overflow-y:auto;pointer-events:auto;
+  }
+  .tip .tipclose{
+    display:none;margin-top:12px;width:100%;padding:9px;border-radius:8px;
+    border:1px solid var(--line);background:var(--panel);color:var(--muted);
+    font-family:inherit;font-size:12px;cursor:pointer;
+  }
+  .tip.sheet .tipclose{display:block;}
+  .carbpanel{
+    max-width:1400px;margin:18px auto 0;
+    background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    border-top:2px solid var(--accent-dim);
+    padding:20px 22px;
+  }
+  .carbpanel .cintro{font-size:13.5px;color:#3f4f47;line-height:1.6;margin-bottom:18px;max-width:920px;}
+  .carbpanel .cintro b{color:var(--ink);}
+  .carbpanel .cnote{display:block;margin-top:6px;font-size:11.5px;color:var(--muted);}
+  .ctype{padding:12px 0;border-top:1px solid var(--line);}
+  .cspike{padding:16px 0 2px;border-top:2px solid var(--line);margin-top:6px;}
+  .chead{display:flex;align-items:baseline;gap:12px;margin-bottom:7px;flex-wrap:wrap;}
+  .cpill{font-size:11px;font-weight:600;letter-spacing:.4px;padding:3px 11px;border-radius:11px;}
+  .cpill.sugar{background:rgba(200,21,94,.09);color:#c8155e;border:1px solid rgba(200,21,94,.3);}
+  .cpill.fruct{background:rgba(200,21,94,.07);color:#b30d54;border:1px solid rgba(200,21,94,.28);}
+  .cpill.starch{background:rgba(192,120,24,.1);color:#b8730f;border:1px solid rgba(192,120,24,.32);}
+  .cpill.fibre{background:rgba(10,133,104,.09);color:#0a8568;border:1px solid rgba(10,133,104,.3);}
+  .cpill.spike{background:rgba(212,20,20,.08);color:#c41414;border:1px solid rgba(212,20,20,.3);}
+  .cspeed{font-size:11.5px;color:var(--muted);font-style:italic;}
+  .carbpanel p{font-size:12.5px;color:#3f4f47;line-height:1.62;max-width:920px;}
+  .carbpanel .ctype p b,.carbpanel .cspike p b{color:var(--ink);}
+  .carbpanel .ctype p + p{margin-top:8px;}
+  .cspikelist{margin:10px 0 12px;padding-left:20px;display:flex;flex-direction:column;gap:8px;}
+  .cspikelist li{font-size:12.5px;color:#3f4f47;line-height:1.55;max-width:900px;}
+  .cspikelist b{color:var(--ink);}
+  .cbottom{margin-top:10px;padding-top:12px;border-top:1px solid var(--line);}
+  /* Calories explained reuses the carb panel layout, with its own pill colours */
+  .cpill.energy{background:rgba(91,75,209,.08);color:#5b4bd1;border:1px solid rgba(91,75,209,.3);}
+  .cpill.water{background:rgba(42,106,138,.08);color:#2a6a8a;border:1px solid rgba(42,106,138,.3);}
+  .cpill.oil{background:rgba(192,120,24,.1);color:#b8730f;border:1px solid rgba(192,120,24,.32);}
+  .cpill.density{background:rgba(154,63,160,.08);color:#9a3fa0;border:1px solid rgba(154,63,160,.3);}
+  .cpill.full{background:rgba(10,133,104,.09);color:#0a8568;border:1px solid rgba(10,133,104,.3);}
+  .cpill.scale{background:rgba(179,48,107,.08);color:#b3306b;border:1px solid rgba(179,48,107,.3);}
+  .cpill.estimate{background:rgba(109,127,118,.1);color:var(--muted);border:1px solid rgba(109,127,118,.35);}
+  .cpill.plate{background:rgba(27,37,33,.05);color:var(--ink);border:1px solid rgba(27,37,33,.25);}
+  .goalwrap{max-width:1400px;margin:18px auto 0;}
+  .goalcard{
+    background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    border-top:2px solid var(--accent-dim);padding:17px 18px;
+  }
+  .goalcard h3{
+    font-family:'Signika Negative',sans-serif;font-size:18px;font-weight:600;
+    margin-bottom:6px;color:var(--ink);letter-spacing:-.01em;
+  }
+  .goalintro{font-size:12px;color:var(--muted);line-height:1.55;margin-bottom:14px;max-width:900px;}
+  .ranklist{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .ranklist li{display:flex;gap:11px;align-items:flex-start;}
+  .rankno{
+    flex-shrink:0;width:22px;height:22px;border-radius:6px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:11px;font-weight:600;font-family:'Signika Negative';margin-top:1px;
+  }
+  .rankno.top{background:rgba(18,133,76,.14);color:#0c7040;border:1px solid rgba(18,133,76,.42);}
+  .rankno.mid{background:rgba(18,133,76,.07);color:#3f8a63;border:1px solid rgba(18,133,76,.22);}
+  .rankno.low{background:#f4f7f5;color:var(--muted);border:1px solid var(--line);}
+  .ranklist b{font-size:12.5px;color:var(--ink);}
+  .rankwhy{display:block;font-size:11.5px;color:#3f4f47;line-height:1.5;margin-top:2px;max-width:880px;}
+  .goalfoot{
+    margin-top:14px;padding-top:12px;border-top:1px solid var(--line);
+    font-size:11.5px;color:var(--muted);line-height:1.55;max-width:900px;
+  }
+  .goalfoot b{color:var(--warn);font-family:'Signika Negative';font-weight:600;}
+  .hidden{display:none;}
+  .tip{
+    position:fixed;display:none;z-index:60;width:min(400px,calc(100vw - 24px));
+    background:var(--panel);border:1px solid var(--line);border-top:2px solid var(--accent-dim);
+    border-radius:12px;padding:15px 17px;pointer-events:none;
+    box-shadow:0 10px 30px rgba(20,45,32,.14);
+  }
+  .tip h3{font-size:16px;margin-bottom:9px;}
+  .ncard{
+    background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:16px 17px;border-top:2px solid var(--accent-dim);
+  }
+  .ncard h3,.tip h3{
+    font-family:'Signika Negative',sans-serif;font-size:18px;font-weight:600;
+    margin-bottom:11px;color:var(--ink);letter-spacing:-.01em;
+  }
+  .ncard .line,.tip .line{display:flex;gap:8px;margin-bottom:7px;font-size:12px;line-height:1.5;}
+  .ncard .line:last-child,.tip .line:last-child{margin-bottom:0;}
+  .ncard .tag,.tip .tag{
+    flex-shrink:0;font-family:'Signika Negative';font-size:9px;letter-spacing:.08em;
+    text-transform:uppercase;font-weight:600;padding:2px 7px;border-radius:5px;
+    height:fit-content;margin-top:1px;min-width:62px;text-align:center;
+  }
+  .tag.hi{background:rgba(168,99,26,.10);color:var(--warn);border:1px solid rgba(168,99,26,.28);}
+  .tag.lo{background:rgba(18,133,76,.09);color:var(--accent);border:1px solid rgba(18,133,76,.25);}
+  .tag.org{background:rgba(37,99,158,.09);color:#25639e;border:1px solid rgba(37,99,158,.25);}
+  .ncard .txt,.tip .txt{color:#3f4f47;}
+
+  .controls{
+    display:flex;justify-content:center;flex-wrap:wrap;gap:10px;align-items:center;
+    margin:24px auto 14px;
+  }
+  .search{
+    flex:1;min-width:200px;max-width:none;
+    background:var(--panel);border:1px solid var(--line);
+    color:var(--ink);padding:11px 14px;border-radius:10px;
+    font-family:inherit;font-size:13px;
+  }
+  .search:focus{outline:none;border-color:var(--accent-dim);}
+  .chip{
+    background:var(--panel);border:1px solid #ded5ef;color:var(--muted);
+    padding:9px 13px;border-radius:999px;font-size:11px;cursor:pointer;
+    font-family:inherit;letter-spacing:.04em;transition:.15s;
+  }
+  .chip:hover{color:var(--ink);border-color:var(--accent-dim);}
+  .chip.on{background:rgba(108,74,178,.09);color:#6c4ab2;border-color:#6c4ab2;font-weight:600;}
+  /* hidden — struck through and faded, so it reads as "excluded" not "unselected" */
+  .chip:not(.on):not(.partial){text-decoration:line-through;opacity:.5;}
+  /* umbrella chip with only some of its categories hidden */
+  .chip.partial{background:rgba(108,74,178,.04);color:#8a6fc4;border-color:#c9bae4;font-weight:600;}
+
+  .tablewrap{
+    border:1px solid var(--line);border-radius:14px;
+    background:var(--panel);
+  }
+  .mylist-section{margin-bottom:24px;}
+  .mylist-header{
+    display:flex;align-items:baseline;justify-content:space-between;
+    margin-bottom:10px;padding:0 4px;
+  }
+  .mylist-title{
+    font-family:'Signika Negative',sans-serif;font-size:20px;font-weight:600;
+    color:#a8760a;letter-spacing:-.01em;
+  }
+  .mylist-count{font-size:11px;color:var(--muted);font-family:'Signika Negative';}
+  .mylist-wrap{
+    border-color:#eee2c2;background:#fffdf4;
+  }
+  .mylist-empty{
+    padding:30px 24px;text-align:center;color:var(--muted);
+    font-size:13px;line-height:1.6;
+  }
+  .mylist-empty b{color:#a8760a;font-family:'Signika Negative';font-weight:600;}
+  .spice-section{margin-bottom:28px;}
+  .milk-section{margin-bottom:28px;}
+  .milk-header{
+    display:flex;align-items:baseline;justify-content:space-between;
+    margin-bottom:10px;padding:0 4px;flex-wrap:wrap;gap:8px;
+  }
+  .milk-title{
+    font-family:'Signika Negative',sans-serif;font-size:22px;font-weight:600;
+    color:#2a5d8a;letter-spacing:-.01em;
+  }
+  .milk-count{font-size:11px;color:var(--muted);font-family:'Signika Negative';}
+  .milk-wrap{border-color:#d7e4ef;background:#f7fafd;}
+  td.c-size{color:var(--muted);white-space:nowrap;}
+  td.c-fat .fat{margin-left:0;white-space:nowrap;}
+  /* sodium is the one to watch in milks, so it's a stronger red here than in the other tables */
+  #milk-tbl thead th[data-k="sodium"]{color:#d01c1c;}
+  #milk-tbl tbody td.c-sodium{color:#cf3a2d;}
+  #milk-tbl tbody td.c-sodium.high{color:#a8120a;}
+  /* milk cells: share of the daily reference intake under the per-serving amount */
+  .ri{display:block;margin-top:2px;font-size:10px;font-weight:400;color:var(--muted);white-space:nowrap;}
+  /* My List is switched off, so the stars that feed it are hidden too */
+  .star{display:none !important;}
+  .spice-header{
+    display:flex;align-items:baseline;justify-content:space-between;
+    margin-bottom:6px;padding:0 4px;flex-wrap:wrap;gap:8px;
+  }
+  .spice-title{
+    font-family:'Signika Negative',sans-serif;font-size:22px;font-weight:600;
+    color:#8a7420;letter-spacing:-.01em;
+  }
+  .spice-count{font-size:11px;color:var(--muted);font-family:'Signika Negative';}
+  .spice-note{
+    font-size:12px;color:var(--muted);line-height:1.55;
+    padding:0 4px 12px;max-width:980px;
+  }
+  .spice-note b{color:#8a7420;font-family:'Signika Negative';font-weight:600;}
+  .spice-wrap{border-color:#e9e5d2;background:#fdfcf5;}
+  /* No height cap and no overflow container: the table scrolls with the page, which
+     is what lets the sticky header pin to the viewport instead of an inner scrollbox. */
+  .scroll{}
+  table{border-collapse:collapse;width:100%;font-size:12.5px;}
+  /* Width comes from the columns themselves, not a fixed table minimum — so hiding
+     columns genuinely narrows the table and a few columns fit a phone with no side-scroll. */
+  thead th:not(:first-child),tbody td:not(:first-child){min-width:74px;}
+  thead th{
+    position:sticky;top:0;background:#f6faf8;z-index:2;
+    text-align:left;padding:13px 14px;cursor:pointer;user-select:none;
+    border-bottom:1px solid var(--line);box-shadow:0 1px 0 var(--line);white-space:nowrap;
+    color:var(--muted);font-weight:500;letter-spacing:.03em;transition:.15s;
+  }
+  thead th:first-child{text-align:left;left:0;z-index:4;}
+  thead th[data-k="sodium"]{color:#cc6152;}
+  thead th[data-k="potk"]{color:#12854c;}
+  thead th[data-k="iron"]{color:#12854c;}
+  thead th[data-k="magn"]{color:#12854c;}
+  thead th[data-k="calc"]{color:#12854c;}
+  thead th[data-k="vita"]{color:#12854c;}
+  thead th[data-k="vitb6"]{color:#12854c;}
+  thead th[data-k="mang"]{color:#12854c;}
+  thead th[data-k="choline"]{color:#12854c;}
+  thead th[data-k="nitr"]{color:#12854c;}
+  thead th[data-k="zinc"]{color:#12854c;}
+  thead th[data-k="selen"]{color:#12854c;}
+  thead th[data-k="iodine"]{color:#12854c;}
+  thead th[data-k="vitd"]{color:#12854c;}
+  thead th[data-k="vite"]{color:#12854c;}
+  thead th[data-k="vitb1"]{color:#12854c;}
+  thead th[data-k="vitb12"]{color:#12854c;}
+  thead th[data-k="vitc"]{color:#12854c;}
+  thead th[data-k="vitk"]{color:#12854c;}
+  thead th[data-k="folate"]{color:#12854c;}
+  thead th[data-k="protein"]{color:#12854c;}
+  thead th[data-k="purine"]{color:#96707e;}
+  thead th[data-k="phos"]{color:#7e838d;}
+  thead th[data-k="satfat"]{color:#cc1f10;}
+  thead th[data-k="totfat"]{color:#cc1f10;}
+  thead th[data-k="chol"]{color:#8f7008;}
+  thead th[data-k="merc"]{color:#8a3a52;}
+  thead th[data-k="oxal"]{color:#94806a;}
+  thead th[data-k="solfib"]{color:#12854c;}
+  thead th[data-k="insfib"]{color:#12854c;}
+  thead th[data-k="omega3"]{color:#12854c;}
+  thead th[data-k="omega6"]{color:#bd5f33;}
+  thead th[data-k="kcal"]{color:#74744a;}
+  thead th[data-k="dens"]{color:#7d7a58;}
+  thead th[data-k="fruct"]{color:#c8155e;}
+  thead th[data-k="gi"]{color:#c07818;}
+  thead th[data-k="sugar"]{color:#c8155e;}
+  thead th[data-k="carb"]{color:#c07818;}
+  thead th[data-k="aox"]{color:#12854c;}
+  thead th[data-k="mufa"]{color:#12854c;}
+  thead th[data-k="trans"]{color:#c00808;}
+  /* ORIGINAL COLOR SCHEME — preserved for revert:
+     Headers:  sodium #e87b6b · potk #7ee0a8 · protein #7fb4e0 · phos #b48de0
+               satfat #e8a86b · oxal #e0d27e · sugar #e07eb4 · fiber #7ee0c8
+               omega3 #6bd0e8 · omega6 #e8c068 · kcal #c8c8a8 · gi #e89090
+               aox #d070d8 · mufa #f0b890 · trans #ff5050
+     Cell default: sodium #a85648 · potk #5fa67c · protein #5f8aa8 · phos #8568a8
+               satfat #a87a4f · oxal #a89958 · sugar #a85889 · fiber #5fa897
+               omega3 #5b9eb0 · omega6 #a88a4a · kcal #999978 · gi #b87870
+               aox #985093 · mufa #a87a5a · trans #a83838
+     Cell high: sodium #ff7158 · potk #a0f5c8 · protein #a8d0ff · phos #d0a8ff
+               satfat #ffb878 · oxal #ffec80 · sugar #ff8fcc · fiber #7df5d0
+               omega3 #88e8ff · omega6 #ffd880 · kcal #f0f0b0 · gi #ffb0a0
+               aox #ff90f0 · mufa #ffd0a8 · trans #ff7878 */
+  thead th:hover{background:#eef5f1;}
+  thead th.active{background:#e6f1ea;font-weight:700;}
+  thead th .arrow{font-size:9px;margin-left:5px;opacity:.85;}
+  /* the daily reference intake after a heading — quieter than the name itself */
+  thead th .rih{font-weight:400;opacity:.7;white-space:nowrap;}
+  /* proportional font, so lock numerals to equal width or the columns wander */
+  tbody td,thead th{font-variant-numeric:tabular-nums;font-feature-settings:'tnum' 1;}
+  tbody td{
+    padding:11px 14px;text-align:left;border-bottom:1px solid #eef2f0;
+    font-variant-numeric:tabular-nums;
+  }
+  thead th:first-child,tbody td:first-child{min-width:70px;white-space:normal;overflow-wrap:break-word;}
+  /* name column: one line on computers; on phones wide enough that the longest name needs at most 3 lines */
+  @media (min-width:761px){ thead th:first-child,tbody td:first-child{white-space:nowrap;} }
+  @media (max-width:760px){
+    thead th:first-child,tbody td:first-child{min-width:145px;}
+    /* phones: no sideways scroll with the default columns — trim side padding and let headings wrap */
+    body{padding-left:10px;padding-right:10px;}
+    .wrap{width:auto;}
+    thead th,tbody td{padding-left:8px;padding-right:8px;}
+    thead th:not(:first-child){white-space:normal;}
+    thead th:not(:first-child),tbody td:not(:first-child){min-width:52px;}
+  }
+  tbody td:first-child{
+    position:sticky;left:0;z-index:1;
+    text-align:left;font-family:'Signika Negative',sans-serif;font-size:15px;
+    color:var(--ink);letter-spacing:-.01em;
+  }
+  /* per-table first-column background so scrolled cells don't show through */
+  #tbl tbody td:first-child{background:var(--panel);}
+  #mylist-tbl tbody td:first-child{background:#fffdf4;}
+  #spice-tbl tbody td:first-child{background:#fdfcf5;}
+  #milk-tbl tbody td:first-child{background:#f7fafd;}
+  /* the hovered row lights up its name too — :root lifts this above the per-table name
+     backgrounds above (and their dark-mode versions), which would otherwise win */
+  :root :is(#tbl,#mylist-tbl,#spice-tbl,#milk-tbl) tbody tr:hover td:first-child{background:var(--row-hover);}
+  .star{
+    cursor:pointer;margin-right:10px;color:#c8d2cd;font-size:15px;
+    transition:.15s;user-select:none;display:inline-block;width:1em;
+  }
+  .star:hover{color:var(--ink);transform:scale(1.15);}
+  .star.on{color:#e0a008;text-shadow:none;}
+  /* Per-nutrient default cell colors (dimmer than the header) */
+  tbody td.c-sodium{color:#d29a92;}
+  tbody td.c-potk{color:#58a37c;}
+  tbody td.c-iron{color:#58a37c;}
+  tbody td.c-magn{color:#58a37c;}
+  tbody td.c-calc{color:#58a37c;}
+  tbody td.c-vita{color:#58a37c;}
+  tbody td.c-vitb6{color:#58a37c;}
+  tbody td.c-mang{color:#58a37c;}
+  tbody td.c-choline{color:#58a37c;}
+  tbody td.c-nitr{color:#58a37c;}
+  tbody td.c-zinc{color:#58a37c;}
+  tbody td.c-selen{color:#58a37c;}
+  tbody td.c-iodine{color:#58a37c;}
+  tbody td.c-vitd{color:#58a37c;}
+  tbody td.c-vite{color:#58a37c;}
+  tbody td.c-vitb1{color:#58a37c;}
+  tbody td.c-vitb12{color:#58a37c;}
+  tbody td.c-vitc{color:#58a37c;}
+  tbody td.c-vitk{color:#58a37c;}
+  tbody td.c-folate{color:#58a37c;}
+  tbody td.c-protein{color:#58a37c;}
+  tbody td.c-purine{color:#b096a0;}
+  tbody td.c-phos{color:#9ba0a8;}
+  tbody td.c-satfat{color:#d47d66;}
+  tbody td.c-totfat{color:#d47d66;}
+  tbody td.c-chol{color:#a89550;}
+  tbody td.c-merc{color:#ab8494;}
+  tbody td.c-oxal{color:#ac9c88;}
+  tbody td.c-solfib{color:#58a37c;}
+  tbody td.c-insfib{color:#58a37c;}
+  tbody td.c-omega3{color:#58a37c;}
+  tbody td.c-omega6{color:#cd9578;}
+  tbody td.c-kcal{color:#91916a;}
+  tbody td.c-dens{color:#9c9a78;}
+  tbody td.c-fruct{color:#cc6b95;}
+  tbody td.c-gi{color:#c99a6a;}
+  tbody td.c-sugar{color:#cc6b95;}
+  tbody td.c-carb{color:#c99a6a;}
+  tbody td.c-aox{color:#58a37c;}
+  tbody td.c-mufa{color:#58a37c;}
+  tbody td.c-trans{color:#c06868;}
+  /* High level — brighter saturated + bold (same hue, more presence) */
+  tbody td.c-sodium.high{color:#b04432;font-weight:600;}
+  tbody td.c-potk.high{color:#0c7040;font-weight:600;}
+  tbody td.c-iron.high{color:#0c7040;font-weight:600;}
+  tbody td.c-magn.high{color:#0c7040;font-weight:600;}
+  tbody td.c-calc.high{color:#0c7040;font-weight:600;}
+  tbody td.c-vita.high{color:#0c7040;font-weight:600;}
+  tbody td.c-vitb6.high{color:#0c7040;font-weight:600;}
+  tbody td.c-mang.high{color:#0c7040;font-weight:600;}
+  tbody td.c-choline.high{color:#0c7040;font-weight:600;}
+  tbody td.c-nitr.high{color:#0c7040;font-weight:600;}
+  tbody td.c-zinc.high{color:#0c7040;font-weight:600;}
+  tbody td.c-selen.high{color:#0c7040;font-weight:600;}
+  tbody td.c-iodine.high{color:#0c7040;font-weight:600;}
+  tbody td.c-vitd.high{color:#0c7040;font-weight:600;}
+  tbody td.c-vite.high{color:#0c7040;font-weight:600;}
+  tbody td.c-vitb1.high{color:#0c7040;font-weight:600;}
+  tbody td.c-vitb12.high{color:#0c7040;font-weight:600;}
+  tbody td.c-vitc.high{color:#0c7040;font-weight:600;}
+  tbody td.c-vitk.high{color:#0c7040;font-weight:600;}
+  tbody td.c-folate.high{color:#0c7040;font-weight:600;}
+  tbody td.c-protein.high{color:#0c7040;font-weight:600;}
+  tbody td.c-purine.high{color:#75505e;font-weight:600;}
+  tbody td.c-phos.high{color:#5f646e;font-weight:600;}
+  tbody td.c-satfat.high{color:#ab1a08;font-weight:600;}
+  tbody td.c-totfat.high{color:#ab1a08;font-weight:600;}
+  tbody td.c-chol.high{color:#7a5e04;font-weight:600;}
+  tbody td.c-merc.high{color:#6e2038;font-weight:600;}
+  tbody td.c-oxal.high{color:#6f5c46;font-weight:600;}
+  tbody td.c-solfib.high{color:#0c7040;font-weight:600;}
+  tbody td.c-insfib.high{color:#0c7040;font-weight:600;}
+  tbody td.c-omega3.high{color:#0c7040;font-weight:600;}
+  tbody td.c-omega6.high{color:#9c4820;font-weight:600;}
+  tbody td.c-kcal.high{color:#5e5e34;font-weight:600;}
+  tbody td.c-dens.high{color:#605c30;font-weight:600;}
+  tbody td.c-fruct.high{color:#ab0a4c;font-weight:600;}
+  tbody td.c-gi.high{color:#a35f08;font-weight:600;}
+  tbody td.c-sugar.high{color:#ab0a4c;font-weight:600;}
+  tbody td.c-carb.high{color:#a35f08;font-weight:600;}
+  tbody td.c-aox.high{color:#0c7040;font-weight:600;}
+  tbody td.c-mufa.high{color:#0c7040;font-weight:600;}
+  tbody td.c-trans.high{color:#a80000;font-weight:700;}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:hover{background:var(--row-hover);}
+  .cat{
+    display:inline-block;font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);margin-left:9px;vertical-align:middle;
+    border:1px solid var(--line);padding:2px 6px;border-radius:5px;
+    font-family:'Signika Negative';
+  }
+  .fat{
+    display:inline-block;font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+    margin-left:5px;vertical-align:middle;padding:2px 6px;border-radius:5px;
+    border:1px solid;font-family:'Signika Negative';cursor:help;
+  }
+  .fat-low{color:#12854c;border-color:#a9d6bd;background:#f1f9f4;}
+  .fat-medium{color:#9a6a12;border-color:#e6cf9c;background:#fdf8ec;}
+  .fat-high{color:#b0452a;border-color:#ebbcae;background:#fdf3f0;}
+  .hi{color:var(--accent);font-weight:600;}
+  .lo{color:var(--warn);}
+
+  /* ---- dark mode ----
+     Switched on by the theme script in <head> (the device setting, or the visitor's
+     pick from the moon/sun button). Re-colours only — nothing here changes layout. */
+  :root[data-theme="dark"]{
+    color-scheme:dark;
+    --bg:#0f1513;
+    --panel:#151c19;
+    --ink:#e2eae6;
+    --muted:#8b9c94;
+    --line:#28332e;
+    --accent:#4fc487;
+    --accent-dim:#2b6347;
+    --warn:#e3a05a;
+    --row-hover:#25342d;
+  }
+  :root[data-theme="dark"] body{
+    background:radial-gradient(900px 500px at 85% -10%, #14211b 0%, transparent 60%),var(--bg);
+  }
+  /* secondary body text */
+  :root[data-theme="dark"] :is(.calccard .who,.carbpanel .cintro,.carbpanel p,.cspikelist li,.rankwhy,.ncard .txt,.tip .txt){color:#b3c1ba;}
+  :root[data-theme="dark"] .keytoggle:hover{border-color:#6fb1d4;color:#8cc4e2;}
+  :root[data-theme="dark"] .keytoggle:not(.collapsed){background:rgba(111,177,212,.12);border-color:#6fb1d4;color:#8cc4e2;}
+  :root[data-theme="dark"] .keytoggle .kt-arrow{color:#6fb1d4;}
+  :root[data-theme="dark"] .keytoggle:not(.collapsed) .kt-hint{color:#6fcf9a;}
+  :root[data-theme="dark"] .menu[data-kind="cat"]   .menubtn{border-color:#3b3352;}
+  :root[data-theme="dark"] .menu[data-kind="cat"].open .menubtn,:root[data-theme="dark"] .menu[data-kind="cat"] .menubtn:hover{border-color:#a68be3;color:#a68be3;}
+  :root[data-theme="dark"] .menu[data-kind="limit"] .menubtn{border-color:#4d342c;}
+  :root[data-theme="dark"] .menu[data-kind="limit"].open .menubtn,:root[data-theme="dark"] .menu[data-kind="limit"] .menubtn:hover{border-color:#e58c6c;color:#e58c6c;}
+  :root[data-theme="dark"] .menu[data-kind="cat"]   .menupanel{border-top-color:#a68be3;}
+  :root[data-theme="dark"] .menu[data-kind="limit"] .menupanel{border-top-color:#e58c6c;}
+  :root[data-theme="dark"] .mbox{color:var(--bg);}
+  :root[data-theme="dark"] .menu[data-kind="cat"]   .mopt.on .mbox{background:#a68be3;border-color:#a68be3;}
+  :root[data-theme="dark"] .menu[data-kind="limit"] .mopt.on .mbox{background:#e58c6c;border-color:#e58c6c;}
+  :root[data-theme="dark"] :is(.menupanel,.tip){box-shadow:0 12px 32px rgba(0,0,0,.55);}
+  :root[data-theme="dark"] .collabel.limit{color:#ec907e;background:rgba(229,140,108,.12);}
+  :root[data-theme="dark"] #colgrid-limit .colchip:not(.off):not(.partial){border-color:#4d342c;}
+  :root[data-theme="dark"] #colgrid-limit .colchip:not(.off):not(.partial)::before{color:#e58c6c;}
+  :root[data-theme="dark"] .chip:not(:hover){border-color:#3b3352;}
+  :root[data-theme="dark"] .chip.on{background:rgba(166,139,227,.14);color:#a68be3;border-color:#a68be3;}
+  :root[data-theme="dark"] .chip.partial{background:rgba(166,139,227,.06);color:#9c86d0;border-color:#4e4370;}
+  :root[data-theme="dark"] .tag.org{color:#86b6e6;background:rgba(134,182,230,.1);border-color:rgba(134,182,230,.3);}
+  :root[data-theme="dark"] .cpill.sugar{color:#f27aa5;}
+  :root[data-theme="dark"] .cpill.fruct{color:#ec6f9e;}
+  :root[data-theme="dark"] .cpill.starch{color:#e8a957;}
+  :root[data-theme="dark"] .cpill.fibre{color:#4fd1ab;}
+  :root[data-theme="dark"] .cpill.spike{color:#f47373;}
+  :root[data-theme="dark"] .cpill.energy{color:#a99cf0;}
+  :root[data-theme="dark"] .cpill.water{color:#8cc4e2;}
+  :root[data-theme="dark"] .cpill.oil{color:#e8a957;}
+  :root[data-theme="dark"] .cpill.density{color:#d58fdb;}
+  :root[data-theme="dark"] .cpill.full{color:#4fd1ab;}
+  :root[data-theme="dark"] .cpill.scale{color:#ef86b3;}
+  :root[data-theme="dark"] .cpill.plate{background:rgba(230,238,233,.06);border-color:rgba(230,238,233,.3);}
+  :root[data-theme="dark"] .rankno.top{background:rgba(79,196,135,.16);color:#6fdb9a;border-color:rgba(79,196,135,.5);}
+  :root[data-theme="dark"] .rankno.mid{color:#5fbf8c;}
+  :root[data-theme="dark"] .rankno.low{background:#1d2622;}
+  :root[data-theme="dark"] .mylist-title,:root[data-theme="dark"] .mylist-empty b{color:#e2b450;}
+  :root[data-theme="dark"] .milk-title{color:#82b6e4;}
+  :root[data-theme="dark"] .spice-title,:root[data-theme="dark"] .spice-note b{color:#d6c06a;}
+  :root[data-theme="dark"] .mylist-wrap{border-color:#3d3522;background:#1a1912;}
+  :root[data-theme="dark"] .milk-wrap{border-color:#263544;background:#131b22;}
+  :root[data-theme="dark"] .spice-wrap{border-color:#36331f;background:#191912;}
+  :root[data-theme="dark"] #mylist-tbl tbody td:first-child{background:#1a1912;}
+  :root[data-theme="dark"] #milk-tbl tbody td:first-child{background:#131b22;}
+  :root[data-theme="dark"] #spice-tbl tbody td:first-child{background:#191912;}
+  :root[data-theme="dark"] thead th{background:#18211d;}
+  :root[data-theme="dark"] thead th:hover{background:#1e2a25;}
+  :root[data-theme="dark"] thead th.active{background:#20332a;}
+  :root[data-theme="dark"] tbody td{border-bottom-color:#212b27;}
+  :root[data-theme="dark"] .star:not(.on){color:#4a5752;}
+  :root[data-theme="dark"] .fat-low{color:#66d199;border-color:#2b5a42;background:#14241c;}
+  :root[data-theme="dark"] .fat-medium{color:#e3b35c;border-color:#594823;background:#221d10;}
+  :root[data-theme="dark"] .fat-high{color:#f08c70;border-color:#5c3327;background:#26150f;}
+  :root[data-theme="dark"] #milk-tbl thead th[data-k="sodium"]{color:#ff6b5e;}
+  :root[data-theme="dark"] #milk-tbl tbody td.c-sodium{color:#f07a6e;}
+  :root[data-theme="dark"] #milk-tbl tbody td.c-sodium.high{color:#ff9a8e;}
+  /* nutrient columns: same hues as light mode, lifted so they read on the dark panel */
+  :root[data-theme="dark"] thead th[data-k="sodium"]{color:#fd8d7c;}
+  :root[data-theme="dark"] thead th:is([data-k="potk"],[data-k="iron"],[data-k="magn"],[data-k="calc"],[data-k="vita"],[data-k="vitb6"],
+    [data-k="mang"],[data-k="choline"],[data-k="nitr"],[data-k="zinc"],[data-k="selen"],
+    [data-k="iodine"],[data-k="vitd"],[data-k="vite"],[data-k="vitb1"],[data-k="vitb12"],
+    [data-k="vitc"],[data-k="vitk"],[data-k="folate"],[data-k="protein"],[data-k="solfib"],
+    [data-k="insfib"],[data-k="omega3"],[data-k="aox"],[data-k="mufa"]){color:#66c98c;}
+  :root[data-theme="dark"] thead th[data-k="purine"]{color:#cda4b3;}
+  :root[data-theme="dark"] thead th[data-k="phos"]{color:#acb1bc;}
+  :root[data-theme="dark"] thead th[data-k="satfat"]{color:#ff8b79;}
+  :root[data-theme="dark"] thead th[data-k="totfat"]{color:#ff8b79;}
+  :root[data-theme="dark"] thead th[data-k="chol"]{color:#cead57;}
+  :root[data-theme="dark"] thead th[data-k="merc"]{color:#ed92a9;}
+  :root[data-theme="dark"] thead th[data-k="oxal"]{color:#c2ad96;}
+  :root[data-theme="dark"] thead th[data-k="omega6"]{color:#f79367;}
+  :root[data-theme="dark"] thead th[data-k="kcal"]{color:#b4b588;}
+  :root[data-theme="dark"] thead th[data-k="dens"]{color:#b6b38f;}
+  :root[data-theme="dark"] thead th[data-k="fruct"]{color:#ff85a4;}
+  :root[data-theme="dark"] thead th[data-k="gi"]{color:#ea9f4a;}
+  :root[data-theme="dark"] thead th[data-k="sugar"]{color:#ff85a4;}
+  :root[data-theme="dark"] thead th[data-k="carb"]{color:#ea9f4a;}
+  :root[data-theme="dark"] thead th[data-k="trans"]{color:#ff8b7b;}
+  :root[data-theme="dark"] tbody td.c-sodium{color:#ab857f;}
+  :root[data-theme="dark"] tbody td:is(.c-potk,.c-iron,.c-magn,.c-calc,.c-vita,.c-vitb6,.c-mang,.c-choline,.c-nitr,.c-zinc,.c-selen,
+    .c-iodine,.c-vitd,.c-vite,.c-vitb1,.c-vitb12,.c-vitc,.c-vitk,.c-folate,.c-protein,.c-solfib,
+    .c-insfib,.c-omega3,.c-aox,.c-mufa){color:#6b9c81;}
+  :root[data-theme="dark"] tbody td.c-purine{color:#9b8a90;}
+  :root[data-theme="dark"] tbody td.c-phos{color:#8c8f95;}
+  :root[data-theme="dark"] tbody td.c-satfat{color:#ba7e6e;}
+  :root[data-theme="dark"] tbody td.c-totfat{color:#ba7e6e;}
+  :root[data-theme="dark"] tbody td.c-chol{color:#9c8f61;}
+  :root[data-theme="dark"] tbody td.c-merc{color:#a28691;}
+  :root[data-theme="dark"] tbody td.c-oxal{color:#988d80;}
+  :root[data-theme="dark"] tbody td.c-omega6{color:#ac8672;}
+  :root[data-theme="dark"] tbody td.c-kcal{color:#919176;}
+  :root[data-theme="dark"] tbody td.c-dens{color:#929179;}
+  :root[data-theme="dark"] tbody td.c-fruct{color:#bb7793;}
+  :root[data-theme="dark"] tbody td.c-gi{color:#a88868;}
+  :root[data-theme="dark"] tbody td.c-sugar{color:#bb7793;}
+  :root[data-theme="dark"] tbody td.c-carb{color:#a88868;}
+  :root[data-theme="dark"] tbody td.c-trans{color:#bb7c7a;}
+  :root[data-theme="dark"] tbody td.high.c-sodium{color:#ffa695;}
+  :root[data-theme="dark"] tbody td.high:is(.c-potk,.c-iron,.c-magn,.c-calc,.c-vita,.c-vitb6,.c-mang,.c-choline,.c-nitr,.c-zinc,.c-selen,
+    .c-iodine,.c-vitd,.c-vite,.c-vitb1,.c-vitb12,.c-vitc,.c-vitk,.c-folate,.c-protein,.c-solfib,
+    .c-insfib,.c-omega3,.c-aox,.c-mufa){color:#6fdb9a;}
+  :root[data-theme="dark"] tbody td.high.c-purine{color:#e4b0c3;}
+  :root[data-theme="dark"] tbody td.high.c-phos{color:#bac1cf;}
+  :root[data-theme="dark"] tbody td.high.c-satfat{color:#ffa696;}
+  :root[data-theme="dark"] tbody td.high.c-totfat{color:#ffa696;}
+  :root[data-theme="dark"] tbody td.high.c-chol{color:#e1bc5f;}
+  :root[data-theme="dark"] tbody td.high.c-merc{color:#ffa2b6;}
+  :root[data-theme="dark"] tbody td.high.c-oxal{color:#d6bc9f;}
+  :root[data-theme="dark"] tbody td.high.c-omega6{color:#ffa884;}
+  :root[data-theme="dark"] tbody td.high.c-kcal{color:#c5c58e;}
+  :root[data-theme="dark"] tbody td.high.c-dens{color:#c9c48a;}
+  :root[data-theme="dark"] tbody td.high.c-fruct{color:#ffa2b5;}
+  :root[data-theme="dark"] tbody td.high.c-gi{color:#ffac5b;}
+  :root[data-theme="dark"] tbody td.high.c-sugar{color:#ffa2b5;}
+  :root[data-theme="dark"] tbody td.high.c-carb{color:#ffac5b;}
+  :root[data-theme="dark"] tbody td.high.c-trans{color:#ffa698;}
+</style>
+<script>
+  // Theme: the visitor's pick from the moon/sun button, else the device setting.
+  // Runs before first paint so a dark page never flashes white while loading.
+  (function(){
+    var KEY='nutrient-theme', root=document.documentElement;
+    var sys=window.matchMedia('(prefers-color-scheme: dark)');
+    function chosen(){
+      try{ var t=localStorage.getItem(KEY); return t==='dark'||t==='light'?t:null; }catch(e){ return null; }
+    }
+    function apply(t){
+      root.setAttribute('data-theme',t);
+      var b=document.getElementById('themetoggle');
+      if(b){ b.setAttribute('aria-pressed',t==='dark'); b.title=t==='dark'?'Switch to light mode':'Switch to dark mode'; }
+    }
+    apply(chosen()||(sys.matches?'dark':'light'));
+    // keep following the device until the visitor picks a theme themselves
+    sys.addEventListener('change',function(){ if(!chosen()) apply(sys.matches?'dark':'light'); });
+    document.addEventListener('DOMContentLoaded',function(){ apply(root.getAttribute('data-theme')); });
+    document.addEventListener('click',function(e){
+      if(!e.target.closest('#themetoggle')) return;
+      var t=root.getAttribute('data-theme')==='dark'?'light':'dark';
+      try{ localStorage.setItem(KEY,t); }catch(err){}
+      apply(t);
+    });
+  })();
+</script>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Francis</div>
+    <a class="themetoggle home" href="index.html" aria-label="Home" title="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V19a1 1 0 0 0 1 1h3.5v-5.5h4V20h3.5a1 1 0 0 0 1-1V9.5"/></svg></a>
+    <button class="themetoggle" id="themetoggle" type="button" aria-label="Dark mode" aria-pressed="false">
+      <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
+
+    <div class="menus">
+      <div class="menu" data-kind="cat" id="menu-cat">
+        <button class="menubtn" type="button">Categories <span class="mcount" id="cnt-cat"></span> <span class="mcaret">▼</span></button>
+        <div class="menupanel" id="pan-cat"></div>
+      </div>
+      <div class="menu" data-kind="good" id="menu-good">
+        <button class="menubtn" type="button">Eat more <span class="mcount" id="cnt-good"></span> <span class="mcaret">▼</span></button>
+        <div class="menupanel" id="pan-good"></div>
+      </div>
+      <div class="menu" data-kind="limit" id="menu-limit">
+        <button class="menubtn" type="button">Limit &amp; watch <span class="mcount" id="cnt-limit"></span> <span class="mcaret">▼</span></button>
+        <div class="menupanel" id="pan-limit"></div>
+      </div>
+    </div>
+    <div class="controls" hidden>
+      <button class="chip on" data-cat="carb">carbs</button>
+      <button class="chip" data-cat="grain">grains</button>
+      <button class="chip" data-cat="veg">vegetables</button>
+      <button class="chip" data-cat="protein">protein</button>
+      <button class="chip" data-cat="legume">legumes</button>
+      <button class="chip" data-cat="drink">drinks</button>
+      <button class="chip" data-cat="fruit">fruits</button>
+      <button class="chip" data-cat="swallow">swallows</button>
+      <button class="chip" data-cat="nut">nuts &amp; seeds</button>
+      <button class="chip" data-cat="oil">oils/fats</button>
+      <button class="chip" data-cat="sweet">sweeteners</button>
+      <button class="chip" data-cat="animal">animal protein</button>
+      <button class="chip" data-cat="fish">fish &amp; seafood</button>
+      <button class="chip" data-cat="plant">plant protein</button>
+      <button class="chip" data-method="cooked-meat">cooked meat</button>
+      <button class="chip" data-method="air-fried-meat">air-fried meat</button>
+      <button class="chip" data-method="oil-fried-meat">oil-fried meat</button>
+      <button class="chip" data-method="cooked-fish">cooked fish</button>
+      <button class="chip" data-method="air-fried-fish">air-fried fish</button>
+      <button class="chip" data-method="oil-fried-fish">oil-fried fish</button>
+      <button class="chip" data-cat="all">all</button>
+    </div>
+
+    <div class="colrow" hidden><span class="collabel good">eat more</span><div class="colgrid" id="colgrid-good" hidden></div></div>
+    <div class="colrow" hidden><span class="collabel limit">limit &amp; watch</span><div class="colgrid" id="colgrid-limit" hidden></div></div>
+
+    <div class="toggles">
+      <button class="keytoggle" id="foodtoggle" aria-expanded="true" aria-controls="food-section">
+        <span class="kt-arrow">▾</span>
+        <span>Food Table</span>
+      </button>
+      <button class="keytoggle" id="mylisttoggle" hidden aria-expanded="false" aria-controls="mylist-section">
+        <span class="kt-arrow">▾</span>
+        <span>My List <span class="kt-hint" id="mylist-hint">(0)</span></span>
+      </button>
+      <button class="keytoggle" id="milktoggle" aria-expanded="false" aria-controls="milk-section">
+        <span class="kt-arrow">▾</span>
+        <span>Milk Table</span>
+      </button>
+      <button class="keytoggle" id="spicetoggle" aria-expanded="false" aria-controls="spice-section">
+        <span class="kt-arrow">▾</span>
+        <span>Spices Table</span>
+      </button>
+    </div>
+    <!-- guides sit on their own line, under the tables -->
+    <div class="toggles toggles-guides">
+      <button class="keytoggle" id="calctoggle" hidden aria-expanded="false" aria-controls="calcpanel">
+        <span class="kt-arrow">▾</span>
+        <span>Protein calculator</span>
+      </button>
+      <button class="keytoggle" id="keytoggle" hidden aria-expanded="false" aria-controls="key">
+        <span class="kt-arrow">▾</span>
+        <span>Nutrient guide</span>
+      </button>
+      <button class="keytoggle" id="weighttoggle" hidden aria-expanded="false" aria-controls="weightpanel">
+        <span class="kt-arrow">▾</span>
+        <span>Weight control</span>
+      </button>
+      <button class="keytoggle" id="hungertoggle" hidden aria-expanded="false" aria-controls="hungerpanel">
+        <span class="kt-arrow">▾</span>
+        <span>Hunger control</span>
+      </button>
+      <button class="keytoggle" id="caltoggle" aria-expanded="false" aria-controls="caldiagram">
+        <span class="kt-arrow">▾</span>
+        <span>Calories explained</span>
+      </button>
+      <button class="keytoggle" id="carbtoggle" aria-expanded="false" aria-controls="carbdiagram">
+        <span class="kt-arrow">▾</span>
+        <span>Carbs explained</span>
+      </button>
+    </div>
+
+    <div class="calcpanel" id="calcpanel" hidden>
+      <div class="calcrow">
+        <label for="bw">Body weight</label>
+        <input type="number" id="bw" min="20" max="250" step="1" placeholder="70" />
+        <div class="unitwrap">
+          <button class="unitbtn on" data-unit="kg">kg</button>
+          <button class="unitbtn" data-unit="lb">lb</button>
+        </div>
+      </div>
+      <div class="calcout" id="calcout">
+        <div class="calccard"><h4>Sedentary</h4><div class="amt">0.8–1 <span style="font-size:12px">g/kg</span></div><div class="per">enter a weight above for your daily total</div><div class="who">Little or no training. 0.8 g/kg is the official RDA — the amount that prevents deficiency, which is a lower bar than the amount that is ideal.</div></div>
+        <div class="calccard"><h4>Active</h4><div class="amt">1.2–1.6 <span style="font-size:12px">g/kg</span></div><div class="per">enter a weight above for your daily total</div><div class="who">Regular training, physical work, or eating in a deficit. Higher intake protects muscle when calories are down.</div></div>
+        <div class="calccard"><h4>Building muscle</h4><div class="amt">1.6–2.2 <span style="font-size:12px">g/kg</span></div><div class="per">enter a weight above for your daily total</div><div class="who">Resistance training with the goal of adding muscle. Past roughly 2.2 g/kg the evidence shows no further benefit.</div></div>
+      </div>
+      <p class="calcnote">Targets are grams of protein per day, scaled from body weight. If you are carrying significant excess weight, these overshoot — scale from a target weight instead, since fat tissue has little protein demand. Figures follow the standard ranges used in sports-nutrition guidance; they are a starting point, not a prescription.</p>
+    </div>
+
+
+      <div class="carbpanel hidden" id="caldiagram">
+        <p class="cintro"><b>Calories decide your weight; water and fullness decide how hard that is.</b> Most of the confusion — why dry garri reads three times eba, why boiled potatoes help people lose weight, why the scale jumps overnight — comes down to water.</p>
+
+        <div class="ctype">
+          <div class="chead"><span class="cpill energy">Calories</span><span class="cspeed">energy — and water carries none</span></div>
+          <p><b>A calorie is a unit of energy, not an ingredient.</b> Labels and this table use kilocalories (kcal), which is what everyone means by "calories". Only four things carry them: <b>fat 9 kcal per gram, alcohol 7, protein 4, carbohydrate 4</b> (fibre about 2, since gut bacteria get most of it). <b>Water, vitamins and minerals carry none.</b> So a food's calories come down to how much fat, carbohydrate and protein is packed into each gram — and how much of that gram is water instead.</p>
+        </div>
+
+        <div class="ctype">
+          <div class="chead"><span class="cpill water">Water</span><span class="cspeed">adds weight, adds nothing else</span></div>
+          <p><b>Every row in the table is per 100 g — a weight, not a portion.</b> Water has weight but no calories, so watery foods look light and dry foods look heavy: watermelon is 30 kcal, boiled potato 87, cooked rice 130, but dry garri 357 and dry semovita 360. Much of it is the same starch; the difference is water.</p>
+          <p><b>Adding water spreads the calories; it never removes them.</b> Eba is dry garri stirred into hot water — 100 g of eba holds only about 31 g of garri, which is why it shows 110 kcal. Rice and beans soak up water as they cook, so their figure per 100 g falls. Meat goes the other way: it loses water as it cooks, so the figure rises — air-fried chicken breast (173) reads a little higher than boiled (165) because it is drier. <b>Drying concentrates:</b> dates are a dried fruit, 277 kcal against 47 for an orange, mostly because the water is gone. The calories on your plate are set by the dry ingredients and the oil, never by the water.</p>
+        </div>
+
+        <div class="ctype">
+          <div class="chead"><span class="cpill oil">Oil</span><span class="cspeed">the quickest way to add calories</span></div>
+          <p><b>Oil is pure fat — 884 kcal per 100 g, the densest thing in the table.</b> A tablespoon is about 120 kcal, and a pot of stew or soup can take several, so the oil often carries more of a meal's calories than the meat or the swallow. <b>Frying swaps water for oil:</b> boiled plantain is 116 kcal, dodo 250; a boiled egg 155, a fried one 214; boiled chicken breast 165, oil-fried 225. Same food, more calories, and no more filling.</p>
+        </div>
+
+        <div class="ctype">
+          <div class="chead"><span class="cpill density">Calorie density</span><span class="cspeed">the kcal/g column</span></div>
+          <p><b>Calories divided by weight.</b> Water drags it down, fat drives it up, fibre helps a little. Rough bands: <b>under 0.6</b> very low (vegetables, most fruit), <b>0.6–1.5</b> low (potato, rice, eba, yam, beans), <b>1.5–4</b> medium (meat, eggs, bread, dry flours), <b>over 4</b> high (nuts, seeds, chocolate, oil). It is what makes a food easy or hard to overeat. The same 500 kcal is about <b>1.7 kg of watermelon, 575 g of boiled potato, 385 g of rice, 170 g of agege bread, 88 g of groundnuts — or four tablespoons of oil</b>.</p>
+        </div>
+
+        <div class="ctype">
+          <div class="chead"><span class="cpill full">Fullness</span><span class="cspeed">your stomach counts volume, not calories</span></div>
+          <p><b>Stretch in the stomach is one of the main "I'm full" signals, and it can't read calories.</b> Studies at Penn State found people tend to eat a fairly steady weight of food from day to day — so swapping in lower-density food cuts calories without feeling like eating less, and starting a meal with a broth-based soup or a salad lowers how much people eat in total. <b>Protein and fibre</b> add fullness on top of volume; fat satisfies too, but at the highest cost per bite.</p>
+          <p><b>Two things slip past these signals.</b> Drinks: the calories in soft drinks, juice, malt and beer barely register, so you don't eat less later to make up — a whole orange fills you, the juice of four goes down in seconds. And food that is dry, crunchy and rich in fat with sugar or salt — biscuits, chin chin, puff-puff, crisps: in a 2019 US trial, people offered ultra-processed meals ate about 500 kcal a day more than on unprocessed meals matched for sugar, fat and fibre, without feeling any fuller.</p>
+        </div>
+
+        <div class="ctype">
+          <div class="chead"><span class="cpill scale">Your weight</span><span class="cspeed">the scale weighs water too</span></div>
+          <p><b>Body fat changes only when the calories you eat and burn don't match.</b> Roughly 60–70% of what you burn keeps you alive at rest, about 10% goes on digesting food (protein costs the most), and the rest is movement — where daily walking and standing usually count for more than workouts. A kilogram of body fat holds about 7,700 kcal, so eating 500 kcal a day below what you burn loses roughly half a kilo a week at first, slowing as you get lighter.</p>
+          <p><b>The scale can't tell fat from water.</b> Each gram of stored carbohydrate is held with about 3 g of water, so the first week of eating fewer carbs can drop up to 2 kg that is mostly water — and a big plate of rice or a salty meal can put a kilo back overnight. Daily swings of 1–2 kg are normal; <b>watch the weekly average</b>, not the morning number.</p>
+        </div>
+
+        <div class="ctype">
+          <div class="chead"><span class="cpill estimate">Estimates</span><span class="cspeed">every number here is approximate</span></div>
+          <p><b>Calorie figures are averages, not measurements of your food.</b> US labels are allowed to be off by up to 20%, and recipes, portions and oil vary far more than that. Your body doesn't absorb everything either: whole almonds deliver about a quarter fewer calories than their label, because the cell walls trap fat, while grinding and cooking release more. Use the numbers to compare foods and spot the big gaps, not to count to the last calorie.</p>
+        </div>
+
+        <div class="cspike">
+          <div class="chead"><span class="cpill plate">On your plate</span></div>
+          <ul class="cspikelist">
+            <li><b>Judge a meal by its dry ingredients and its oil.</b> A wrap made from 100 g of dry garri is about 357 kcal however much water went in; the stew's oil can match it.</li>
+            <li><b>Fill up on low-density food first.</b> Vegetables, soup and whole fruit take up room for few calories; then protein; then measure the rice or swallow, since that is where the portion matters.</li>
+            <li><b>Cook with less oil.</b> Boil, steam, grill or air-fry — boiled plantain carries half the calories of dodo.</li>
+            <li><b>Eat your calories rather than drink them.</b> Water, not soft drinks, juice or malt, with meals.</li>
+          </ul>
+          <p class="cbottom">Calories are the mechanism, but the per-100 g figure on its own misleads. What matters is how many calories come with how much food — water-heavy, protein- and fibre-rich meals give you a satisfying weight of food for few calories, while oil, sugar and dry snacks do the opposite.</p>
+        </div>
+      </div>
+
+      <div class="carbpanel hidden" id="carbdiagram">
+        <div class="ctype">
+          <div class="chead"><span class="cpill sugar">Sugar</span><span class="cspeed">fastest — minutes</span></div>
+          <p><b>1–2 unit chains</b> (glucose, sucrose, lactose, and fructose — which gets its own section below). Nothing to break down, so they cross into the blood almost immediately. This is the sharpest, fastest spike of any carbohydrate.</p>
+        </div>
+
+        <div class="ctype">
+          <div class="chead"><span class="cpill fruct">Fructose</span><span class="cspeed">the exception — bypasses the spike entirely</span></div>
+          <p><b>A single sugar unit, but it behaves like nothing else here.</b> Every other carbohydrate ends up as glucose, which every cell in the body can burn. Fructose can't take that route — <b>the liver has to process almost all of it</b>. So it barely moves blood glucose, and a fructose-heavy sweetener scores "low and gentle" on any speed-based measure while doing its damage the slow, invisible way.</p>
+          <p>Once the liver's limit is passed, the excess is <b>converted straight to fat</b> — driving fatty liver, raised triglycerides, insulin resistance and higher uric acid (gout). Concentrated sources: <b>table sugar (50% fructose), agave (~85%), honey (~41%), fruit juice, dried fruit</b>. <b>Whole fruit is not the problem</b> — an apple's ~6g comes wrapped in fibre and water and you stop after two; juice delivers four apples' worth with the brakes stripped out. Same molecule, different delivery.</p>
+        </div>
+
+        <div class="ctype">
+          <div class="chead"><span class="cpill starch">Starch</span><span class="cspeed">fast — starts in your mouth</span></div>
+          <p><b>Hundreds–thousands of glucose units</b> (rice, bread, yam, potato, cassava). It <i>looks</i> slow because it isn't sweet, but the enzyme in your saliva starts cutting the chain before you swallow, and it finishes as pure glucose. <b>Refined starch — white rice, white bread, fufu, semovita — digests nearly as fast as sugar</b> and hits the blood almost as hard. This is the trap: it carries no sugar on the label and spikes you anyway.</p>
+        </div>
+
+        <div class="ctype">
+          <div class="chead"><span class="cpill fibre">Fibre</span><span class="cspeed">slow — and slows everything with it</span></div>
+          <p><b>Chains your gut has no enzyme for</b> (the skin of fruit, beans, vegetables, whole grains). It passes through undigested, feeds gut bacteria, and — crucially — <b>physically slows the absorption of everything eaten alongside it</b>. Fibre is the brake. It's why an apple (sugar wrapped in fibre) is a slow release and apple juice (fibre stripped out) is a fast one, from the same fruit.</p>
+        </div>
+
+        <div class="cspike">
+          <div class="chead"><span class="cpill spike">Why the speed matters</span></div>
+          <p><b>That speed has a name: glycemic index.</b> It's a 0–100 score of how fast a carbohydrate raises blood glucose, measured against pure glucose at 100 — so it's literally the "how fast" number for the food. White bread ≈75, an apple ≈36, beans ≈30. Two limits worth holding: it only measures glucose, so it's blind to fructose entirely (that's why the two sit in separate columns); and it's per gram of carb, not per portion — which is why the <b>Glycemic index</b> column in the table is amber, a number to read in context rather than a verdict on its own.</p>
+          <p>A fast carb dumps glucose into the blood faster than the body wants it there. That forces a <b>large, sharp insulin release</b> to clear it — and insulin overshoots, so the spike is followed by a <b>crash below where you started</b>. Three things follow from that pattern:</p>
+          <ul class="cspikelist">
+            <li><b>Hunger returns early.</b> The crash reads as "eat again" long before the calories are spent — the 11am biscuit after a white-bread breakfast. Fast carbs make you eat more, not just sooner.</li>
+            <li><b>The liver banks the excess as fat.</b> Glucose arriving faster than it's burned gets stored — first in muscle and liver, then as body fat. Repeated daily, this is a direct road to fatty liver and insulin resistance.</li>
+            <li><b>Spike-and-crash compounds.</b> Years of oversized insulin responses wear down how well cells respond to it. That's the slow slide toward type 2 diabetes — and high insulin also nudges the body to hold sodium, which is why refined carbs sit on your blood-pressure list too.</li>
+          </ul>
+          <p class="cbottom">Fat and protein carry no glucose, so they don't spike at all — and adding either to a carb <b>flattens its curve</b>. This is why the honest question was never "sugar or starch" but <b>how fast, and with what brakes</b>. Fibre, fat and protein are the brakes; refined starch and sugar arrive with none.</p>
+        </div>
+      </div>
+
+      <div class="goalwrap" id="weightpanel" hidden>
+        <div class="goalcard">
+          <h3>Weight control</h3>
+          <p class="goalintro">Which columns actually move body weight, ranked. The order matters more than the list: #1 is the mechanism, and everything below it works only by changing #1.</p>
+          <ol class="ranklist">
+            <li><span class="rankno top">1</span><div><b>Calories</b><span class="rankwhy">The mechanism, not a proxy for it. A deficit is the only thing that removes stored fat — every other row on this list is a way of making a deficit tolerable. Sort the table by this column first.</span></div></li>
+            <li><span class="rankno top">2</span><div><b>Protein</b><span class="rankwhy">The strongest lever after calories. Most satiating macro per calorie, and roughly 20–30% of its energy is spent digesting it (against 5–10% for carbs, 0–3% for fat). It also protects muscle in a deficit, so what you lose is fat rather than lean mass.</span></div></li>
+            <li><span class="rankno mid">3</span><div><b>Calorie density</b><span class="rankwhy">The <b>kcal/g</b> column. Watermelon is 0.3 kcal/g and effectively unfattenable; pecans are 6.91 and effortless to overeat — identical fibre-and-glycemic-index profiles, opposite outcomes. Rough bands: under 0.6 very low, 0.6–1.5 low, 1.5–4 medium, over 4 high. Since most rows are per 100g this mostly tracks Calories — its real job is making the serving-based rows (the milk powders) comparable to everything else.</span></div></li>
+            <li><span class="rankno low">4</span><div><b>Fibre</b><span class="rankwhy">Adds bulk and slows the stomach — but mostly it earns its place by dragging calorie density down. Useful, though it's the row above doing the real work. High-fibre foods can still be calorie bombs (chia: 34g fibre, 486 kcal).</span></div></li>
+            <li><span class="rankno low">5</span><div><b>Glycemic index</b><span class="rankwhy">The weakest link here. Match calories between a high- and low-glycemic-index diet and most of the difference evaporates in trials. A tiebreaker between otherwise-similar foods, not a lever.</span></div></li>
+          </ol>
+          <div class="goalfoot"><b>The trap.</b> Rank foods by "high fibre, low glycemic index" alone and this table hands you pecans, ogbono, brazil nuts and walnuts — its four most calorie-dense entries — while ranking watermelon last at glycemic index 76. Fibre and glycemic index describe how a food behaves per gram of carb; they say nothing about how much energy is packed into it. <b>Not on this list:</b> sat fat, sodium and cholesterol matter for arteries, blood pressure and the liver — not for weight, beyond the calories they carry.</div>
+        </div>
+      </div>
+
+      <div class="goalwrap" id="hungerpanel" hidden>
+        <div class="goalcard">
+          <h3>Hunger control</h3>
+          <p class="goalintro">A different question, and a different ranking: not "fewest calories" but "most fullness per calorie". Note what is missing from the top — that absence is the whole problem with dieting.</p>
+          <ol class="ranklist">
+            <li><span class="rankno top">1</span><div><b>Protein</b><span class="rankwhy">Same #1 as weight, different reason. It triggers the strongest satiety signalling (CCK, GLP-1, PYY) and stays with you longest. Front-load it — protein at breakfast measurably lowers what you eat at dinner.</span></div></li>
+            <li><span class="rankno top">2</span><div><b>Fibre</b><span class="rankwhy">Bulk, slowed gastric emptying, and fermentation into short-chain fatty acids that signal fullness hours later. Soluble fibre (oat beta-glucan, pectin in apples, okra) does considerably more here than insoluble.</span></div></li>
+            <li><span class="rankno mid">3</span><div><b>Water &amp; volume</b><span class="rankwhy">Stomach stretch is a genuine satiety signal, and it doesn't care about calories. Soup, whole fruit and cooked greens fill the same space as a snack for a fraction of the energy — a whole orange satisfies where orange juice doesn't.</span></div></li>
+            <li><span class="rankno mid">4</span><div><b>Glycemic index</b><span class="rankwhy">Glycemic index earns more here than it does for weight. A spike and crash brings hunger back before the calories have been used — that's the 11am biscuit after a white-bread breakfast. A flatter curve means steadier appetite.</span></div></li>
+            <li><span class="rankno low">5</span><div><b>Fat</b><span class="rankwhy">Genuinely slows gastric emptying and makes food satisfying — but at 9 kcal/g it buys fullness at the worst exchange rate on the menu. A little goes far; a lot quietly costs you the deficit.</span></div></li>
+          </ol>
+          <div class="goalfoot"><b>Calories are deliberately absent.</b> Eating more calories reduces hunger — that's the direction the biology runs. So the two goals pull against each other, and that tension <em>is</em> the diet problem: weight wants the number down, hunger wants it up. The only way through is maximising fullness per calorie, which is what rows 1–3 are for. <b>The practical version:</b> protein and fibre at every meal, volume from water-heavy foods, and treat fat as seasoning rather than substance.</div>
+        </div>
+      </div>
+
+    <div class="key" id="key" hidden>
+
+      <div class="ncard">
+        <h3>Antioxidants</h3>
+        <div class="line"><span class="tag lo">High intake</span><span class="txt">Neutralise free radicals, lower oxidative stress &amp; chronic inflammation, support arteries, brain &amp; skin. Best sources: berries, dark chocolate, spices (turmeric, oregano, cinnamon), beans, dark leafy greens, walnuts, EVOO.</span></div>
+        <div class="line"><span class="tag hi">Low intake</span><span class="txt">More oxidative damage, faster vascular aging, higher chronic-disease risk. Common in low-plant diets.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Heart &amp; arteries, brain, skin, eyes, immune system.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Calcium</h3>
+        <div class="line"><span class="tag lo">High intake</span><span class="txt">Builds &amp; maintains bones and teeth, supports muscle contraction, blood clotting &amp; nerve signaling. Modestly lowers blood pressure (the dairy arm of DASH). Best sources: milk &amp; yogurt, sardines with bones, tofu, dark leafy greens (ewedu, ugu, spinach), almonds, chia, sesame.</span></div>
+        <div class="line"><span class="tag hi">Low intake</span><span class="txt">Bone loss (osteopenia, osteoporosis, higher fracture risk), muscle cramps, weaker BP control. The body steals calcium from bone to keep blood levels normal, so deficiency stays silent until bones are already weakened.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Bones &amp; teeth, muscles, heart rhythm, blood pressure, nerves, blood clotting.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Calories</h3>
+        <div class="line"><span class="tag hi">High intake</span><span class="txt">More energy in than the body burns — the surplus is stored as fat. Excess weight then feeds into blood pressure (roughly 1 mmHg per kg), insulin resistance, joint load and sleep apnoea. Calorie density is mostly a fat story: fat carries 9 kcal/g against 4 for carbs and protein, so oils, nuts and anything fried climb fastest.</span></div>
+        <div class="line"><span class="tag lo">Low intake</span><span class="txt">A deficit means weight loss — slower than most levers, but durable. Pushed too far below what the body needs, it sheds muscle, energy and nutrient coverage along with the fat.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Body weight directly; everything else only through weight. Calories are blind to quality — a bouillon cube is ~10 kcal and among the saltiest things on any shelf, while olive oil is 884 kcal and among the best fats for arteries. Rank those two by calories and you get the health answer exactly backwards. Never read this column alone.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Choline</h3>
+        <div class="line"><span class="tag lo">High intake</span><span class="txt">Builds cell membranes and makes <b>acetylcholine</b>, the neurotransmitter behind memory, attention and muscle control. Also ferries fat out of the liver, so a shortfall lets fat accumulate there. Especially important in pregnancy for fetal brain development. Best sources: <b>cow liver (426mg), egg (294mg — almost all of it in the yolk)</b>, kidney, dried fish, soybeans.</span></div>
+        <div class="line"><span class="tag hi">Low intake</span><span class="txt">Fatty liver and raised liver enzymes, muscle damage, and poorer memory and attention. Most people fall short of the target — roughly 425mg a day for women and 550mg for men — largely because egg yolks got avoided for decades over cholesterol that turned out not to matter much.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Brain &amp; memory, liver, cell membranes, fetal development. <b>The practical point:</b> two whole eggs cover well over half a day&rsquo;s choline, and there is no comparable plant source — soybeans at 120mg are the best plant option and still less than half an egg&rsquo;s worth. Egg <i>whites</i> have almost none: this nutrient lives in the yolk.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Cholesterol (dietary)</h3>
+        <div class="line"><span class="tag hi">High intake</span><span class="txt">The cholesterol molecule itself — found only in animal foods (egg yolk, offal, shellfish, meat, dairy fat). For most people the liver compensates by making less, so it barely moves blood LDL. But ~1 in 4 are "hyper-responders" (often ApoE4), and it matters far more if you have diabetes, familial hypercholesterolemia, or existing heart disease.</span></div>
+        <div class="line"><span class="tag lo">Low intake</span><span class="txt">No downside — the body makes all it needs. Plants contain none.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Blood LDL (mainly in susceptible people), heart &amp; arteries. A weaker lever than saturated fat for most.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Fibre (insoluble)</h3>
+        <div class="line"><span class="tag lo">High intake</span><span class="txt">The fraction that doesn't dissolve. It passes through largely intact, absorbing water and adding bulk, which speeds transit through the gut. This is the fibre that prevents constipation and keeps the bowel working — mechanical rather than metabolic. Best sources: wheat bran and whole grains, nuts &amp; seeds, vegetable and fruit skins, leafy greens, groundnuts.</span></div>
+        <div class="line"><span class="tag hi">Low intake</span><span class="txt">Constipation, straining, sluggish digestion; long-term shortfall is linked to diverticular disease and poorer bowel health. Refining grain removes the bran, which is where nearly all of it lives — so white rice, white bread, semovita and fufu have very little.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Gut transit and bowel health, plus fullness through sheer bulk. It does <b>not</b> lower cholesterol or blunt blood sugar — that's the soluble fraction's job. Needs water to work: bulk without fluid makes constipation worse, not better.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Fibre (soluble)</h3>
+        <div class="line"><span class="tag lo">High intake</span><span class="txt">The fraction that dissolves into a gel. It binds bile acids and carries them out, forcing the liver to pull cholesterol from the blood to make more — which is the mechanism behind oats' LDL-lowering reputation. The gel also slows stomach emptying, so glucose enters the blood more gradually, and it ferments in the colon into short-chain fatty acids that feed gut bacteria. Best sources: oats (beta-glucan), beans of every kind, okra and ogbono (the draw is soluble fibre), apples and citrus (pectin), carrots, onions.</span></div>
+        <div class="line"><span class="tag hi">Low intake</span><span class="txt">Higher LDL cholesterol, sharper blood-sugar spikes, poorer gut-bacteria diversity, and less staying power after meals. Most people fall well short of it — it's the harder of the two to hit, which is why its threshold here is set lower.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Cholesterol, blood sugar, gut bacteria, appetite. This is the fraction doing the metabolic work, so it's the one to prioritise for heart and blood-sugar goals — while insoluble fibre handles the plumbing.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Folate</h3>
+        <div class="line"><span class="tag lo">High intake</span><span class="txt">Vitamin B9 — builds DNA and red blood cells, and clears homocysteine from the blood (high homocysteine is an independent risk factor for stroke and heart disease). Critical before and during early pregnancy, where a shortfall causes neural tube defects. Best sources: beans of every kind, dark leafy greens (ewedu, ugu, spinach), avocado, groundnuts, liver, citrus.</span></div>
+        <div class="line"><span class="tag hi">Low intake</span><span class="txt">Megaloblastic anaemia, fatigue, mouth ulcers, raised homocysteine; in pregnancy, serious birth defects. Note that folate leaches into cooking water and degrades with long heat — the greens in a soup keep more of it than the water they were boiled in.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Blood cells, DNA repair, heart &amp; blood vessels, fetal development.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Fructose</h3>
+        <div class="line"><span class="tag hi">High intake</span><span class="txt">The half of sugar that isn't glucose. Every cell in the body can burn glucose — fructose is handled almost entirely by the liver, and once the liver's limit is passed it converts the excess straight into fat. That drives fatty liver, raised triglycerides, insulin resistance and higher uric acid (gout). Concentrated sources: table sugar (50% fructose), honey (~41%), agave, fruit juice, dried fruit.</span></div>
+        <div class="line"><span class="tag lo">Low intake</span><span class="txt">No downside at all. Fructose is not essential — the body makes every gram of glucose it needs without it.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Liver (fat accumulation), triglycerides, uric acid &amp; gout, insulin sensitivity. <b>Whole fruit is not the problem</b> — an apple carries ~6g of fructose wrapped in fibre and water, and you'll stop after two. A glass of juice carries the fructose of four apples with the fibre stripped out, and nothing tells you to stop. Same molecule, different delivery. This is also the column glycemic index cannot see: fructose barely moves blood glucose, which is precisely why it scores low and still does damage.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Glycemic index</h3>
+        <div class="line"><span class="tag hi">High glycemic index</span><span class="txt">Carbs that break down fast — a quick glucose spike, a big insulin response, then a crash that leaves you hungry again. Repeated daily this feeds liver fat and, over years, insulin resistance. White bread, instant noodles, very ripe plantain, potato.</span></div>
+        <div class="line"><span class="tag lo">Low glycemic index</span><span class="txt">Slow, steady glucose release — flatter energy, less insulin, less load on the liver. Beans, unripe plantain, nuts, whole fruit, steel-cut oats.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Blood sugar, insulin, liver fat, hunger. Two catches: (1) Glycemic index measures <b>speed per gram of carb, not quantity</b> — glycemic load (glycemic index × carb grams ÷ 100) is what a real portion actually does to you. Watermelon is glycemic index 72 but glycemic load ~4, because it's mostly water. (2) Glycemic index is measured on a food eaten <b>alone</b> — adding fat, protein or fibre slows the whole meal down. Shown as "–" for foods with no carbs to speak of (oils, meat, fish).</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Iodine</h3>
+        <div class="line"><span class="tag lo">High intake</span><span class="txt">Builds thyroid hormones, which set the metabolic rate of every cell. Critical in pregnancy — shortfall is the leading preventable cause of intellectual disability worldwide. Sources are narrow: <b>iodised salt</b>, sea fish, dairy and eggs. Plants only reflect the soil they grew in, and most inland soil has little.</span></div>
+        <div class="line"><span class="tag hi">Low intake</span><span class="txt">Goitre (a swollen thyroid), sluggish metabolism, fatigue, cold intolerance; in pregnancy, permanent harm to the child&rsquo;s brain development.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Thyroid, metabolism, brain development. <b>The Nigerian angle:</b> universal salt iodisation is why deficiency collapsed here — so cutting salt hard for blood pressure removes an iodine source at the same time. Fish, eggs and dairy cover it without the sodium.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Iron</h3>
+        <div class="line"><span class="tag lo">High intake</span><span class="txt">Carries oxygen in the blood (haemoglobin) and in muscle (myoglobin), and drives energy production. <b>Two forms behave very differently.</b> <b>Heme iron</b> from meat, offal and fish is absorbed at roughly 15–35% regardless of what else is on the plate. <b>Non-heme iron</b> from beans, greens, seeds and grains is absorbed at only 2–20%, and that figure swings hard on what it's eaten with — vitamin C can multiply it several-fold, while tea, coffee and calcium block it. So a bean dish shows a big number here but delivers far less than the same figure from liver.</span></div>
+        <div class="line"><span class="tag hi">Low intake</span><span class="txt">Iron-deficiency anaemia — fatigue, breathlessness, pale skin, poor concentration, weakened immunity. The most common nutrient deficiency worldwide, and heaviest among menstruating women, pregnant women and young children. Adult men need ~8mg a day; menstruating women need ~18mg.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Blood, energy, immunity, cognition. <b>The practical move:</b> pair plant iron with vitamin C — beans with tatashe or a squeeze of citrus, ugu with fresh peppers — and keep tea or coffee away from the meal rather than with it. <b>One caution:</b> more is not better. The body cannot excrete excess iron, so supplements without a diagnosed deficiency risk overload, and anyone with haemochromatosis should limit it.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Magnesium</h3>
+        <div class="line"><span class="tag lo">High intake</span><span class="txt">A cofactor in over 300 enzyme reactions — energy production, muscle and nerve function, blood-sugar control, bone structure. It relaxes blood-vessel walls, so along with potassium it's one of the minerals that actively lowers blood pressure. Best sources: pumpkin seeds (592mg), egusi (515mg), brazil nuts, cashews, chia, dark chocolate, beans, leafy greens, oats.</span></div>
+        <div class="line"><span class="tag hi">Low intake</span><span class="txt">Muscle cramps and twitches, fatigue, poor sleep, irregular heartbeat, higher blood pressure, and worse insulin sensitivity. Genuinely common — refining grains strips most of the magnesium out, so diets built on white rice, white bread and cassava run low even when calories are plentiful.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Blood pressure, muscles &amp; nerves, heart rhythm, blood sugar, bones, sleep. It works with potassium and calcium rather than against them — the three together are the mineral side of the DASH approach, which is why a plate heavy on greens, beans and seeds moves blood pressure more than cutting sodium alone.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Manganese</h3>
+        <div class="line"><span class="tag lo">High intake</span><span class="txt">A cofactor for bone formation, collagen, and the antioxidant enzyme that protects mitochondria. Best sources: <b>whole grains, nuts, oats (3.6mg), pineapple</b>, and spices — cinnamon at 17.5mg and turmeric at 19.8mg are extraordinary per 100g, though you eat those by the pinch.</span></div>
+        <div class="line"><span class="tag hi">Low intake</span><span class="txt">Rare from ordinary diets. Deficiency shows as poor bone development, impaired glucose tolerance and skin changes.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Bones, connective tissue, antioxidant defence, glucose handling. <b>One of the few nutrients where a plant-heavy diet has the clear advantage</b> — plants carry nearly all of it, and animal foods have almost none.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Mercury</h3>
+        <div class="line"><span class="tag lo">High intake</span><span class="txt">Not a nutrient — a contaminant, and the only column here with <b>no safe upside</b>. Methylmercury accumulates up the food chain, so long-lived predatory fish carry the most. It crosses the placenta and damages developing nerves.</span></div>
+        <div class="line"><span class="tag hi">Low intake</span><span class="txt">Zero is ideal. Nothing is lost by avoiding it.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Nervous system, kidneys, fetal brain development. <b>Read it against omega-3, not alone:</b> the fish highest in mercury here are tuna (35µg) and snapper (16µg), while sardines (1.3), clams (0.9) and shrimp (1) are near-zero and still rich in omega-3. Small, short-lived, low on the food chain is the rule. Pregnant women and young children should be strictest.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Monounsaturated fat (MUFA)</h3>
+        <div class="line"><span class="tag lo">High intake</span><span class="txt">The "olive oil effect" — lowers LDL while preserving HDL, supports vessel flexibility &amp; insulin sensitivity. Best sources: olive oil, avocado, canola, nuts (almonds, peanuts).</span></div>
+        <div class="line"><span class="tag hi">Low intake</span><span class="txt">No direct deficiency, but means you're getting more sat fat or refined carbs in its place — worse cholesterol profile.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Heart &amp; arteries, cholesterol balance, metabolism.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Nitrate</h3>
+        <div class="line"><span class="tag lo">High intake</span><span class="txt">Vegetable nitrate is turned by mouth bacteria into nitrite, and the body then makes <b>nitric oxide</b> from it — the molecule that relaxes blood-vessel walls. Trials with leafy greens and beetroot juice show blood pressure dropping within a few hours, plus better blood flow to working muscles. Best sources: <b>rocket (~400mg), efo tete/amaranth (~300mg), efo/spinach (~250mg)</b>, then waterleaf, ugu, ewedu, beetroot, pak choi, celery and radish. Around 80% of the nitrate people eat comes from vegetables.</span></div>
+        <div class="line"><span class="tag hi">Low intake</span><span class="txt">Not essential, so there is no deficiency disease — but a diet short on leafy greens misses one of the fastest-acting blood-pressure aids food offers. Works alongside potassium, not instead of it.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Blood pressure, blood flow, exercise stamina. <b>The source decides the effect:</b> nitrite added to cured meat (corned beef, sausages, ham) can form <b>nitrosamines</b> when heated with meat protein — linked to stomach and bowel cancer — while the vitamin C and polyphenols in vegetables block that reaction. Antiseptic mouthwash kills the mouth bacteria that start the conversion. Babies under 6 months should not get high-nitrate purées or well water. Levels vary several-fold with soil, fertiliser and season; figures for Nigerian leaves are estimates from closely related greens.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Omega-3</h3>
+        <div class="line"><span class="tag lo">High intake</span><span class="txt">Lowers triglycerides &amp; inflammation, modestly lowers BP, supports heart, brain, eyes &amp; joints. Best sources: chia, oily fish (mackerel, salmon, sardines), flax, walnut.</span></div>
+        <div class="line"><span class="tag hi">Low intake</span><span class="txt">Higher cardiovascular &amp; inflammatory risk, worsens omega-6 imbalance, may affect mood &amp; skin. Common — most modern diets are short on it.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Heart &amp; arteries, brain, eyes, joints, mood.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Omega-6</h3>
+        <div class="line"><span class="tag hi">High intake</span><span class="txt">Essential, but excess (from refined seed oils &amp; processed foods) shifts the omega-6:omega-3 ratio toward inflammation. Modern ratios ~15:1; ideal ≤4:1.</span></div>
+        <div class="line"><span class="tag lo">Low intake</span><span class="txt">Rare — deficiency causes skin &amp; growth issues. The goal isn't to eliminate, just to balance with more omega-3.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Inflammation pathways, heart, skin, growth.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Phosphorus &amp; oxalate</h3>
+        <div class="line"><span class="tag hi">High intake</span><span class="txt">Only a problem with reduced kidney function: phosphorus weakens bones &amp; vessels; oxalate forms kidney stones.</span></div>
+        <div class="line"><span class="tag lo">Low intake</span><span class="txt">No downside for blood pressure; not a concern with healthy kidneys.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Kidneys, bones (tracked here only as a safeguard).</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Potassium</h3>
+        <div class="line"><span class="tag lo">High intake</span><span class="txt">Relaxes vessel walls and helps the body excrete sodium — lowers blood pressure (assuming healthy kidneys).</span></div>
+        <div class="line"><span class="tag hi">Low intake</span><span class="txt">Raises blood pressure, causes muscle weakness, cramps and irregular heartbeat.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Heart rhythm, blood vessels, muscles, nerves, kidneys.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Protein</h3>
+        <div class="line"><span class="tag hi">High intake</span><span class="txt">Excess (esp. from processed/red meat) burdens kidneys over time and adds saturated fat &amp; sodium.</span></div>
+        <div class="line"><span class="tag lo">Low intake</span><span class="txt">Muscle loss, poor wound healing, weakened immunity.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Muscles, kidneys, immune system.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Purines</h3>
+        <div class="line"><span class="tag hi">High intake</span><span class="txt">Broken down into uric acid. Too much can trigger gout (crystals in joints) and kidney stones in susceptible people, and high uric acid is linked to higher blood pressure. Highest in organ meats (liver, kidney), oily/small fish (sardines, herring, tuna), and yeast-based bouillon cubes.</span></div>
+        <div class="line"><span class="tag lo">Low intake</span><span class="txt">No downside — the body makes its own. Matters mainly if you have gout, hyperuricemia or stones; otherwise a minor concern. Coffee and dairy are mildly protective.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Joints (gout), kidneys (stones), blood pressure. Only a real lever for people prone to high uric acid.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Saturated fat</h3>
+        <div class="line"><span class="tag hi">High intake</span><span class="txt">Raises LDL ("bad") cholesterol, stiffens and clogs arteries — palm, coconut, butter are highest.</span></div>
+        <div class="line"><span class="tag lo">Low intake</span><span class="txt">Better cholesterol and more flexible arteries, especially when replaced with mono/polyunsaturated fats.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Heart &amp; arteries, liver.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Selenium</h3>
+        <div class="line"><span class="tag lo">High intake</span><span class="txt">Powers the glutathione peroxidase enzymes — the body&rsquo;s own antioxidant defence — and activates thyroid hormone. Best sources: <b>brazil nuts (1917µg, extraordinary)</b>, seafood, offal, eggs, oats.</span></div>
+        <div class="line"><span class="tag hi">Low intake</span><span class="txt">Weaker antioxidant defence and immunity, impaired thyroid conversion; severe deficiency damages heart muscle. Plant levels depend entirely on soil selenium, which varies enormously by region.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Antioxidant defence, thyroid, immunity, fertility. <b>The narrowest safe range of any mineral here:</b> the target is ~55µg a day and toxicity starts near 400µg. One brazil nut is ~95µg — one or two daily is a supplement, a handful is too much.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Sodium</h3>
+        <div class="line"><span class="tag hi">High intake</span><span class="txt">Pulls water into the bloodstream, raising blood volume and pressure; drives hypertension and fluid retention.</span></div>
+        <div class="line"><span class="tag lo">Low intake</span><span class="txt">Lowers blood pressure; very low levels (rare from diet) can cause cramps, dizziness, low energy.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Heart &amp; arteries, kidneys, brain (stroke risk).</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Trans fat</h3>
+        <div class="line"><span class="tag hi">High intake</span><span class="txt">Uniquely bad — raises LDL <em>and</em> lowers HDL at the same time. No safe level; WHO recommends &lt;1% of daily calories. Mostly from partially hydrogenated oils, fried packaged snacks, some margarines &amp; creamers.</span></div>
+        <div class="line"><span class="tag lo">Low intake</span><span class="txt">The clear goal — closer to zero, the better. Choose oils declaring 0g trans fat; avoid foods listing "partially hydrogenated" oil.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Heart &amp; arteries (severely), inflammation, insulin sensitivity.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Vitamin A</h3>
+        <div class="line"><span class="tag lo">High intake</span><span class="txt">Vision (especially in low light), immune defence, skin, and cell growth. Comes two ways: <b>retinol</b> from animal foods, absorbed directly, and <b>beta-carotene</b> from orange and dark-green plants, which the body converts as needed. Best sources: cow liver (9442µg — extreme), red palm oil, carrot, ugu, spinach, tatashe.</span></div>
+        <div class="line"><span class="tag hi">Low intake</span><span class="txt">Night blindness first, then dry eyes and — untreated — permanent blindness. Still one of the leading causes of preventable childhood blindness worldwide. Also weakens immunity and skin repair.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Eyes, immunity, skin, growth. <b>Two cautions:</b> it is fat-soluble, so greens need a little oil for it to be absorbed; and retinol from liver can reach toxic levels — a single 100g portion is several days&rsquo; worth, which is why liver is an occasional food and why pregnant women are told to limit it. Beta-carotene from plants carries no such risk.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Vitamin B1</h3>
+        <div class="line"><span class="tag lo">High intake</span><span class="txt">Thiamine — converts carbohydrate into usable energy, so the more carbohydrate a diet carries, the more it needs. Also required for nerve function. Best sources: <b>pistachios, oats, groundnuts</b>, whole grains, beans.</span></div>
+        <div class="line"><span class="tag hi">Low intake</span><span class="txt">Fatigue, irritability, nerve pain and numbness; severe deficiency is beriberi. Two classic causes: <b>polished white rice</b>, since milling strips the thiamine-rich bran, and heavy alcohol use, which blocks absorption.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Energy metabolism, nerves, heart. <b>The loop that matters:</b> a diet built on refined carbs raises the thiamine requirement while removing the main source. Beans, groundnuts and whole grains alongside close it.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Vitamin B6</h3>
+        <div class="line"><span class="tag lo">High intake</span><span class="txt">Pyridoxine — runs amino acid metabolism, builds haemoglobin, and makes serotonin, dopamine and GABA, so it sits directly under mood and sleep. Also helps clear homocysteine alongside folate and B12. Best sources: <b>pistachios (1.12mg), cow liver, salmon, chicken, banana, potato</b>.</span></div>
+        <div class="line"><span class="tag hi">Low intake</span><span class="txt">Anaemia, cracked lips and sore tongue, weakened immunity, low mood, irritability and in severe cases confusion or seizures.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Blood, brain chemistry, immunity, homocysteine. Unusually for a water-soluble vitamin, <b>very high supplemental doses cause nerve damage</b> — food amounts never do, but B6 supplements above ~100mg a day are genuinely risky.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Vitamin B12</h3>
+        <div class="line"><span class="tag lo">High intake</span><span class="txt">Builds red blood cells, maintains the myelin sheath around nerves, and works with folate to clear homocysteine. <b>It is made by bacteria, not by plants or animals</b> — animals accumulate it, plants never do. So it is the one nutrient in this table with a hard dividing line: every animal food has some, and <b>every plant food is a true zero</b>, not a small number. Densest sources by far are offal (cow liver 70µg, kidney 27µg) and oily fish (Titus 19µg, herring 14µg, sardines 9µg).</span></div>
+        <div class="line"><span class="tag hi">Low intake</span><span class="txt">Megaloblastic anaemia and — more seriously — nerve damage that can become permanent: numbness, tingling, poor balance, memory and mood changes. Deficiency builds slowly because the liver stores years' worth, so symptoms often appear long after intake drops. Highest risk: strict vegetarians and vegans, older adults (absorption falls with age), and anyone on long-term metformin or acid-reducing drugs.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Blood, nerves, brain, DNA synthesis. Adults need ~2.4µg a day, so a single portion of fish or a little offal each week covers it comfortably. <b>Anyone eating no animal food at all needs a supplement or fortified food</b> — there is no plant workaround, and this is the one deficiency a plant-based diet cannot solve with better food choices.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Vitamin C</h3>
+        <div class="line"><span class="tag lo">High intake</span><span class="txt">Builds collagen — the scaffolding of skin, blood vessels, gums and healing wounds — and works as the body's main water-soluble antioxidant. It also multiplies iron absorption from plant sources several-fold, so citrus or peppers eaten alongside beans or greens pulls far more iron out of them. Best sources: guava (228mg, more than three oranges), peppers (ata rodo 144mg, tatashe 128mg), agbalumo, kiwi, pawpaw, citrus.</span></div>
+        <div class="line"><span class="tag hi">Low intake</span><span class="txt">Slow wound healing, bleeding gums, easy bruising, fatigue; severe deficiency is scurvy. Humans are among the few mammals that can't make their own, so it has to come from food daily — the body doesn't store it.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Skin &amp; collagen, immune function, blood vessels, iron absorption. <b>Heat and water destroy it</b> — boiling loses the most, and long-simmered soups lose more than raw or briefly-cooked vegetables. The numbers here are for the food as listed, so a raw pepper delivers far more than the same pepper after an hour in a pot.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Vitamin D</h3>
+        <div class="line"><span class="tag lo">High intake</span><span class="txt">Controls calcium absorption — without it dietary calcium is largely wasted, so it underwrites everything the calcium column promises. Also supports immunity and muscle. Food sources are few: <b>oily fish (herring 16µg, Titus 14µg, salmon 13µg)</b>, egg yolk, liver.</span></div>
+        <div class="line"><span class="tag hi">Low intake</span><span class="txt">Weak bones (rickets in children, osteomalacia in adults), muscle weakness, frequent infections, low mood. Widespread even in sunny countries — indoor work and covering up both cut what the skin makes.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Bones, calcium absorption, immunity, muscle. <b>Mostly not a food nutrient:</b> skin makes it from sunlight, and 15–30 minutes of midday sun on arms and face does more than any meal in this table. Deeper skin tone needs longer exposure for the same result.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Vitamin E</h3>
+        <div class="line"><span class="tag lo">High intake</span><span class="txt">The main fat-soluble antioxidant — it protects cell membranes and circulating fats from oxidation, which matters because oxidised LDL is what damages artery walls. Overwhelmingly a plant-oil and seed nutrient: <b>sunflower oil (41mg)</b>, groundnuts, hazelnuts, egusi, palm oil.</span></div>
+        <div class="line"><span class="tag hi">Low intake</span><span class="txt">Rare from diet alone. Shortfall shows as nerve damage, muscle weakness and poor immune response; the real risk sits with fat-malabsorption conditions rather than ordinary eating.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Cell membranes, arteries, nerves, immunity. Requirement rises with polyunsaturated fat intake — conveniently the oils highest in PUFA are also highest in vitamin E, so they arrive together.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Vitamin K1</h3>
+        <div class="line"><span class="tag lo">High intake</span><span class="txt">Phylloquinone — the plant form. Essential for blood clotting, and it activates the proteins that steer calcium into bone rather than into artery walls, so it works alongside calcium rather than competing with it. Overwhelmingly a leafy-green nutrient: spinach, ewedu, ugu, bitterleaf, cabbage, okra. Fat-soluble, so cooking greens in a little oil improves absorption.</span></div>
+        <div class="line"><span class="tag hi">Low intake</span><span class="txt">Easy bruising and slow clotting; long-term shortfall is linked to lower bone density and more arterial calcification.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Blood clotting, bones, arteries. <b>One caution:</b> anyone on warfarin should keep intake <i>steady</i> rather than high or low — the drug works by blocking vitamin K, so swings in leafy greens swing the dose. Newer anticoagulants aren't affected.</span></div>
+      </div>
+
+      <div class="ncard">
+        <h3>Zinc</h3>
+        <div class="line"><span class="tag lo">High intake</span><span class="txt">Runs over 300 enzymes: immune response, wound healing, taste and smell, testosterone production, and DNA synthesis. Best sources: <b>egusi (10mg)</b>, crab, red meat, gizzard, pumpkin seeds, cashews.</span></div>
+        <div class="line"><span class="tag hi">Low intake</span><span class="txt">Frequent infections, slow wound healing, hair loss, loss of taste, poor appetite, delayed growth in children. Common where diets lean on grains and legumes, because phytates bind zinc and cut absorption.</span></div>
+        <div class="line"><span class="tag org">Affects</span><span class="txt">Immunity, healing, growth, fertility, taste. Animal zinc absorbs far better than plant zinc — soaking, sprouting and fermenting legumes and grains reduces phytates and helps.</span></div>
+      </div>
+    </div>
+  </header>
+
+
+
+  <div class="searchrow"><input class="search" id="search"  /></div>
+
+  <section class="mylist-section hidden" id="mylist-section" hidden>
+    <div class="mylist-header">
+      <span class="mylist-title">★ My List</span>
+      <span class="mylist-count" id="mylist-count"></span>
+    </div>
+    <div class="tablewrap mylist-wrap"><div class="scroll">
+      <table id="mylist-tbl">
+        <thead>
+          <tr>
+            <th data-k="name" class="active" data-t="str">Food (100g) <span class="arrow">▲</span></th>
+            <th data-k="kcal" data-t="num">Calories <span class="arrow"></span></th>
+            <th data-k="sodium" data-t="num">Sodium mg <span class="arrow"></span></th>
+            <th data-k="nitr" data-t="num">Nitrate mg <span class="arrow"></span></th>
+            <th data-k="potk" data-t="num">Potassium mg <span class="arrow"></span></th>
+            <th data-k="magn" data-t="num">Magnesium mg <span class="arrow"></span></th>
+            <th data-k="calc" data-t="num">Calcium mg <span class="arrow"></span></th>
+            <th data-k="solfib" data-t="num">Fibre (soluble) g <span class="arrow"></span></th>
+            <th data-k="insfib" data-t="num">Fibre (insoluble) g <span class="arrow"></span></th>
+            <th data-k="aox" data-t="num">Antiox. ORAC <span class="arrow"></span></th>
+            <th data-k="vita" data-t="num">Vitamin A µg <span class="arrow"></span></th>
+            <th data-k="vitb1" data-t="num">Vitamin B1 mg <span class="arrow"></span></th>
+            <th data-k="vitb6" data-t="num">Vitamin B6 mg <span class="arrow"></span></th>
+            <th data-k="folate" data-t="num">Folate µg <span class="arrow"></span></th>
+            <th data-k="vitb12" data-t="num">Vitamin B12 µg <span class="arrow"></span></th>
+            <th data-k="vitc" data-t="num">Vitamin C mg <span class="arrow"></span></th>
+            <th data-k="vitd" data-t="num">Vitamin D µg <span class="arrow"></span></th>
+            <th data-k="vite" data-t="num">Vitamin E mg <span class="arrow"></span></th>
+            <th data-k="vitk" data-t="num">Vitamin K1 µg <span class="arrow"></span></th>
+            <th data-k="protein" data-t="num">Protein g <span class="arrow"></span></th>
+            <th data-k="fruct" data-t="num">Fructose g <span class="arrow"></span></th>
+            <th data-k="trans" data-t="num">Trans fat g <span class="arrow"></span></th>
+            <th data-k="satfat" data-t="num">Sat. fat g <span class="arrow"></span></th>
+            <th data-k="omega6" data-t="num">Omega-6 g <span class="arrow"></span></th>
+            <th data-k="dens" data-t="num">kcal / g <span class="arrow"></span></th>
+            <th data-k="gi" data-t="num">Glycemic index <span class="arrow"></span></th>
+            <th data-k="chol" data-t="num">Cholesterol mg <span class="arrow"></span></th>
+            <th data-k="purine" data-t="num">Purines mg <span class="arrow"></span></th>
+            <th data-k="phos" data-t="num">Phosphorus mg <span class="arrow"></span></th>
+            <th data-k="iron" data-t="num">Iron mg <span class="arrow"></span></th>
+            <th data-k="omega3" data-t="num">Omega-3 g <span class="arrow"></span></th>
+            <th data-k="mang" data-t="num">Manganese mg <span class="arrow"></span></th>
+            <th data-k="choline" data-t="num">Choline mg <span class="arrow"></span></th>
+            <th data-k="zinc" data-t="num">Zinc mg <span class="arrow"></span></th>
+            <th data-k="selen" data-t="num">Selenium µg <span class="arrow"></span></th>
+            <th data-k="iodine" data-t="num">Iodine µg <span class="arrow"></span></th>
+            <th data-k="mufa" data-t="num">MUFA g <span class="arrow"></span></th>
+            <th data-k="merc" data-t="num">Mercury µg <span class="arrow"></span></th>
+            <th data-k="oxal" data-t="num">Oxalate mg <span class="arrow"></span></th>
+          </tr>
+        </thead>
+        <tbody id="mylist-body"></tbody>
+      </table>
+    </div></div>
+  </section>
+
+  <section class="milk-section hidden" id="milk-section">
+    <div class="milk-header">
+      <span class="milk-title">Milk &amp; yoghurt</span>
+      <span class="milk-count" id="milk-count"></span>
+    </div>
+    <div class="tablewrap milk-wrap"><div class="scroll">
+      <table id="milk-tbl">
+        <thead>
+          <tr>
+            <th data-k="name" class="active" data-t="str">Milk <span class="arrow">▲</span></th>
+              <th data-k="size" data-t="num">Serving <span class="arrow"></span></th>
+            <th data-k="fat" data-t="str">Fat level <span class="arrow"></span></th>
+            <th data-k="totfat" data-t="num">Total fat g <span class="arrow"></span></th>
+            <th data-k="carb" data-t="num">Carbs g <span class="arrow"></span></th>
+            <th data-k="sugar" data-t="num">Sugar g <span class="arrow"></span></th>
+            <th data-k="kcal" data-t="num">Calories <span class="arrow"></span></th>
+            <th data-k="sodium" data-t="num">Sodium mg <span class="arrow"></span></th>
+            <th data-k="potk" data-t="num">Potassium mg <span class="arrow"></span></th>
+            <th data-k="calc" data-t="num">Calcium mg <span class="arrow"></span></th>
+            <th data-k="vita" data-t="num">Vitamin A µg <span class="arrow"></span></th>
+            <th data-k="vitb1" data-t="num">Vitamin B1 mg <span class="arrow"></span></th>
+            <th data-k="vitb6" data-t="num">Vitamin B6 mg <span class="arrow"></span></th>
+            <th data-k="folate" data-t="num">Folate µg <span class="arrow"></span></th>
+            <th data-k="vitb12" data-t="num">Vitamin B12 µg <span class="arrow"></span></th>
+            <th data-k="vitc" data-t="num">Vitamin C mg <span class="arrow"></span></th>
+            <th data-k="vitd" data-t="num">Vitamin D µg <span class="arrow"></span></th>
+            <th data-k="vite" data-t="num">Vitamin E mg <span class="arrow"></span></th>
+            <th data-k="vitk" data-t="num">Vitamin K1 µg <span class="arrow"></span></th>
+            <th data-k="protein" data-t="num">Protein g <span class="arrow"></span></th>
+            <th data-k="trans" data-t="num">Trans fat g <span class="arrow"></span></th>
+            <th data-k="satfat" data-t="num">Sat. fat g <span class="arrow"></span></th>
+            <th data-k="chol" data-t="num">Cholesterol mg <span class="arrow"></span></th>
+            <th data-k="phos" data-t="num">Phosphorus mg <span class="arrow"></span></th>
+            <th data-k="iron" data-t="num">Iron mg <span class="arrow"></span></th>
+            <th data-k="mang" data-t="num">Manganese mg <span class="arrow"></span></th>
+            <th data-k="choline" data-t="num">Choline mg <span class="arrow"></span></th>
+            <th data-k="zinc" data-t="num">Zinc mg <span class="arrow"></span></th>
+            <th data-k="selen" data-t="num">Selenium µg <span class="arrow"></span></th>
+            <th data-k="iodine" data-t="num">Iodine µg <span class="arrow"></span></th>
+            <th data-k="mufa" data-t="num">MUFA g <span class="arrow"></span></th>
+          </tr>
+        </thead>
+        <tbody id="milk-body"></tbody>
+      </table>
+    </div></div>
+  </section>
+
+  <section class="spice-section hidden" id="spice-section">
+    <div class="spice-header">
+      <span class="spice-title">Spices, herbs &amp; cubes</span>
+      <span class="spice-count" id="spice-count"></span>
+    </div>
+    <div class="spice-note">
+      Also <b>per 100&nbsp;g</b>, the same scale as the main table — but realistic use is <b>0.5–3&nbsp;g per dish</b> for spices and <b>3–4&nbsp;g per cube</b> for bouillon, so divide accordingly. A teaspoon of cinnamon (~2.5&nbsp;g) gives you ~25&nbsp;mg calcium, not 1002. A Maggi cube gives ~810&nbsp;mg sodium, not 24,270. The exception: <b>sodium in cubes &amp; salt</b> is concentrated enough that even small portions dominate the day's intake.
+    </div>
+    <div class="tablewrap spice-wrap"><div class="scroll">
+      <table id="spice-tbl">
+        <thead>
+          <tr>
+            <th data-k="name" class="active" data-t="str">Item (100g) <span class="arrow">▲</span></th>
+            <th data-k="kcal" data-t="num">Calories <span class="arrow"></span></th>
+            <th data-k="sodium" data-t="num">Sodium mg <span class="arrow"></span></th>
+            <th data-k="nitr" data-t="num">Nitrate mg <span class="arrow"></span></th>
+            <th data-k="potk" data-t="num">Potassium mg <span class="arrow"></span></th>
+            <th data-k="magn" data-t="num">Magnesium mg <span class="arrow"></span></th>
+            <th data-k="calc" data-t="num">Calcium mg <span class="arrow"></span></th>
+            <th data-k="solfib" data-t="num">Fibre (soluble) g <span class="arrow"></span></th>
+            <th data-k="insfib" data-t="num">Fibre (insoluble) g <span class="arrow"></span></th>
+            <th data-k="aox" data-t="num">Antiox. ORAC <span class="arrow"></span></th>
+            <th data-k="vita" data-t="num">Vitamin A µg <span class="arrow"></span></th>
+            <th data-k="vitb1" data-t="num">Vitamin B1 mg <span class="arrow"></span></th>
+            <th data-k="vitb6" data-t="num">Vitamin B6 mg <span class="arrow"></span></th>
+            <th data-k="folate" data-t="num">Folate µg <span class="arrow"></span></th>
+            <th data-k="vitb12" data-t="num">Vitamin B12 µg <span class="arrow"></span></th>
+            <th data-k="vitc" data-t="num">Vitamin C mg <span class="arrow"></span></th>
+            <th data-k="vitd" data-t="num">Vitamin D µg <span class="arrow"></span></th>
+            <th data-k="vite" data-t="num">Vitamin E mg <span class="arrow"></span></th>
+            <th data-k="vitk" data-t="num">Vitamin K1 µg <span class="arrow"></span></th>
+            <th data-k="protein" data-t="num">Protein g <span class="arrow"></span></th>
+            <th data-k="fruct" data-t="num">Fructose g <span class="arrow"></span></th>
+            <th data-k="trans" data-t="num">Trans fat g <span class="arrow"></span></th>
+            <th data-k="satfat" data-t="num">Sat. fat g <span class="arrow"></span></th>
+            <th data-k="omega6" data-t="num">Omega-6 g <span class="arrow"></span></th>
+            <th data-k="dens" data-t="num">kcal / g <span class="arrow"></span></th>
+            <th data-k="gi" data-t="num">Glycemic index <span class="arrow"></span></th>
+            <th data-k="chol" data-t="num">Cholesterol mg <span class="arrow"></span></th>
+            <th data-k="purine" data-t="num">Purines mg <span class="arrow"></span></th>
+            <th data-k="phos" data-t="num">Phosphorus mg <span class="arrow"></span></th>
+            <th data-k="iron" data-t="num">Iron mg <span class="arrow"></span></th>
+            <th data-k="omega3" data-t="num">Omega-3 g <span class="arrow"></span></th>
+            <th data-k="mang" data-t="num">Manganese mg <span class="arrow"></span></th>
+            <th data-k="choline" data-t="num">Choline mg <span class="arrow"></span></th>
+            <th data-k="zinc" data-t="num">Zinc mg <span class="arrow"></span></th>
+            <th data-k="selen" data-t="num">Selenium µg <span class="arrow"></span></th>
+            <th data-k="iodine" data-t="num">Iodine µg <span class="arrow"></span></th>
+            <th data-k="mufa" data-t="num">MUFA g <span class="arrow"></span></th>
+            <th data-k="merc" data-t="num">Mercury µg <span class="arrow"></span></th>
+            <th data-k="oxal" data-t="num">Oxalate mg <span class="arrow"></span></th>
+          </tr>
+        </thead>
+        <tbody id="spice-body"></tbody>
+      </table>
+    </div></div>
+  </section>
+  <section class="food-section" id="food-section">
+  <div class="tablewrap"><div class="scroll">
+    <table id="tbl">
+      <thead>
+        <tr>
+          <th data-k="name" class="active" data-t="str">Food (100g) <span class="arrow">▲</span></th>
+          <th data-k="kcal" data-t="num">Calories <span class="arrow"></span></th>
+          <th data-k="sodium" data-t="num">Sodium mg <span class="arrow"></span></th>
+          <th data-k="nitr" data-t="num">Nitrate mg <span class="arrow"></span></th>
+          <th data-k="potk" data-t="num">Potassium mg <span class="arrow"></span></th>
+          <th data-k="magn" data-t="num">Magnesium mg <span class="arrow"></span></th>
+          <th data-k="calc" data-t="num">Calcium mg <span class="arrow"></span></th>
+          <th data-k="solfib" data-t="num">Fibre (soluble) g <span class="arrow"></span></th>
+          <th data-k="insfib" data-t="num">Fibre (insoluble) g <span class="arrow"></span></th>
+          <th data-k="aox" data-t="num">Antiox. ORAC <span class="arrow"></span></th>
+          <th data-k="vita" data-t="num">Vitamin A µg <span class="arrow"></span></th>
+          <th data-k="vitb1" data-t="num">Vitamin B1 mg <span class="arrow"></span></th>
+          <th data-k="vitb6" data-t="num">Vitamin B6 mg <span class="arrow"></span></th>
+          <th data-k="folate" data-t="num">Folate µg <span class="arrow"></span></th>
+          <th data-k="vitb12" data-t="num">Vitamin B12 µg <span class="arrow"></span></th>
+          <th data-k="vitc" data-t="num">Vitamin C mg <span class="arrow"></span></th>
+          <th data-k="vitd" data-t="num">Vitamin D µg <span class="arrow"></span></th>
+          <th data-k="vite" data-t="num">Vitamin E mg <span class="arrow"></span></th>
+          <th data-k="vitk" data-t="num">Vitamin K1 µg <span class="arrow"></span></th>
+          <th data-k="protein" data-t="num">Protein g <span class="arrow"></span></th>
+          <th data-k="fruct" data-t="num">Fructose g <span class="arrow"></span></th>
+          <th data-k="trans" data-t="num">Trans fat g <span class="arrow"></span></th>
+          <th data-k="satfat" data-t="num">Sat. fat g <span class="arrow"></span></th>
+          <th data-k="omega6" data-t="num">Omega-6 g <span class="arrow"></span></th>
+          <th data-k="dens" data-t="num">kcal / g <span class="arrow"></span></th>
+          <th data-k="gi" data-t="num">Glycemic index <span class="arrow"></span></th>
+          <th data-k="chol" data-t="num">Cholesterol mg <span class="arrow"></span></th>
+          <th data-k="purine" data-t="num">Purines mg <span class="arrow"></span></th>
+          <th data-k="phos" data-t="num">Phosphorus mg <span class="arrow"></span></th>
+          <th data-k="iron" data-t="num">Iron mg <span class="arrow"></span></th>
+          <th data-k="omega3" data-t="num">Omega-3 g <span class="arrow"></span></th>
+          <th data-k="mang" data-t="num">Manganese mg <span class="arrow"></span></th>
+          <th data-k="choline" data-t="num">Choline mg <span class="arrow"></span></th>
+          <th data-k="zinc" data-t="num">Zinc mg <span class="arrow"></span></th>
+          <th data-k="selen" data-t="num">Selenium µg <span class="arrow"></span></th>
+          <th data-k="iodine" data-t="num">Iodine µg <span class="arrow"></span></th>
+          <th data-k="mufa" data-t="num">MUFA g <span class="arrow"></span></th>
+          <th data-k="merc" data-t="num">Mercury µg <span class="arrow"></span></th>
+          <th data-k="oxal" data-t="num">Oxalate mg <span class="arrow"></span></th>
+        </tr>
+      </thead>
+      <tbody id="body"></tbody>
+    </table>
+  </div></div>
+  </section>
+
+
+</div>
+
+<script src="food-table.js?v=44" defer></script>
+</body>
+</html>

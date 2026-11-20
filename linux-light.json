@@ -1,0 +1,2003 @@
+{
+  "1": {
+    "name": "Linux",
+    "sections": [
+      {
+        "name": "Access Control & The Linux Kernel",
+        "videos": [
+          {
+            "channel_name": "KodeKloud",
+            "name": "Managing Users and Groups in Linux",
+            "channel_link": "https://www.youtube.com/@KodeKloud",
+            "link": "https://www.youtube.com/watch?v=bI3Ta0-7xCw",
+            "minutes": "18",
+            "description": "18 min · creating, changing and deleting local user accounts — the defaults useradd applies and the file that sets them, giving an account a password, choosing its numeric ID, moving and renaming its home directory, and making a password expire every 30 days or never — then groups: the primary group made with each account against secondary ones such as wheel or docker, adding and removing members, changing a user's primary group, and creating and deleting groups. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "Travis Media",
+            "name": "Linux File Permissions in 5 Minutes",
+            "channel_link": "https://www.youtube.com/@TravisMedia",
+            "link": "https://www.youtube.com/watch?v=LnKoncbQBsM",
+            "minutes": "6",
+            "description": "6 min · reading the permission string from ls -l — owner, group and everyone else, r, w and x, and what each means for a directory — then chown to change the owner and group, chmod with the 4-2-1 numbers (644, 774), and common settings such as 400 for an SSH key pair. From 2023",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "How sudo Actually Works (It's Not What You Think)",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=4y8vxvNg_bI",
+            "minutes": "4",
+            "description": "4 min · what sudo really does — it asks for your own password, not root's (root needn't even have one), checks the sudoers rules (user, hosts, target user and group, commands; % marks a group, NOPASSWD skips the prompt), authenticates you through PAM, then switches the effective user ID to run the command; why to edit sudoers only with visudo, and the timestamp that skips the prompt for 15 minutes. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "On Abr",
+            "name": "Do You Really Know Linux File Permissions? (rwx, 755, umask, setuid, sticky bit)",
+            "channel_link": "https://www.youtube.com/@onabrdev",
+            "link": "https://www.youtube.com/watch?v=TEqIaisIZT8",
+            "minutes": "12",
+            "description": "12 min · all twelve permission bits — reading ls -l, rwx as the numbers 4, 2 and 1, chmod with letters, the order in which the kernel checks owner, group and others, what r, w and x mean on a directory, how umask really sets the defaults (it switches bits off rather than subtracting, so 033 gives 644), and the special bits: setuid, which is how passwd can write /etc/shadow, setgid, and the sticky bit on /tmp. Every command shown comes from a real terminal session. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Let Study Anything",
+            "name": "Access Permission (Linux: SetUID, SetGID, Sticky Bit)",
+            "channel_link": "https://www.youtube.com/@letstudyanything4710",
+            "link": "https://www.youtube.com/watch?v=PTOkuVfCXtA",
+            "minutes": "6",
+            "description": "6 min · a lesson from Google's IT Support course on Coursera, re-uploaded by this channel, on the three special permission bits — setuid, the s in place of x that lets passwd write /etc/shadow as root, set with u+s or a leading 4; setgid, which runs a program with its group's permissions (a leading 2); and the sticky bit on /tmp, where anyone can add files but only the owner or root can delete them (+t or a leading 1). From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "SELinux vs AppArmor",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=eF_hNMOheQQ",
+            "minutes": "4",
+            "description": "4 min · the two mandatory access control systems side by side — ordinary Linux permissions let a file's owner decide, while mandatory access control enforces rules even root-run processes must obey; SELinux labels every file, process and port with a security context and allows only what its policy lists (the default on Red Hat and Fedora, debugged through the audit log with audit2why), while AppArmor gives each program a profile of the paths it may touch (the default on Ubuntu, Debian and SUSE), simpler to write but blind to a moved or renamed file. Both have a learning mode, and the advice is to learn whichever your distribution ships. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "JOK3Rxvi Tutorials",
+            "name": "Linux Passwd & Shadow File Explained",
+            "channel_link": "https://www.youtube.com/@jok3rxvitutorials979",
+            "link": "https://www.youtube.com/watch?v=rBavEPlk7LM",
+            "minutes": "4",
+            "description": "4 min · the two files behind user accounts and password expiry, opened side by side — /etc/passwd's username, the x where the password used to be, user and group IDs, comment, home directory and login shell, then /etc/shadow's hash, with $6$ marking SHA-512, and the ageing fields after it — and why passwd is readable by everyone while shadow is kept from ordinary users, since a weak hash can be cracked. He calls two of the ageing fields the minimum and maximum characters allowed; they are the minimum and maximum days between password changes. From 2018",
+            "type": "video"
+          },
+          {
+            "channel_name": "Mr.PiwPiew",
+            "name": "Every Linux file system",
+            "channel_link": "https://www.youtube.com/@Mr.PiwPiew",
+            "link": "https://www.youtube.com/watch?v=9LQWhsnmeuY",
+            "minutes": "3",
+            "description": "3 min · the Linux filesystems side by side, in three minutes",
+            "type": "video"
+          },
+          {
+            "channel_name": "Shawn Powers",
+            "name": "Linux PIPES and REDIRECTS",
+            "channel_link": "https://www.youtube.com/@shawnpowers",
+            "link": "https://www.youtube.com/watch?v=Kdr0OrCPtyk",
+            "minutes": "17",
+            "description": "17 min · STDIN, STDOUT and STDERR: saving a command's output to a file, hiding or logging its errors, and chaining commands together with pipes and redirects. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "VFS: How Linux Talks to Every Filesystem",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=0or9Y8DMtyo",
+            "minutes": "3",
+            "description": "3 min · the virtual filesystem layer that lets the same cat work on ext4, XFS, Btrfs, NFS or /proc — a common set of operations every filesystem implements, the superblock, inode, dentry and file objects, and how open walks a path through the dentry cache to the right filesystem driver. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "The Kernel Log",
+            "name": "The Kernel's Filing Cabinet: Linux VFS Explained",
+            "channel_link": "https://www.youtube.com/@TheKernelLog",
+            "link": "https://www.youtube.com/watch?v=Zg2hnymCg2Y",
+            "minutes": "6",
+            "description": "6 min · how the Virtual File System gives USB sticks, network drives and disks one interface, and why \"everything is a file\". From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "How Journaling Saves Your Filesystem From a Crash",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=8dlhZABsE8o",
+            "minutes": "3",
+            "description": "3 min · why a crash between writing a file's data and updating its metadata used to corrupt a filesystem, and how a journal fixes it — log the change, make it, then clear the entry, so recovery after a power cut replays the journal in seconds instead of a long fsck. ext4 and XFS work this way; the video lists Btrfs too, though Btrfs gets the same safety from copy-on-write rather than a journal. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "Hard Links vs Symlinks",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=c6xk8jwoeWk",
+            "minutes": "3",
+            "description": "3 min · two ways to give a file another name — a hard link is a second name for the same inode, so the data lives until the last name is deleted, but it can't cross filesystems or point at a directory; a symlink is a small file holding a path, which can do both but breaks if its target moves. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "Pipes: The Plumbing That Built Unix",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=GvdCM9Z-K4I",
+            "minutes": "3",
+            "description": "3 min · the pipe's history (Doug McIlroy's request, built by Ken Thompson in an evening in 1973) and how it works — standard input, output and error, the kernel's 64 KB pipe buffer that makes a fast writer wait for a slow reader, chained pipelines, and the do-one-thing-well idea behind them. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Fun Experiment With CAP_DAC_OVERRIDE Capability",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=_Wh6-RiqLOQ",
+            "minutes": "2",
+            "description": "2 min · a directory you own whose file names you can list but can't enter or read — what the permission bits are doing there, and how a process holding CAP_DAC_OVERRIDE skips those checks entirely. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "SetPriv: The Linux Command Most People Don't Know",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=SBbBx1DW3TE",
+            "minutes": "4",
+            "description": "4 min · giving a program one capability without making it root — a Python server that needs port 112, why setcap cap_net_bind_service on the system-wide python3 is risky (any script could then run a fake SSH server), why putting it on the script itself fails (the kernel checks the interpreter), and setpriv, which starts the process as an ordinary user while passing that one capability on as an ambient capability, with nothing changed on disk. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "I Blocked Dangerous Linux Syscalls with Seccomp",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=r8AjsbKvBZg",
+            "minutes": "7",
+            "description": "7 min · seccomp, the kernel filter that decides which system calls a process may make — strace to see the syscalls a command uses, firejail's --seccomp.drop to block execve (and why a shell built-in like pwd still runs) or unlinkat so that even a file you own can't be deleted, returning a chosen error such as ENOENT instead, then a small C wrapper using libseccomp that blocks clone with CLONE_VM, sets no_new_privs and starts bash, which stops the Copy Fail root exploit. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "From GRUB to Login: How Linux Actually Boots",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=3JBpB4s_RcQ",
+            "minutes": "4",
+            "description": "4 min · the hand-offs from power button to login — firmware (BIOS or UEFI) and its power-on self test, GRUB loading the compressed kernel and the initramfs that holds the drivers needed to mount the real root, the kernel probing hardware and mounting root, then starting systemd as the first process. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "The Kernel Log",
+            "name": "How Linux Multitasks: The Evolution of CPU Scheduling",
+            "channel_link": "https://www.youtube.com/@TheKernelLog",
+            "link": "https://www.youtube.com/watch?v=4n5_fnsFS_o",
+            "minutes": "9",
+            "description": "9 min · how the CPU scheduler runs many tasks on few cores, from context switching to CFS and its replacement, EEVDF. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "The Kernel Log",
+            "name": "The Illusion of Memory: Linux Kernel Memory Management Explained",
+            "channel_link": "https://www.youtube.com/@TheKernelLog",
+            "link": "https://www.youtube.com/watch?v=ByAmxgZOTVg",
+            "minutes": "9",
+            "description": "9 min · virtual memory and how the kernel shares and optimises memory: de-duplication with KSM, NUMA and GPUs, and DAMON for monitoring access patterns. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "The Kernel Log",
+            "name": "Copy-on-Write (CoW) Deep Dive: Page Faults, Forks, and Memory Optimization",
+            "channel_link": "https://www.youtube.com/@TheKernelLog",
+            "link": "https://www.youtube.com/watch?v=DSs9M35zY7k",
+            "minutes": "6",
+            "description": "6 min · why copying a file or starting a VM is near-instant: copy-on-write, page faults used as a trigger, and forks. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "mmap: How a File Becomes Memory",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=YZfssI2ggmg",
+            "minutes": "4",
+            "description": "4 min · mapping a file into memory instead of reading it into a buffer — skipping the extra copy out of the page cache, page faults loading 4 KB pages only when they're touched (demand paging), so a 10 GB file costs only the pages you actually read. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "How Swap Works (and Why It Kills Performance)",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=_ALXO8pz-CQ",
+            "minutes": "3",
+            "description": "3 min · swap as disk-backed overflow for RAM — inactive pages written out to a swap partition or file, why reading them back is about a thousand times slower even from an SSD, and what helps: more RAM, watching memory in top or htop, lowering swappiness, or compressed swap with zram. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "The OOM Killer: How Linux Decides What Dies",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=vtTxr758fKc",
+            "minutes": "5",
+            "description": "5 min · what happens when RAM and swap run out — memory overcommit promising more than exists, reclaim and swap tried first, then the OOM killer scoring every process by memory use (/proc/<pid>/oom_score, adjustable through oom_score_adj) and killing the highest with SIGKILL so the rest keep running. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "The Kernel Log",
+            "name": "eBPF Explained: How to Safely Program the Linux Kernel",
+            "channel_link": "https://www.youtube.com/@TheKernelLog",
+            "link": "https://www.youtube.com/watch?v=z5L5uUto9Oc",
+            "minutes": "8",
+            "description": "8 min · reprogramming the kernel without recompiling or loading risky modules, from the original Berkeley Packet Filter to eBPF, and how the verifier keeps it safe. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "The Kernel Log",
+            "name": "eBPF: The Linux Kernel Superpower You Need to Know",
+            "channel_link": "https://www.youtube.com/@TheKernelLog",
+            "link": "https://www.youtube.com/watch?v=KvF6oPpkgCc",
+            "minutes": "9",
+            "description": "9 min · running sandboxed programs inside the kernel on events, for observability and XDP networking, and why the verifier makes it safe. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "The Kernel Log",
+            "name": "Rust in the Linux Kernel: Why After 30 Years of C?",
+            "channel_link": "https://www.youtube.com/@TheKernelLog",
+            "link": "https://www.youtube.com/watch?v=d84a1JD36b8",
+            "minutes": "7",
+            "description": "7 min · why the kernel added Rust as a second language in 6.1, how unsafe C bridges to safe Rust, and the steps to build a kernel with Rust support. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "KVM vs QEMU",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=LfB87xr9xW0",
+            "minutes": "2",
+            "description": "2 min · the two halves of a Linux virtual machine — KVM, a kernel module that runs guests at near-native speed using Intel VT-x or AMD-V, and QEMU, which emulates the devices (and whole other CPU architectures when needed), working together under tools like virt-manager. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "The Kernel Log",
+            "name": "KVM Explained: How Linux Becomes a Hypervisor",
+            "channel_link": "https://www.youtube.com/@TheKernelLog",
+            "link": "https://www.youtube.com/watch?v=A3wFtfrCjxg",
+            "minutes": "7",
+            "description": "7 min · how the kernel itself becomes a bare-metal hypervisor through KVM, how KVM pairs with QEMU, and nested virtualization. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "BashLab",
+            "name": "Monitoring vs Observability — Why Knowing Something Is Broken Isn’t Enough",
+            "channel_link": "https://www.youtube.com/@shashankpai4879",
+            "link": "https://www.youtube.com/watch?v=YhUysTqrHFU",
+            "minutes": "5",
+            "description": "5 min · the difference between monitoring, which tells you something is broken, and observability, which lets you find out why. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "BashLab",
+            "name": "Why Observability Needed OpenTelemetry — The Missing Puzzle Piece",
+            "channel_link": "https://www.youtube.com/@shashankpai4879",
+            "link": "https://www.youtube.com/watch?v=ueidDb2L7Hs",
+            "minutes": "11",
+            "description": "11 min · why monitoring was fragmented before OpenTelemetry: every vendor had its own agents and formats, and how a common standard fixes that. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "BashLab",
+            "name": "🔥 Linux Performance Troubleshooting — Episode 1: The I/O Wait Nightmare",
+            "channel_link": "https://www.youtube.com/@shashankpai4879",
+            "link": "https://www.youtube.com/watch?v=Uniomqny3jw",
+            "minutes": "18",
+            "description": "18 min · a slow machine with a low CPU: why I/O wait is the bottleneck to look at, and how to find which disk and process causes it. From 2025",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Secure Shell",
+        "videos": [
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "SSH for Beginners: Everything You Need to Get Started",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=YS5Zh7KExvE",
+            "minutes": "88",
+            "description": "88 min · a full beginner's course on OpenSSH — what it is and the path a connection takes across the internet, the client, the ~/.ssh folder and known_hosts (and the warning you get when a server's host key changes, which can mean a man-in-the-middle), a client config file for short host names, then password logins against key pairs: making a key, why a passphrase protects a stolen key, what someone can do with a leaked private key, copying the public key into authorized_keys the manual way and the quick way, a separate key per client, and ssh-agent. Then the server side — the sshd service, its host keys, and turning password authentication off while testing before you log out — and troubleshooting with ssh -v, the log of failed login attempts, and the permissions ~/.ssh must have. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "3 Important Tweaks for Improving OpenSSH Security on Your Cloud Instance",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=xVW1fGRlRkE",
+            "minutes": "39",
+            "description": "39 min · three changes for a new cloud server, done live — creating your own user with sudo and then stopping root from logging in, switching to key-based logins (making the key, what is in the private and public halves, copying the public one over and testing it against password logins), and moving SSH to another port — plus letting only your own account log in over SSH, checking the logs when a change locks you out, and copying files with scp on the new port. From 2019",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "5 Must Have Tweaks to Secure OpenSSH",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=sBrAVQumqjs",
+            "minutes": "22",
+            "description": "22 min · the baseline — turning the SSH service off if you don't need it, moving it off port 22, stopping root from logging in once you have a sudo user, switching password logins off entirely in sshd_config, a firewall rule so only your addresses can reach it, and a hardware key on top. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "This Hidden Linux Feature Controls SSH Access",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=aee0aTsjP-Q",
+            "minutes": "5",
+            "description": "5 min · an SSH login that fails even though the SSH configuration looks right, traced to PAM — what PAM is, following the failure through it, and the pam_access module, which decides which users may log in and from where. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "SSH Hardening Options You've Never Heard Of",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=msiDeqs3vwc",
+            "minutes": "6",
+            "description": "6 min · options you can put in front of a key in ~/.ssh/authorized_keys to limit what that key may do — forcing it to run one command, refusing it a terminal with no-pty, accepting it only from certain IP addresses, and giving it an expiry time. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Securing your Cloud Server with Fail2ban",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=WMYVqUGMAHM",
+            "minutes": "41",
+            "description": "41 min · fail2ban, which watches log files and bans addresses that keep failing to log in — installing it on an Ubuntu cloud server, what it is for, configuring it in its own local file rather than the one updates replace, exempting your own address, jails, enabling the SSH jail (also when SSH is on another port) and one for Apache, why not to enable everything, reading its log, and unbanning an address. From 2019",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Resetting OpenSSH Host Keys (the easy method)",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=oAULun3KNaI",
+            "minutes": "23",
+            "description": "23 min · why every machine cloned from the same image needs its own SSH host keys — the duplicate host keys and machine-id a template passes on, then a systemd unit that clears the host keys so new ones are made on first boot, built into a Proxmox template. From 2021",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hussein Nasser",
+            "name": "SSH tunneling: local and remote port forwarding (by example)",
+            "channel_link": "https://www.youtube.com/@hnasr",
+            "link": "https://www.youtube.com/watch?v=N8f5zv9UUMI",
+            "minutes": "18",
+            "description": "18 min · local port forwarding: reaching a service a firewall blocks, such as a Postgres database on port 5432, through the SSH port the firewall does allow. SSH carries the traffic inside its own connection and hands it out on a port on your machine, so your client talks to localhost. Then remote port forwarding, which does the reverse and exposes a service on your machine to the far end, and the GatewayPorts setting it needs. From 2020",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Basic Tasks",
+        "videos": [
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Linux Crash Course - The grep Command",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=Tc_jntovCM0",
+            "minutes": "15",
+            "description": "15 min · grep from the ground up — piping cat into it to find the Port line in sshd_config, then running grep on a file directly, -v to leave matches out, -n for line numbers, -c for a count, -i to ignore case, searching several files at once, and -r to search a whole directory tree such as /var/log. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Linux Crash Course - The find command",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=skTiK_6DdqU",
+            "minutes": "26",
+            "description": "26 min · find, for locating files anywhere in the filesystem — basic searches by name, filtering by type such as files or directories, running a command on every match, working with permissions, and more advanced examples. From 2021",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Linux Crash Course - The df and du Commands",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=ZRs5zVv_1UU",
+            "minutes": "20",
+            "description": "20 min · df for how much space each filesystem has left — human-readable sizes, what each column means, showing filesystem types and hiding ones like tmpfs — then du for what is using that space: human-readable sizes, limiting how deep it goes with --max-depth, one summary line per directory, several directories at once with a grand total, and a quick mention of ncdu. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "Low Orbit Flux",
+            "name": "Linux: how to find large files",
+            "channel_link": "https://www.youtube.com/@LowOrbitFlux",
+            "link": "https://www.youtube.com/watch?v=fu84lWgfXpk",
+            "minutes": "9",
+            "description": "9 min · du for hunting down what is filling a disk — -a to list files as well as directories, piped through sort -nr and head -n 20 for the biggest, pointed at a directory such as /var/log with sudo and errors sent to /dev/null, then -h for human-readable sizes, which he finds harder to sort (sort -h handles them, which the video doesn’t mention), and du -h * for just the current directory’s entries. From 2021",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Linux Crash Course - Scheduling Tasks with Cron",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=7cbP7fzn0D8",
+            "minutes": "19",
+            "description": "19 min · scheduling commands with cron — editing a crontab with crontab -e, the five time fields (minute, hour, day of month, month, day of week) and what an asterisk means, always giving the full path to the script, running jobs as root or as a purpose-made user such as www-data with crontab -u, listing a user's jobs with crontab -l, and building the line with crontabgenerator.org. From 2021",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Linux File Transfers Made Easy with rsync",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=KG78O53u8rY",
+            "minutes": "23",
+            "description": "23 min · copying files between machines with rsync over SSH — checking it's installed, the basic syntax, why it copies one way rather than keeping two folders identical, testing with --dry-run first, -r and -v, -a to keep timestamps and other metadata, the trailing slash on a folder, --delete to remove files that are gone from the source, and -z compression for slow links. From 2023",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Transferring files with the scp Command",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=Aa7tKMmeFZI",
+            "minutes": "20",
+            "description": "20 min · scp for one-off copies over SSH, with a rule of thumb for when rsync suits better — sending a file to a server as server:path, leaving off the username when it's the same on both ends, -r for a whole directory, copying from the server back to your machine, -p to keep modification times, and -P for SSH on a non-standard port. From 2023",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Linux Crash Course - Installing Updates",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=aec82pfraHw",
+            "minutes": "12",
+            "description": "12 min · Checking for and installing every available update by hand — apt update then apt dist-upgrade on Ubuntu and Debian (and how dist-upgrade differs from upgrade), dnf update on CentOS, Fedora and Red Hat (with yum now just a link to dnf), and pacman on Arch — plus making sure nothing is about to be removed, and why you reboot afterwards so the new kernel and libraries are actually running. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "RandomTech",
+            "name": "Install Security Updates in Almalinux Rockylinux and Redhat.",
+            "channel_link": "https://www.youtube.com/@randomtech2951",
+            "link": "https://www.youtube.com/watch?v=3zFKZRMgUJM",
+            "minutes": "21",
+            "description": "21 min · Finding and installing only the security updates on Red Hat, AlmaLinux and Rocky — listing pending security advisories with dnf updateinfo, filtering them by severity (Critical, Important, Moderate, Low) or by CVE number, applying every security fix with dnf upgrade --security or just chosen advisories or CVEs, and checking afterwards what was installed. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Ubuntu 24.04: How to Automate Updates with Unattended Upgrades",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=y5_wPaHlcHQ",
+            "minutes": "16",
+            "description": "16 min · unattended-upgrades on Ubuntu (it works the same on Debian) — installing the package and checking its service, the two switches in 20auto-upgrades that turn it on, then the main 50unattended-upgrades file: which repositories it updates from (security only by default), blacklisting packages, removing unused dependencies, automatic reboots at a less predictable time than 2am, and email reports. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "Lawrence Systems",
+            "name": "Using Debian Unattended Upgrades to Avoid Unintended Consequences",
+            "channel_link": "https://www.youtube.com/@LAWRENCESYSTEMS",
+            "link": "https://www.youtube.com/watch?v=ggYDj_gBd30",
+            "minutes": "6",
+            "description": "6 min · Automatic security updates on a plain Debian server — why public-facing servers should patch themselves rather than wait on a person, installing unattended-upgrades, the Debian-Security origin in its config, the quick menu-driven setup with dpkg-reconfigure, and a test run with unattended-upgrade -d to see it working. From 2019",
+            "type": "video"
+          },
+          {
+            "channel_name": "The Swedish Sysadmin",
+            "name": "Automate Updates & Reboots on RHEL, Rocky, Alma & Fedora",
+            "channel_link": "https://www.youtube.com/@TheSwedishSysadmin",
+            "link": "https://www.youtube.com/watch?v=n2xhCXEuCDs",
+            "minutes": "12",
+            "description": "12 min · dnf-automatic on Rocky Linux (the same on RHEL, Alma and Fedora) — checking pending updates, the automatic.conf settings (all updates or security only, download and apply, reboot when something changed), changing when dnf-automatic.timer runs, testing the schedule with systemd-analyze calendar, enabling the timer, a live run that updates and reboots, and reviewing what changed with dnf history. From 2025",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Processes",
+        "videos": [
+          {
+            "channel_name": "Awesome Linux",
+            "name": "systemd vs OpenRC vs SysVinit",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=6czbpgL2UO8",
+            "minutes": "4",
+            "description": "4 min · the three init systems you'll meet — SysVinit's ordered shell scripts (still in Slackware), OpenRC from Gentoo adding dependencies and parallel starts on top of a simple PID 1 (Alpine, Gentoo, Artix), and systemd's declarative unit files used by most distributions — and why the choice still causes arguments. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "systemd: How Linux Starts 100 Things at Once",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=fpY8Av8ftKc",
+            "minutes": "3",
+            "description": "3 min · how systemd starts over a hundred services in seconds — replacing SysVinit's one-after-another shell scripts with unit files (service, socket, mount, timer) that declare their dependencies, a dependency graph that starts everything independent at once, and targets such as multi-user and graphical in place of runlevels. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "What PID 1 Actually Does",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=01BCyo5SvCo",
+            "minutes": "4",
+            "description": "4 min · why the first process is special — the root of the process tree, starting everything at boot, adopting and reaping orphans so they don't linger as zombies, ignoring signals it hasn't chosen to handle so it can't be killed by accident, and starting and stopping services in order; if it dies, the kernel panics. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "File Descriptors: The Number Behind Every Open File",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=_eFYGgrOj7I",
+            "minutes": "3",
+            "description": "3 min · the small integer behind every open file and socket — the per-process descriptor table pointing into the kernel's open file table and on to the inode, 0, 1 and 2 opened before main runs, and leaking descriptors until the per-process limit (often 1024) stops anything new from opening. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "The Life and Death of a Linux Process",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=kLh4E9TbcjA",
+            "minutes": "4",
+            "description": "4 min · a process from creation to clean-up — the task struct the kernel keeps for each one, fork then exec, the running, sleeping, stopped and zombie states, and the exit status the parent collects with wait. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "fork(): How One Program Becomes Two",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=M4ySXIUo2No",
+            "minutes": "4",
+            "description": "4 min · fork in C — the kernel copying the process's memory and file descriptors, fork returning twice (the child's PID to the parent, 0 to the child, a negative number on failure), and why the two processes' output can come out in either order. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "Zombie Processes: The Dead That Won't Leave",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=btoRQf3QlCM",
+            "minutes": "2",
+            "description": "2 min · a child that has exited but whose parent hasn't called wait, left behind as an entry in the process table — a Python demo that makes one, why zombies use no CPU or memory but can use up PIDs, and reaping them with wait or a SIGCHLD handler. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "CSE Practicals",
+            "name": "Linux Well known signals",
+            "channel_link": "https://www.youtube.com/@CSEPracticals",
+            "link": "https://www.youtube.com/watch?v=H_9tTOWG_KY",
+            "minutes": "9",
+            "description": "9 min · the signals you’ll meet most — SIGINT from Ctrl-C, SIGUSR1 and SIGUSR2 left for programs to define, SIGKILL from kill -9 (shown ending a process found with ps aux), SIGTERM, which plain kill sends and a program can catch to tidy up first, SIGABRT from abort(), SIGSEGV behind a segmentation fault, and SIGCHLD telling a parent its child has ended so it can wait for it. He says SIGABRT and SIGSEGV can’t be caught; in fact only SIGKILL and SIGSTOP can’t — the rest can have handlers. From 2018",
+            "type": "video"
+          },
+          {
+            "channel_name": "LinuxCloudHacks",
+            "name": "SystemD",
+            "channel_link": "https://www.youtube.com/@LinuxCloudHacks",
+            "link": "https://www.youtube.com/playlist?list=PLUF494I4KUvoHEw2RBakxJ6Alq-M8nBr8",
+            "minutes": "90",
+            "description": "course · 6 lessons · 1h 30m · using systemd to limit what users and services can take — resource limits on users' slices (for all users, each user or one user, freezing a slice, systemctl set-property), services a normal user runs without root (lingering, targets, starting at boot), locking down a service's network (IP accounting, allowing or denying addresses in and out, drop-in files, eBPF filters, restricting which ports it can bind, nftables integration), disk bandwidth and IOPS limits measured with fio and tried as transient units, memory explained (used, available, cache, swap, resident against virtual, overcommit and the OOM killer) before setting MemoryMax and MemoryHigh, and CPU limits on a service and on slices that group services. From 2025",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "Networking",
+        "videos": [
+          {
+            "channel_name": "Sunny Classroom",
+            "name": "OSI model and related",
+            "channel_link": "https://www.youtube.com/@sunnyclassroom24",
+            "link": "https://www.youtube.com/playlist?list=PLSNNzog5eydtQcezP4OrrLL5preHLLkGA",
+            "minutes": "48",
+            "description": "course · 7 lessons · 48 min · the OSI model’s seven layers, encapsulation and the protocol data unit at each layer, TCP against UDP, how TCP opens and closes a session, collision and broadcast domains with hubs, switches and routers, ARP, and the TCP/IP model and its suite of protocols. From 2018–2019",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Sunny Classroom",
+            "name": "IPv4 Basics",
+            "channel_link": "https://www.youtube.com/@sunnyclassroom24",
+            "link": "https://www.youtube.com/playlist?list=PLSNNzog5eydt_plAtt3k_LYuIXrAS4aDZ",
+            "minutes": "134",
+            "description": "course · 15 lessons · 2h 14m · IP addressing from the ground up — the five classes of IPv4 addresses, converting between binary, decimal and hexadecimal, what a subnet mask does, how a computer decides whether to talk to a host directly or through a router, counting usable host IDs, subnetting (a class B network and subnetting a subnet included), VLSM worked through as a CompTIA Network+ simulation question, special and private addresses, NAT in its SNAT, DNAT, PAT and port-forwarding forms, and how DHCP hands out addresses. From 2018–2020",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Sunny Classroom",
+            "name": "Networking Security Devices",
+            "channel_link": "https://www.youtube.com/@sunnyclassroom24",
+            "link": "https://www.youtube.com/playlist?list=PLSNNzog5eyds5VyHxsbeh6LRMVkjnvm15",
+            "minutes": "25",
+            "description": "playlist · 5 videos · 25 min · the devices that guard a network — IDS against IPS, honeynets and the DMZ, proxy servers, firewalls, and access control lists on a router. From 2018",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "Docker",
+        "videos": [
+          {
+            "channel_name": "Network Direction",
+            "name": "Docker for Beginners: Learn Containers Step by Step",
+            "channel_link": "https://www.youtube.com/@NetworkDirection",
+            "link": "https://www.youtube.com/playlist?list=PLcW2Aeg3jC9o",
+            "minutes": "66",
+            "description": "playlist · 6 videos · 1h 06m · Docker from scratch — what containers are and why they’re used, running a first container, storage with volumes and bind mounts, container networking with the bridge, MACVLAN and IPVLAN drivers compared, writing a Dockerfile to build your own image, and Docker Compose with volumes, networks and environment variables. From 2026",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "Linux Networking",
+        "videos": [
+          {
+            "channel_name": "Awesome Linux",
+            "name": "The Linux Network Stack, Top to Bottom",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=SF9Zfyhicx8",
+            "minutes": "4",
+            "description": "4 min · a request's path down through the kernel — the socket layer (a socket is just a file descriptor), TCP or UDP breaking data into segments, IP addressing and routing, the device driver and the network card — each layer doing one job. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "How a Packet Travels Through iptables",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=N5Y58p3Wzwc",
+            "minutes": "3",
+            "description": "3 min · where a rule actually applies — the raw, mangle, nat and filter tables in their fixed order, a packet entering through PREROUTING, the routing decision sending it to INPUT or FORWARD, locally generated replies leaving through OUTPUT and POSTROUTING, and why the first matching rule wins and the chain's default policy catches the rest. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "epoll: How Linux Handles 10,000 Connections",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=MzLZhAShgs0",
+            "minutes": "4",
+            "description": "4 min · how one thread can watch 10,000 connections — why a thread per connection wastes memory and select and poll copy and scan every descriptor on each call, and how epoll registers sockets once and wakes the process only with the ones that are ready; the reason Redis, Node.js and Go perform the way they do on Linux. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "LinuxCloudHacks",
+            "name": "Nftables Firewall",
+            "channel_link": "https://www.youtube.com/@LinuxCloudHacks",
+            "link": "https://www.youtube.com/playlist?list=PLUF494I4KUvqwDjhOoP3IFUpgEhE1OVDO",
+            "minutes": "143",
+            "description": "course · 8 lessons · 2h 23m · nftables built up rule by rule — a firewall for incoming traffic tested with netcat (tables and chains, counters, matching connections by state, anonymous and named sets, concatenations), dynamic sets, sets with timeouts and constant sets, jumping between chains and verdict maps, source NAT (why NAT exists, masquerade, regular SNAT, NAT pools, 1:1 NAT, balancing source addresses), destination NAT (redirect, DNAT to localhost, port forwarding to expose services, maps), load balancing with round-robin, weighted, random and hash distribution, Direct Server Return compared with traditional load balancing, and rate limits and meters for ICMP, SYN floods, bandwidth and connection counts. From 2023–2024",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "LinuxCloudHacks",
+            "name": "Docker Networking",
+            "channel_link": "https://www.youtube.com/@LinuxCloudHacks",
+            "link": "https://www.youtube.com/playlist?list=PLUF494I4KUvrzIVjpTAPOuLAfrfjW02_U",
+            "minutes": "70",
+            "description": "course · 4 lessons · 1h 10m · how Docker networking works underneath — network namespaces, veth pairs and bridges, how two containers on a bridge reach each other and find each other by name through Docker's DNS, how containers reach the internet through source NAT and connection tracking, publishing a port with destination NAT, and Docker Swarm's overlay network, the containers' way out through the gateway bridge, and the routing mesh that answers on every node. From 2023",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "File Recovery: Snapshots, Backups, Undelete",
+        "videos": [
+          {
+            "channel_name": "Charles Chow",
+            "name": "Snapshots vs Backups vs Replications",
+            "channel_link": "https://www.youtube.com/@thecharleschow",
+            "link": "https://www.youtube.com/watch?v=BcA13YbUv-4",
+            "minutes": "9",
+            "description": "9 min · against the claim that snapshots replace backups — what snapshots, replication and backups each are, what each protects against and where each falls short, and how to combine them. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "PowerCert Animated Videos",
+            "name": "Incremental vs Differential Backup, & Full - Explained",
+            "channel_link": "https://www.youtube.com/@PowerCertAnimatedVideos",
+            "link": "https://www.youtube.com/watch?v=o-83E6levzM",
+            "minutes": "7",
+            "description": "7 min · animated — full, incremental and differential backups, what a restore needs with each, and how the three compare. From 2019",
+            "type": "video"
+          },
+          {
+            "channel_name": "ExplainingComputers",
+            "name": "Data Backup: The 3-2-1 Rule",
+            "channel_link": "https://www.youtube.com/@ExplainingComputers",
+            "link": "https://www.youtube.com/watch?v=rFO6NyLIP7M",
+            "minutes": "6",
+            "description": "6 min · the 3-2-1 rule — three copies of your data, on two different kinds of storage, one of them off-site — and why storage media fail. From 2016",
+            "type": "video"
+          },
+          {
+            "channel_name": "The Linux Foundation",
+            "name": "Backup and Recovery Strategies for Linux Systems - Riya Bansal, Microsoft",
+            "channel_link": "https://www.youtube.com/@LinuxfoundationOrg",
+            "link": "https://www.youtube.com/watch?v=9yT4J8tLGLo",
+            "minutes": "29",
+            "description": "29 min · conference talk — why recovery is the real goal, full, incremental and differential backups, the 3-2-1 strategy, then configuring and running Bacula jobs and restoring from them, Bacula's advanced features, an overview of Amanda, and best practices and common pitfalls. From 2023",
+            "type": "video"
+          },
+          {
+            "channel_name": "Lawrence Systems",
+            "name": "Why The ZFS Copy On Write File System Is Better Than A Journaling One",
+            "channel_link": "https://www.youtube.com/@LAWRENCESYSTEMS",
+            "link": "https://www.youtube.com/watch?v=nlBXXdz0JKA",
+            "minutes": "11",
+            "description": "11 min · how filesystems write data, how a journaling filesystem guards against a crash part-way through a write, how copy-on-write avoids the problem instead — drawn out step by step — and using ZFS on a single drive. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "MichaelsTechTutorials",
+            "name": "Linux Command Line (100) LVM part 10: snapshots",
+            "channel_link": "https://www.youtube.com/@MichaelsTechTutorials",
+            "link": "https://www.youtube.com/watch?v=VZtYMYwuDNc",
+            "minutes": "10",
+            "description": "10 min · taking a snapshot of a logical volume",
+            "type": "video"
+          },
+          {
+            "channel_name": "MichaelsTechTutorials",
+            "name": "Linux Command Line (101) LVM part 11: restoring a snapshot",
+            "channel_link": "https://www.youtube.com/@MichaelsTechTutorials",
+            "link": "https://www.youtube.com/watch?v=XwvuZgJNAFE",
+            "minutes": "12",
+            "description": "12 min · rolling a logical volume back to its snapshot",
+            "type": "video"
+          },
+          {
+            "channel_name": "theurbanpenguin",
+            "name": "Managing LVM Snapshots",
+            "channel_link": "https://www.youtube.com/@theurbanpenguin",
+            "link": "https://www.youtube.com/watch?v=WPO3KiJtG1A",
+            "minutes": "16",
+            "description": "16 min · a point-in-time snapshot of a logical volume — creating one, proving it's copy-on-write by changing the original, how the snapshot keeps the old blocks underneath, then merging it back to revert the data, and cleaning up. From 2017",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "btrfs Made Simple: Learn the Basics Today",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=RPO-fS6HQbY",
+            "minutes": "47",
+            "description": "47 min · what btrfs is and its history, its pros and cons and how stable it is, Fedora's btrfs layout, how subvolumes differ from partitions, checking free space correctly, quotas as a size limit, and snapshots — demonstrated, then on a btrfs volume built by hand. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "DJ Ware",
+            "name": "Mastering BTRFS: Install, Setup, Subvolumes, Snapshots, Replication and more",
+            "channel_link": "https://www.youtube.com/@CyberGizmo",
+            "link": "https://www.youtube.com/watch?v=71AnM15TDYw",
+            "minutes": "33",
+            "description": "33 min · setting up btrfs and its mount options, subvolumes, snapshots, replicating a read-only snapshot to another disk with send and receive, the tools that manage it (Timeshift, Snapper, KDE Partition Manager), and tuning. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "SUSE",
+            "name": "System Rollback with Snapper",
+            "channel_link": "https://www.youtube.com/@SUSE",
+            "link": "https://www.youtube.com/watch?v=AeU_orsOCNI",
+            "minutes": "7",
+            "description": "7 min · what btrfs and Snapper are, then a demonstration — applying a patch and rolling the whole system back to the snapshot taken before it. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "FOSDEM",
+            "name": "Transactional Updates with btrfs",
+            "channel_link": "https://www.youtube.com/@fosdemtalks",
+            "link": "https://www.youtube.com/watch?v=EBvS1HghmEQ",
+            "minutes": "26",
+            "description": "26 min · conference talk by Thorsten Kukuk — using btrfs snapshots so a system update lands all at once or not at all: the packages are installed into a new snapshot while the running system stays untouched, and the next boot switches to it or it is thrown away. From 2017",
+            "type": "video"
+          },
+          {
+            "channel_name": "Luigi Tech",
+            "name": "Incremental Backup - BTRFS with btrbk on Linux",
+            "channel_link": "https://www.youtube.com/@luigitech3169",
+            "link": "https://www.youtube.com/watch?v=Sp40invvCE4",
+            "minutes": "7",
+            "description": "7 min · btrbk — installing it, then a demo of it taking btrfs snapshots and copying them incrementally to an external disk or over SSH, run from a cron job with a retention policy. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "Lawrence Systems",
+            "name": "ZFS Snapshots Explained: How To Protect Your Data From Mistakes, Malware, & Ransomware",
+            "channel_link": "https://www.youtube.com/@LAWRENCESYSTEMS",
+            "link": "https://www.youtube.com/watch?v=3J-27jm8cU8",
+            "minutes": "25",
+            "description": "25 min · how ZFS snapshots work and how much space they take, then in TrueNAS — rolling back or cloning a snapshot, making snapshots visible as folders, offering them to Windows as Previous Versions, nested datasets, and scheduled snapshot tasks. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "Klara Inc.",
+            "name": "OpenZFS Data Replication - Replicating Data Quickly and Safely",
+            "channel_link": "https://www.youtube.com/@klarainc.1690",
+            "link": "https://www.youtube.com/watch?v=o_jr13Z9f1k",
+            "minutes": "61",
+            "description": "61 min · webinar with Allan Jude and Jim Salter — replication concepts and terms, rollback, basic zfs send and receive, raw sends that stay encrypted, automating it with syncoid, delegating permissions so it needn't run as root, resuming an interrupted transfer, and restoring from the copy. From 2023",
+            "type": "video"
+          },
+          {
+            "channel_name": "TechHut",
+            "name": "How to Backup and Restore the Linux File System - Timeshift Tutorial",
+            "channel_link": "https://www.youtube.com/@TechHut",
+            "link": "https://www.youtube.com/watch?v=QE0lyWodWdU",
+            "minutes": "12",
+            "description": "12 min · Timeshift's settings and schedule, taking a snapshot, then deliberately breaking the system and restoring it from a live USB. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "Phazer Tech",
+            "name": "Linux Backup Software Guide - Timeshift & Back in Time",
+            "channel_link": "https://www.youtube.com/@PhazerTech",
+            "link": "https://www.youtube.com/watch?v=n8UWcyOy9tM",
+            "minutes": "16",
+            "description": "16 min · a desktop backup strategy with two tools — Timeshift for snapshots of the system files and Back In Time for the home folder and personal files — and setting up each. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "Drew Howden Tech",
+            "name": "Ubuntu's Backup Solution (Déjà Dup)",
+            "channel_link": "https://www.youtube.com/@DrewHowdenTech",
+            "link": "https://www.youtube.com/watch?v=FhPkMEyL3ao",
+            "minutes": "8",
+            "description": "8 min · Déjà Dup, the backup app that comes with Ubuntu — setting it up and restoring files from it. From 2023",
+            "type": "video"
+          },
+          {
+            "channel_name": "Dreams of Autonomy",
+            "name": "We finally have a simple solution for backing up files on Linux",
+            "channel_link": "https://www.youtube.com/@dreamsofautonomy",
+            "link": "https://www.youtube.com/watch?v=W30wzKVwCHo",
+            "minutes": "12",
+            "description": "12 min · Pika Backup, a simple desktop app built on Borg — setting it up, what the repository holds, creating an archive, restoring files, scheduling, backing up to a remote and bringing files onto a new machine, and its advanced options. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "Veronica Explains",
+            "name": "Using rsync for backups, because it's not shiny and new",
+            "channel_link": "https://www.youtube.com/@VeronicaExplains",
+            "link": "https://www.youtube.com/watch?v=QKCIi-NxJEo",
+            "minutes": "9",
+            "description": "9 min · rsync's everyday flags for backups — archive mode, --delete to mirror removals, -z compression — and running a long copy inside tmux. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "How to Automate Linux Backups Using rsync and systemd",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=F3UzOrEtMYI",
+            "minutes": "46",
+            "description": "46 min · writing an rsync backup script, testing it with a dry run, running it automatically with a systemd service and timer, a check that the backup drive is mounted before it runs, and alerts from healthchecks.io when it fails. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "KeepItTechie",
+            "name": "Simple Backup Solution | Rocky Linux 9 Tutorial",
+            "channel_link": "https://www.youtube.com/@KeepItTechie",
+            "link": "https://www.youtube.com/watch?v=ZowZ5ob8fQ0",
+            "minutes": "22",
+            "description": "22 min · rsnapshot on Rocky Linux 9 — the rsync-based tool that keeps dated snapshots sharing unchanged files as hard links: installing and configuring it, running backups, and scheduling them with cron. From 2023",
+            "type": "video"
+          },
+          {
+            "channel_name": "Sun Knudsen",
+            "name": "How to back up data privately and securely to the cloud using Borg and Vorta",
+            "channel_link": "https://www.youtube.com/@sunknudsen",
+            "link": "https://www.youtube.com/watch?v=asZX2YbTaNE",
+            "minutes": "23",
+            "description": "23 min · Borg encrypts on your machine before anything is uploaded, so the far end never has the key — set up from the command line and through Vorta, its desktop app",
+            "type": "video"
+          },
+          {
+            "channel_name": "Sun Knudsen",
+            "name": "How to self-host a hardened Borg server",
+            "channel_link": "https://www.youtube.com/@sunknudsen",
+            "link": "https://www.youtube.com/watch?v=rzEaxL6F2Eg",
+            "minutes": "12",
+            "description": "12 min · locking down the server that receives the Borg backups — the VPS, in your case",
+            "type": "video"
+          },
+          {
+            "channel_name": "DJ Ware",
+            "name": "Master BorgBackup 1.4.0: Init, Create, Prune, Remote SSH, and More!",
+            "channel_link": "https://www.youtube.com/@CyberGizmo",
+            "link": "https://www.youtube.com/watch?v=lw4_jJsFUy8",
+            "minutes": "25",
+            "description": "25 min · BorgBackup 1.4 — creating an encrypted repository, making and pruning backups, backing up to a remote server over SSH, checking the repository, extracting files back, and exporting an archive as a tar file. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "Rwaltr",
+            "name": "How to use Restic for backups",
+            "channel_link": "https://www.youtube.com/@rwaltr",
+            "link": "https://www.youtube.com/watch?v=5DjNjqLuLSs",
+            "minutes": "25",
+            "description": "25 min · restic — creating a repository and a backup, listing snapshots, tagging them, restoring, managing repository keys, and its other commands. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "Jarek Kowalski",
+            "name": "Kopia Tutorial",
+            "channel_link": "https://www.youtube.com/@JarekKowalskiWA",
+            "link": "https://www.youtube.com/watch?v=sHJjSpasWIo",
+            "minutes": "7",
+            "description": "7 min · KopiaUI, from Kopia's author — setting up a repository, taking snapshots, setting policies, and getting files back from an earlier snapshot. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "Luigi Tech",
+            "name": "Fast Backup Benchmark Comparison: Kopia vs Borg vs Restic vs Rsync",
+            "channel_link": "https://www.youtube.com/@luigitech3169",
+            "link": "https://www.youtube.com/watch?v=abqvgU_SSWU",
+            "minutes": "6",
+            "description": "6 min · rsync, Kopia, Borg and restic timed on the same backup job, the commands used, and whether a Raspberry Pi 4 works as the backup target. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "Eric Murphy",
+            "name": "Trash Management on Linux from the Command Line! (trash-cli)",
+            "channel_link": "https://www.youtube.com/@EricMurphyxyz",
+            "link": "https://www.youtube.com/watch?v=YeO5qKZK4i8",
+            "minutes": "7",
+            "description": "7 min · trash-cli — sending files to the trash from the command line instead of deleting them, restoring them, emptying the trash, and emptying it automatically after a set number of days. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "KeepItTechie",
+            "name": "etckeeper | Manage /etc with Version Control in Linux",
+            "channel_link": "https://www.youtube.com/@KeepItTechie",
+            "link": "https://www.youtube.com/watch?v=P3m_YZugJWw",
+            "minutes": "18",
+            "description": "18 min · etckeeper — keeping /etc in a version-control repository: installing and configuring it, starting the repository, tracking changes, and viewing the log and reverting a change. From 2019",
+            "type": "video"
+          },
+          {
+            "channel_name": "Grow Your Skill",
+            "name": "How to rollback with DNF History - Fedora tips and tricks",
+            "channel_link": "https://www.youtube.com/@growyourskill1",
+            "link": "https://www.youtube.com/watch?v=oQe__LVXS8U",
+            "minutes": "4",
+            "description": "4 min · dnf history — listing past package transactions and undoing them or rolling back to an earlier one. From 2023",
+            "type": "video"
+          },
+          {
+            "channel_name": "LibrePhoenix",
+            "name": "Different Rollback Methods in NixOS",
+            "channel_link": "https://www.youtube.com/@librephoenix",
+            "link": "https://www.youtube.com/watch?v=HQmrQHmAMzg",
+            "minutes": "26",
+            "description": "26 min · the ways to roll NixOS back to an earlier generation, with a short discussion of garbage collection and flakes. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "Zeroes&Ones",
+            "name": "What Happens When You Delete A File On Linux?",
+            "channel_link": "https://www.youtube.com/@zeroesandonesofficial",
+            "link": "https://www.youtube.com/watch?v=qqTqu4DjNDQ",
+            "minutes": "13",
+            "description": "13 min · for beginners — inodes, data blocks and the system calls behind a delete, what actually happens to the file, when it can still be recovered, and destroying it properly with shred. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Macro Lens",
+            "name": "Linux Never Actually Deletes Your Files",
+            "channel_link": "https://www.youtube.com/@MacroLens-d2s",
+            "link": "https://www.youtube.com/watch?v=KJJ9ge1Q-us",
+            "minutes": "6",
+            "description": "6 min · deleting a file only removes its name — what an inode is, copying a deleted file back out of /proc while a program still has it open, the full disk that won't free up, and why Linux can replace libraries while they're running but Windows asks for a restart. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Level1Linux",
+            "name": "Data Recovery Tutorial - Getting started with DDRescue and TestDisk",
+            "channel_link": "https://www.youtube.com/@Level1Linux",
+            "link": "https://www.youtube.com/watch?v=ddrPnuvFV6E",
+            "minutes": "17",
+            "description": "17 min · handling a failing or blank drive, what dd does, TestDisk for recovering a lost partition table, then ddrescue to image a failing disk and mounting the image to get files off. From 2015",
+            "type": "video"
+          },
+          {
+            "channel_name": "ElectronicsWizardry",
+            "name": "How to use Ddrescue to get data from a failing drive",
+            "channel_link": "https://www.youtube.com/@ElectronicsWizardry",
+            "link": "https://www.youtube.com/watch?v=jwMoIuLCfLE",
+            "minutes": "10",
+            "description": "10 min · booting Linux from USB, finding the failing drive, imaging it with ddrescue, and getting the files out of the image. From 2017",
+            "type": "video"
+          },
+          {
+            "channel_name": "James Edington Administrator",
+            "name": "Using Ext4magic to rescue my deleted pictures",
+            "channel_link": "https://www.youtube.com/@codegeek98",
+            "link": "https://www.youtube.com/watch?v=HN2T4CXLY6A",
+            "minutes": "9",
+            "description": "9 min · recovering a folder of deleted pictures from an ext4 backup drive with ext4magic, recorded as it was done. From 2017",
+            "type": "video"
+          },
+          {
+            "channel_name": "KeepItTechie",
+            "name": "Recover Deleted Files on Linux | Sleuth Kit Ext4 Demo",
+            "channel_link": "https://www.youtube.com/@KeepItTechie",
+            "link": "https://www.youtube.com/watch?v=R2Bkilbd6O8",
+            "minutes": "29",
+            "description": "29 min · recovering deleted files from an ext4 disk image with The Sleuth Kit — verifying the image, finding the partition with mmls and the filesystem with fsstat, listing deleted files with fls, inspecting an inode with istat and pulling its data out with icat, and bulk recovery with tsk_recover. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "The Shadow Brokers",
+            "name": "Recover Permanently Deleted Files Using Foremost",
+            "channel_link": "https://www.youtube.com/@the-shadow-brokers",
+            "link": "https://www.youtube.com/watch?v=WunF3jpQgr4",
+            "minutes": "6",
+            "description": "6 min · foremost — carving deleted files back out of a drive, even a formatted one, by recognising their contents. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "DiskTuna",
+            "name": "TRIM and file deletion - Why undelete / recovery is (often) impossible from SSD drives",
+            "channel_link": "https://www.youtube.com/@DiskTuna",
+            "link": "https://www.youtube.com/watch?v=NyLQbxnPurc",
+            "minutes": "3",
+            "description": "3 min · why recovery tools still list deleted files on an SSD that then can't be recovered: TRIM tells the drive which blocks were freed and it stops returning their data, while the filesystem's records of the files remain. From 2022",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "System Cloning: Imaging & Migration",
+        "videos": [
+          {
+            "channel_name": "ElectronicsWizardry",
+            "name": "How to clone drives using DD and GParted",
+            "channel_link": "https://www.youtube.com/@ElectronicsWizardry",
+            "link": "https://www.youtube.com/watch?v=YmFuBiKtes0",
+            "minutes": "14",
+            "description": "14 min · copying a system onto a drive of a different size — the cloning tools available, what drive sizes mean for the copy, shrinking the source partitions in GParted Live, the block copy with dd, repairing the GPT partition table on the new disk, then growing the partitions to fill it. From 2023",
+            "type": "video"
+          },
+          {
+            "channel_name": "Veronica Explains",
+            "name": "Clonezilla: disk cloning, but it's easier than dd",
+            "channel_link": "https://www.youtube.com/@VeronicaExplains",
+            "link": "https://www.youtube.com/watch?v=qFV19WweP7M",
+            "minutes": "16",
+            "description": "16 min · what you need to use Clonezilla, choosing its mode, saving a disk to an image, restoring the image onto a different device, and how it copes with an encrypted disk. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "OnlineComputerTips",
+            "name": "How to Clone Your OS Hard Drive in Linux to Use with a Different (or the same) Computer",
+            "channel_link": "https://www.youtube.com/@OnlineComputerTips",
+            "link": "https://www.youtube.com/watch?v=2VwpmEA9pYQ",
+            "minutes": "7",
+            "description": "7 min · a device-to-device copy of a Linux system drive with Clonezilla Live — choosing source and target correctly, then booting the cloned drive in a different PC. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Tutorial/Walkthrough: Full Disk Backup & Restore with Rescuezilla",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=_gQgIMeQ97Y",
+            "minutes": "11",
+            "description": "11 min · Rescuezilla — a full image of a disk saved to a network share, then restored onto the machine. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "Practical IT with Jeremy Leik",
+            "name": "Capturing and Deploying Images Over Network with FOG",
+            "channel_link": "https://www.youtube.com/@Practical-IT",
+            "link": "https://www.youtube.com/watch?v=207As548aNw",
+            "minutes": "13",
+            "description": "13 min · a FOG server for imaging machines over the network — the router's DHCP options for PXE boot, registering a machine, capturing a Linux Mint image and deploying it, and fixing a capture that goes wrong. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "Average Linux User",
+            "name": "Backup and Restore Your Linux System with rsync",
+            "channel_link": "https://www.youtube.com/@AverageLinuxUser",
+            "link": "https://www.youtube.com/watch?v=oS5uH0mzMTg",
+            "minutes": "12",
+            "description": "12 min · copying the whole running system with rsync -aAXv --delete and the folders to leave out (/dev, /proc, /sys, /tmp, /run, /mnt, /media and others), then deliberately destroying the system and restoring it from the copy. From 2017",
+            "type": "video"
+          },
+          {
+            "channel_name": "Schlomo Schapiro",
+            "name": "Relax and Recover (ReaR) - Automated Linux Recovery",
+            "channel_link": "https://www.youtube.com/@schlomoschapiroorg",
+            "link": "https://www.youtube.com/watch?v=QN6vk5DfzAk",
+            "minutes": "41",
+            "description": "41 min · stackconf talk by one of ReaR's creators — backup versus recovery, planning for disaster recovery, ReaR's design and how a bare-metal restore works, boot and backup media, the command line, installing and configuring it, backup methods, protecting a laptop with it, its internals, and the project's 18-year history. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "FOSDEM",
+            "name": "Relax-and-Recover (ReaR) Basics with Demo on Real Hardware",
+            "channel_link": "https://www.youtube.com/@fosdemtalks",
+            "link": "https://www.youtube.com/watch?v=hnuUNpQToPY",
+            "minutes": "30",
+            "description": "30 min · conference talk by Gratien D'haese and Johannes Meixner — what ReaR is and when disaster recovery is worth planning for, where it can keep the backup and the bootable rescue image (USB, NAS, NFS, PXE), how it works alongside other backup software, then a live recovery of a real laptop. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "Red Hat Enterprise Linux",
+            "name": "How to Use ReaR for System Backup and Recovery in RHEL",
+            "channel_link": "https://www.youtube.com/@RedHatEnterpriseLinux",
+            "link": "https://www.youtube.com/watch?v=4XzlR0aNxiw",
+            "minutes": "16",
+            "description": "16 min · ReaR on Red Hat Enterprise Linux — setting it up, creating a bootable ISO and a backup, booting from it to recover the system, and where to keep the backups. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "WunderTech",
+            "name": "Veeam Agent for Linux: Easily Backup & Restore a Linux PC!",
+            "channel_link": "https://www.youtube.com/@WunderTechTutorials",
+            "link": "https://www.youtube.com/watch?v=Llv64rQkCuc",
+            "minutes": "4",
+            "description": "4 min · Veeam Agent for Linux — installing it, backing up a Linux PC to an SMB share, then downloading the recovery media and restoring the machine from the backup. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "Diego Sandoval",
+            "name": "UEFI boot explained (for Linux users)",
+            "channel_link": "https://www.youtube.com/@diego_sandoval",
+            "link": "https://www.youtube.com/watch?v=-V3VhP-MUwE",
+            "minutes": "8",
+            "description": "8 min · how a UEFI machine boots — boot entries kept in the firmware, the EFI system partition and the partition table, managing entries with efibootmgr, and other ways to boot. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "Switched to Linux",
+            "name": "Fixing EFI Booting Issues with Efibootmgr",
+            "channel_link": "https://www.youtube.com/@SwitchedtoLinux",
+            "link": "https://www.youtube.com/watch?v=MN-Q5h2Iv8A",
+            "minutes": "8",
+            "description": "8 min · a working drive the firmware won't boot — getting in temporarily from a USB stick, mounting the EFI partition, finding the bootloader file, reinstalling GRUB and adding the boot entry back with efibootmgr. From 2018",
+            "type": "video"
+          },
+          {
+            "channel_name": "Drew Howden Tech",
+            "name": "How to Reinstall GRUB | Repair Boot on Linux",
+            "channel_link": "https://www.youtube.com/@DrewHowdenTech",
+            "link": "https://www.youtube.com/watch?v=ZhxBJ3yh2OY",
+            "minutes": "12",
+            "description": "12 min · repairing an unbootable system from a live USB — finding the partitions, reinstalling GRUB onto the disk, and just regenerating its configuration when only grub.cfg is missing. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "Ahmed Mansouri Explains",
+            "name": "initramfs and dracut Explained: Add a Module Safely",
+            "channel_link": "https://www.youtube.com/@ahmed-mansouri-explains",
+            "link": "https://www.youtube.com/watch?v=uNiIWk44YYA",
+            "minutes": "15",
+            "description": "15 min · why the kernel needs an initramfs to reach its own root disk, initrd versus initramfs, where the file is and what's inside it, kernel modules versus dracut modules, rebuilding it safely with dracut, adding LVM support before the root moves onto LVM, and undoing it — followed on an AWS EC2 instance with an NVMe root disk. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Red Hat Enterprise Linux",
+            "name": "Understanding Ethernet Interface Naming in RHEL",
+            "channel_link": "https://www.youtube.com/@RedHatEnterpriseLinux",
+            "link": "https://www.youtube.com/watch?v=VDc6sAzmZ8Y",
+            "minutes": "4",
+            "description": "4 min · why network interfaces are no longer called eth0 — biosdevname and predictable device names, how names work in virtual machines, and the kernel arguments that bring the old names back. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "Inventive HQ",
+            "name": "Clone KVM VMs Without Duplicating Identity",
+            "channel_link": "https://www.youtube.com/@inventivehq",
+            "link": "https://www.youtube.com/watch?v=hpPSe5FT6go",
+            "minutes": "4",
+            "description": "4 min · cloning a KVM virtual machine with virt-clone without copying its identity — the UUID, MAC addresses, hostname, machine ID, SSH host keys, cloud-init state and disk paths — then checking the clone is unique. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Oliver Gaida",
+            "name": "KVM/qemu clone vm with virt-sysprep and virt-install",
+            "channel_link": "https://www.youtube.com/@olivergaida8335",
+            "link": "https://www.youtube.com/watch?v=EmI_PfbYmaQ",
+            "minutes": "10",
+            "description": "10 min · cloning a KVM/QEMU virtual machine — copying its disk image, cleaning the copy with virt-sysprep, and creating the new machine from it with virt-install. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Getting Started with cloud-init",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=exeuvgPxd-E",
+            "minutes": "23",
+            "description": "23 min · cloud-init, which customises a Linux image the first time each copy boots — installing it, resetting it, configuring cloud.cfg to create a user, set the hostname and install packages, data sources, and testing it. From 2021",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Proxmox VE Made Easy – Complete Training Series (Part 10 - Backups & Snapshots)",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=NnKQnqoEm-I",
+            "minutes": "20",
+            "description": "20 min · Proxmox VE backups versus snapshots — taking and restoring a VM snapshot, with or without its RAM, then backups and their snapshot, suspend and stop modes, restoring a backup, and scheduled backup jobs. From 2021",
+            "type": "video"
+          },
+          {
+            "channel_name": "Servers tech",
+            "name": "virt-p2v howto",
+            "channel_link": "https://www.youtube.com/@serverstech1489",
+            "link": "https://www.youtube.com/watch?v=2DrHDtdpmcQ",
+            "minutes": "19",
+            "description": "19 min · virt-p2v — booting a physical machine (Windows 7 in the example) from it and converting it into a KVM virtual machine, then running and testing it in virt-manager. From 2019",
+            "type": "video"
+          },
+          {
+            "channel_name": "DevConf",
+            "name": "Virt-v2v - take out your VMware VMs to Linux",
+            "channel_link": "https://www.youtube.com/@DevConfs",
+            "link": "https://www.youtube.com/watch?v=lE9yxl0h1pg",
+            "minutes": "9",
+            "description": "9 min · lightning talk by Richard Jones, one of virt-v2v's original developers — what virt-v2v does to move VMware virtual machines onto Linux KVM, the tools that automate it, and questions on supported systems, scale and migration methods. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "XOR",
+            "name": "How Live Migration Actually Works (Moving a Running VM)",
+            "channel_link": "https://www.youtube.com/@xoorrr",
+            "link": "https://www.youtube.com/watch?v=O3JEbr4-OqE",
+            "minutes": "7",
+            "description": "7 min · moving a running VM without stopping it, followed on a real QEMU migration — what has to move, copying memory while the VM keeps writing to it, tracking dirty pages, deciding when to stop, what happens when it never catches up (auto-converge, post-copy), and the final pause of about 300 ms. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "SinaOnline",
+            "name": "Proxmox VM Live Migration | Migrate VM to another host without Downtime",
+            "channel_link": "https://www.youtube.com/@sinaonline",
+            "link": "https://www.youtube.com/watch?v=5KW2sksHuig",
+            "minutes": "15",
+            "description": "15 min · live-migrating a Proxmox VM to another host without downtime — preparing the disk and the VM, the error that blocks the first attempt and its fix, then the migration itself. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "DevConf",
+            "name": "Container Live Migration - DevConf.CZ 2021",
+            "channel_link": "https://www.youtube.com/@DevConfs",
+            "link": "https://www.youtube.com/watch?v=DDJxqV98b4U",
+            "minutes": "39",
+            "description": "39 min · conference talk by Adrian Reber — what container migration means, how CRIU checkpoints a running process and restores it elsewhere and the tricks it uses to do so, how it is built into container runtimes, and a live migration demo. From 2021",
+            "type": "video"
+          },
+          {
+            "channel_name": "Amazon Web Services",
+            "name": "AWS Application Migration Service Architecture",
+            "channel_link": "https://www.youtube.com/@amazonwebservices",
+            "link": "https://www.youtube.com/watch?v=ao8geVzmmRo",
+            "minutes": "10",
+            "description": "10 min · AWS Application Migration Service — continuously replicating a server's disks into AWS from any source, the staging volumes and their snapshots, launch settings, and launching the copy as an EC2 instance. From 2021",
+            "type": "video"
+          },
+          {
+            "channel_name": "KodeKloud",
+            "name": "HashiCorp Packer Tutorial: Building Custom Images for AWS, Azure, and Docker",
+            "channel_link": "https://www.youtube.com/@KodeKloud",
+            "link": "https://www.youtube.com/watch?v=OmQRpi3CSjU",
+            "minutes": "29",
+            "description": "29 min · Packer — what it is, mutable versus immutable infrastructure, building custom machine images and the workflow around them, then a demo. From 2023",
+            "type": "video"
+          }
+        ]
+      },
+
+      {
+        "name": "Bash Scripting",
+        "videos": [
+          {
+            "channel_name": "You Suck at Programming",
+            "name": "The Complete Bash Scripting Course",
+            "channel_link": "https://www.youtube.com/@yousuckatprogramming",
+            "link": "https://www.youtube.com/playlist?list=PL-my9REMIFtGgiQAXqKPJ5UrLdSkxcLBT",
+            "minutes": "442",
+            "description": "playlist · 62 videos · 7h 22m · Dave Eddy’s full course, from the terminal up — files, hidden files, grep, less, man pages, vim and permissions, then scripting itself: variables, user input, functions, if with [ ] and [[ ]], for loops, case, indexed and associative arrays, IFS, command and process substitution, arithmetic, and stdin and stdout. Later chapters cover cut, tr, sed, awk and find, set -u and set -x, $PIPESTATUS, sourcing libraries, exit codes against output, parameter expansion, globbing and extglob, brace expansion, printf, regular expressions without grep, mapfile, trap, named pipes, ANSI colours and cursor control, the PS1 prompt and .bashrc, why not to parse ls, and a fork bomb to finish. Most episodes run 3 to 13 minutes, with a recap at the end of each chapter; the code and materials are at course.ysap.sh. From 2026",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "Disk Encryption",
+        "videos": [
+          {
+            "channel_name": "MichaelsTechTutorials",
+            "name": "Linux Command Line SMARTmontools",
+            "channel_link": "https://www.youtube.com/@MichaelsTechTutorials",
+            "link": "https://www.youtube.com/watch?v=KuE7IE2GsI4",
+            "minutes": "14",
+            "description": "14 min · smartctl and the drive health figures that warn before a disk fails",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "LVM vs RAID",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=y7LiJqz52AE",
+            "minutes": "3",
+            "description": "3 min · why they aren't alternatives — RAID (0, 1, 5) keeps data alive when a disk fails while LVM pools disks into volume groups you can resize and snapshot — and the usual stack: disks, an mdadm array, LVM on top, then the filesystem. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "MichaelsTechTutorials",
+            "name": "Linux Command Line (91) LVM part 1",
+            "channel_link": "https://www.youtube.com/@MichaelsTechTutorials",
+            "link": "https://www.youtube.com/watch?v=LlXqSGZs4uM",
+            "minutes": "11",
+            "description": "11 min · the start of the series — what LVM is and how its layers fit together",
+            "type": "video"
+          },
+          {
+            "channel_name": "MichaelsTechTutorials",
+            "name": "Linux Command Line (92) LVM part 2: add a file system and remove LVM",
+            "channel_link": "https://www.youtube.com/@MichaelsTechTutorials",
+            "link": "https://www.youtube.com/watch?v=vjg2TqKNi-w",
+            "minutes": "7",
+            "description": "7 min · putting a filesystem on a logical volume, then taking LVM apart again",
+            "type": "video"
+          },
+          {
+            "channel_name": "MichaelsTechTutorials",
+            "name": "Linux Command Line (93) LVM part 3: a closer look",
+            "channel_link": "https://www.youtube.com/@MichaelsTechTutorials",
+            "link": "https://www.youtube.com/watch?v=Fa94S1s2SkM",
+            "minutes": "12",
+            "description": "12 min · a closer look at what LVM has built",
+            "type": "video"
+          },
+          {
+            "channel_name": "MichaelsTechTutorials",
+            "name": "Linux Command Line (94) LVM part 4: expand LVM",
+            "channel_link": "https://www.youtube.com/@MichaelsTechTutorials",
+            "link": "https://www.youtube.com/watch?v=7H0d8aCq2OA",
+            "minutes": "13",
+            "description": "13 min · growing a logical volume and the filesystem on it",
+            "type": "video"
+          },
+          {
+            "channel_name": "MichaelsTechTutorials",
+            "name": "Linux Command Line (95) LVM part 5: RAID 1 mirror",
+            "channel_link": "https://www.youtube.com/@MichaelsTechTutorials",
+            "link": "https://www.youtube.com/watch?v=bEpyw3buLVU",
+            "minutes": "13",
+            "description": "13 min · a RAID 1 mirror built with LVM",
+            "type": "video"
+          },
+          {
+            "channel_name": "MichaelsTechTutorials",
+            "name": "Linux Command Line (96) LVM part 6: RAID 0",
+            "channel_link": "https://www.youtube.com/@MichaelsTechTutorials",
+            "link": "https://www.youtube.com/watch?v=3IQ3Yx8RJHw",
+            "minutes": "6",
+            "description": "6 min · RAID 0 striping with LVM",
+            "type": "video"
+          },
+          {
+            "channel_name": "MichaelsTechTutorials",
+            "name": "Linux Command Line (97) LVM part 7: linear or RAID",
+            "channel_link": "https://www.youtube.com/@MichaelsTechTutorials",
+            "link": "https://www.youtube.com/watch?v=mYgU0FLNbUM",
+            "minutes": "8",
+            "description": "8 min · choosing between a plain linear volume and an LVM RAID",
+            "type": "video"
+          },
+          {
+            "channel_name": "MichaelsTechTutorials",
+            "name": "Linux Command Line (98) LVM part 8: RAID 5",
+            "channel_link": "https://www.youtube.com/@MichaelsTechTutorials",
+            "link": "https://www.youtube.com/watch?v=7PTW1pst67I",
+            "minutes": "13",
+            "description": "13 min · RAID 5 with LVM",
+            "type": "video"
+          },
+          {
+            "channel_name": "MichaelsTechTutorials",
+            "name": "Linux Command Line (99) LVM part 9: LVM on Ubuntu",
+            "channel_link": "https://www.youtube.com/@MichaelsTechTutorials",
+            "link": "https://www.youtube.com/watch?v=uz-MPJHYgwE",
+            "minutes": "10",
+            "description": "10 min · LVM on Ubuntu",
+            "type": "video"
+          },
+          {
+            "channel_name": "MichaelsTechTutorials",
+            "name": "Linux Command Line (112) LUKS part 1",
+            "channel_link": "https://www.youtube.com/@MichaelsTechTutorials",
+            "link": "https://www.youtube.com/watch?v=HjQICdVQDEo",
+            "minutes": "8",
+            "description": "8 min · the first part of his LUKS series",
+            "type": "video"
+          },
+          {
+            "channel_name": "MichaelsTechTutorials",
+            "name": "Linux Command Line (113) LUKS part 2: LUKS from the command line",
+            "channel_link": "https://www.youtube.com/@MichaelsTechTutorials",
+            "link": "https://www.youtube.com/watch?v=YQ438fAQang",
+            "minutes": "10",
+            "description": "10 min · creating and opening an encrypted volume with cryptsetup",
+            "type": "video"
+          },
+          {
+            "channel_name": "MichaelsTechTutorials",
+            "name": "Linux Command Line (114) LUKS part 3: add, remove and change passwords",
+            "channel_link": "https://www.youtube.com/@MichaelsTechTutorials",
+            "link": "https://www.youtube.com/watch?v=0fSs0zWGX9I",
+            "minutes": "8",
+            "description": "8 min · LUKS key slots — more than one password can open the same drive, and any one can be revoked",
+            "type": "video"
+          },
+          {
+            "channel_name": "MichaelsTechTutorials",
+            "name": "Linux Command Line (115) LUKS part 4: secure from single-user boot",
+            "channel_link": "https://www.youtube.com/@MichaelsTechTutorials",
+            "link": "https://www.youtube.com/watch?v=Cds5XdKXIpo",
+            "minutes": "10",
+            "description": "10 min · closing the way round the password through single-user boot",
+            "type": "video"
+          }
+        ]
+      }
+    ]
+  },
+  "2": {
+    "name": "Web Tech",
+    "sections": [
+
+      {
+        "name": "Containers",
+        "videos": [
+          {
+            "channel_name": "BashLab",
+            "name": "Introduction to Namespace: UTS Namespace Explained",
+            "channel_link": "https://www.youtube.com/@shashankpai4879",
+            "link": "https://www.youtube.com/watch?v=pGgpMk25ccQ",
+            "minutes": "21",
+            "description": "21 min · Part 1 of his namespaces series: how a container gets its own hostname without changing the host, from Linux up to Docker and Kubernetes. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Container Security 101: Linux Namespaces",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=Ps3X7WcwG_w",
+            "minutes": "8",
+            "description": "8 min · how PID namespaces isolate processes, how to identify and enter one, and how a --pid=host setting in a container configuration lets it reach the host. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "theurbanpenguin",
+            "name": "Linux Network Namespaces with ip netns",
+            "channel_link": "https://www.youtube.com/@theurbanpenguin",
+            "link": "https://www.youtube.com/watch?v=iN2RnYaFn-0",
+            "minutes": "9",
+            "description": "9 min · creating and managing network namespaces with ip netns, and the virtual interfaces inside them. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "All Things Systems",
+            "name": "Containers - Namespaces, Cgroups and Overlay Filesystem",
+            "channel_link": "https://www.youtube.com/@allthingssystems3997",
+            "link": "https://www.youtube.com/watch?v=wJdDWc6zO4U",
+            "minutes": "5",
+            "description": "5 min · the overview: a container is just a process, isolated by namespaces, limited by cgroups and given its root filesystem by an overlay. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "The Kernel Log",
+            "name": "The Invisible Engine of the Cloud: Linux Cgroups Explained",
+            "channel_link": "https://www.youtube.com/@TheKernelLog",
+            "link": "https://www.youtube.com/watch?v=GvLp2vv_I_4",
+            "minutes": "5",
+            "description": "5 min · how cgroups act as a bodyguard for the system, stopping runaway processes from taking every resource. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "All Things Systems",
+            "name": "How Containers work ? Demo with PID Namespaces",
+            "channel_link": "https://www.youtube.com/@allthingssystems3997",
+            "link": "https://www.youtube.com/watch?v=mjmMGD9MOvc",
+            "minutes": "11",
+            "description": "11 min · a demo of a PID namespace: a process that sees itself as PID 1 and cannot see anything on the host, while the host still sees it under its real PID. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "All Things Systems",
+            "name": "Network Namespaces - How they work?",
+            "channel_link": "https://www.youtube.com/@allthingssystems3997",
+            "link": "https://www.youtube.com/watch?v=PoBFSWENRYE",
+            "minutes": "12",
+            "description": "12 min · how a network namespace gives a container its own interfaces, routes and firewall, and how it is wired back to the host. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "All Things Systems",
+            "name": "Cgroups Introduction",
+            "channel_link": "https://www.youtube.com/@allthingssystems3997",
+            "link": "https://www.youtube.com/watch?v=b-zNzPRvwCY",
+            "minutes": "8",
+            "description": "8 min · what control groups are and the usual workflow: create a group, set a limit, move a process into it. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "All Things Systems",
+            "name": "Overlay Filesystems",
+            "channel_link": "https://www.youtube.com/@allthingssystems3997",
+            "link": "https://www.youtube.com/watch?v=DfENwtNRlD4",
+            "minutes": "13",
+            "description": "13 min · how an overlay, or union, filesystem stacks read-only image layers under one writable layer, which is how a container's root filesystem is built. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "The Only Container Networking Tutorial You'll Ever Need",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=2JSWa_EMhEM",
+            "minutes": "7",
+            "description": "7 min · how Docker container networking works — the veth pair with one end in the container and one on the host, matching a veth to its container, the docker0 bridge carrying traffic between containers, IP forwarding and routing for traffic to other networks, NAT and whether the container's IP survives it, and network isolation. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Why Hackers Love exec",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=zF6KORiypcQ",
+            "minutes": "5",
+            "description": "5 min · the shell's exec builtin — replacing the current shell with another program, opening and redirecting file descriptors, sending all of a shell's output somewhere else, and changing the name a process shows in process listings. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "BashLab",
+            "name": "# Episode 1: Who Actually Killed Your Pod? (It’s Not Kubernetes)?",
+            "channel_link": "https://www.youtube.com/@shashankpai4879",
+            "link": "https://www.youtube.com/watch?v=yjLqb384wKg",
+            "minutes": "45",
+            "description": "45 min · a pod that restarted overnight with exit code 137: Kubernetes does not kill for exceeding memory, so the trace goes down to the Linux kernel OOM killer. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "BashLab",
+            "name": "Pod Evicted? OOMKilled vs Evicted — Two Different Killers",
+            "channel_link": "https://www.youtube.com/@shashankpai4879",
+            "link": "https://www.youtube.com/watch?v=W15xLeVCjvA",
+            "minutes": "38",
+            "description": "38 min · why a Kubernetes pod can be OOMKilled by the kernel or evicted by the kubelet, and how to tell which happened. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Rob Braxman Tech",
+            "name": "Linux Tip - Understanding Chroot - Episode 2",
+            "channel_link": "https://www.youtube.com/@robbraxmantech",
+            "link": "https://www.youtube.com/watch?v=2wSJREC7RV8",
+            "minutes": "12",
+            "description": "12 min · chroot, the oldest form of isolation and the ancestor of containers: giving a process a different root directory, how that differs from a virtual machine, and how phone operating systems such as Android use it. Recorded on Ubuntu 18.04. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "This Tiny Binary Replaces Dozens of Linux Commands",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=J7_87oqIT5E",
+            "minutes": "4",
+            "description": "4 min · BusyBox, one small binary that stands in for ls, ps, pwd and dozens of other commands — how it works, its built-in shell, and why it turns up in sandboxes and minimal container images, shown running in both. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "How to Safely Run Untrusted Exploits on Linux",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=WH72yuw2CqY",
+            "minutes": "3",
+            "description": "3 min · keeping a proof-of-concept exploit cloned from GitHub from harming the machine you test it on — isolating it from your own system, reading it before you run it, and cutting it off from the network so it can't reach anything you didn't intend. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "BashLab",
+            "name": "Why Your Container App Is Always PID 1",
+            "channel_link": "https://www.youtube.com/@shashankpai4879",
+            "link": "https://www.youtube.com/watch?v=5kRARwlbu-M",
+            "minutes": "13",
+            "description": "13 min · Part 2 of his namespaces series: the PID namespace, and why an application becomes PID 1 inside a container and what that means for signals. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "BashLab",
+            "name": "🎬 Episode 0: Containers Start as Linux Processes",
+            "channel_link": "https://www.youtube.com/@shashankpai4879",
+            "link": "https://www.youtube.com/watch?v=kfunRqcBeeY",
+            "minutes": "7",
+            "description": "7 min · the opening episode of his series on Linux for containers: a container is only a process. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "Datadog",
+            "name": "Container Security Fundamentals - Seccomp",
+            "channel_link": "https://www.youtube.com/@DatadogHQ",
+            "link": "https://www.youtube.com/watch?v=A8fUTO8vY4Q",
+            "minutes": "7",
+            "description": "7 min · part 10, the last of the series: seccomp choosing which of the 300-plus system calls (they differ between ARM and x86) a container may make — Docker's default profile, which has blocked several kernel CVEs, stopping unshare until the container runs with seccomp=unconfined, Kubernetes switching that default off unless you set it on each workload, and writing a custom profile. From 2023",
+            "type": "video"
+          },
+          {
+            "channel_name": "Datadog",
+            "name": "Container Security Fundamentals - AppArmor",
+            "channel_link": "https://www.youtube.com/@DatadogHQ",
+            "link": "https://www.youtube.com/watch?v=_O1V57heEjY",
+            "minutes": "4",
+            "description": "4 min · part 9 of Datadog’s container security series: mandatory access control, which still restricts a process running as root — AppArmor on Debian and Ubuntu against SELinux on Red Hat, aa-status listing the installed profiles, Docker putting every container under its docker-default profile (built for compatibility rather than strictness), and a one-rule custom profile that stops root inside a container from writing to /etc. From 2023",
+            "type": "video"
+          },
+          {
+            "channel_name": "Datadog",
+            "name": "Container Security Fundamentals - Datadog",
+            "channel_link": "https://www.youtube.com/@DatadogHQ",
+            "link": "https://www.youtube.com/playlist?list=PLyPJCkaAbecPfbYCQ9l0X0oO3NvmDIgAo",
+            "minutes": "52",
+            "description": "playlist · 8 videos · 52 min · Datadog's container security series in order, saved into one playlist by Jansen du Plessis — containers as ordinary processes, then the mount, PID, network and user namespaces one at a time, capabilities in two parts (what they are, then dropping Docker's default ones to harden a container), and cgroups limiting what a container can use. From 2023",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Container Security",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/playlist?list=PL08nYpWQJ_zNqguHA3G_Nolk3g269YUwW",
+            "minutes": "87",
+            "description": "playlist · 19 videos · 1h 27m · short demos, most under five minutes — containers as ordinary Linux processes, what root cannot do on its own and the capabilities its power is split into, each namespace in turn (PID, user, network, mount, IPC and time), cgroups limiting CPU and containing a fork bomb, why a container given every capability still could not escape, runc and containerd underneath Docker, the veth pairs and docker0 bridge behind container networking, the idea behind rootless Docker, Podman as a rootless and daemonless alternative to Docker, five Docker security myths — read-only containers and a mounted Docker socket among them — and sandboxing an AI coding agent in Docker. Also covers Podman and rootless Docker. Three entries are private, and it runs newest first. From 2026, and still being added to",
+            "type": "playlist"
+          },
+
+          {
+            "channel_name": "LinuxCloudHacks",
+            "name": "Kubernetes",
+            "channel_link": "https://www.youtube.com/@LinuxCloudHacks",
+            "link": "https://www.youtube.com/playlist?list=PLUF494I4KUvrhxoXoA2GAb1LCYPTAkDRP",
+            "minutes": "242",
+            "description": "course · 11 lessons · 4h 2m · Kubernetes on your own hardware, networking first — getting around a cluster with the k9s terminal UI, how pods talk and the service types (headless, ClusterIP, external IP, NodePort, LoadBalancer) with MetalLB handing out addresses, building a dual-stack IPv4 and IPv6 cluster on Ubuntu 24.04 (preparing the OS, the container runtime, bootstrapping from a config file, the Flannel network plugin, adding worker nodes), a fully routed cluster with Calico and BGP (measured against Flannel, ECMP, MetalLB in BGP mode and the external traffic policy), Calico network policies with labels and selectors, then K3s home labs — Traefik ingress reached through a Cloudflare tunnel, MetalLB with MikroTik and ExternalDNS giving local names (Pi-hole, code-server), private access to workloads through Tailscale, three ways to put a highly available K3s cluster on the internet (a floating IP with keepalived, MetalLB, Cloudflare tunnels), and Cloudflare WARP with hostname routes for zero-trust access to private services. From 2024–2025",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "theurbanpenguin",
+            "name": "Streaming Linux Desktops in Docker",
+            "channel_link": "https://www.youtube.com/@theurbanpenguin",
+            "link": "https://www.youtube.com/watch?v=rSWmkiXOwJ4",
+            "minutes": "6",
+            "description": "6 min · a full Rocky Linux desktop running in a container and opened in the browser, using Kasm’s VNC-based desktop images — setting up the container, using the desktop, then building a custom image on top of it, including getting sudo rights inside. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "Better Stack",
+            "name": "Podman vs Docker: what’s really different?",
+            "channel_link": "https://www.youtube.com/@betterstack",
+            "link": "https://www.youtube.com/watch?v=SIvoAOpXZPg",
+            "minutes": "6",
+            "description": "6 min · Podman against Docker — a near-identical command line, Podman Desktop and Compose support — then the real differences. Pods group containers (a web server, PHP and MySQL, say) on one network so they start and stop together, and export to Kubernetes YAML. And Podman has no daemon: each container is forked from the podman command and runs rootless by default, where Docker’s daemon runs as root behind a socket, so compromising it hands over the host. Docker keeps the bigger ecosystem, Docker Hub’s images and Swarm, which Podman doesn’t support, and the two can run side by side. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "KodeKloud",
+            "name": "Docker vs Containerd: Understanding the Differences and Choosing the Right Containerization Tool",
+            "channel_link": "https://www.youtube.com/@KodeKloud",
+            "link": "https://www.youtube.com/watch?v=21onkZfL2yM&t=2s",
+            "minutes": "14",
+            "description": "14 min · the key differences between Docker and Containerd — how Docker built on Containerd, what each one does, when you need the full Docker toolset and when Containerd alone is enough, especially in Kubernetes",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "Docker vs LXC",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=h7Lz_aNqdCw",
+            "minutes": "3",
+            "description": "3 min · two ways to use the same namespaces and cgroups — LXC runs a whole persistent distribution like a lightweight VM you can SSH into and manage with systemd, while Docker packages one application into a reproducible image built from a Dockerfile; and you can run Docker inside LXC. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hussein Nasser",
+            "name": "PostgreSQL Internal Architecture Explained",
+            "channel_link": "https://www.youtube.com/@hnasr",
+            "link": "https://www.youtube.com/watch?v=Q56kljmIN14",
+            "minutes": "33",
+            "description": "33 min · how PostgreSQL is built inside: the listener and accept queue, which process accepts connections, which reads the stream and which executes queries. From 2023",
+            "type": "video"
+          },
+          {
+            "channel_name": "Nick Frostbutter",
+            "name": "Backup MySQL database with mysqldump FAST (from the command line)",
+            "channel_link": "https://www.youtube.com/@NickFrostbutter",
+            "link": "https://www.youtube.com/watch?v=IzEet1qxrKo",
+            "minutes": "2",
+            "description": "2 min · backing up a MySQL database quickly from the command line with mysqldump. From 2022",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Web Servers",
+        "videos": [
+          {
+            "channel_name": "medium guy",
+            "name": "What are a reverse proxy, an API gateway and an ingress controller?",
+            "channel_link": "https://www.youtube.com/@mediumguy6",
+            "link": "https://www.youtube.com/watch?v=9zay47f1RBY",
+            "minutes": "10",
+            "description": "10 min · three names for things that sit in front of your servers, told apart. A reverse proxy forwards each request to the right server by domain or path, and is worth having even with one server for rate limiting, IP filtering, authentication and caching. An ingress controller is a reverse proxy for Kubernetes, with Ingress objects as the routing rules it follows. An API gateway is a reverse proxy in front of microservices that adds service discovery, circuit breaking and combining several backend calls into one response. All three keep your backend services off the open internet. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "medium guy",
+            "name": "Caddy in Docker, feature by feature",
+            "channel_link": "https://www.youtube.com/@mediumguy6",
+            "link": "https://www.youtube.com/playlist?list=PLBm4OGt1_S7Zftw2eeOrgkRcJL_BskBg7",
+            "minutes": "530",
+            "description": "playlist · 23 videos · 8h 50m · one Caddy feature per episode, every one run in Docker — the basics of a reverse proxy and serving static files, then blocking bots and IP addresses, CORS, your own TLS certificates, forward authentication, load balancing, custom error pages and logs, rate limiting, caching, mock responses, basic and API-key authentication, a file server, Prometheus and Grafana metrics, request headers and correlation IDs, a layer-4 proxy for SSH, Docker containers as upstreams, rewriting responses and country-based content with GeoIP2. Rate limiting, caching, layer 4 and GeoIP2 come from plugins rather than stock Caddy. The last video is all the episodes joined into one 4-hour course; the episodes alone come to about 4h 40m. One video is unavailable, and two episodes are both numbered 21. From 2024–2026",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "medium guy",
+            "name": "nginx in Docker, feature by feature",
+            "channel_link": "https://www.youtube.com/@mediumguy6",
+            "link": "https://www.youtube.com/playlist?list=PLBm4OGt1_S7Ys5tmKX3eNvK1uSFwaxWOr",
+            "minutes": "458",
+            "description": "playlist · 21 videos · 7h 38m · one nginx feature per episode, using the free version and all run in Docker — worker processes, proxy_pass and load balancing, IP restrictions and bot blocking, CORS headers for several domains, TLS hardening with a self-signed certificate (labelled part 2; part 1 isn’t in the list), auth_request for checking each request against an auth service, custom error pages, log formats and logging to a remote server, rate limiting, GeoIP, cache control, mock API responses, basic and API-key authentication, a static and media file server, and a PHP and MySQL project behind nginx with Docker Compose. Ends with a comparison against OpenResty, nginx with Lua built in. One video is the episodes joined into a 3h 22m crash course; the episodes alone come to about 4h 17m. From 2023–2024",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "Databases",
+        "videos": [
+          {
+            "channel_name": "RKSR1960",
+            "name": "MariaDB Administration Tutorial",
+            "channel_link": "https://www.youtube.com/@RKSR1960",
+            "link": "https://www.youtube.com/watch?v=hDKnsUrz0nM&list=PLnrmLjoInKWgUTezOTaIIrAwCIfO8JbTR",
+            "minutes": "417",
+            "description": "course · 63 lessons · 6h 57m · the first 63 lessons, a few minutes each — MariaDB administration that mostly applies to MySQL too, first at the command line and then in HeidiSQL: installing MariaDB on Windows and CentOS and moving its data directory, a Galera cluster, upgrading and migrating from MySQL, creating, renaming and dropping users, granting and revoking permissions on databases, tables and columns, GRANT OPTION and roles, seeing what a user can do, backups with mysqldump (every database, one database or table, zipped, timestamped, scheduled with crontab) and restoring them, resetting the root password, and the error, general, slow-query and binary logs; then in HeidiSQL, connecting, creating databases and tables, importing and exporting CSV and JSON, managing users and permissions, watching running queries, query history, scripting a database, loading large SQL files, synchronising two databases and changing server settings. From 2017–2018",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Mughees Ahmed",
+            "name": "MySQL DBA Tutorial",
+            "channel_link": "https://www.youtube.com/@mughees52",
+            "link": "https://www.youtube.com/watch?v=Szr4DrM4E8Q&list=PLd5sTGXltJ-l9PKT2Bynhg0Ou2uESOJiH",
+            "minutes": "578",
+            "description": "course · 31 lessons · 9h 38m · the numbered MySQL 8 DBA course on Linux, lessons 1–31 — MySQL’s architecture, storage engines and InnoDB’s internals, installing it from the Yum repository, RPM packages and generic binaries, connecting, creating databases and tables and loading sample data, creating users, password management, granting privileges and GRANT OPTION, roles and mandatory roles, transactions, isolation levels and InnoDB locking, the binary log and extracting statements from it, backups with mysqldump, mysqlpump and mydumper, and point-in-time recovery. From 2020–2021",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Ejoghomedaro Harris",
+            "name": "POSTGRES DATABASE ADMINISTRATION",
+            "channel_link": "https://www.youtube.com/@ejoghomedaroharris9329",
+            "link": "https://www.youtube.com/playlist?list=PLwxrtuGg5dNGv4jvDY3TEddn2HIn4-uF9",
+            "minutes": "809",
+            "description": "playlist · 55 videos · 13h 29m · PostgreSQL administration, mostly in psql on Linux and listed out of order — its architecture, installing it on Windows, Linux and in Docker, moving the data directory, starting and stopping the service, postgresql.conf, pg_hba.conf, the password file and remote access, users and roles, the default user and internal authentication, schemas, tablespaces and clusters, creating databases and tables, a psql cheatsheet, indexes, EXPLAIN, pg_stat_statements, slow and blocked queries, logging and pgBadger, vacuum, autovacuum, bloat and pg_repack, write-ahead logging, backups (pg_dump, pg_dumpall, pg_basebackup, pgBackRest, Barman and point-in-time recovery), pg_upgrade, logical replication and failover with repmgr, connection pooling with PgBouncer, pg_cron, dblink, kernel parameters, comparing schemas in pgAdmin and in DBeaver, and Postgres against MySQL. From 2020–2021",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Database Star",
+            "name": "pgAdmin Tutorial - How to Use pgAdmin",
+            "channel_link": "https://www.youtube.com/@DatabaseStar",
+            "link": "https://www.youtube.com/watch?v=WFT5MaZN6g4",
+            "minutes": "15",
+            "description": "15 min · getting started with pgAdmin, the GUI that comes with Postgres — downloading it and setting the master password, the main window, connecting to a server, the toolbar, the query tool, saving and opening queries, editing data, the explain plan, searching for objects, other features and preferences. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "DBeaver",
+            "name": "How to get started with DBeaver",
+            "channel_link": "https://www.youtube.com/@DBeaver_video",
+            "link": "https://www.youtube.com/playlist?list=PLkh7-EMxQiV1jVGEEiXOVnutZo02GGmaJ",
+            "minutes": "114",
+            "description": "playlist · 27 videos · 1h 54m · DBeaver’s own short guides to its database GUI, which works with MySQL, MariaDB and PostgreSQL alike — installing it on Windows, Linux and macOS, creating a connection, the navigation tree and projects, the data editor and its grid, importing data and migrating it between databases, the value, metadata and references panels, building reports and charts, ER diagrams, the SQL editor and visual query builder, AI chat, and scheduled tasks. Several videos show paid DBeaver PRO features. From 2022",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "Version Control",
+        "videos": [
+          {
+            "channel_name": "GitGuardian",
+            "name": "How to permanently remove files from git and rewrite your git history",
+            "channel_link": "https://www.youtube.com/@GitGuardian",
+            "link": "https://www.youtube.com/watch?v=msUDPYsbABY",
+            "minutes": "12",
+            "description": "12 min · getting a committed file out of git for good, after first revoking any secret it held. git reset --soft and a force push undo a commit you have only just made; for a file spread through older commits and other branches, BFG Repo-Cleaner deletes it by name across the whole history, checked with git log --oneline and a detached checkout before the force push. He warns first that rewriting history breaks things for anyone else working on the repository. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "GitGuardian",
+            "name": "2 million .git directories exposed: why .git folders are sensitive",
+            "channel_link": "https://www.youtube.com/@GitGuardian",
+            "link": "https://www.youtube.com/watch?v=H-_KtGqSk3I",
+            "minutes": "9",
+            "description": "9 min · what a .git folder holds — the whole history, the commit data and the remote’s address — why that is dangerous when the folder sits on a web server, and how these folders end up publicly reachable, drawing on Cybernews research that found about two million of them. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "GitGuardian",
+            "name": "What are GitHooks? Explained in 5 minutes",
+            "channel_link": "https://www.youtube.com/@GitGuardian",
+            "link": "https://www.youtube.com/watch?v=1OFiiPretCM",
+            "minutes": "6",
+            "description": "6 min · an excerpt from the opening of a longer GitHooks guide — where hooks fire (pre-commit and pre-push on your machine, pre-receive on the server), local hooks against global ones, the sample hooks git init puts in .git/hooks, and turning one on by removing .sample, which here blocks a commit with trailing whitespace. From 2023",
+            "type": "video"
+          },
+          {
+            "channel_name": "GitGuardian",
+            "name": "Complete guide to GitHooks — creating your own pre-commit hooks",
+            "channel_link": "https://www.youtube.com/@GitGuardian",
+            "link": "https://www.youtube.com/watch?v=ObksvAZyWdo",
+            "minutes": "30",
+            "description": "30 min · writing git hooks yourself. After where hooks fire and the samples in .git/hooks, he writes a pre-commit hook from scratch — chmod u+x first, the step people miss — has it fetch a dad joke with curl on every commit, block the commit when git grep finds a 20-character AWS key, then hand the commit to ggshield instead. The last part makes a global hook with git config --global core.hooksPath, shows that it replaces each repository’s own hook rather than adding to it, and calls the local hook from the global one so both run. Ends by pointing to the pre-commit framework for chaining hooks together. From 2023",
+            "type": "video"
+          },
+          {
+            "channel_name": "GitGuardian",
+            "name": "Detect secrets with a pre-commit git hook using ggshield and the pre-commit framework",
+            "channel_link": "https://www.youtube.com/@GitGuardian",
+            "link": "https://www.youtube.com/watch?v=8bDKn3y7Br4",
+            "minutes": "13",
+            "description": "13 min · the pre-commit framework, which builds hooks from a .pre-commit-config.yaml and can layer several checks into one, set up here with ggshield to block commits that contain secrets — pinning a release instead of tracking main, pre-commit install, a commit stopped by an AWS key, then letting a false positive through with ggshield ignore --last-found and skipping a folder of examples with paths-ignore. ggshield needs a free GitGuardian API key. From 2021",
+            "type": "video"
+          },
+          {
+            "channel_name": "GitGuardian",
+            "name": "How to create a pre-push git hook to detect hardcoded secrets",
+            "channel_link": "https://www.youtube.com/@GitGuardian",
+            "link": "https://www.youtube.com/watch?v=uc70CE1MXvM",
+            "minutes": "13",
+            "description": "13 min · ggshield’s secret scan run as a pre-push hook, with pre-commit install --hook-type pre-push, so a run of commits is scanned once when you push rather than at every commit. The trade-off he points out is that a secret caught at push time is already in your local history and has to be rewritten out of it. The API key goes in a .env file that .gitignore keeps out of the repository. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "Maxim Orlov",
+            "name": "Deploy to your server using Git",
+            "channel_link": "https://www.youtube.com/@maximization",
+            "link": "https://www.youtube.com/watch?v=H6UU7TsyrGs",
+            "minutes": "8",
+            "description": "8 min · push-to-deploy with nothing but git — an empty bare repository on the server, a post-receive hook that puts the pushed code in place, the server added as a remote, and a git push that deploys. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "SuperSimpleDev",
+            "name": "How to put an HTML website online (on the Internet)",
+            "channel_link": "https://www.youtube.com/@SuperSimpleDev",
+            "link": "https://www.youtube.com/watch?v=p1QU3kLFPdg",
+            "minutes": "30",
+            "description": "30 min · hosting a plain HTML and CSS site for free with GitHub Pages — a public repository (Pages is only free for public ones), the code uploaded by drag and drop in the browser rather than with git, Pages switched on for the main branch, and why the home page has to be called index.html for the bare address to work. The second half adds your own domain: buying one from a registrar, how a domain name becomes an IP address through DNS, A records pointing at GitHub Pages’ IP addresses, a CNAME record for www, what TTL means, linking the domain in the repository’s settings, and turning on free HTTPS. From 2022",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Authentication & Encrypted App",
+        "videos": [
+          {
+            "channel_name": "Hussein Nasser",
+            "name": "Five password authentications from least to most secure",
+            "channel_link": "https://www.youtube.com/@hnasr",
+            "link": "https://www.youtube.com/watch?v=_t8EPImx9LI",
+            "minutes": "25",
+            "description": "25 min · how a backend should store a password, one step safer at a time — plain text, a hash, a salted hash, bcrypt with its salt built in, and finally encrypting everything so no password is stored at all — built in Node and Postgres. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hussein Nasser",
+            "name": "Cookies",
+            "channel_link": "https://www.youtube.com/@hnasr",
+            "link": "https://www.youtube.com/playlist?list=PLQnljOFTspQXaimjxx6uGLJz6lR25abZn",
+            "minutes": "195",
+            "description": "playlist · 8 videos · 3h 15m · how a web app keeps you signed in — an HTTP cookies crash course, the SameSite attribute and why browsers changed its default, cookies that refuse to be deleted, third-party cookies and how ads follow you, the SameSite exception made for single sign-on, and a JWT crash course built with Node and Postgres. From 2019–2020",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Codecourse",
+            "name": "Passwordless Authentication with Laravel",
+            "channel_link": "https://www.youtube.com/@codecourse",
+            "link": "https://www.youtube.com/playlist?list=PLfdtiltiRHWFY2IffzknG0ZRma0IZ7Wb_",
+            "minutes": "52",
+            "description": "playlist · 6 videos · 52 min · a signed link mailed instead of a password — generating the token, sending it, validating it on the way back, and flushing the ones nobody used",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Codecourse",
+            "name": "JWT Authentication from Scratch",
+            "channel_link": "https://www.youtube.com/@codecourse",
+            "link": "https://codecourse.com/courses/jwt-authentication-from-scratch",
+            "minutes": "84",
+            "description": "course · 14 episodes · 1h 24m · what a token actually is, assembled by hand — claims, issuer and expiry, encoding and signing, then the middleware that decodes one on every request. From 2018 and written against Slim, so take the mechanism rather than the library; behind a Codecourse subscription",
+            "type": "video"
+          },
+          {
+            "channel_name": "Codecourse",
+            "name": "API Authentication with Laravel Passport",
+            "channel_link": "https://www.youtube.com/@codecourse",
+            "link": "https://codecourse.com/courses/api-authentication-with-laravel-passport",
+            "minutes": "102",
+            "description": "course · 14 episodes · 1h 42m · personal access tokens, then the whole OAuth flow — scopes, refresh tokens and the consent screen. From 2017, so read the syntax as dated and watch it for the flow; it sits behind a Codecourse subscription",
+            "type": "video"
+          },
+          {
+            "channel_name": "Rukmi Patel",
+            "name": "Multi-factor authentication with PHP 8.1 and Google Authenticator",
+            "channel_link": "https://www.youtube.com/@rukmi205",
+            "link": "https://www.youtube.com/watch?v=lBYuM_O7qcE",
+            "minutes": "7",
+            "description": "7 min · the smallest working version of a TOTP second factor — the Vectorface GoogleAuthenticator package from Composer, a QR code for the authenticator app to scan, and a form that checks the six-digit code, allowing a minute of clock drift. The secret is hard-coded for the demo, which he flags as the thing not to copy: each user needs their own, generated once and stored with their account. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "Interactive Utopia",
+            "name": "Google Authenticator implementation with PHP",
+            "channel_link": "https://www.youtube.com/@InteractiveUtopia",
+            "link": "https://www.youtube.com/watch?v=3NFB_notQLA",
+            "minutes": "19",
+            "description": "19 min · TOTP as a standard rather than a Google service — nothing is sent to Google; the app and the server both follow RFC 6238. The pragmarx/google2fa package makes the secret and checks codes, bacon/bacon-qr-code draws the QR code on the server as a base64 image, and a small fetch call sends the code back to be checked. The demo keeps the secret in the session and sends the code in the URL; he says a real app should store the secret encrypted and POST the code. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "HazardEdit",
+            "name": "Implementing TOTP two-factor authentication with PHP and AJAX",
+            "channel_link": "https://www.youtube.com/@HazardEdit",
+            "link": "https://www.youtube.com/watch?v=uVdu4war_Uo",
+            "minutes": "15",
+            "description": "15 min · the PHPGangsta GoogleAuthenticator class, a jQuery login form that posts the code, and a check that accepts codes up to a minute and a half either side. Its most useful point comes early: a one-time password is only one-time if you record each code once it is used and refuse it while it is still valid, so someone who saw it cannot replay it. Its QR code comes from an online chart service, which hands your secret to a third party; drawing it on your own server avoids that. From 2017",
+            "type": "video"
+          },
+          {
+            "channel_name": "Penguin Digital",
+            "name": "Two-factor authentication with Laravel Fortify",
+            "channel_link": "https://www.youtube.com/@PenguinDigital",
+            "link": "https://www.youtube.com/watch?v=5-P5gBM6hDM",
+            "minutes": "18",
+            "description": "18 min · episode 7 of a series building a Laravel 8 login system on Fortify — the TwoFactorAuthenticatable trait, the two_factor_secret and two_factor_recovery_codes columns, an enable button that posts to /user/two-factor-authentication behind a password confirmation, the QR code from twoFactorQrCodeSvg, the recovery codes decrypted for the user to keep, a disable button, then the code prompt at login and signing in with a recovery code instead. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "Laravel",
+            "name": "Two-factor authentication now available in Laravel starter kits",
+            "channel_link": "https://www.youtube.com/@LaravelPHP",
+            "link": "https://www.youtube.com/watch?v=4osPfTw-FB0",
+            "minutes": "3",
+            "description": "3 min · two-factor authentication with nothing to build — Laravel’s React, Vue and Livewire starter kits now ship two-factor authentication on top of Fortify: turn it on in the settings page, scan the QR code, confirm a code, and every login after that asks for one. The options sit in config/fortify.php, including whether turning it on needs a confirmed code and a re-entered password. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "Maximus McCullough",
+            "name": "PHP data encryption and decryption in MySQL",
+            "channel_link": "https://www.youtube.com/@MaximusMcCullough",
+            "link": "https://www.youtube.com/watch?v=gnlXwkIEZQA",
+            "minutes": "8",
+            "description": "8 min · the smallest working version — encrypt on the way in, decrypt on the way out",
+            "type": "video"
+          },
+          {
+            "channel_name": "Maximus McCullough",
+            "name": "PHP data encryption: insert and retrieve",
+            "channel_link": "https://www.youtube.com/@MaximusMcCullough",
+            "link": "https://www.youtube.com/watch?v=7JGMYHBqkjU",
+            "minutes": "21",
+            "description": "21 min · encryption and decryption wired through a real form and database table",
+            "type": "video"
+          },
+          {
+            "channel_name": "Maximus McCullough",
+            "name": "Data encryption in PHP and MySQL with OpenSSL",
+            "channel_link": "https://www.youtube.com/@MaximusMcCullough",
+            "link": "https://www.youtube.com/watch?v=5MInr-fIkSY",
+            "minutes": "12",
+            "description": "12 min · openssl_encrypt, the cipher and IV choices, and where the key goes",
+            "type": "video"
+          },
+          {
+            "channel_name": "Maximus McCullough",
+            "name": "PHP encryption and decryption — proactive methods",
+            "channel_link": "https://www.youtube.com/@MaximusMcCullough",
+            "link": "https://www.youtube.com/watch?v=I3GFDG_cCTY",
+            "minutes": "25",
+            "description": "25 min · encryption that treats key handling as part of the problem",
+            "type": "video"
+          },
+          {
+            "channel_name": "Maximus McCullough",
+            "name": "Searching a PHP encrypted database",
+            "channel_link": "https://www.youtube.com/@MaximusMcCullough",
+            "link": "https://www.youtube.com/watch?v=il2LDXMY37s",
+            "minutes": "12",
+            "description": "12 min · querying over encrypted columns — watch how it narrows the rows, because decrypting all of them does not scale",
+            "type": "video"
+          }
+        ]
+      }
+    ]
+  }
+}

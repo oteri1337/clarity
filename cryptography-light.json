@@ -1,0 +1,707 @@
+{
+  "1": {
+    "name": "Cryptography Fundamentals",
+    "level": "Beginner → Advanced",
+    "note": "Alfred Menezes’s Cryptography 101 courses, opened by Art of the Problem’s animated series: symmetric-key encryption, hash functions, MACs and authenticated encryption, public-key cryptography, cryptography in deployed systems, and post-quantum cryptography from the quantum threat through lattices, Kyber, Dilithium and hash-based signatures.",
+    "sections": [
+      {
+        "name": "Introduction, Security Principles & Classical Ciphers",
+        "topics": [
+          [
+            1,
+            "Introduction to Cryptography",
+            "What cryptography is, its history, objectives, and applications"
+          ],
+          [
+            2,
+            "Security Principles",
+            "Confidentiality, integrity, availability, authenticity, non-repudiation"
+          ],
+          [
+            3,
+            "Cryptographic Terminology",
+            "Plaintext, ciphertext, encryption, decryption, keys, algorithms, nonce, salt"
+          ],
+          [
+            6,
+            "Probability and Randomness",
+            "Entropy, probability distributions, randomness, pseudorandomness"
+          ],
+          [
+            7,
+            "Computational Complexity",
+            "Brute force, computational hardness, time complexity"
+          ],
+          [
+            8,
+            "Cryptographic Attacks",
+            "Brute-force attacks, frequency analysis, known-plaintext attacks, chosen-plaintext attacks"
+          ],
+          [
+            9,
+            "Kerckhoffs's Principle",
+            "Why cryptographic security must depend on secret keys, not secret algorithms"
+          ],
+          [
+            10,
+            "Security Models",
+            "Threat models, attack surfaces, security assumptions"
+          ],
+          [
+            11,
+            "Substitution Ciphers",
+            "Caesar cipher, monoalphabetic substitution"
+          ],
+          [
+            12,
+            "Transposition Ciphers",
+            "Rail fence, columnar transposition"
+          ],
+          [
+            13,
+            "Polyalphabetic Ciphers",
+            "Vigenère cipher"
+          ],
+          [
+            14,
+            "Frequency Analysis",
+            "Statistical attacks against classical encryption"
+          ],
+          [
+            15,
+            "Classical Cryptanalysis",
+            "Breaking historical encryption systems"
+          ]
+        ],
+        "videos": [
+          {
+            "channel_name": "Art of the Problem",
+            "name": "Gambling with Secrets",
+            "channel_link": "https://www.youtube.com/@ArtOfTheProblem",
+            "link": "https://www.youtube.com/playlist?list=PLB4D701646DAF0817",
+            "minutes": "70",
+            "description": "course · 8 lessons · 1h 10m · Brit Cruise’s animated series on the ideas under cryptography — what cryptography is, prime factorization, probability theory and randomness, private-key cryptography, encryption machines, perfect secrecy and pseudorandomness, Diffie-Hellman key exchange, and RSA encryption. From 2011–2012",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Security and Privacy Academy",
+            "name": "Secure Messaging",
+            "channel_link": "https://www.youtube.com/@SecPrivAca",
+            "link": "https://www.youtube.com/playlist?list=PLZeK3TZueogEy_vOJVYO256dV8dXQ9YSO",
+            "minutes": "64",
+            "description": "playlist · 8 videos · 1h 04m · the principles of secure messaging, the Off-the-Record protocol, the Signal protocol and its X3DH key agreement, Signal group chats, Threema’s security, why not to use Telegram, and a guide to messenger privacy and security. From 2023–2024",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Cryptography 101",
+            "name": "Applied Cryptography 101: Symmetric-Key Encryption",
+            "channel_link": "https://www.youtube.com/@cryptography101-alfred",
+            "link": "https://www.youtube.com/watch?v=d3lYKB-vhvE&list=PLA1qgQLL41SRsHMtsb4up5fTytDeHV_yJ",
+            "minutes": "119",
+            "description": "course · 6 lessons · 1h 59m · lessons V2a–V2f of Alfred Menezes’s Applied Cryptography 101 — the fundamental concepts of symmetric-key encryption, stream ciphers, the DES and Triple-DES block ciphers, AES, and the modes of operation of a block cipher. From 2024",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Cryptography 101",
+            "name": "Applied Cryptography 101: Hash Functions, MACs & Authenticated Encryption",
+            "channel_link": "https://www.youtube.com/@cryptography101-alfred",
+            "link": "https://www.youtube.com/watch?v=1tKQyT2Dokw&list=PLA1qgQLL41SRsHMtsb4up5fTytDeHV_yJ",
+            "minutes": "144",
+            "description": "course · 9 lessons · 2h 24m · lessons V3a–V5b of Alfred Menezes’s Applied Cryptography 101 — hash functions (preimage, second-preimage and collision resistance and how they relate, generic attacks, iterated hash functions and SHA-256), message authentication codes (CBC-MAC and HMAC), and authenticated encryption with AES-GCM. From 2024",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Cryptography 101",
+            "name": "Applied Cryptography 101: Public-Key Cryptography",
+            "channel_link": "https://www.youtube.com/@cryptography101-alfred",
+            "link": "https://www.youtube.com/watch?v=x9fcJCalxPk&list=PLA1qgQLL41SRsHMtsb4up5fTytDeHV_yJ",
+            "minutes": "241",
+            "description": "course · 13 lessons · 4h 01m · lessons V6a–V8e of Alfred Menezes’s Applied Cryptography 101 — the fundamental concepts of public-key cryptography, elementary and algorithmic number theory, basic RSA, integer factorization, RSA encryption, RSA signatures and PKCS #1 v1.5, then elliptic curves, the elliptic curve discrete logarithm problem, elliptic curve cryptography, ECDH and ECDSA. From 2024",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Cryptography 101",
+            "name": "Applied Cryptography 101: Real-World Deployments",
+            "channel_link": "https://www.youtube.com/@cryptography101-alfred",
+            "link": "https://www.youtube.com/playlist?list=PLA1qgQLL41SRn_23p8zD0vUpKM4qOgt_T",
+            "minutes": "163",
+            "description": "course · 7 lessons · 2h 43m · Alfred Menezes on cryptography in deployed systems — an overview, public-key infrastructures, TLS 1.3, Bluetooth security, AWS key management, and the Signal protocol. From 2025",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Cryptography 101",
+            "name": "Post-Quantum Cryptography Explained: The Quantum Threat & Migration",
+            "channel_link": "https://www.youtube.com/@cryptography101-alfred",
+            "link": "https://www.youtube.com/watch?v=8g_F82wyT10&list=PLA1qgQLL41SRldymPO7YOb6eRMXJ_uLkH",
+            "minutes": "86",
+            "description": "course · 9 lessons · 1h 26m · lessons 1–9 of Alfred Menezes’s Post-Quantum Cryptography Explained — an overview, quantum computers, the quantum threat to primitives and to protocols, quantum-safe cryptography, the PQC standards, migration timelines, PQC software libraries, and PQC deployments. From 2026",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "Lattices, ML-KEM, ML-DSA & SLH-DSA",
+        "topics": [
+          [
+            94,
+            "Lattice-Based Cryptography",
+            "Mathematical foundations"
+          ],
+          [
+            95,
+            "Module-Lattice Cryptography",
+            "Modern post-quantum constructions"
+          ],
+          [
+            96,
+            "ML-KEM",
+            "Post-quantum key encapsulation"
+          ],
+          [
+            97,
+            "ML-DSA",
+            "Post-quantum digital signatures"
+          ],
+          [
+            98,
+            "SLH-DSA",
+            "Hash-based digital signatures"
+          ]
+        ],
+        "videos": [
+          {
+            "channel_name": "Cryptography 101",
+            "name": "Post-Quantum Cryptography Explained: Lattices, ML-KEM & ML-DSA",
+            "channel_link": "https://www.youtube.com/@cryptography101-alfred",
+            "link": "https://www.youtube.com/watch?v=3i0i6TPbaZM&list=PLA1qgQLL41SRldymPO7YOb6eRMXJ_uLkH",
+            "minutes": "65",
+            "description": "course · 7 lessons · 1h 05m · lessons 10–16 of Alfred Menezes’s Post-Quantum Cryptography Explained — lattice-based cryptography, learning with errors, Kyber (ML-KEM), short integer solutions, Dilithium (ML-DSA), Falcon (FN-DSA), and FrodoKEM. From 2026",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Cryptography 101",
+            "name": "The Mathematics of Lattice-Based Cryptography",
+            "channel_link": "https://www.youtube.com/@cryptography101-alfred",
+            "link": "https://www.youtube.com/playlist?list=PLA1qgQLL41STNFDvPJRqrHtuz0PIEJ4a8",
+            "minutes": "148",
+            "description": "course · 7 lessons · 2h 28m · the mathematics under lattice-based cryptography — the short integer solution and learning with errors problems, lattices, how SIS and LWE relate to lattices, Ring-SIS and Ring-LWE, and Module-SIS and Module-LWE. From 2024–2025",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Cryptography 101",
+            "name": "Kyber and Dilithium",
+            "channel_link": "https://www.youtube.com/@cryptography101-alfred",
+            "link": "https://www.youtube.com/watch?v=O4jvfNaQkf8&list=PLA1qgQLL41SSUOHlq8ADraKKzv47v2yrF",
+            "minutes": "227",
+            "description": "course · 12 lessons · 3h 47m · Kyber (ML-KEM) and Dilithium (ML-DSA) built up step by step — post-quantum cryptography and the mathematical prerequisites, Kyber-PKE simplified, its optimizations and the full scheme, Kyber-KEM, Dilithium from a toy version through t compression to the full scheme, and the number-theoretic transforms both use. From 2024",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Cryptography 101",
+            "name": "Hash-Based Signatures",
+            "channel_link": "https://www.youtube.com/@cryptography101-alfred",
+            "link": "https://www.youtube.com/playlist?list=PLA1qgQLL41STcDn6GCAE36RzId-Xq4JU8",
+            "minutes": "83",
+            "description": "course · 6 lessons · 1h 23m · hash-based signatures from first principles — hash functions, the Lamport one-time signature scheme, its problems and their solutions, the Leighton-Micali signature scheme (LMS), and SPHINCS+, standardized as SLH-DSA. From 2025",
+            "type": "playlist"
+          }
+        ]
+      }
+    ]
+  },
+  "2": {
+    "name": "Applied Cryptography & Encrypted Databases",
+    "level": "Intermediate → Advanced",
+    "note": "What the fundamentals don’t cover: secret sharing and zero knowledge, HSMs and secrets management, attacks on deployed cryptography, side channels and protocol verification, encryption at rest and field-level encryption, searchable encryption, homomorphic encryption, multi-party computation and trusted execution, and designing a searchable encrypted database.",
+    "sections": [
+      {
+        "name": "Introduction, Security Principles & Classical Ciphers",
+        "videos": [
+          {
+            "channel_name": "Bill Buchanan OBE FRSE",
+            "name": "Shamir Secret Shares",
+            "channel_link": "https://www.youtube.com/@BillBuchanan",
+            "link": "https://www.youtube.com/playlist?list=PLqhpVxkBo1dPHmdAnMq-mpyCXs0rikdVT",
+            "minutes": "45",
+            "description": "playlist · 4 videos · 45 min · Shamir’s secret sharing, Shamir shares with elliptic curves in Go, a factoring-based signature with Fiat-Shamir, and a Fiat-Shamir zero-knowledge proof. From 2013–2021",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "Key Derivation, Key Management Services, HSMs & Secrets",
+        "videos": [
+          {
+            "channel_name": "Cryptosense",
+            "name": "HSMs & PKCS#11 Explained",
+            "channel_link": "https://www.youtube.com/@Cryptosense",
+            "link": "https://www.youtube.com/playlist?list=PLA-8aGQm6tkIgd8-zi4PtCO79qmmtKyCm",
+            "minutes": "28",
+            "description": "playlist · 6 videos · 28 min · what hardware security modules do, the PKCS#11 interface to them, common attacks on HSMs and fuzzing them, PKCS#11 compliance, and using an HSM securely. From 2019–2020",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Rahul Wagh",
+            "name": "HashiCorp Vault",
+            "channel_link": "https://www.youtube.com/@RahulWagh",
+            "link": "https://www.youtube.com/playlist?list=PL7iMyoQPMtAP7XeXabzWnNKGkCex1C_3C",
+            "minutes": "86",
+            "description": "course · 8 lessons · 1h 26m · HashiCorp Vault from installation — starting and stopping it in dev mode, reading, writing and deleting secrets, secret engines and their paths, dynamic secrets, token and GitHub authentication, policies, and deploying Vault with its HTTP API and UI. From 2022",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "Secret Sharing, Zero Knowledge, Commitments & Oblivious Transfer",
+        "videos": [
+          {
+            "channel_name": "Berkeley RDI",
+            "name": "Zero Knowledge Proofs MOOC Spring 2023",
+            "channel_link": "https://www.youtube.com/@BerkeleyRDI",
+            "link": "https://www.youtube.com/playlist?list=PLS01nW3Rtgor_yJmQsGBZAg5XM4TSGpPs",
+            "minutes": "1270",
+            "description": "course · 14 lessons · 21h 10m · Berkeley’s Zero Knowledge Proofs MOOC — the history of zero-knowledge proofs, modern SNARK constructions, programming ZKPs, interactive proofs, the Plonk SNARK, polynomial commitments from pairings, discrete logs and error-correcting codes, FRI and Fiat-Shamir, SNARKs from linear PCPs, recursive SNARKs, zkEVM design, secure ZK circuits with formal methods, and hardware acceleration; four videos in the middle are unavailable. From 2023",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Zero Knowledge",
+            "name": "ZK Whiteboard Sessions - S1",
+            "channel_link": "https://www.youtube.com/@zeroknowledgefm",
+            "link": "https://www.youtube.com/playlist?list=PLj80z0cJm8QErn3akRcqvxUsyXWC81OGq",
+            "minutes": "993",
+            "description": "playlist · 20 videos · 16h 33m · whiteboard lessons on zero-knowledge proofs — Dan Boneh on what a SNARK is and how to build one, SNARKs against STARKs, PLONK and custom gates, lookup tables, zkVMs, decentralised private computation, zkRollups, zkEVM, ZK swaps, zkID, fast recursion with Plonky2, Nova, Halo 2’s inner product argument, multi-asset shielded pools, and interviews. From 2022–2025",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "Attacking Real Implementations",
+        "videos": [
+          {
+            "channel_name": "IACR",
+            "name": "Workshop on Attacks in Cryptography 2021",
+            "channel_link": "https://www.youtube.com/@TheIACR",
+            "link": "https://www.youtube.com/playlist?list=PLeeS-3Ml-rpqIC_DuZcIQw79H28BPWf_d",
+            "minutes": "260",
+            "description": "playlist · 8 videos · 4h 20m · talks from the IACR Workshop on Attacks in Cryptography — the Raccoon attack on TLS-DH(E), PARASITE against SRP implementations, FragAttacks on Wi-Fi, partitioning oracle attacks, integrity in attestation and isolation, fault attacks on CCA-secure lattice KEMs, small-subgroup attacks on distributed systems, and a side journey to Titan. From 2021",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "Side Channels, Replays, Downgrades & Formal Verification",
+        "topics": [],
+        "videos": [
+          {
+            "channel_name": "Colin O'Flynn",
+            "name": "Side Channel Analysis & Cryptography",
+            "channel_link": "https://www.youtube.com/@ColinOFlynn",
+            "link": "https://www.youtube.com/playlist?list=PLyAXNQGte3qPMk5XvACx4lQslwXcqUJrh",
+            "minutes": "399",
+            "description": "playlist · 25 videos · 6h 39m · side-channel and fault-injection attacks shown on the ChipWhisperer, the open-source tool its maker built — power analysis demos, a 2½-hour CHES 2013 tutorial on low-cost side-channel analysis, differential power analysis against an AVR, decoupling-capacitor power measurement, breaking AES-128 on an FPGA board, a timing attack on a PIN-protected hard drive, clock and voltage glitching (bypassing a password check, a Raspberry Pi, an Android phone), an hour-long introduction to power analysis, CHES Challenge demos, and building an electromagnetic fault-injection tool. From 2013–2021",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "David Wong",
+            "name": "Tamarin Prover Introduction",
+            "channel_link": "http://www.youtube.com/@cryptodavidw",
+            "link": "https://www.youtube.com/watch?v=XptJG19hDcQ",
+            "minutes": "40",
+            "description": "40 min · an introduction to the Tamarin prover, a tool for verifying security protocols with a constraint solver at its core. From 2017",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Disk, Filesystem & Database Encryption at Rest",
+        "topics": [],
+        "videos": [
+          {
+            "channel_name": "Techquickie",
+            "name": "How Does Full Disk Encryption Work?",
+            "channel_link": "http://www.youtube.com/@techquickie",
+            "link": "https://www.youtube.com/watch?v=UPW1Hqvx6zo",
+            "minutes": "5",
+            "description": "5 min · how full-disk encryption keeps the data on a drive safe, and where its protection stops. From 2016",
+            "type": "video"
+          },
+          {
+            "channel_name": "Oracle Developers",
+            "name": "Back to basics with Transparent Data Encryption (TDE)",
+            "channel_link": "http://www.youtube.com/@oracledevs",
+            "link": "https://www.youtube.com/watch?v=JflshZKgxYs",
+            "minutes": "41",
+            "description": "41 min · the basics of transparent data encryption in Oracle Database — why encrypt, what changed over recent versions, tablespace against column encryption, encryption keys and managing them, encrypting existing data, and the impact on performance and storage. From 2021",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Field-Level & Client-Side Encryption",
+        "topics": [],
+        "videos": [
+          {
+            "channel_name": "MongoDB",
+            "name": "Security / Encryption",
+            "channel_link": "https://www.youtube.com/@MongoDB",
+            "link": "https://www.youtube.com/playlist?list=PL4RCxklHWZ9vU_2cqyrY0IvvL-eIWhD43",
+            "minutes": "249",
+            "description": "playlist · 10 videos · 4h 09m · MongoDB’s own talks on protecting data — Queryable Encryption for sensitive workloads (two versions of the talk), client-side field-level encryption with AWS KMS master keys inside a VPC, cloud database security, securing Atlas workloads on AWS, connecting to sharded clusters without a public IP, newer access-management features, a performance and security Q&A, and two customer stories. From 2022–2023",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "Foundations, Deterministic & Order-Preserving Encryption",
+        "note": "An encrypted database is not necessarily a private database. Even when the underlying values are encrypted, repeated queries, result sizes and access patterns can reveal information.",
+        "topics": [],
+        "videos": [
+          {
+            "channel_name": "The BIU Research Center on Applied Cryptography and Cyber Security",
+            "name": "Searchable, Format-Preserving & Order-Preserving Encryption",
+            "channel_link": "https://www.youtube.com/@thebiuresearchcenteronappl8783",
+            "link": "https://www.youtube.com/watch?v=FcSeSBz001E&list=PL8Vt-7cSFnw0cxo6_s5CElaLTqP6OO5Ed",
+            "minutes": "347",
+            "description": "playlist · 7 videos · 5h 47m · lectures from the 6th Bar-Ilan Winter School, Cryptography in the Cloud — Alexandra Boldyreva’s introduction to searchable encryption (its models and motivation), Mor Weiss on format-preserving encryption in three parts, Boldyreva on order-preserving encryption in two parts, and her statistical attacks on deterministic and order-preserving encryption. From 2016",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "Blind Indexes & Keyed Hashes",
+        "topics": [],
+        "videos": [
+          {
+            "channel_name": "IronCore Labs",
+            "name": "Encrypted Search and Blind Indices Explained",
+            "channel_link": "http://www.youtube.com/@ironcorelabs",
+            "link": "https://www.youtube.com/watch?v=ZgnPRuAuD5E",
+            "minutes": "11",
+            "description": "11 min · what encrypted search is and how it differs from encrypted data sitting in a search system, then the blind index approach with its benefits and its hidden trade-offs. From 2022",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Searchable Symmetric Encryption",
+        "topics": [],
+        "videos": [
+          {
+            "channel_name": "The BIU Research Center on Applied Cryptography and Cyber Security",
+            "name": "Searchable Symmetric Encryption",
+            "channel_link": "https://www.youtube.com/@thebiuresearchcenteronappl8783",
+            "link": "https://www.youtube.com/watch?v=9-YnfaeYB8Y&list=PL8Vt-7cSFnw0cxo6_s5CElaLTqP6OO5Ed",
+            "minutes": "266",
+            "description": "playlist · 5 videos · 4h 26m · lectures from the 6th Bar-Ilan Winter School, Cryptography in the Cloud — Hugo Krawczyk on probabilistic searchable symmetric encryption and on practical searchable encryption over large datasets in three parts, and Benny Pinkas on searchable encryption built on ORAM. From 2016",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "Structured Encryption & Leakage-Abuse Attacks",
+        "note": "Particularly important when you want something closer to a traditional SQL database rather than a document-search system.",
+        "topics": [],
+        "videos": [
+          {
+            "channel_name": "Real World Crypto",
+            "name": "Building and deploying encrypted search systems",
+            "channel_link": "http://www.youtube.com/@RealWorldCrypto",
+            "link": "https://www.youtube.com/watch?v=RkuCWquegto",
+            "minutes": "31",
+            "description": "31 min · Seny Kamara at Real World Crypto 2018 on building and deploying encrypted search systems. From 2018",
+            "type": "video"
+          },
+          {
+            "channel_name": "Black Hat",
+            "name": "Breaking Encrypted Databases: Generic Attacks on Range Queries",
+            "channel_link": "http://www.youtube.com/@BlackHatOfficialYT",
+            "link": "https://www.youtube.com/watch?v=HpEUF5fv47w",
+            "minutes": "44",
+            "description": "44 min · a Black Hat talk on storing and querying outsourced data securely — the common building blocks and the latest commercial and academic solutions that support range queries, and generic attacks that break them. From 2020",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Homomorphic Encryption",
+        "topics": [
+          [
+            161,
+            "Homomorphic Encryption",
+            "Computing directly on encrypted data"
+          ],
+          [
+            162,
+            "Partially Homomorphic Encryption",
+            "Supporting specific operations"
+          ],
+          [
+            163,
+            "Additive Homomorphic Encryption",
+            "Encrypted addition"
+          ],
+          [
+            164,
+            "Multiplicative Homomorphic Encryption",
+            "Encrypted multiplication"
+          ],
+          [
+            165,
+            "Fully Homomorphic Encryption (FHE)",
+            "Supporting general computation on encrypted data"
+          ],
+          [
+            166,
+            "FHE Schemes",
+            "BFV, BGV and CKKS"
+          ],
+          [
+            167,
+            "FHE Bootstrapping",
+            "Managing noise in encrypted computation"
+          ]
+        ],
+        "videos": [
+          {
+            "channel_name": "onlyTech R&D",
+            "name": "Homomorphic Encryption: Compute on Encrypted Data",
+            "channel_link": "https://www.youtube.com/@onlyTechRD",
+            "link": "https://www.youtube.com/playlist?list=PLZ0iFJdiqMNajplNdEyzP0hX4kVtbndYa",
+            "minutes": "63",
+            "description": "playlist · 12 videos · 1h 03m · five-minute lessons on homomorphic encryption, listed with the basics last — what it is (full, partial and somewhat), how it works inside without the maths, why cloud data privacy needs it, the cryptography to know first, BFV against CKKS against BGV, its operations, limits and real performance, first programs in Python, uses in machine learning, tuning performance, precision and scale, designing systems around it, and production use cases. From 2026",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Microsoft Research",
+            "name": "Homomorphic Encryption Research",
+            "channel_link": "https://www.youtube.com/@MicrosoftResearch",
+            "link": "https://www.youtube.com/playlist?list=PLD7HFcN7LXRcWGoKPoxyxe4RwxXy84mgx",
+            "minutes": "1215",
+            "description": "playlist · 19 videos · 20h 15m · Microsoft Research talks on computing over encrypted data — homomorphic encryption for approximate numbers (CKKS), homomorphic encryption from ring learning with errors and over the integers, a guide to its applications, deterministic encryption, structured encryption and controlled disclosure, dynamic searchable encryption with blind storage, predicate, attribute-based, identity-based and functional encryption, obfuscation, and cryptanalysis of AES and SHA-2. From 2016–2017",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "FHE_org",
+            "name": "FHE.org conference 2025",
+            "channel_link": "https://www.youtube.com/@fhe_org",
+            "link": "https://www.youtube.com/playlist?list=PLnbmMskCVh1cCnWbmgxI0BM0UD2JHH9fz",
+            "minutes": "386",
+            "description": "playlist · 13 videos · 6h 26m · the FHE.org 2025 conference talks — FHE over cyclotomic prime moduli, reducing encrypted matrix multiplication to plaintext, the OpenFHE library, the HEIR compiler, choosing FHE parameters, deployment challenges for cloud computing, private collision-risk assessment for satellites, threshold multiparty homomorphic encryption, ciphertext-simulatable HE from BFV, IND-CPAD security, verifiable computation for approximate HE, blind zkSNARKs, and Craig Gentry’s FHE: Inside Out. From 2025",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "MPC, ORAM, PIR, PSI & Trusted Execution",
+        "topics": [],
+        "videos": [
+          {
+            "channel_name": "Security and Privacy Academy",
+            "name": "Privacy-preserving computation",
+            "channel_link": "https://www.youtube.com/@SecPrivAca",
+            "link": "https://www.youtube.com/playlist?list=PLZeK3TZueogHjGeEIWUThWXh0NF98mVeF",
+            "minutes": "58",
+            "description": "playlist · 8 videos · 58 min · zero-knowledge proofs, partially homomorphic encryption, secure multi-party computation (the millionaires’ problem, secure circuit evaluation, the dining cryptographers, recent advances and applications), federated learning, and private set intersection. From 2023–2024",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "MPCExplained",
+            "name": "Multi Party Computation Concepts",
+            "channel_link": "https://www.youtube.com/@MPCExplained",
+            "link": "https://www.youtube.com/playlist?list=PLvJRBKreefNyPFgkjcFJ2UMIy6Icche1H",
+            "minutes": "29",
+            "description": "playlist · 6 videos · 29 min · secure multi-party computation in short steps — what it is, how addition works, multiplication introduced and then worked through, security and data privacy, and MPC in the real world. From 2023",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Intel Technology",
+            "name": "Confidential Computing",
+            "channel_link": "https://www.youtube.com/@IntelTechnology",
+            "link": "https://www.youtube.com/playlist?list=PL8t1FdN2Tj3Zog7SshreHyacjk-otrjCj",
+            "minutes": "147",
+            "description": "playlist · 10 videos · 2h 27m · trusted execution environments and confidential computing — protecting data while it is in use, the trust boundaries of Intel SGX and TDX, confidential AI, multi-party analytics on SGX, attestation with Project Amber, and conversations with Azure’s CTO and Intel’s chief security architect. From 2021–2023",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "NPTEL - Indian Institute of Science, Bengaluru",
+            "name": "Secure Computation: Part I",
+            "channel_link": "https://www.youtube.com/@nptel-indianinstituteofsci8064",
+            "link": "https://www.youtube.com/watch?v=-86lvXoe7Qw&list=PLgMDNELGJ1Ca3l-xioOzN86BIZ2a0N8Ds",
+            "minutes": "1668",
+            "description": "course · 53 lessons · 27h 48m · lectures 7–59 of Ashish Choudhury’s Secure Computation: Part I — secret sharing (additive, threshold, Shamir, linear and general), polynomials over fields, perfectly-secure message transmission, a toy MPC protocol, the BGW protocol and degree reduction, shared circuit evaluation with preprocessing, the limits and protocols of perfectly-secure MPC (general adversaries, three-party computation), cryptographically-secure MPC and GMW, oblivious transfer from RSA and DDH, OT preprocessing and extension, Yao’s garbled circuits and their optimizations, and mixed ABY protocols. From 2021",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "Approaches to Encrypted Database Design",
+        "note": "Probably the most important comparison to study before choosing an architecture. No single approach simultaneously provides ordinary SQL functionality, strong confidentiality, low overhead and zero leakage.",
+        "compare": [],
+        "videos": [
+          {
+            "channel_name": "IEEE Symposium on Security and Privacy",
+            "name": "SoK: Cryptographically Protected Database Search",
+            "channel_link": "http://www.youtube.com/@ieeessp",
+            "link": "https://www.youtube.com/watch?v=Rlo_ODaYOvY",
+            "minutes": "21",
+            "description": "21 min · the systematization of protected database search presented at IEEE Security & Privacy — systems that cryptographically separate reading, writing and administering a database, why no single system is best, and the balance each strikes between security, functionality, performance and usability. From 2017",
+            "type": "video"
+          },
+          {
+            "channel_name": "linux.conf.au",
+            "name": "Why your encrypted Database isn't secure: practical attacks against encrypted OSS databases",
+            "channel_link": "http://www.youtube.com/@linuxconfau",
+            "link": "https://www.youtube.com/watch?v=JD8dtLjhmAM",
+            "minutes": "34",
+            "description": "34 min · a summary of recent research on practical attacks against encrypted PostgreSQL and MariaDB databases, how to mitigate them and fold them into a threat model, and alternative approaches that go some way to fixing the problems. From 2022",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Designing, Building & Running the System",
+        "topics": [],
+        "videos": [
+          {
+            "channel_name": "Adam Shostack",
+            "name": "World's Shortest Threat Modeling Course",
+            "channel_link": "https://www.youtube.com/@Shostack",
+            "link": "https://www.youtube.com/playlist?list=PLCVhBqLDKoOOZqKt74QI4pbDUnXSQo0nf",
+            "minutes": "15",
+            "description": "playlist · 12 videos · 15 min · Adam Shostack’s one-minute lessons — why to threat model, the four-question framework, what are we working on, sketching and data-flow diagrams, recording the work, what can go wrong and STRIDE, what to do about it and risk management, and checking whether you did a good job. From 2022",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "PyCon AU",
+            "name": "Fast, highly effective database security using searchable encryption (without the yak shave)",
+            "channel_link": "https://www.youtube.com/@PyConAU",
+            "link": "https://www.youtube.com/watch?v=2K7MALC6ouY",
+            "minutes": "30",
+            "description": "30 min · a PyCon AU talk on securing a database with searchable encryption. From 2024",
+            "type": "video"
+          }
+        ]
+      }
+    ]
+  },
+  "3": {
+    "name": "Fundamentals from Other Creators",
+    "level": "Beginner → Advanced",
+    "note": "Other creators on ground the fundamentals already cover, from another angle or in more depth: key exchange with ECDH and X25519, digital signatures, breaking ciphers with Cryptopals, post-quantum cryptography and migration, and secure messaging with the Signal protocol.",
+    "sections": [
+      {
+        "name": "Introduction, Security Principles & Classical Ciphers",
+        "videos": [
+          {
+            "channel_name": "Bill Buchanan OBE FRSE",
+            "name": "ECDH",
+            "channel_link": "https://www.youtube.com/@BillBuchanan",
+            "link": "https://www.youtube.com/playlist?list=PLqhpVxkBo1dMC5ipTczjn4La3r42zdUDl",
+            "minutes": "46",
+            "description": "playlist · 4 videos · 46 min · key exchange with Diffie-Hellman and elliptic curve Diffie-Hellman, ECDH with X25519, a Go example, and ECDH over secp256k1. From 2018–2021",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Bill Buchanan OBE FRSE",
+            "name": "Signatures",
+            "channel_link": "https://www.youtube.com/@BillBuchanan",
+            "link": "https://www.youtube.com/playlist?list=PLqhpVxkBo1dONQpcs49V7h-ynccXg2SaC",
+            "minutes": "163",
+            "description": "playlist · 12 videos · 2h 43m · digital signatures beyond RSA — reading a signature’s (r, s) values, ECDSA, EdDSA and Schnorr compared, a factoring-based signature with Fiat-Shamir, Camenisch-Lysyanskaya and BLS signatures with key sharing over pairings, ring and linkable ring signatures, multi-signatures with Schnorr, and the hash-based one-time schemes HORS, BiBa and Winternitz. From 2018–2021",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "Attacking Real Implementations",
+        "videos": [
+          {
+            "channel_name": "Eli Sohl",
+            "name": "Cryptopals Guided Tour",
+            "channel_link": "https://www.youtube.com/@EliSohl",
+            "link": "https://www.youtube.com/playlist?list=PLRuvAoC-bcHBd4vitHs_pEQQ_arviJJfw",
+            "minutes": "321",
+            "description": "course · 19 lessons · 5h 21m · the first 19 Cryptopals challenges solved and explained — hex and base64, fixed and single-byte XOR, breaking repeating-key XOR, AES in ECB mode and detecting it, PKCS#7 padding, implementing CBC, an ECB/CBC detection oracle, byte-at-a-time ECB decryption (simple and harder), ECB cut-and-paste, padding validation, CBC bit-flipping, the CBC padding oracle, implementing CTR, and breaking fixed-nonce CTR. From 2025",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "Quantum Computing, the Quantum Threat & Migration",
+        "videos": [
+          {
+            "channel_name": "Keyfactor",
+            "name": "PQC Lab: A Crash Course in Post-Quantum Cryptography",
+            "channel_link": null,
+            "link": "https://www.youtube.com/playlist?list=PLVxtthfDiJt7_0it845xfh6QnNCXgOXYy",
+            "minutes": "34",
+            "description": "playlist · 12 videos · 34 min · short answers about moving to post-quantum cryptography — the risks quantum computers pose, the impact on the IT ecosystem, when Q-day might come, how organizations can prepare, crypto-agility, PQC against classical algorithms, key encapsulation mechanisms, the impact on developers, quantum readiness by design, two ask-the-expert sessions, and setting up a post-quantum PKI lab. From 2024",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Theoretical Computer Science School (TCSS)",
+            "name": "Post-Quantum Cryptography (Tanja Lange)",
+            "channel_link": "https://www.youtube.com/@TCS_School",
+            "link": "https://www.youtube.com/watch?v=dEpk4ZxceeY&list=PLidiQIHRzpXLBZZhZ82k1n-AgBo8ioC1t",
+            "minutes": "523",
+            "description": "course · 31 lessons · 8h 43m · Tanja Lange’s course on post-quantum cryptography — why it matters, Shor against RSA, quantum computing for cryptographers (gates and circuits, Simon’s and Grover’s algorithms), code-based cryptography (McEliece, Niederreiter, Goppa codes, information-set decoding), hash-based signatures (Lamport, Winternitz, stateful and stateless schemes), isogeny-based cryptography (CSIDH and SIDH), lattice-based cryptography (LLL, enumeration attacks, GGH, NTRU and the attacks on it), and multivariate-quadratic signatures. From 2021",
+            "type": "playlist"
+          }
+        ]
+      }
+    ]
+  },
+  "4": {
+    "name": "Cryptography in Short Lessons",
+    "level": "Beginner",
+    "note": "Lexorithm’s short lessons, about six to eight minutes each: cryptography from the basics to post-quantum, one deep dive per major algorithm, how everyday systems from HTTPS to card payments use cryptography, and mobile network security from GSM to 6G.",
+    "sections": [
+      {
+        "name": "Cryptography from Basics to Post-Quantum",
+        "videos": [
+          {
+            "channel_name": "Lexorithm",
+            "name": "Cryptography from Basics to Post-Quantum",
+            "channel_link": "https://www.youtube.com/@Lexorithm",
+            "link": "https://www.youtube.com/playlist?list=PLyfdpWFF5_CTW_iPwU55YcW0nEld7ytdT",
+            "minutes": "218",
+            "description": "course · 36 lessons · 3h 38m · six-minute lessons from the very start — what cryptography is, plaintext and ciphertext, keys, symmetric against asymmetric cryptography and why key exchange is hard, the classical ciphers and how frequency analysis and other attacks break them, modern symmetric cryptography (DES, why key size matters, AES), asymmetric cryptography (RSA, Diffie-Hellman, digital signatures, hybrid encryption as HTTPS uses it), hash functions and their properties, the SHA family, MACs, certificates and PKI, password storage, and post-quantum cryptography (Shor’s algorithm, lattices, Kyber and post-quantum signatures). From 2026",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Lexorithm",
+            "name": "Cryptography Algorithms – Complete Deep Dive Series (RSA to Post-Quantum)",
+            "channel_link": "https://www.youtube.com/@Lexorithm",
+            "link": "https://www.youtube.com/playlist?list=PLyfdpWFF5_CRbqq7JH4u8JubbNnm_sTNY",
+            "minutes": "58",
+            "description": "playlist · 8 videos · 58 min · one algorithm per video, listed newest first — hybrid classical and post-quantum cryptography, the mathematics of lattice cryptography, CRYSTALS-Dilithium signatures, CRYSTALS-Kyber key exchange, elliptic curve Diffie-Hellman, Diffie-Hellman (its mathematics, security and real-world use), elliptic curve cryptography (key generation, encryption and signatures), and RSA worked through completely. From 2026",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "Cryptography in Everyday Life & Mobile Networks",
+        "videos": [
+          {
+            "channel_name": "Lexorithm",
+            "name": "Cryptography in Everyday Life | How the Internet Stays Secure",
+            "channel_link": "https://www.youtube.com/@Lexorithm",
+            "link": "https://www.youtube.com/playlist?list=PLV8Eugm5pz7Y",
+            "minutes": "170",
+            "description": "playlist · 21 videos · 2h 50m · how everyday systems use cryptography — the HTTPS and TLS 1.3 handshake, digital certificates and PKI, API keys against access tokens, cookies, sessions and JWTs, how JWTs work, signing in with Google (OAuth 2.0 and OpenID Connect), passkeys, multi-factor authentication, password hashing, Signal against WhatsApp against Telegram, the Signal protocol, VPNs, how Gmail encrypts email, Zoom’s call security, cloud storage encryption and key management, password managers, ATM and EMV card security, UPI payments, Chrome’s protections, and WhatsApp’s encryption. From 2026",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Lexorithm",
+            "name": "Mobile Network Security – From 4G LTE to 6G (Complete Architecture & Cryptography)",
+            "channel_link": "https://www.youtube.com/@Lexorithm",
+            "link": "https://www.youtube.com/playlist?list=PLyfdpWFF5_CSsJqLJ2TCqIoRLrA0ikViW",
+            "minutes": "84",
+            "description": "course · 12 lessons · 1h 24m · mobile network security from GSM to 6G, listed newest first so the basics come last — how mobile networks work, GSM and 3G security and why LTE was needed, LTE’s security architecture, EPS-AKA authentication and the LTE key hierarchy, 5G’s security architecture, 5G-AKA, protecting identity with SUPI and SUCI, the 5G key hierarchy and slice-level security, 5G’s vulnerabilities, the 6G security vision, and the whole evolution from GSM to 6G. From 2026",
+            "type": "playlist"
+          }
+        ]
+      }
+    ]
+  }
+}

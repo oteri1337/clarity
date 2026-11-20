@@ -1,0 +1,746 @@
+{
+  "1": {
+    "name": "Linux",
+    "sections": [
+      {
+        "name": "Access Control & The Linux Kernel",
+        "videos": []
+      },
+      {
+        "name": "Basic Tasks",
+        "videos": []
+      },
+      {
+        "name": "Processes",
+        "videos": [
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Linux Crash Course - systemd: Using the systemctl command",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=5JVBpXiYMKo",
+            "minutes": "27",
+            "description": "27 min · a first look at systemd and the systemctl command — starting, stopping, restarting and enabling units. From 2021",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "journalctl Basics: How to Easily Check Your Linux Logs",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=0dG3vUYt7Uk",
+            "minutes": "20",
+            "description": "20 min · the basics of journalctl, now the standard way to read logs on a systemd machine. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "Low Orbit Flux",
+            "name": "Linux: create a systemd service, run as root and non-root",
+            "channel_link": "https://www.youtube.com/@LowOrbitFlux",
+            "link": "https://www.youtube.com/watch?v=af_UjI__TOo",
+            "minutes": "11",
+            "description": "11 min · writing your own service — a looping bash script in /usr/local/bin that logs a line every 10 seconds, a unit file in /etc/systemd/system, then systemctl daemon-reload, enable, start and status, with ps showing systemd, PID 1, as its parent. He then runs it as an ordinary user with User=, adds Restart=always, RestartSec and After= ordering on the network, and kills the process to show systemd bringing it straight back under a new PID. daemon-reload alone left it running as root; the new user took effect only after a stop and start. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Linux Crash Course - The ps Command",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=wYwGNgsfN3I",
+            "minutes": "15",
+            "description": "15 min · the basics of ps for looking at running processes, and the variations that show its output in different ways. From 2021",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Demystifying the top Command in Linux",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=WsR11EGF9PA",
+            "minutes": "27",
+            "description": "27 min · the top command with hands-on examples — its options and fields, watching resource use and running processes in real time. From 2023",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Linux Crash Course - htop",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=tU9cO9FwDx0",
+            "minutes": "17",
+            "description": "17 min · an overview of htop, the friendlier take on top, with its meters for CPU, RAM and swap. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "How to use the kill command in Linux",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=5ER65GtElmo",
+            "minutes": "16",
+            "description": "16 min · the kill command — sending signals to processes to stop them, politely or by force. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "This Linux Init System Is Surprisingly Simple",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=c3xNvgkz83E",
+            "minutes": "4",
+            "description": "4 min · runit, a far smaller init system than systemd — creating a service with it, setting up the service's logging, and what it does more simply than systemd. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Stop Grepping ps: Smarter Linux Process Hunting",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=ZSQC3165PZg",
+            "minutes": "6",
+            "description": "6 min · getting more out of ps than ps aux | grep — choosing columns with -o, hiding kernel threads, -u for one user's processes instead of grepping, -C to find a command by name without grep matching itself, inverting a match, leaving out children of PID 1, and showing when each process started. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "This Linux Directory Leaks Everything",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=vgTpbMvImWs",
+            "minutes": "5",
+            "description": "5 min · what /proc shows about every process with no other tools installed — a process's working directory and executable, listening ports from /proc/net/tcp, its environment and command-line arguments, mounts, memory maps and the kernel version — and why that makes it one of the first places an attacker looks. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "You Can't Master Linux Without Knowing fork()",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=LakYAHb1PPE",
+            "minutes": "6",
+            "description": "6 min · what happens when a process forks, shown with a Python demo — the parent and child appearing in the process table, pausing them to watch, zombie processes, and copy-on-write memory. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "How Linux fork() Can Crash a System",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=dhGQbyK6LTk",
+            "minutes": "4",
+            "description": "4 min · fork() from another angle — copy-on-write, a killed child left as a zombie until the parent calls wait(), an orphan adopted by init when its parent dies, what fork returns to the parent and to the child in a small C program, and how forking without limit can bring a system down. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "A Trick Hackers Love (Linux File Descriptors)",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=LA4PI5PX_20",
+            "minutes": "5",
+            "description": "5 min · file descriptors as the numbers a process uses for files, pipes and sockets — 0, 1 and 2 in /proc/<pid>/fd, opening descriptor 3 on a file with exec, still writing and reading through it after the file is deleted, and closing it — then why the redirections in reverse shell one-liners look the way they do. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Unusual Linux Signals Hackers Actually Use",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=uqnteEtbIVM",
+            "minutes": "4",
+            "description": "4 min · Linux signals beyond kill -9 — SIGSTOP and SIGCONT pausing and resuming a script, trapping SIGTERM so it is ignored, why SIGKILL can't be trapped, kill -0 to test whether a PID exists, and real-time signals, which can carry a small payload from one process to another. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Linux Crash Course - The lsof Command",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=n9nZ1ellaV0",
+            "minutes": "24",
+            "description": "24 min · lsof for seeing which files, and which network ports, are open and by which process. From 2023",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Stop Guessing. Debug Faster with witr",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=gfskSUqILr0",
+            "minutes": "3",
+            "description": "3 min · witr (\"why is this running\"), which explains a listening port or a process in one step — the user, the command, the exact start time, what launched it and its systemd unit — set against working the same out by hand with ps, /proc and pstree. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Unix Domain Sockets: The Linux IPC Tricks Hackers Should Know",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=KQBgPLlpUBE",
+            "minutes": "5",
+            "description": "5 min · Unix domain sockets, which connect processes on the same machine through a file instead of a port — creating one, abstract sockets that have no file at all, and why anyone who can write to the Docker socket effectively has root. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Unix Sockets Can Control Who Gets Access",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=1AJsIzu2rwA",
+            "minutes": "2",
+            "description": "2 min · how a Unix domain socket can decide which users get to use a service on the machine. From 2026",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Networking",
+        "videos": []
+      },
+      {
+        "name": "Linux Networking",
+        "videos": [
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "How to Use the ip Command in Linux: A Beginner's Guide",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=wHfIFZlDxtU",
+            "minutes": "17",
+            "description": "17 min · the ip command, now the go-to for managing network interfaces, addresses and routes. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "How to Use the ss Command",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=phY8Q7Woxsw",
+            "minutes": "7",
+            "description": "7 min · the basic options of ss for listing sockets and listening ports. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Linux Crash Course - The ping Command",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=DOVsoWJAxuM",
+            "minutes": "15",
+            "description": "15 min · the ping command and its options for checking that a host answers. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hussein Nasser",
+            "name": "How a machine becomes a router: ip_forward",
+            "channel_link": "https://www.youtube.com/@hnasr",
+            "link": "https://www.youtube.com/watch?v=hVyI4ppUZRs",
+            "minutes": "13",
+            "description": "13 min · the net.ipv4.ip_forward setting that lets a Linux machine pass packets between networks — what forwarding and NAT rules quietly depend on. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hussein Nasser",
+            "name": "iptables demystified: port redirection and forwarding HTTP traffic to another machine (part 1)",
+            "channel_link": "https://www.youtube.com/@hnasr",
+            "link": "https://www.youtube.com/watch?v=NAdJojxENEU",
+            "minutes": "34",
+            "description": "34 min · iptables shown working — redirecting one port to another on the same machine, then sending HTTP on to a different machine altogether. From 2021",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hussein Nasser",
+            "name": "iptables demystified: load balancing without a load balancer (part 2)",
+            "channel_link": "https://www.youtube.com/@hnasr",
+            "link": "https://www.youtube.com/watch?v=-CraNvj48J0",
+            "minutes": "26",
+            "description": "26 min · spreading connections across several backends with iptables rules alone, inside the kernel, with no proxy software installed. From 2021",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hussein Nasser",
+            "name": "Port forwarding with DNAT and iptables",
+            "channel_link": "https://www.youtube.com/@hnasr",
+            "link": "https://www.youtube.com/watch?v=BMTaucJYe6Q",
+            "minutes": "7",
+            "description": "7 min · forwarding port 80 to 8080 with a DNAT rule. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hussein Nasser",
+            "name": "Port forwarding with NAT and iptables (transparent proxying): “run” your web app on port 80",
+            "channel_link": "https://www.youtube.com/@hnasr",
+            "link": "https://www.youtube.com/watch?v=uuWzk8U4dJE",
+            "minutes": "14",
+            "description": "14 min · serving an app that listens on 8080 as if it were on port 80, without running it as root. From 2019",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "UFW Made Easy: Complete Getting Started Guide",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=F-ubkT1WNFk",
+            "minutes": "29",
+            "description": "29 min · securing an Ubuntu server with UFW: installing it, setting secure default policies, creating rules and protecting services. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "theurbanpenguin",
+            "name": "RHCSA 8 - nftables compared with iptables / ip6tables",
+            "channel_link": "https://www.youtube.com/@theurbanpenguin",
+            "link": "https://www.youtube.com/watch?v=7h8VEyCzqi8",
+            "minutes": "5",
+            "description": "5 min · the same SSH allow rule written in nftables and in iptables, showing why nftables needs only one rule for IPv4 and IPv6. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "theurbanpenguin",
+            "name": "RHCSA 8 - Nat Masquerading Natively Using Nftables",
+            "channel_link": "https://www.youtube.com/@theurbanpenguin",
+            "link": "https://www.youtube.com/watch?v=Oikhriux0qk",
+            "minutes": "9",
+            "description": "9 min · setting up a NAT router with nftables masquerading, so internal hosts reach the internet without being exposed. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "theurbanpenguin",
+            "name": "RHCSA 8 - Native Nftables Firewalls on Red Hat Enterprise Linux 8",
+            "channel_link": "https://www.youtube.com/@theurbanpenguin",
+            "link": "https://www.youtube.com/watch?v=Hpfcd7qZUis",
+            "minutes": "12",
+            "description": "12 min · a complete introduction to building a firewall with nftables, the firewall module in Red Hat Enterprise Linux 8 and CentOS 8. From 2019",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Linux Has a Hidden Routing System",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=iJb7V5jCgUY",
+            "minutes": "4",
+            "description": "4 min · policy-based routing, the layer above ip route — extra routing tables and the ip rule entries that decide which table a packet is routed by. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "How to Split Traffic Across Multiple Interfaces",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=9WnW6IH-kxk",
+            "minutes": "5",
+            "description": "5 min · sending web traffic (HTTP and HTTPS) out one network interface and everything else out another — routes in a separate table, marking packets with netfilter, and a policy rule that sends marked packets to that table. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Routing Network Traffic In Linux By UID",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=NuPV7eAo2iE",
+            "minutes": "5",
+            "description": "5 min · policy-based routing by user — ip rules that send one user's traffic along a different route from everyone else's, after setting up a small lab. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "This Linux Trick Makes Network Packets Disappear (eBPF XDP)",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=G-v9esv6O1A",
+            "minutes": "3",
+            "description": "3 min · XDP (eXpress Data Path), which runs an eBPF program on packets as they arrive, before the kernel's networking stack — so before tcpdump or iptables see them — writing a small program that drops chosen packets and attaching it to an interface. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Stop Using 10 Commands to Troubleshoot Linux Networking",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=J3OfoxG8T18",
+            "minutes": "6",
+            "description": "6 min · Network Doctor, a tool that runs the usual network troubleshooting checks in one go — he breaks the network on purpose to see what it reports, checks the connection to a host, watches a connection, and compares reports. From 2026",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Containers 1: NameSpaces, Control Groups",
+        "videos": []
+      },
+      {
+        "name": "File Recovery: Snapshots, Backups, Undelete",
+        "videos": []
+      },
+      {
+        "name": "System Cloning: Imaging & Migration",
+        "videos": []
+      },
+      {
+        "name": "Secure Shell",
+        "videos": [
+          {
+            "channel_name": "Linux from SysAdmin",
+            "name": "SSH for the Real World!",
+            "channel_link": "https://www.youtube.com/@linuxfromsysadmin8526",
+            "link": "https://www.youtube.com/playlist?list=PLx80ZCaXfubIrz6tQXyDyg856g5K67XtD",
+            "minutes": "92",
+            "description": "playlist · 9 videos · 1h 32m · the hardening pass in order — installing the server, key-based login, switching passwords off, the firewall, fail2ban, and allowing only the users who should get in",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Hak5",
+            "name": "SSH Inside and Out",
+            "channel_link": "https://www.youtube.com/@hak5",
+            "link": "https://www.youtube.com/playlist?list=PLW5y1tjAOzI3IjZWkI4Qh0GP2bPTTF83a",
+            "minutes": "485",
+            "description": "playlist · 28 videos · 8h 05m · the deep dive — the layers of the protocol and how public-key login rides on them, fingerprints and known_hosts, configuring the server, second factors including a hardware token, and the forwarding and relaying an attacker uses SSH for. From 2012, so it predates ed25519 and hardware-backed keys; it runs newest first, and includes Windows and PuTTY episodes, a duplicated Mosh one and a Let’s Encrypt one",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "medium guy",
+            "name": "Remote Linux shell access over the web",
+            "channel_link": "https://www.youtube.com/@mediumguy6",
+            "link": "https://www.youtube.com/playlist?list=PLBm4OGt1_S7YpfZFfYaYSWedeS9rZsHUV",
+            "minutes": "66",
+            "description": "playlist · 7 videos · 1h 06m · a terminal in the browser instead of an SSH client — gotty, Shell In A Box (also as a Docker container), wetty and ttyd, a Node.js page that runs commands, and sshwifty for reaching machines on a private network. Anything here is a shell on the open web, so it belongs behind a login and preferably a VPN. From 2023–2025",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Hostever",
+            "name": "How to connect PostgreSQL remotely using an SSH tunnel",
+            "channel_link": "https://www.youtube.com/@myHostever",
+            "link": "https://www.youtube.com/watch?v=xOJYQJjO-v4",
+            "minutes": "2",
+            "description": "2 min · reaching a remote Postgres through an SSH tunnel — setting the tunnel up from a terminal or PuTTY, then pointing DBeaver, pgAdmin or psql at the local end of it. With a tunnel, Postgres can stay bound to localhost (listen_addresses) so only people with SSH access can reach it. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "PowerCert Animated Videos",
+            "name": "What is a Jump Server? (Bastion Host)",
+            "channel_link": "https://www.youtube.com/@PowerCertAnimatedVideos",
+            "link": "https://www.youtube.com/watch?v=mwQBqhDS7z8",
+            "minutes": "7",
+            "description": "7 min · the idea, animated — one hardened server facing the internet as the only way in to servers that have no direct access, why that shrinks what an attacker can reach and puts access control and logging in one place, and how a jump server differs from a VPN. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "EWB Tech Academy",
+            "name": "Linux Security: wtmp, btmp & auth.log Explained",
+            "channel_link": "https://www.youtube.com/@ewbtechacademy",
+            "link": "https://www.youtube.com/watch?v=EqKyFxwpjoI",
+            "minutes": "8",
+            "description": "8 min · where Linux records who logged in — /var/log/auth.log for successful and failed logins (/var/log/secure on Red Hat-style systems, and journalctl -u ssh on systemd), wtmp for login history and btmp for failed attempts — and reading them with tail, last and who: the first files to check after a suspected break-in. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "Tech Tuxedo",
+            "name": "Chroot Linux over SFTP and SSH",
+            "channel_link": "https://www.youtube.com/@TechTuxedo",
+            "link": "https://www.youtube.com/watch?v=89Up8oDIGfY",
+            "minutes": "9",
+            "description": "9 min · locking a user into one directory — a root-owned jail directory set for that user in sshd_config, testing that SFTP can't leave it, then what an SSH shell needs copied into the jail (bash and the libraries ldd lists) before it works. For SFTP-only accounts, the first half is all you need. From 2017",
+            "type": "video"
+          },
+          {
+            "channel_name": "Lawrence Systems",
+            "name": "Configuring SSH FIDO U2F Authentication with YubiKey",
+            "channel_link": "https://www.youtube.com/@LAWRENCESYSTEMS",
+            "link": "https://www.youtube.com/watch?v=PjDFk8xdtGw",
+            "minutes": "10",
+            "description": "10 min · a hardware-backed ed25519-sk key — checking both ends run OpenSSH 8.2 or newer, installing libfido2, generating the key against a YubiKey (any FIDO2 key works), and logging in, which then needs both the key file and a touch of the token. No special server setup, and a passphrase on top is optional. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "SYSADMIN102™",
+            "name": "SSH-Audit: Security Auditing Tool on macOS, Linux and Windows",
+            "channel_link": "https://www.youtube.com/@sysadmin102",
+            "link": "https://www.youtube.com/watch?v=pibcJFBh4KA",
+            "minutes": "10",
+            "description": "10 min · ssh-audit, which connects to an SSH server and reports weak or outdated key exchange, host key, cipher and MAC algorithms — installing and running it on macOS, Linux and Windows. It only shows the audit; turning off what it flags means editing sshd_config. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "Conda",
+            "name": "How To Setup MFA for Linux Login (SSH, Console, Sudo)",
+            "channel_link": "https://www.youtube.com/@c0nd4",
+            "link": "https://www.youtube.com/watch?v=wrx2cm3qDNI",
+            "minutes": "10",
+            "description": "10 min · two-factor done through PAM — the Google Authenticator PAM module and its setup questions, then requiring a code for SSH logins, for logging in at the console and for sudo. The code is checked during login itself; to require it with key logins too, sshd needs AuthenticationMethods publickey,keyboard-interactive. Keep ~/.google_authenticator private: its scratch codes get past the second factor. From 2021",
+            "type": "video"
+          },
+          {
+            "channel_name": "Security BSides San Francisco",
+            "name": "If You're Not Using SSH Certificates You're Doing SSH Wrong",
+            "channel_link": "https://www.youtube.com/@BSidesSF",
+            "link": "https://www.youtube.com/watch?v=P-Yq_6Da1b8",
+            "minutes": "11",
+            "description": "11 min · a BSidesSF lightning talk by smallstep's founder on why plain key login scales badly — keys approved and copied to every server and never removed, and the first-connection fingerprint prompt everyone clicks through — and how certificates fix it: hosts and users trust one certificate authority instead of each other's keys, and short-lived certificates expire on their own. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "ExitZero",
+            "name": "Learn SSH Bastion/Jump Servers",
+            "channel_link": "https://www.youtube.com/@EXITZER0",
+            "link": "https://www.youtube.com/watch?v=KIeBC7NIzj4",
+            "minutes": "12",
+            "description": "12 min · setting one up — how a bastion works, the configuration, a basic bastion, a client-initiated jump straight through it to the server behind, an interactive bastion and a more advanced setup. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "Low Level",
+            "name": "This SSH exploit is absolutely wild (regreSSHion)",
+            "channel_link": "https://www.youtube.com/@LowLevelTV",
+            "link": "https://www.youtube.com/watch?v=Rj3sTAMYNQk",
+            "minutes": "12",
+            "description": "12 min · regreSSHion (CVE-2024-6387), a race in OpenSSH's own server — the handler that runs when a client fails to log in within LoginGraceTime calls functions that aren't safe to interrupt, which Qualys turned into remote code execution as root — the heap details, why it took hours of attempts, and protecting yourself: update OpenSSH, or set LoginGraceTime 0 until you can. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "USENIX",
+            "name": "Terrapin Attack: Breaking SSH Channel Integrity by Sequence Number Manipulation",
+            "channel_link": "https://www.youtube.com/@UsenixOrg",
+            "link": "https://www.youtube.com/watch?v=2UsPfQCaw8w",
+            "minutes": "13",
+            "description": "13 min · the researchers' own talk — a man in the middle adjusts sequence numbers during the handshake so that the first encrypted message can be deleted unnoticed, stripping the extension-info message and the security extensions it carries; which encryption modes are affected (ChaCha20-Poly1305, and CBC with encrypt-then-MAC), and the strict key exchange fix in OpenSSH 9.6 and later. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "Arcade Cat Academy",
+            "name": "Peer Authentication in PostgreSQL: security concepts for beginners",
+            "channel_link": "https://www.youtube.com/@ArcadeCatAcademy",
+            "link": "https://www.youtube.com/watch?v=4AGwULg7uPI",
+            "minutes": "14",
+            "description": "14 min · how Postgres can trust the operating system's login instead of a database password — the postgres system account against the postgres database role, sudo -u postgres against psql -U postgres, and peer authentication, which lets a local system user in as the database role of the same name with no password. Put together with SSH, your SSH key becomes your database credential: log in over SSH, then connect over the local socket. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "Computerphile",
+            "name": "XZ Exploit",
+            "channel_link": "https://www.youtube.com/@Computerphile",
+            "link": "https://www.youtube.com/watch?v=LY8_35a_DEA",
+            "minutes": "15",
+            "description": "15 min · the xz backdoor (CVE-2024-3094), the near miss of 2024 — a contributor who spent years earning a maintainer's trust hid code in the xz build that ended up inside sshd on distributions that link it through systemd, so anyone holding a secret key could run commands on those servers; it was found because logins had become half a second slower. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "Teleport",
+            "name": "Setting up Database Access with Amazon Aurora PostgreSQL",
+            "channel_link": "https://www.youtube.com/@goteleport",
+            "link": "https://www.youtube.com/watch?v=F0F1_2TlZYM",
+            "minutes": "17",
+            "description": "17 min · database access at company scale with Teleport — people sign in once and get short-lived certificates for the database instead of shared passwords, every session is tied to a named person in the audit log, and access requests can grant extra rights for a while. Shown with AWS Aurora, but it works the same for a self-hosted Postgres. From 2021",
+            "type": "video"
+          },
+          {
+            "channel_name": "HackerSploit",
+            "name": "SSH Brute Force Protection With Fail2Ban",
+            "channel_link": "https://www.youtube.com/@HackerSploit",
+            "link": "https://www.youtube.com/watch?v=Z0cDqF6HAxs",
+            "minutes": "24",
+            "description": "24 min · fail2ban watching the SSH log and banning an address after too many failed logins — installing it, configuring a jail and its limits, then brute-forcing the server to watch the ban happen, and checking on it afterwards. From 2019",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hussein Nasser",
+            "name": "Postgres instances hacked and used to mine crypto: how is that possible?",
+            "channel_link": "https://www.youtube.com/@hnasr",
+            "link": "https://www.youtube.com/watch?v=72HS_ZjJPTQ",
+            "minutes": "7",
+            "description": "7 min · why a database shouldn't face the internet — the PGMiner botnet scanning for port 5432, guessing the postgres password, then using COPY ... FROM PROGRAM to run commands on the server itself and install a miner. Postgres should only be reachable by the machines that need it. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hussein Nasser",
+            "name": "SSH into backend servers without exposing them: SSH connection routing with HAProxy",
+            "channel_link": "https://www.youtube.com/@hnasr",
+            "link": "https://www.youtube.com/watch?v=9hzInvEswj0",
+            "minutes": "12",
+            "description": "12 min · reaching several SSH servers through one open port — HAProxy terminates TLS with a self-signed certificate and reads the SNI name the client sends to pick the backend, while ssh wraps its connection in TLS with openssl s_client as its ProxyCommand. Watch HAProxy's 60-second timeout, which breaks an idle session. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hussein Nasser",
+            "name": "Wiresharking Secure Shell (SSH): it's chatty",
+            "channel_link": "https://www.youtube.com/@hnasr",
+            "link": "https://www.youtube.com/watch?v=HVWlMNTNcF4",
+            "minutes": "14",
+            "description": "14 min · an SSH login captured in Wireshark — the TCP handshake, both sides announcing their versions, each listing the key exchange, cipher and MAC algorithms it supports without saying which it chose, the elliptic-curve Diffie-Hellman exchange and new keys, then how many encrypted packets a single typed command produces, which he finds surprisingly chatty. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hussein Nasser",
+            "name": "The DarkRadiation ransomware: SSH-wormable, written in Bash, updates itself and hard to detect",
+            "channel_link": "https://www.youtube.com/@hnasr",
+            "link": "https://www.youtube.com/watch?v=fxeTdaNl0uc",
+            "minutes": "16",
+            "description": "16 min · DarkRadiation, ransomware written entirely in Bash, read through Trend Micro's write-up — why a script that keeps rewriting itself slips past antivirus hashes, how it encrypts files with OpenSSL's AES, and how it spreads over SSH, guessing passwords on exposed servers and then using the private keys it finds on each machine it infects. From 2021",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hussein Nasser",
+            "name": "GitHub's SSH key leaked: how bad is this?",
+            "channel_link": "https://www.youtube.com/@hnasr",
+            "link": "https://www.youtube.com/watch?v=WUNu24bM9sE",
+            "minutes": "22",
+            "description": "22 min · what GitHub's leaked RSA host key in March 2023 meant — how SSH checks a server's identity against known_hosts instead of TLS's certificate authorities, why everyone got the REMOTE HOST IDENTIFICATION HAS CHANGED warning, how an attacker who poisons DNS could pose as GitHub to anyone still trusting the old key and collect what they send, what to do about it, and why ECDSA and Ed25519 keys were not affected. From 2023",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Fastest Way to Move Laterally Through SSH",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=N5mHFy9kwvE",
+            "minutes": "2",
+            "description": "2 min · Berserker, part of the same SSH-IT project, which searches a compromised machine for SSH keys and the hosts it has connected to before, then tries those keys on them to move across the network. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "The Easiest Way to Connect to a Machine Over the Internet",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=FDNi1OxQwbs",
+            "minutes": "3",
+            "description": "3 min · tailcat, a small Tailscale tool for sending data to another machine over the internet without opening a port or setting up port forwarding, then the same for an SSH server and for copying files. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "SSH Honeypot that Traps Attackers",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=E9ONTdboYMw",
+            "minutes": "3",
+            "description": "3 min · endlessh-go, an SSH tarpit — the protocol lets a server send other lines before its version string, so it sends random lines forever and the attacker's client waits, at almost no cost to the server — then he swaps the random lines for a troll message. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "How hackers steal SSH sessions without a password",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=KHBHFt3-b1k",
+            "minutes": "3",
+            "description": "3 min · reptyr, run as root, taking over another user's open SSH session with no password or key — it attaches with ptrace, copies the process's file descriptors across with dup and gives it a new pseudo-terminal pair from /dev/ptmx, which makes it a good way into how Linux pseudo-terminals work. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Port Knocking using iptables only",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=qqyJpAOPdzo",
+            "minutes": "4",
+            "description": "4 min · port knocking for SSH with five iptables rules and no knock daemon — the recent module moves an address from one list to the next as it hits port 7000 and then 8000, each within a time limit, before port 22 opens to it, while established connections are left alone. Skip a port or change the order and SSH stays shut. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "This Reverse Shell Is Unlike Anything I've Seen",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=K3e9-2i9mew",
+            "minutes": "4",
+            "description": "4 min · reverse_ssh, a reverse shell that rides on the SSH protocol instead of a raw callback — a central server that compromised machines connect back to, its console for moving between them, and an interactive shell on each. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Stop Guessing Unauthorized SSH",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=X_pStF8epYY",
+            "minutes": "5",
+            "description": "5 min · logging SSH attempts from untrusted addresses with nftables instead of leaving tcpdump running — tables, chains and rules explained, then an input chain that sends anything for port 22 not from a trusted IP to journald with a prefix and drops it, and what the log line tells you about the sender. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "You Suck at Programming",
+            "name": "Passwordless SSH with keys using ssh-agent",
+            "channel_link": "https://www.youtube.com/@yousuckatprogramming",
+            "link": "https://www.youtube.com/watch?v=5upiduo1ZwU",
+            "minutes": "5",
+            "description": "5 min · keys in practice — ssh-add -l to see what the agent holds, agent forwarding letting the machines you hop through use your key over a socket without ever seeing it, and ssh -a to switch that off; then making a key with ssh-keygen and a passphrase, what the private and public files are, and adding the public one to authorized_keys. Keep forwarding off on machines you don't trust: root there can use your key while you are connected, which jumping through a bastion with ssh -J avoids. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "SSH option you don't know about",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=T3EFgSgkRCg",
+            "minutes": "6",
+            "description": "6 min · a one-time code from an authenticator app as a second step after the password — an old Python script, patched for Python 3, set as sshd's ForceCommand so it runs on every login, and the QR code that hands the shared secret to the phone — then how TOTP turns that secret and the current time into a code that lasts 30 seconds, with some allowance for clock drift. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "This Worm Harvests Linux Credentials",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=5JclOmTpRDI",
+            "minutes": "6",
+            "description": "6 min · SSH-IT, a worm from The Hacker's Choice that hooks the user's shell profile so ssh runs its own function — it records the password typed for each outgoing connection, then installs itself on the machine being logged into and spreads host to host. He walks through the install, the logs it keeps and the shell code that does it. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "A Tiny Race Condition With Massive Consequences",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=3porVCsgJKw",
+            "minutes": "6",
+            "description": "6 min · CVE-2026-46333, which lets any user read the machine's SSH host private keys — ssh-keysign is setuid root, and as it exits there is a moment when a ptrace check is skipped, so the exploit holds a pidfd to it and takes its open file descriptors. The same trick on chage leaks /etc/shadow. The fix is a kernel update; until then kernel.yama.ptrace_scope set to 3 blocks it, and can't be undone without a reboot. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Single Packet Authorization: Firewall on Steroids",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=ecBis6Tgq3U",
+            "minutes": "7",
+            "description": "7 min · single packet authorization with fwknop (FireWall KNock OPerator), a stronger take on port knocking — iptables closes SSH to everyone, and a client sends one encrypted, HMAC-signed packet that makes the server add a short-lived rule for that client's address only; sessions already open survive when the rule expires. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Login without a password (CVSS 10)",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=kHFn9WQY5fI",
+            "minutes": "12",
+            "description": "12 min · the SSH protocol from the wire up, by writing a Python exploit for CVE-2025-32433 in Erlang/OTP's SSH server — the transport, authentication and connection layers that must run in that order, the version banner exchange, every field of the key exchange init packet, padding to the cipher's block size, then opening a channel and running a command without ever authenticating, which is the bug. He says CVE-2025-3243 in the video; the right number is CVE-2025-32433. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "theurbanpenguin",
+            "name": "SSH Certificate Authority: Server Certs and User Certs",
+            "channel_link": "https://www.youtube.com/@theurbanpenguin",
+            "link": "https://www.youtube.com/watch?v=9FXiSMChAKM",
+            "minutes": "23",
+            "description": "23 min · setting up an SSH certificate authority with ssh-keygen — signing each server's host key so clients trust the CA instead of answering the fingerprint prompt, then signing users' keys so servers accept anyone the CA has signed instead of keeping authorized_keys on every machine. Part of the LPIC-3 303 objectives. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Teleport: How to Secure SSH Access",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=JOwFsO1fV10",
+            "minutes": "24",
+            "description": "24 min · Teleport, an open-source access platform that sits in front of your servers like a bastion but logs people in with short-lived certificates instead of long-lived keys — why SSH alone isn't enough, planning and installing the Teleport server, first configuration, the web interface, and adding users and servers. Learn Linux TV marks it as sponsored. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hussein Nasser",
+            "name": "TCP tunneling applications: pros and cons (explained by example)",
+            "channel_link": "https://www.youtube.com/@hnasr",
+            "link": "https://www.youtube.com/watch?v=iR4jLbG9KXw",
+            "minutes": "30",
+            "description": "30 min · tunneling as carrying one protocol inside a connection of another, worked through with SSH on port 22 — a TCP request wrapped inside the SSH connection, then what it is used for: reaching a blocked port or website, local port forwarding, reverse port forwarding so someone can reach an app on your private IP, and SOCKS (dynamic) tunnels — with the pros and cons. From 2019",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Bash Scripting",
+        "videos": []
+      }
+    ]
+  },
+  "2": {
+    "name": "Web Tech",
+    "sections": [
+      {
+        "name": "Containers 2: Docker, Podman, ContainerD, LXC",
+        "videos": []
+      },
+      {
+        "name": "Web Servers",
+        "videos": []
+      },
+      {
+        "name": "Git",
+        "videos": []
+      }
+    ]
+  },
+  "3": {
+    "name": "Cryptography",
+    "sections": [
+      {
+        "name": "Cryptography 2: Web",
+        "videos": []
+      },
+      {
+        "name": "Cryptography 3: Disks",
+        "videos": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,440 @@
+{
+  "1": {
+    "name": "Arithmetic Logic Unit",
+    "sections": [
+      {
+        "name": "Binary Numbers",
+        "videos": [
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Introduction to Digital Electronics",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=DBTna2ydmC0",
+            "minutes": "11",
+            "description": "11 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Binary Number System: Counting in Binary Number System | Binary to Decimal Conversion",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=XrSgsJ-28Do",
+            "minutes": "15",
+            "description": "15 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Decimal to Binary Conversion Explained (with Solved Examples)",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=QAHyFa3gKKc",
+            "minutes": "13",
+            "description": "13 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Binary Addition and Subtraction Explained (with Examples)",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=AE-27BSbkJ4",
+            "minutes": "16",
+            "description": "16 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Octal and Hexadecimal Number System Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=k3Z322T3sjs",
+            "minutes": "24",
+            "description": "24 min",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Signed Numbers: 1's and 2's Complement",
+        "videos": [
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "1's complement and 2's complement | Signed Binary Numbers Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=MuUnffIpX7Y",
+            "minutes": "17",
+            "description": "17 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Addition and Subtraction using 2's Complement Arithmetic | 2s Complement Addition and Subtraction",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=brM0tpBAx8U",
+            "minutes": "24",
+            "description": "24 min",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Logic Gates",
+        "videos": [
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "What is Logic Gate ? Logic Gates Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=0lwhoQ5aQe8",
+            "minutes": "12",
+            "description": "12 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Logic Gates : XOR and XNOR gates Explained | XOR and XNOR gate as Inverter",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=Uf0KKh2zRuA",
+            "minutes": "18",
+            "description": "18 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "NAND gate as Universal Gate",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=cNFgilYDxuA",
+            "minutes": "14",
+            "description": "14 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "NOR Gate as Universal Gate",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=nLzmWuGRCok",
+            "minutes": "10",
+            "description": "10 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "What is Buffer ? Why Buffer and Tri-State Buffers are used in Digital Circuits ?",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=VKU9ciJb5u4",
+            "minutes": "11",
+            "description": "11 min",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Boolean Algebra & Simplification",
+        "videos": [
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "The Laws of Boolean Algebra Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=RMe69AdlFdI",
+            "minutes": "19",
+            "description": "19 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "De Morgan's Law in Boolean Algebra Explained (with Solved Examples)",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=W7YTfLaPWRY",
+            "minutes": "16",
+            "description": "16 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Boolean Function Representation: SOP and POS Form | Minterms and Maxterms Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=YmKmS9bpMqM",
+            "minutes": "22",
+            "description": "22 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Karnaugh Map (K-map) : 2-Variable and 3-Variable K- map Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=lw1STgKUpW0",
+            "minutes": "24",
+            "description": "24 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Karnaugh Map (K-map) : 4-Variable K- map Explained (with Solved Examples)",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=v08rGyVYaII",
+            "minutes": "20",
+            "description": "20 min",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Adders",
+        "videos": [
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Half Adder and Full Adder Explained | The Full Adder using Half Adder",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=5XbRIVWFRIw",
+            "minutes": "14",
+            "description": "14 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Ripple Carry Adder Explained (with Solved Example) | Working and Limitation of Ripple Carry Adder",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=b70ZQwci5sY",
+            "minutes": "18",
+            "description": "18 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Carry Look Ahead Adder (CLA) Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=SQKdnxysXnw",
+            "minutes": "18",
+            "description": "18 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Serial Adder Explained (Digital Electronics)",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=mhHwA_f4qpc",
+            "minutes": "13",
+            "description": "13 min",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Subtraction",
+        "videos": [
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Half Subtractor and Full Subtractor Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=lqN8xLTtdaA",
+            "minutes": "14",
+            "description": "14 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "4-bit Adder and Subtractor Circuit Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=J7gPUP0aRug",
+            "minutes": "21",
+            "description": "21 min",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Shifters & Registers",
+        "videos": [
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Introduction to Registers | What is Shift Register? Types of Shift Registers",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=bAQfPQqKCHs",
+            "minutes": "11",
+            "description": "11 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Shift Register : Serial In Serial Out (SISO) Register Explained | Bidirectional Shift Register",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=r4bfEqZNSyo",
+            "minutes": "15",
+            "description": "15 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Shift Register: SIPO, PISO and PIPO Shift Registers | What is Universal Shift Register?",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=JbtqyvLu67c",
+            "minutes": "18",
+            "description": "18 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Difference Between Arithmetic Shift and Logical Shift Operation",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=GjmiiLzDzHI",
+            "minutes": "3",
+            "description": "3 min",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Multipliers",
+        "videos": [
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Binary Multiplication Explained (with Examples)",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=hK1OYxYpwEc",
+            "minutes": "18",
+            "description": "18 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Binary Multiplication of Signed Numbers | 2s Complement Binary Multiplication",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=NxBRKkNIpwY",
+            "minutes": "14",
+            "description": "14 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "How to Design Binary Multiplier Circuit | 2-bit, 3-bit, and 4-bit Binary Multiplier Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=O34KquoMpT0",
+            "minutes": "21",
+            "description": "21 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Binary Multiplier Circuit for Signed Numbers Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=_ONOKFXkfN0",
+            "minutes": "12",
+            "description": "12 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Serial Binary Multiplier / Sequential Binary Multiplier (using Add and Shift Method)",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=-5N1FY8EC_8",
+            "minutes": "22",
+            "description": "22 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Booth's Algorithm for Multiplication Explained (with Examples)",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=YUHeZ8QWTVo",
+            "minutes": "21",
+            "description": "21 min",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Dividers",
+        "videos": [
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Binary Division Explained (with Examples)",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=z1eAO9exzBg",
+            "minutes": "15",
+            "description": "15 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "How to Design a Binary Division Circuit ? Binary Division Circuit Explained (with Simulation)",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=Wf_1mf6yCoc",
+            "minutes": "20",
+            "description": "20 min",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Selecting, Comparing & Checking",
+        "videos": [
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Multiplexer Explained | Implementation of Boolean function using Multiplexer",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=aQlF-9i3fAA",
+            "minutes": "23",
+            "description": "23 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Decoder Explained | What is Decoder? Applications of Decoder | 5 to 32 Decoder using 3 to 8 Decoders",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=a3wh7xV5PBU",
+            "minutes": "22",
+            "description": "22 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "What is Magnitude Comparator (Digital Comparator) | 1-bit, 2-bit and 4-bit Comparators Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=wgje9eH3TT0",
+            "minutes": "21",
+            "description": "21 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Parity Generator and Parity Checker Explained",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=c8qAti1zBVQ",
+            "minutes": "14",
+            "description": "14 min",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Floating Point (FPU)",
+        "videos": [
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Floating Point Numbers | Fixed Point Number vs Floating Point Numbers",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=zVM8NKXsboA",
+            "minutes": "14",
+            "description": "14 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "Floating Point Numbers: IEEE 754 Standard | Single Precision and Double Precision Format",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=e_J9lXnU_vs",
+            "minutes": "22",
+            "description": "22 min",
+            "type": "video"
+          },
+          {
+            "channel_name": "ALLABOUTELECTRONICS",
+            "name": "IEEE Floating Point Representation | Representation of Denormalised Numbers and Special Numbers",
+            "channel_link": "https://www.youtube.com/@ALLABOUTELECTRONICS",
+            "link": "https://www.youtube.com/watch?v=aPsSAEmwhgA",
+            "minutes": "9",
+            "description": "9 min",
+            "type": "video"
+          }
+        ]
+      }
+    ]
+  }
+}

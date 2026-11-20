@@ -1,0 +1,616 @@
+<title>Sally</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23e0245e'/%3E%3Cg fill='none' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='6.5' y='8' width='19' height='13.5' rx='2.5'/%3E%3Cpath d='M12.5 25.25h7'/%3E%3Cpath d='M14.25 12.25v5l4.25-2.5z' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif&display=swap">
+<style>
+/* Layout: a wide board of three columns, Loved, Watching, Queued, under one bar that holds the add form and search. Columns stack on phones. */
+:root{
+  --bg:#f7f7f8; --surface:#ffffff; --soft:#eeeef1;
+  --fg:#141418; --muted:#6b6b76; --faint:#a3a3ad; --line:#e6e6ea;
+  --focus:#3d5afe; --love:#e0245e; --love-soft:#fdeaf0; --flash:#e8edff; --done:#12936c;
+  --tag-bg:#e8e6f6; --tag-fg:#4a3fb0; --tag-ring:transparent;
+  --font-display:'Instrument Serif',Georgia,'Times New Roman',serif;
+  --font-ui:'Geist',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e0e10; --surface:#2a2a30; --soft:#1b1b1f;
+    --fg:#ececef; --muted:#9b9ba6; --faint:#5e5e68; --line:#212126;
+    --focus:#8fa2ff; --love:#ff5d8f; --love-soft:#2e1620; --flash:#1c2240; --done:#3ccf9f;
+    --tag-bg:#25223d; --tag-fg:#b9b0ff; --tag-ring:rgba(255,255,255,.16);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e0e10; --surface:#2a2a30; --soft:#1b1b1f;
+  --fg:#ececef; --muted:#9b9ba6; --faint:#5e5e68; --line:#212126;
+  --focus:#8fa2ff; --love:#ff5d8f; --love-soft:#2e1620; --flash:#1c2240; --done:#3ccf9f;
+  --tag-bg:#25223d; --tag-fg:#b9b0ff; --tag-ring:rgba(255,255,255,.16);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:var(--font-ui); font-size:15px; line-height:1.45;
+  -webkit-font-smoothing:antialiased;
+}
+button,input,select{font:inherit; color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--focus); outline-offset:2px}
+svg.i{width:19px; height:19px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round}
+
+.app{max-width:1180px; margin:0 auto; padding-inline:20px; padding-block:44px 80px}
+
+/* ---- head ---- */
+.head{display:flex; align-items:center; justify-content:space-between; gap:12px}
+.mode{
+  width:38px; height:38px; flex:none; display:grid; place-items:center;
+  border:0; border-radius:10px; background:var(--soft); color:var(--muted);
+  transition:background-color .12s, color .12s;
+}
+.mode:hover{color:var(--fg)}
+.mode svg{width:19px; height:19px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round}
+.htools{display:flex; align-items:center; gap:6px}
+
+/* Tabs: one list per person, each stored separately */
+.tabs{margin-top:22px; display:flex; gap:4px; border-bottom:1px solid var(--line); overflow-x:auto}
+.tabs button{
+  flex:none; border:0; background:none; padding:9px 14px 10px; margin-bottom:-1px;
+  border-bottom:2px solid transparent; color:var(--muted); font-size:14px; font-weight:500;
+  display:flex; align-items:baseline; gap:7px; transition:color .12s, border-color .12s;
+}
+.tabs button:hover{color:var(--fg)}
+.tabs button[aria-selected="true"]{color:var(--fg); border-color:var(--fg)}
+
+/* Message strip under the header: export/import results and the replace check */
+.panel{
+  margin-top:18px; display:flex; align-items:center; justify-content:space-between; gap:10px 14px; flex-wrap:wrap;
+  padding:9px 9px 9px 14px; border-radius:11px; background:var(--soft); font-size:14px;
+}
+.panel[hidden]{display:none}
+.panel span{min-width:0; overflow-wrap:anywhere}
+.pbtns{display:flex; gap:6px}
+.pbtns button{height:32px; padding:0 14px; border:0; border-radius:8px; font-size:13px; font-weight:500; background:var(--surface); color:var(--fg)}
+.pbtns button.primary{background:var(--fg); color:var(--bg)}
+h1{
+  font-family:var(--font-display); font-weight:400;
+  font-size:clamp(38px,8vw,50px); line-height:1; letter-spacing:-.01em; margin:0;
+}
+
+/* ---- add + search ---- */
+.controls{
+  margin-top:28px; display:grid; grid-template-columns:minmax(0,2fr) minmax(0,1fr);
+  gap:14px 28px; align-items:center;
+}
+.add{
+  display:flex; align-items:center; gap:4px 10px; flex-wrap:wrap;
+  border-bottom:1px solid var(--line); transition:border-color .15s;
+}
+.add:focus-within{border-color:var(--fg)}
+.add input{
+  flex:1 1 240px; min-width:0; border:0; background:transparent;
+  font-size:16px; padding:11px 0; outline:none;
+}
+.add input::placeholder{color:var(--faint)}
+.add select{
+  flex:none; max-width:42%; border:0; background:transparent;
+  color:var(--muted); font-size:13px; padding:6px 0;
+}
+.add .pick{display:flex; align-items:center; gap:10px; margin-left:auto}
+.add button{
+  width:34px; height:34px; flex:none; display:grid; place-items:center;
+  border:0; border-radius:9px; background:var(--soft); color:var(--faint);
+}
+.add.ready button{background:var(--fg); color:var(--bg)}
+
+.search{display:block; position:relative}
+.search svg{
+  position:absolute; left:11px; top:50%; transform:translateY(-50%);
+  width:15px; height:15px; color:var(--faint); pointer-events:none;
+}
+.search input{
+  width:100%; height:36px; padding:0 10px 0 33px; font-size:14px;
+  background:var(--soft); border:1px solid transparent; border-radius:9px;
+}
+.search input::placeholder{color:var(--faint)}
+
+/* ---- list ---- */
+.board{
+  margin-top:30px; display:grid; grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:28px 36px; align-items:start;
+}
+.col{min-width:0}
+.col h2{
+  position:sticky; top:env(safe-area-inset-top, 0px); z-index:2;
+  margin:0; padding-block:10px 8px; background:var(--bg);
+  border-bottom:1px solid var(--fg);
+  display:flex; justify-content:space-between; align-items:baseline;
+  font-size:11px; font-weight:500; text-transform:uppercase; letter-spacing:.1em; color:var(--muted);
+}
+.col h2 .n{font-family:var(--font-mono); letter-spacing:0; color:var(--faint); font-variant-numeric:tabular-nums}
+.col[data-s="loved"] h2{color:var(--love); border-color:var(--love)}
+.col .none{padding:18px 0; font-size:13px; color:var(--faint)}
+ul.list{list-style:none; margin:0; padding:0}
+.item + .item{border-top:1px solid var(--line)}
+
+.row{
+  display:flex; align-items:center; gap:11px;
+  margin-inline:-8px; padding:6px 4px 6px 8px; border-radius:9px;
+  transition:background-color .6s;
+}
+.row.fresh{background:var(--flash); transition:none}
+
+.tag{
+  flex:none; min-width:28px; height:22px; padding:0 5px;
+  display:grid; place-items:center; border-radius:6px;
+  background:var(--tag-bg); color:var(--tag-fg);
+  box-shadow:inset 0 0 0 1px var(--tag-ring);
+  font-family:var(--font-mono); font-size:11px; font-weight:600; letter-spacing:.02em;
+}
+/* Brand colours: each badge carries its own background and text pair, so it reads the same on either theme */
+.tag[data-b="netflix"]  {background:#000000; color:#e50914}
+.tag[data-b="youtube"]  {background:#ff0000; color:#ffffff}
+.tag[data-b="tubi"]     {background:#2d0f6b; color:#ffe94d}
+.tag[data-b="prime"]    {background:#00a8e1; color:#0f171e}
+.tag[data-b="hbo"]      {background:#000000; color:#ffffff}
+.tag[data-b="paramount"]{background:#0064ff; color:#ffffff}
+.tag[data-b="peacock"]  {
+  background:linear-gradient(90deg,#fcb711,#f37021,#cc004c,#6460aa,#0089d0,#0db14b) bottom / 100% 3px no-repeat, #000000;
+  color:#ffffff;
+}
+.tag[data-b="disney"]   {background:#01147c; color:#ffffff}
+.tag[data-b="apple"]    {background:#000000; color:#ffffff}
+.tag[data-b="starz"]    {background:#000000; color:#ffffff}
+.tag[data-b="hulu"]     {background:#1ce783; color:#0b0c0f}
+
+/* Service name bubble: shows on hover, and on tap or keyboard focus */
+.tag{position:relative; cursor:default; outline-offset:2px}
+.tag::after{
+  content:attr(data-name); position:absolute; z-index:4;
+  left:0; bottom:calc(100% + 7px);
+  padding:4px 9px; border-radius:7px; white-space:nowrap;
+  background:var(--fg); color:var(--bg); box-shadow:0 4px 14px rgba(0,0,0,.18);
+  font-family:var(--font-ui); font-size:12px; font-weight:500; letter-spacing:0;
+  opacity:0; transform:translateY(3px); pointer-events:none;
+  transition:opacity .12s, transform .12s;
+}
+.tag:hover::after,.tag:focus::after{opacity:1; transform:none}
+.txt{flex:1; min-width:0; display:flex; flex-direction:column}
+.ttl{font-size:15px; font-weight:500; letter-spacing:-.005em; overflow-wrap:anywhere; line-height:1.3}
+.col[data-s="queued"] .ttl{font-weight:400}
+.vh{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+.kind{font-size:12px; color:var(--muted); line-height:1.3; margin-top:1px}
+button.ttl{
+  border:0; background:none; padding:0; margin:0; text-align:left; color:inherit;
+  font-size:15px; font-weight:500; letter-spacing:-.005em; line-height:1.3; cursor:pointer;
+  text-decoration:underline; text-decoration-color:transparent; text-underline-offset:3px;
+  transition:text-decoration-color .12s;
+}
+button.ttl:hover{text-decoration-color:var(--line)}
+.tick.love{color:var(--love)}
+.tick{width:15px; height:15px; margin-left:6px; vertical-align:-2px; color:var(--done); fill:none; stroke:currentColor; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round}
+
+.acts{display:flex; gap:2px; flex:none}
+.ib{
+  width:34px; height:34px; flex:none; display:grid; place-items:center;
+  border:0; border-radius:9px; background:none; color:var(--love);
+  transition:background-color .12s;
+}
+.ib:hover{background:var(--love-soft)}
+.ib.on svg{fill:currentColor}
+
+
+@media (max-width:900px){
+  .controls{grid-template-columns:1fr}
+  .board{grid-template-columns:1fr}
+}
+@media (max-width:540px){
+  .app{padding-block:28px 64px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<main class="app">
+  <header class="head">
+    <h1 id="appName">Sally</h1>
+    <div class="htools">
+      <a class="mode" href="index.html" aria-label="Home" title="Home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V19a1 1 0 0 0 1 1h3.5v-5.5h4V20h3.5a1 1 0 0 0 1-1V9.5"/></svg></a>
+      <button type="button" class="mode" id="importBtn" aria-label="Import a list" title="Import a list">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4.5M7.8 8.7 12 4.5l4.2 4.2"></path><path d="M4.5 14.5v3.3a1.7 1.7 0 0 0 1.7 1.7h11.6a1.7 1.7 0 0 0 1.7-1.7v-3.3"></path></svg>
+      </button>
+      <button type="button" class="mode" id="exportBtn" aria-label="Export your list" title="Export your list">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5V15M7.8 10.8 12 15l4.2-4.2"></path><path d="M4.5 14.5v3.3a1.7 1.7 0 0 0 1.7 1.7h11.6a1.7 1.7 0 0 0 1.7-1.7v-3.3"></path></svg>
+      </button>
+      <button type="button" class="mode" id="modeBtn"></button>
+      <input type="file" id="importFile" accept=".json,application/json" hidden>
+    </div>
+  </header>
+
+  <nav class="tabs" id="tabs" role="tablist" aria-label="Lists"></nav>
+
+  <div class="panel" id="panel" role="status" aria-live="polite" hidden>
+    <span id="panelText"></span>
+    <div class="pbtns" id="panelBtns"></div>
+  </div>
+
+  <div class="controls">
+  <form class="add" id="addForm" autocomplete="off">
+    <input type="text" id="addTitle" placeholder="Add a title to your queue" aria-label="Title to add">
+    <div class="pick">
+      <select id="addType" aria-label="Series or movie">
+        <option value="Series">Series</option>
+        <option value="Movie">Movie</option>
+      </select>
+      <select id="addService" aria-label="Where it streams"></select>
+      <button type="submit" aria-label="Add to queue" title="Add to queue">
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5.5v13M5.5 12h13"></path></svg>
+      </button>
+    </div>
+  </form>
+
+  <label class="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+    <input type="search" id="q" placeholder="Search" aria-label="Search titles">
+  </label>
+  </div>
+
+  <section class="board" id="out"></section>
+
+</main>
+
+<script>
+(function(){
+  "use strict";
+
+  var SERVICES = ["Netflix","Prime Video","HBO Max","Paramount+","Peacock","Disney+","Apple TV","Starz","Hulu","YouTube","Tubi"];
+  var INITIAL = {
+    "Netflix":"N", "Prime Video":"PV", "HBO Max":"MAX", "Paramount+":"P+", "Peacock":"Pc", "Disney+":"D+",
+    "Apple TV":"A", "Starz":"S", "Hulu":"Hu", "YouTube":"YT", "Tubi":"T"
+  };
+  var SECTIONS = ["loved","watching","queued"];   // top to bottom
+  var LABEL = {loved:"Loved", watching:"Watching", queued:"Queued"};
+
+  // Outline icons, all drawn the same way as the empty heart
+  function svg(d){ return '<svg class="i" viewBox="0 0 24 24" aria-hidden="true">'+d+'</svg>'; }
+  var I = {
+    remove: svg('<circle cx="12" cy="12" r="8.5"></circle><path d="M9.6 9.6l4.8 4.8M14.4 9.6l-4.8 4.8"></path>'),
+    down:   svg('<circle cx="12" cy="12" r="8.5"></circle><path d="M9 10.5h4.6a2.7 2.7 0 0 1 0 5.4h-2.1"></path><path d="M11.2 8 8.7 10.5l2.5 2.5"></path>'),
+    play:   svg('<circle cx="12" cy="12" r="8.5"></circle><path d="M10.4 9v6l4.8-3z"></path>'),
+    check:  svg('<circle cx="12" cy="12" r="8.5"></circle><path d="M8.7 12.2l2.2 2.2 4.4-4.6"></path>'),
+    heart:  svg('<path d="M12 20s-7.3-4.4-9.3-8.9C1.3 7.8 3.4 4.2 7.1 4.2c2 0 3.5 1 4.9 2.9 1.4-1.9 2.9-2.9 4.9-2.9 3.7 0 5.8 3.6 4.4 6.9C19.3 15.6 12 20 12 20z"></path>')
+  };
+
+  // Three lists, same app. Sally keeps the original storage keys so the existing list lives there.
+  var TABS = [
+    {id:"sally", name:"Sally", type:"Series", suffix:""},
+    {id:"molly", name:"Molly", type:"Movie",  suffix:"-molly"},
+    {id:"anna",  name:"Anna",  type:"Series", suffix:"-anna"}
+  ];
+  var TAB_KEY = "watch-ledger-tab", OLD_KEY = "watch-ledger-v1";
+  var tab, KEY, SVC_KEY, TYPE_KEY;
+  var items = [], q = "", freshId = null;
+
+  // ---------- storage ----------
+  function get(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+  function set(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+  function store(){ set(KEY, JSON.stringify(items)); }
+
+  // Accepts records from any earlier version of the ledger.
+  function normalize(x){
+    if(!x || !x.title) return null;
+    var s = x.status;
+    if(s === "rec") s = "queued";
+    if(s === "finished") s = "loved";   // Finished no longer exists; finished titles join Loved
+    if(s === "dropped"){ if(x.rating === "like" || x.rating === "love") s = "queued"; else return null; }
+    if(["queued","watching","loved"].indexOf(s) === -1) s = "queued";
+    var svc = (!x.service || x.service === "Free / other") ? "YouTube" : x.service;
+    var type = x.type === "Movie" ? "Movie" : "Series";
+    return {id: x.id || uid(), title: String(x.title), status: s, service: svc, type: type, done: s === "watching" && x.done === true, rewatch: x.rewatch === true};
+  }
+  function fromList(p){ return p.map(normalize).filter(Boolean); }
+  function restore(){
+    var keys = tab.suffix ? [KEY] : [KEY, OLD_KEY];
+    for(var i=0;i<keys.length;i++){
+      var raw = get(keys[i]);
+      if(raw){ try{ var p = JSON.parse(raw); if(Array.isArray(p) && p.length) return fromList(p); }catch(e){} }
+    }
+    return [];
+  }
+
+  // ---------- helpers ----------
+  function esc(s){
+    return String(s == null ? "" : s)
+      .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+      .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+  }
+  function uid(){ return "i" + Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+  function byId(id){ for(var i=0;i<items.length;i++) if(items[i].id === id) return items[i]; return null; }
+  function $(s){ return document.querySelector(s); }
+  function sectionOf(it){ return it.status; }
+  function initial(svc){ return INITIAL[svc] || String(svc || "?").trim().charAt(0).toUpperCase() || "?"; }
+
+  // [action, label, icon, extra class]: forward first, back or remove at the far right
+  function actionsFor(it){
+    switch(sectionOf(it)){
+      case "queued":   return [["watching","Start watching",I.play,""],      ["remove","Remove",I.remove,""]];
+      case "watching": return [["loved","Love it",I.heart,""],               ["queued","Back to queue",I.down,""]];
+      default:         return [["watching","Unlove, back to watching",I.heart,"on"], ["watching","Back to watching",I.down,""]];
+    }
+  }
+  var BRAND = {
+    "Netflix":"netflix", "Prime Video":"prime", "HBO Max":"hbo", "Paramount+":"paramount",
+    "Peacock":"peacock", "Disney+":"disney", "Apple TV":"apple", "Starz":"starz", "Hulu":"hulu", "YouTube":"youtube", "Tubi":"tubi"
+  };
+
+  // ---------- render ----------
+  var out = $("#out");
+
+  function tick(cls){ return '<svg class="tick'+(cls?" "+cls:"")+'" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5l5 5L19.5 7"></path></svg>'; }
+  // Tapping a title adds a tick:
+  //   Watching: green tick, finished but not loved
+  //   Loved:    pink tick, loved so much it's a rewatch any time
+  function titleHtml(it){
+    var on, label, mark, cls;
+    if(it.status === "watching"){
+      on = !!it.done; cls = "";
+      label = on ? "Finished, tap to undo" : "Tap to mark finished";
+      mark = " (finished)";
+    } else if(it.status === "loved"){
+      on = !!it.rewatch; cls = "love";
+      label = on ? "Rewatch any time, tap to undo" : "Tap to mark as a rewatch any time";
+      mark = " (rewatch any time)";
+    } else {
+      return '<span class="ttl">'+esc(it.title)+'</span>';
+    }
+    return '<button type="button" class="ttl" aria-pressed="'+on+'" title="'+label+'">'+
+      esc(it.title)+(on ? tick(cls) + '<span class="vh">'+mark+'</span>' : '')+'</button>';
+  }
+
+  function rowHtml(it){
+    var btns = actionsFor(it).map(function(a){
+      return '<button type="button" class="ib '+a[3]+'" data-a="'+a[0]+'" aria-label="'+a[1]+'" title="'+a[1]+'">'+a[2]+'</button>';
+    }).join("");
+    return '<li class="item" data-id="'+it.id+'"><div class="row'+(it.id===freshId?" fresh":"")+'">'+
+      '<span class="tag" data-b="'+(BRAND[it.service]||"other")+'" data-name="'+esc(it.service)+'" tabindex="0" role="img" aria-label="'+esc(it.service)+'">'+esc(initial(it.service))+'</span>'+
+      '<div class="txt">'+titleHtml(it)+'<span class="kind">'+esc(it.type || "Series")+'</span></div>'+
+      '<div class="acts">'+btns+'</div></div></li>';
+  }
+
+  function render(){
+    var s = q.trim().toLowerCase();
+    var EMPTY = {
+      loved: "Titles you love land here.",
+      watching: "Start something from your queue.",
+      queued: items.length ? "Add a title above." : "Add a title above, or import a list with the upload button at the top right."
+    };
+    out.innerHTML = SECTIONS.map(function(sec){
+      var list = items.filter(function(it){
+        return sectionOf(it) === sec && (!s || it.title.toLowerCase().indexOf(s) !== -1);
+      }).sort(function(a,b){ return a.title.localeCompare(b.title); });
+      var body = list.length
+        ? '<ul class="list">'+list.map(rowHtml).join("")+'</ul>'
+        : '<p class="none">'+(s ? "No matches." : EMPTY[sec])+'</p>';
+      return '<div class="col" data-s="'+sec+'"><h2><span>'+LABEL[sec]+'</span><span class="n">'+list.length+'</span></h2>'+body+'</div>';
+    }).join("");
+  }
+
+  // ---------- actions ----------
+  out.addEventListener("click", function(e){
+    var tt = e.target.closest("button.ttl");
+    if(tt){
+      var row = tt.closest(".item"), w = row && byId(row.getAttribute("data-id"));
+      if(!w) return;
+      if(w.status === "loved") w.rewatch = !w.rewatch; else w.done = !w.done;
+      store(); render();
+      var again = out.querySelector('.item[data-id="'+w.id+'"] button.ttl');
+      if(again) again.focus({preventScroll:true});
+      return;
+    }
+    var b = e.target.closest(".ib");
+    if(!b) return;
+    var li = b.closest(".item");
+    var it = li && byId(li.getAttribute("data-id"));
+    if(!it) return;
+    var a = b.getAttribute("data-a");
+    var neighbour = li.nextElementSibling || li.previousElementSibling;
+    var neighbourId = neighbour && neighbour.getAttribute("data-id");
+
+    if(a === "remove") items = items.filter(function(x){ return x.id !== it.id; });
+    else { it.status = a; it.done = false; }
+    store(); render();
+
+    var focusId = a === "remove" ? neighbourId : it.id;
+    var f = focusId && out.querySelector('.item[data-id="'+focusId+'"] .ib');
+    if(f) f.focus({preventScroll:true});
+  });
+
+  $("#q").addEventListener("input", function(){ q = this.value; render(); });
+
+  // ---------- add to queue ----------
+  var addForm = $("#addForm"), addTitle = $("#addTitle"), addService = $("#addService");
+  addService.innerHTML = SERVICES.map(function(s){ return '<option value="'+esc(s)+'">'+esc(s)+'</option>'; }).join("");
+  addService.addEventListener("change", function(){ set(SVC_KEY, this.value); });
+  var addType = $("#addType");
+  addType.addEventListener("change", function(){ set(TYPE_KEY, this.value); });
+  function restorePicks(){
+    var lastSvc = get(SVC_KEY);
+    addService.value = (lastSvc && SERVICES.indexOf(lastSvc) !== -1) ? lastSvc : SERVICES[0];
+    var lastType = get(TYPE_KEY);
+    addType.value = (lastType === "Movie" || lastType === "Series") ? lastType : tab.type;
+  }
+
+  addTitle.addEventListener("input", function(){ addForm.classList.toggle("ready", !!this.value.trim()); });
+  addForm.addEventListener("submit", function(e){
+    e.preventDefault();
+    var t = addTitle.value.trim();
+    if(!t) return;
+    var it = {id:uid(), title:t, status:"queued", service:addService.value, type:addType.value};
+    items.push(it);
+    addTitle.value = ""; addForm.classList.remove("ready");
+    q = ""; $("#q").value = "";
+    freshId = it.id;
+    store(); render();
+    var el = out.querySelector('.item[data-id="'+it.id+'"]');
+    if(el){
+      setTimeout(function(){ var r = el.querySelector(".row"); if(r) r.classList.remove("fresh"); freshId = null; }, 1200);
+    }
+  });
+
+  // ---------- light / dark ----------
+  var MODE_KEY = "wendy-theme", root = document.documentElement, modeBtn = $("#modeBtn");
+  var darkMQ = window.matchMedia ? matchMedia("(prefers-color-scheme: dark)") : null;
+  var SUN  = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.8v2M12 19.2v2M2.8 12h2M19.2 12h2M5.5 5.5l1.4 1.4M17.1 17.1l1.4 1.4M5.5 18.5l1.4-1.4M17.1 6.9l1.4-1.4"></path></svg>';
+  var MOON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.6A8 8 0 1 1 9.4 4a6.5 6.5 0 0 0 10.6 10.6z"></path></svg>';
+  function isDark(){
+    var t = root.getAttribute("data-theme");
+    if(t === "dark") return true;
+    if(t === "light") return false;
+    return !!(darkMQ && darkMQ.matches);
+  }
+  function paintModeBtn(){
+    var d = isDark();
+    modeBtn.innerHTML = d ? SUN : MOON;
+    var label = d ? "Switch to light mode" : "Switch to dark mode";
+    modeBtn.setAttribute("aria-label", label);
+    modeBtn.title = label;
+  }
+  var savedMode = get(MODE_KEY);
+  if(savedMode === "dark" || savedMode === "light") root.setAttribute("data-theme", savedMode);
+  modeBtn.addEventListener("click", function(){
+    var next = isDark() ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    set(MODE_KEY, next);
+    paintModeBtn();
+  });
+  if(darkMQ && darkMQ.addEventListener) darkMQ.addEventListener("change", paintModeBtn);
+  paintModeBtn();
+
+  // ---------- messages ----------
+  var panel = $("#panel"), panelText = $("#panelText"), panelBtns = $("#panelBtns"), panelTimer = null, onReplace = null;
+  function notify(msg){
+    clearTimeout(panelTimer); onReplace = null;
+    panelText.textContent = msg; panelBtns.innerHTML = ""; panel.hidden = false;
+    panelTimer = setTimeout(function(){ panel.hidden = true; }, 4500);
+  }
+  function askReplace(msg, yes){
+    clearTimeout(panelTimer); onReplace = yes;
+    panelText.textContent = msg;
+    panelBtns.innerHTML = '<button type="button" class="primary" data-p="yes">Replace</button><button type="button" data-p="no">Cancel</button>';
+    panel.hidden = false;
+    panelBtns.querySelector("button").focus();
+  }
+  panelBtns.addEventListener("click", function(e){
+    var b = e.target.closest("[data-p]");
+    if(!b) return;
+    var yes = onReplace; onReplace = null; panel.hidden = true;
+    if(b.getAttribute("data-p") === "yes" && yes) yes();
+  });
+
+  // ---------- export ----------
+  function pad(n){ return (n < 10 ? "0" : "") + n; }
+  function exportList(){
+    if(!items.length){ notify("Your list is empty, so there's nothing to export yet."); return; }
+    var d = new Date();
+    var fn = tab.id + "-" + d.getFullYear() + "-" + pad(d.getMonth()+1) + "-" + pad(d.getDate()) + ".json";
+    var payload = JSON.stringify({app:"wendy", list:tab.id, version:1, exported:d.toISOString(), items:items}, null, 2);
+    var done = "Exported " + items.length + " titles to " + fn + ".";
+
+    var ask = (window.claude && typeof window.claude.use === "function") ? window.claude.use("downloads") : Promise.resolve(null);
+    ask.then(function(dl){
+      if(dl){
+        dl.save({filename: fn, data: payload}).then(function(){ notify(done); }, function(err){
+          var code = err && err.code;
+          if(code === "declined") return;
+          if(code === "rate_limited"){ notify("A save prompt is already open. Finish that one first."); return; }
+          notify("Export isn't available in this view.");
+        });
+        return;
+      }
+      // Opened as a plain web page or a saved file: a normal browser download works
+      if(window.top !== window.self){ notify("Export isn't available in this view."); return; }
+      var url = URL.createObjectURL(new Blob([payload], {type:"application/json"}));
+      var a = document.createElement("a");
+      a.href = url; a.download = fn;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 3000);
+      notify(done);
+    });
+  }
+  $("#exportBtn").addEventListener("click", exportList);
+
+  // ---------- import ----------
+  var importFile = $("#importFile");
+  $("#importBtn").addEventListener("click", function(){ importFile.click(); });
+  importFile.addEventListener("change", function(){
+    var file = importFile.files && importFile.files[0];
+    importFile.value = "";
+    if(!file) return;
+    var r = new FileReader();
+    r.onload = function(){
+      var data;
+      try{ data = JSON.parse(String(r.result)); }catch(e){ data = null; }
+      var list = Array.isArray(data) ? data : (data && Array.isArray(data.items) ? data.items : null);
+      if(!list){ notify("That file isn't a list export. Pick the .json file you exported."); return; }
+      var next = fromList(list);
+      if(!next.length){ notify("That file has no titles in it."); return; }
+      function apply(){
+        items = next; q = ""; $("#q").value = "";
+        store(); render();
+        notify("Imported " + next.length + " titles.");
+      }
+      if(items.length) askReplace("Replace your " + items.length + " titles with the " + next.length + " in " + file.name + "?", apply);
+      else apply();
+    };
+    r.onerror = function(){ notify("That file couldn't be read. Try exporting it again."); };
+    r.readAsText(file);
+  });
+
+  // ---------- tabs ----------
+  var tabsEl = $("#tabs");
+  tabsEl.innerHTML = TABS.map(function(t){
+    return '<button type="button" role="tab" data-tab="'+t.id+'">'+esc(t.name)+'</button>';
+  }).join("");
+  function findTab(id){ for(var i=0;i<TABS.length;i++) if(TABS[i].id === id) return TABS[i]; return null; }
+  function switchTab(id){
+    tab = findTab(id) || TABS[0];
+    KEY = "watch-ledger-v2" + tab.suffix;
+    SVC_KEY = "watch-ledger-svc" + tab.suffix;
+    TYPE_KEY = "watch-ledger-type" + tab.suffix;
+    set(TAB_KEY, tab.id);
+    if(location.hash !== "#" + tab.id) history.replaceState(null, "", "#" + tab.id);
+    $("#appName").textContent = tab.name;
+    document.title = tab.name;
+    [].forEach.call(tabsEl.children, function(b){
+      var on = b.getAttribute("data-tab") === tab.id;
+      b.setAttribute("aria-selected", on);
+      b.tabIndex = on ? 0 : -1;
+    });
+    clearTimeout(panelTimer); onReplace = null; panel.hidden = true;
+    q = ""; $("#q").value = ""; freshId = null;
+    addTitle.value = ""; addForm.classList.remove("ready");
+    restorePicks();
+    items = restore();
+    store();
+    render();
+  }
+  tabsEl.addEventListener("click", function(e){
+    var b = e.target.closest("[data-tab]");
+    if(b && b.getAttribute("data-tab") !== tab.id) switchTab(b.getAttribute("data-tab"));
+  });
+  tabsEl.addEventListener("keydown", function(e){
+    if(e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    var i = TABS.indexOf(tab) + (e.key === "ArrowRight" ? 1 : -1);
+    switchTab(TABS[(i + TABS.length) % TABS.length].id);
+    tabsEl.querySelector('[data-tab="'+tab.id+'"]').focus();
+  });
+  window.addEventListener("hashchange", function(){
+    var t = findTab(location.hash.slice(1));
+    if(t && t !== tab) switchTab(t.id);
+  });
+
+  // ---------- boot ----------
+  switchTab(findTab(location.hash.slice(1)) ? location.hash.slice(1) : get(TAB_KEY));
+})();
+</script>
