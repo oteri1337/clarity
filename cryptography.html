@@ -812,12 +812,13 @@ function render(lightAll, heavyAll) {
         const chLight = light[chNum];
         const name = (chHeavy && chHeavy.name) || (chLight && chLight.name) || "Chapter " + chNum;
 
-        let bodyHtml = "", chSecs = 0;
+        let bodyHtml = "", chSecs = 0, chItems = 0;
         if (chHeavy && chHeavy.sections) {
             for (let si = 0; si < chHeavy.sections.length; si++) {
                 const sec = chHeavy.sections[si];
                 const sNum = si + 1;
                 let rowsHtml = "", secSecs = 0;
+                chItems += sec.videos.length;
                 for (const v of sec.videos) {
                     const secs = (+v.minutes || 0) * 60;
                     secSecs += secs;
@@ -841,7 +842,7 @@ function render(lightAll, heavyAll) {
                 const secTime = secSecs ? `<span class="sec-sep"> · </span><span class="sec-time">${hhmm(secSecs)}</span>` : "";
                 bodyHtml += `
                     <div class="sec" data-key="g:${chId}/${esc(sec.name)}">
-                        <h3><button class="sec-toggle" type="button" aria-expanded="true" aria-controls="${chId}-read-s${sNum}"><span class="ch-caret sec-caret" aria-hidden="true"></span><span class="sec-n">Section ${sNum}${shortName(sec.name)}${secTime}</span><span class="sec-name">${esc(sec.name)}</span>${SEC_RING}</button></h3>
+                        <h3><button class="sec-toggle" type="button" aria-expanded="true" aria-controls="${chId}-read-s${sNum}"><span class="ch-caret sec-caret" aria-hidden="true"></span><span class="sec-n">Section ${sNum}${shortName(sec.name)}${secTime}</span><span class="sec-name">${esc(sec.name)}</span>${sec.videos.length ? SEC_RING : ""}</button></h3>
                         <ul id="${chId}-read-s${sNum}">${rowsHtml}</ul>
                     </div>`;
             }
@@ -849,7 +850,7 @@ function render(lightAll, heavyAll) {
 
         colHeavy.insertAdjacentHTML("beforeend", `
             <section class="layer read${bodyHtml ? "" : " empty"}" id="${chId}-read" data-sec="${chId}" data-col="g">
-                <h2 class="ch-head"><button class="ch-toggle" type="button" aria-expanded="true" aria-controls="${chId}-read-body"><span class="ch">Chapter ${chNum}${chSecs ? `<span class="ch-sep"> · </span><span class="ch-time">${hhmm(chSecs)}</span>` : ""}<span class="ch-pct">0% done</span></span><span class="ch-name">${esc(name)}</span><span class="ch-caret" aria-hidden="true"></span></button></h2>
+                <h2 class="ch-head"><button class="ch-toggle" type="button" aria-expanded="true" aria-controls="${chId}-read-body"><span class="ch">Chapter ${chNum}${chSecs ? `<span class="ch-sep"> · </span><span class="ch-time">${hhmm(chSecs)}</span>` : ""}${chItems ? `<span class="ch-pct">0% done</span>` : ""}</span><span class="ch-name">${esc(name)}</span><span class="ch-caret" aria-hidden="true"></span></button></h2>
                 <div class="layer-body" id="${chId}-read-body">${bodyHtml}</div>
             </section>`);
     }
@@ -969,10 +970,10 @@ function initInteractions() {
     const secsOf = li => parseInt(li.dataset.secs || "0", 10);
 
     /* percentage — same measure as the ring: watched time over non-gap items; Heavy (heavy = true) counts its own
-       rows, and a Heavy chapter or section with nothing in it is complete */
+       rows. A Heavy chapter or section with nothing in it has no percentage or ring at all (see render), so an
+       empty one never shows the green check */
     function progressOf(allRows, heavy = false) {
         const rows = heavy ? allRows : allRows.filter(li => !li.classList.contains("gap"));
-        if (heavy && !rows.length) return { pct: 100, label: "100%" };
         const total = rows.reduce((a, li) => a + secsOf(li), 0);
         const seen = rows.filter(li => !!state[li.dataset.id]);
         const got = total ? seen.reduce((a, li) => a + secsOf(li), 0) / total
