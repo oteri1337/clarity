@@ -842,7 +842,7 @@ function render(lightAll, heavyAll) {
                 const secTime = secSecs ? `<span class="sec-sep"> · </span><span class="sec-time">${hhmm(secSecs)}</span>` : "";
                 bodyHtml += `
                     <div class="sec" data-key="g:${chId}/${esc(sec.name)}">
-                        <h3><button class="sec-toggle" type="button" aria-expanded="true" aria-controls="${chId}-read-s${sNum}"><span class="ch-caret sec-caret" aria-hidden="true"></span><span class="sec-n">Section ${sNum}${shortName(sec.name)}${secTime}</span><span class="sec-name">${esc(sec.name)}</span>${sec.videos.length ? SEC_RING : ""}</button></h3>
+                        <h3><button class="sec-toggle" type="button" aria-expanded="true" aria-controls="${chId}-read-s${sNum}"><span class="ch-caret sec-caret" aria-hidden="true"></span><span class="sec-n">Section ${sNum}${shortName(sec.name)}${secTime}</span><span class="sec-name">${esc(sec.name)}</span>${SEC_RING}</button></h3>
                         <ul id="${chId}-read-s${sNum}">${rowsHtml}</ul>
                     </div>`;
             }
@@ -970,8 +970,8 @@ function initInteractions() {
     const secsOf = li => parseInt(li.dataset.secs || "0", 10);
 
     /* percentage — same measure as the ring: watched time over non-gap items; Heavy (heavy = true) counts its own
-       rows. A Heavy chapter or section with nothing in it has no percentage or ring at all (see render), so an
-       empty one never shows the green check */
+       rows. An empty Heavy section keeps its ring at 0% (nothing in it to finish) and an empty Heavy chapter shows
+       no percentage (see render), so neither ever shows the green check */
     function progressOf(allRows, heavy = false) {
         const rows = heavy ? allRows : allRows.filter(li => !li.classList.contains("gap"));
         const total = rows.reduce((a, li) => a + secsOf(li), 0);
