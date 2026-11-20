@@ -7,351 +7,6 @@
         "videos": []
       },
       {
-        "name": "Basic Tasks",
-        "videos": []
-      },
-      {
-        "name": "Processes",
-        "videos": [
-          {
-            "channel_name": "Learn Linux TV",
-            "name": "Linux Crash Course - systemd: Using the systemctl command",
-            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
-            "link": "https://www.youtube.com/watch?v=5JVBpXiYMKo",
-            "minutes": "27",
-            "description": "27 min · a first look at systemd and the systemctl command — starting, stopping, restarting and enabling units. From 2021",
-            "type": "video"
-          },
-          {
-            "channel_name": "Learn Linux TV",
-            "name": "journalctl Basics: How to Easily Check Your Linux Logs",
-            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
-            "link": "https://www.youtube.com/watch?v=0dG3vUYt7Uk",
-            "minutes": "20",
-            "description": "20 min · the basics of journalctl, now the standard way to read logs on a systemd machine. From 2025",
-            "type": "video"
-          },
-          {
-            "channel_name": "Low Orbit Flux",
-            "name": "Linux: create a systemd service, run as root and non-root",
-            "channel_link": "https://www.youtube.com/@LowOrbitFlux",
-            "link": "https://www.youtube.com/watch?v=af_UjI__TOo",
-            "minutes": "11",
-            "description": "11 min · writing your own service — a looping bash script in /usr/local/bin that logs a line every 10 seconds, a unit file in /etc/systemd/system, then systemctl daemon-reload, enable, start and status, with ps showing systemd, PID 1, as its parent. He then runs it as an ordinary user with User=, adds Restart=always, RestartSec and After= ordering on the network, and kills the process to show systemd bringing it straight back under a new PID. daemon-reload alone left it running as root; the new user took effect only after a stop and start. From 2025",
-            "type": "video"
-          },
-          {
-            "channel_name": "Learn Linux TV",
-            "name": "Linux Crash Course - The ps Command",
-            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
-            "link": "https://www.youtube.com/watch?v=wYwGNgsfN3I",
-            "minutes": "15",
-            "description": "15 min · the basics of ps for looking at running processes, and the variations that show its output in different ways. From 2021",
-            "type": "video"
-          },
-          {
-            "channel_name": "Learn Linux TV",
-            "name": "Demystifying the top Command in Linux",
-            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
-            "link": "https://www.youtube.com/watch?v=WsR11EGF9PA",
-            "minutes": "27",
-            "description": "27 min · the top command with hands-on examples — its options and fields, watching resource use and running processes in real time. From 2023",
-            "type": "video"
-          },
-          {
-            "channel_name": "Learn Linux TV",
-            "name": "Linux Crash Course - htop",
-            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
-            "link": "https://www.youtube.com/watch?v=tU9cO9FwDx0",
-            "minutes": "17",
-            "description": "17 min · an overview of htop, the friendlier take on top, with its meters for CPU, RAM and swap. From 2022",
-            "type": "video"
-          },
-          {
-            "channel_name": "Learn Linux TV",
-            "name": "How to use the kill command in Linux",
-            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
-            "link": "https://www.youtube.com/watch?v=5ER65GtElmo",
-            "minutes": "16",
-            "description": "16 min · the kill command — sending signals to processes to stop them, politely or by force. From 2024",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "This Linux Init System Is Surprisingly Simple",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=c3xNvgkz83E",
-            "minutes": "4",
-            "description": "4 min · runit, a far smaller init system than systemd — creating a service with it, setting up the service's logging, and what it does more simply than systemd. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "Stop Grepping ps: Smarter Linux Process Hunting",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=ZSQC3165PZg",
-            "minutes": "6",
-            "description": "6 min · getting more out of ps than ps aux | grep — choosing columns with -o, hiding kernel threads, -u for one user's processes instead of grepping, -C to find a command by name without grep matching itself, inverting a match, leaving out children of PID 1, and showing when each process started. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "This Linux Directory Leaks Everything",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=vgTpbMvImWs",
-            "minutes": "5",
-            "description": "5 min · what /proc shows about every process with no other tools installed — a process's working directory and executable, listening ports from /proc/net/tcp, its environment and command-line arguments, mounts, memory maps and the kernel version — and why that makes it one of the first places an attacker looks. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "You Can't Master Linux Without Knowing fork()",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=LakYAHb1PPE",
-            "minutes": "6",
-            "description": "6 min · what happens when a process forks, shown with a Python demo — the parent and child appearing in the process table, pausing them to watch, zombie processes, and copy-on-write memory. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "How Linux fork() Can Crash a System",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=dhGQbyK6LTk",
-            "minutes": "4",
-            "description": "4 min · fork() from another angle — copy-on-write, a killed child left as a zombie until the parent calls wait(), an orphan adopted by init when its parent dies, what fork returns to the parent and to the child in a small C program, and how forking without limit can bring a system down. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "A Trick Hackers Love (Linux File Descriptors)",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=LA4PI5PX_20",
-            "minutes": "5",
-            "description": "5 min · file descriptors as the numbers a process uses for files, pipes and sockets — 0, 1 and 2 in /proc/<pid>/fd, opening descriptor 3 on a file with exec, still writing and reading through it after the file is deleted, and closing it — then why the redirections in reverse shell one-liners look the way they do. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "Unusual Linux Signals Hackers Actually Use",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=uqnteEtbIVM",
-            "minutes": "4",
-            "description": "4 min · Linux signals beyond kill -9 — SIGSTOP and SIGCONT pausing and resuming a script, trapping SIGTERM so it is ignored, why SIGKILL can't be trapped, kill -0 to test whether a PID exists, and real-time signals, which can carry a small payload from one process to another. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Learn Linux TV",
-            "name": "Linux Crash Course - The lsof Command",
-            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
-            "link": "https://www.youtube.com/watch?v=n9nZ1ellaV0",
-            "minutes": "24",
-            "description": "24 min · lsof for seeing which files, and which network ports, are open and by which process. From 2023",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "Stop Guessing. Debug Faster with witr",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=gfskSUqILr0",
-            "minutes": "3",
-            "description": "3 min · witr (\"why is this running\"), which explains a listening port or a process in one step — the user, the command, the exact start time, what launched it and its systemd unit — set against working the same out by hand with ps, /proc and pstree. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "Unix Domain Sockets: The Linux IPC Tricks Hackers Should Know",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=KQBgPLlpUBE",
-            "minutes": "5",
-            "description": "5 min · Unix domain sockets, which connect processes on the same machine through a file instead of a port — creating one, abstract sockets that have no file at all, and why anyone who can write to the Docker socket effectively has root. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "Unix Sockets Can Control Who Gets Access",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=1AJsIzu2rwA",
-            "minutes": "2",
-            "description": "2 min · how a Unix domain socket can decide which users get to use a service on the machine. From 2026",
-            "type": "video"
-          }
-        ]
-      },
-      {
-        "name": "Networking",
-        "videos": []
-      },
-      {
-        "name": "Linux Networking",
-        "videos": [
-          {
-            "channel_name": "Learn Linux TV",
-            "name": "How to Use the ip Command in Linux: A Beginner's Guide",
-            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
-            "link": "https://www.youtube.com/watch?v=wHfIFZlDxtU",
-            "minutes": "17",
-            "description": "17 min · the ip command, now the go-to for managing network interfaces, addresses and routes. From 2024",
-            "type": "video"
-          },
-          {
-            "channel_name": "Learn Linux TV",
-            "name": "How to Use the ss Command",
-            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
-            "link": "https://www.youtube.com/watch?v=phY8Q7Woxsw",
-            "minutes": "7",
-            "description": "7 min · the basic options of ss for listing sockets and listening ports. From 2024",
-            "type": "video"
-          },
-          {
-            "channel_name": "Learn Linux TV",
-            "name": "Linux Crash Course - The ping Command",
-            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
-            "link": "https://www.youtube.com/watch?v=DOVsoWJAxuM",
-            "minutes": "15",
-            "description": "15 min · the ping command and its options for checking that a host answers. From 2022",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hussein Nasser",
-            "name": "How a machine becomes a router: ip_forward",
-            "channel_link": "https://www.youtube.com/@hnasr",
-            "link": "https://www.youtube.com/watch?v=hVyI4ppUZRs",
-            "minutes": "13",
-            "description": "13 min · the net.ipv4.ip_forward setting that lets a Linux machine pass packets between networks — what forwarding and NAT rules quietly depend on. From 2024",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hussein Nasser",
-            "name": "iptables demystified: port redirection and forwarding HTTP traffic to another machine (part 1)",
-            "channel_link": "https://www.youtube.com/@hnasr",
-            "link": "https://www.youtube.com/watch?v=NAdJojxENEU",
-            "minutes": "34",
-            "description": "34 min · iptables shown working — redirecting one port to another on the same machine, then sending HTTP on to a different machine altogether. From 2021",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hussein Nasser",
-            "name": "iptables demystified: load balancing without a load balancer (part 2)",
-            "channel_link": "https://www.youtube.com/@hnasr",
-            "link": "https://www.youtube.com/watch?v=-CraNvj48J0",
-            "minutes": "26",
-            "description": "26 min · spreading connections across several backends with iptables rules alone, inside the kernel, with no proxy software installed. From 2021",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hussein Nasser",
-            "name": "Port forwarding with DNAT and iptables",
-            "channel_link": "https://www.youtube.com/@hnasr",
-            "link": "https://www.youtube.com/watch?v=BMTaucJYe6Q",
-            "minutes": "7",
-            "description": "7 min · forwarding port 80 to 8080 with a DNAT rule. From 2020",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hussein Nasser",
-            "name": "Port forwarding with NAT and iptables (transparent proxying): “run” your web app on port 80",
-            "channel_link": "https://www.youtube.com/@hnasr",
-            "link": "https://www.youtube.com/watch?v=uuWzk8U4dJE",
-            "minutes": "14",
-            "description": "14 min · serving an app that listens on 8080 as if it were on port 80, without running it as root. From 2019",
-            "type": "video"
-          },
-          {
-            "channel_name": "Learn Linux TV",
-            "name": "UFW Made Easy: Complete Getting Started Guide",
-            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
-            "link": "https://www.youtube.com/watch?v=F-ubkT1WNFk",
-            "minutes": "29",
-            "description": "29 min · securing an Ubuntu server with UFW: installing it, setting secure default policies, creating rules and protecting services. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "theurbanpenguin",
-            "name": "RHCSA 8 - nftables compared with iptables / ip6tables",
-            "channel_link": "https://www.youtube.com/@theurbanpenguin",
-            "link": "https://www.youtube.com/watch?v=7h8VEyCzqi8",
-            "minutes": "5",
-            "description": "5 min · the same SSH allow rule written in nftables and in iptables, showing why nftables needs only one rule for IPv4 and IPv6. From 2020",
-            "type": "video"
-          },
-          {
-            "channel_name": "theurbanpenguin",
-            "name": "RHCSA 8 - Nat Masquerading Natively Using Nftables",
-            "channel_link": "https://www.youtube.com/@theurbanpenguin",
-            "link": "https://www.youtube.com/watch?v=Oikhriux0qk",
-            "minutes": "9",
-            "description": "9 min · setting up a NAT router with nftables masquerading, so internal hosts reach the internet without being exposed. From 2020",
-            "type": "video"
-          },
-          {
-            "channel_name": "theurbanpenguin",
-            "name": "RHCSA 8 - Native Nftables Firewalls on Red Hat Enterprise Linux 8",
-            "channel_link": "https://www.youtube.com/@theurbanpenguin",
-            "link": "https://www.youtube.com/watch?v=Hpfcd7qZUis",
-            "minutes": "12",
-            "description": "12 min · a complete introduction to building a firewall with nftables, the firewall module in Red Hat Enterprise Linux 8 and CentOS 8. From 2019",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "Linux Has a Hidden Routing System",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=iJb7V5jCgUY",
-            "minutes": "4",
-            "description": "4 min · policy-based routing, the layer above ip route — extra routing tables and the ip rule entries that decide which table a packet is routed by. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "How to Split Traffic Across Multiple Interfaces",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=9WnW6IH-kxk",
-            "minutes": "5",
-            "description": "5 min · sending web traffic (HTTP and HTTPS) out one network interface and everything else out another — routes in a separate table, marking packets with netfilter, and a policy rule that sends marked packets to that table. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "Routing Network Traffic In Linux By UID",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=NuPV7eAo2iE",
-            "minutes": "5",
-            "description": "5 min · policy-based routing by user — ip rules that send one user's traffic along a different route from everyone else's, after setting up a small lab. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "This Linux Trick Makes Network Packets Disappear (eBPF XDP)",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=G-v9esv6O1A",
-            "minutes": "3",
-            "description": "3 min · XDP (eXpress Data Path), which runs an eBPF program on packets as they arrive, before the kernel's networking stack — so before tcpdump or iptables see them — writing a small program that drops chosen packets and attaching it to an interface. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "Stop Using 10 Commands to Troubleshoot Linux Networking",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=J3OfoxG8T18",
-            "minutes": "6",
-            "description": "6 min · Network Doctor, a tool that runs the usual network troubleshooting checks in one go — he breaks the network on purpose to see what it reports, checks the connection to a host, watches a connection, and compares reports. From 2026",
-            "type": "video"
-          }
-        ]
-      },
-      {
-        "name": "Containers 1: NameSpaces, Control Groups",
-        "videos": []
-      },
-      {
-        "name": "File Recovery: Snapshots, Backups, Undelete",
-        "videos": []
-      },
-      {
-        "name": "System Cloning: Imaging & Migration",
-        "videos": []
-      },
-      {
         "name": "Secure Shell",
         "videos": [
           {
@@ -708,7 +363,356 @@
         ]
       },
       {
+        "name": "Basic Tasks",
+        "videos": []
+      },
+      {
+        "name": "Processes",
+        "videos": [
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Linux Crash Course - systemd: Using the systemctl command",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=5JVBpXiYMKo",
+            "minutes": "27",
+            "description": "27 min · a first look at systemd and the systemctl command — starting, stopping, restarting and enabling units. From 2021",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "journalctl Basics: How to Easily Check Your Linux Logs",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=0dG3vUYt7Uk",
+            "minutes": "20",
+            "description": "20 min · the basics of journalctl, now the standard way to read logs on a systemd machine. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "Low Orbit Flux",
+            "name": "Linux: create a systemd service, run as root and non-root",
+            "channel_link": "https://www.youtube.com/@LowOrbitFlux",
+            "link": "https://www.youtube.com/watch?v=af_UjI__TOo",
+            "minutes": "11",
+            "description": "11 min · writing your own service — a looping bash script in /usr/local/bin that logs a line every 10 seconds, a unit file in /etc/systemd/system, then systemctl daemon-reload, enable, start and status, with ps showing systemd, PID 1, as its parent. He then runs it as an ordinary user with User=, adds Restart=always, RestartSec and After= ordering on the network, and kills the process to show systemd bringing it straight back under a new PID. daemon-reload alone left it running as root; the new user took effect only after a stop and start. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Linux Crash Course - The ps Command",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=wYwGNgsfN3I",
+            "minutes": "15",
+            "description": "15 min · the basics of ps for looking at running processes, and the variations that show its output in different ways. From 2021",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Demystifying the top Command in Linux",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=WsR11EGF9PA",
+            "minutes": "27",
+            "description": "27 min · the top command with hands-on examples — its options and fields, watching resource use and running processes in real time. From 2023",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Linux Crash Course - htop",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=tU9cO9FwDx0",
+            "minutes": "17",
+            "description": "17 min · an overview of htop, the friendlier take on top, with its meters for CPU, RAM and swap. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "How to use the kill command in Linux",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=5ER65GtElmo",
+            "minutes": "16",
+            "description": "16 min · the kill command — sending signals to processes to stop them, politely or by force. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "This Linux Init System Is Surprisingly Simple",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=c3xNvgkz83E",
+            "minutes": "4",
+            "description": "4 min · runit, a far smaller init system than systemd — creating a service with it, setting up the service's logging, and what it does more simply than systemd. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Stop Grepping ps: Smarter Linux Process Hunting",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=ZSQC3165PZg",
+            "minutes": "6",
+            "description": "6 min · getting more out of ps than ps aux | grep — choosing columns with -o, hiding kernel threads, -u for one user's processes instead of grepping, -C to find a command by name without grep matching itself, inverting a match, leaving out children of PID 1, and showing when each process started. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "This Linux Directory Leaks Everything",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=vgTpbMvImWs",
+            "minutes": "5",
+            "description": "5 min · what /proc shows about every process with no other tools installed — a process's working directory and executable, listening ports from /proc/net/tcp, its environment and command-line arguments, mounts, memory maps and the kernel version — and why that makes it one of the first places an attacker looks. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "You Can't Master Linux Without Knowing fork()",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=LakYAHb1PPE",
+            "minutes": "6",
+            "description": "6 min · what happens when a process forks, shown with a Python demo — the parent and child appearing in the process table, pausing them to watch, zombie processes, and copy-on-write memory. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "How Linux fork() Can Crash a System",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=dhGQbyK6LTk",
+            "minutes": "4",
+            "description": "4 min · fork() from another angle — copy-on-write, a killed child left as a zombie until the parent calls wait(), an orphan adopted by init when its parent dies, what fork returns to the parent and to the child in a small C program, and how forking without limit can bring a system down. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "A Trick Hackers Love (Linux File Descriptors)",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=LA4PI5PX_20",
+            "minutes": "5",
+            "description": "5 min · file descriptors as the numbers a process uses for files, pipes and sockets — 0, 1 and 2 in /proc/<pid>/fd, opening descriptor 3 on a file with exec, still writing and reading through it after the file is deleted, and closing it — then why the redirections in reverse shell one-liners look the way they do. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Unusual Linux Signals Hackers Actually Use",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=uqnteEtbIVM",
+            "minutes": "4",
+            "description": "4 min · Linux signals beyond kill -9 — SIGSTOP and SIGCONT pausing and resuming a script, trapping SIGTERM so it is ignored, why SIGKILL can't be trapped, kill -0 to test whether a PID exists, and real-time signals, which can carry a small payload from one process to another. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Linux Crash Course - The lsof Command",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=n9nZ1ellaV0",
+            "minutes": "24",
+            "description": "24 min · lsof for seeing which files, and which network ports, are open and by which process. From 2023",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Stop Guessing. Debug Faster with witr",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=gfskSUqILr0",
+            "minutes": "3",
+            "description": "3 min · witr (\"why is this running\"), which explains a listening port or a process in one step — the user, the command, the exact start time, what launched it and its systemd unit — set against working the same out by hand with ps, /proc and pstree. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Unix Domain Sockets: The Linux IPC Tricks Hackers Should Know",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=KQBgPLlpUBE",
+            "minutes": "5",
+            "description": "5 min · Unix domain sockets, which connect processes on the same machine through a file instead of a port — creating one, abstract sockets that have no file at all, and why anyone who can write to the Docker socket effectively has root. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Unix Sockets Can Control Who Gets Access",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=1AJsIzu2rwA",
+            "minutes": "2",
+            "description": "2 min · how a Unix domain socket can decide which users get to use a service on the machine. From 2026",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Networking",
+        "videos": []
+      },
+      {
+        "name": "Docker",
+        "videos": []
+      },
+      {
+        "name": "Linux Networking",
+        "videos": [
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "How to Use the ip Command in Linux: A Beginner's Guide",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=wHfIFZlDxtU",
+            "minutes": "17",
+            "description": "17 min · the ip command, now the go-to for managing network interfaces, addresses and routes. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "How to Use the ss Command",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=phY8Q7Woxsw",
+            "minutes": "7",
+            "description": "7 min · the basic options of ss for listing sockets and listening ports. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Linux Crash Course - The ping Command",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=DOVsoWJAxuM",
+            "minutes": "15",
+            "description": "15 min · the ping command and its options for checking that a host answers. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hussein Nasser",
+            "name": "How a machine becomes a router: ip_forward",
+            "channel_link": "https://www.youtube.com/@hnasr",
+            "link": "https://www.youtube.com/watch?v=hVyI4ppUZRs",
+            "minutes": "13",
+            "description": "13 min · the net.ipv4.ip_forward setting that lets a Linux machine pass packets between networks — what forwarding and NAT rules quietly depend on. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hussein Nasser",
+            "name": "iptables demystified: port redirection and forwarding HTTP traffic to another machine (part 1)",
+            "channel_link": "https://www.youtube.com/@hnasr",
+            "link": "https://www.youtube.com/watch?v=NAdJojxENEU",
+            "minutes": "34",
+            "description": "34 min · iptables shown working — redirecting one port to another on the same machine, then sending HTTP on to a different machine altogether. From 2021",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hussein Nasser",
+            "name": "iptables demystified: load balancing without a load balancer (part 2)",
+            "channel_link": "https://www.youtube.com/@hnasr",
+            "link": "https://www.youtube.com/watch?v=-CraNvj48J0",
+            "minutes": "26",
+            "description": "26 min · spreading connections across several backends with iptables rules alone, inside the kernel, with no proxy software installed. From 2021",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hussein Nasser",
+            "name": "Port forwarding with DNAT and iptables",
+            "channel_link": "https://www.youtube.com/@hnasr",
+            "link": "https://www.youtube.com/watch?v=BMTaucJYe6Q",
+            "minutes": "7",
+            "description": "7 min · forwarding port 80 to 8080 with a DNAT rule. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hussein Nasser",
+            "name": "Port forwarding with NAT and iptables (transparent proxying): “run” your web app on port 80",
+            "channel_link": "https://www.youtube.com/@hnasr",
+            "link": "https://www.youtube.com/watch?v=uuWzk8U4dJE",
+            "minutes": "14",
+            "description": "14 min · serving an app that listens on 8080 as if it were on port 80, without running it as root. From 2019",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "UFW Made Easy: Complete Getting Started Guide",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=F-ubkT1WNFk",
+            "minutes": "29",
+            "description": "29 min · securing an Ubuntu server with UFW: installing it, setting secure default policies, creating rules and protecting services. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "theurbanpenguin",
+            "name": "RHCSA 8 - nftables compared with iptables / ip6tables",
+            "channel_link": "https://www.youtube.com/@theurbanpenguin",
+            "link": "https://www.youtube.com/watch?v=7h8VEyCzqi8",
+            "minutes": "5",
+            "description": "5 min · the same SSH allow rule written in nftables and in iptables, showing why nftables needs only one rule for IPv4 and IPv6. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "theurbanpenguin",
+            "name": "RHCSA 8 - Nat Masquerading Natively Using Nftables",
+            "channel_link": "https://www.youtube.com/@theurbanpenguin",
+            "link": "https://www.youtube.com/watch?v=Oikhriux0qk",
+            "minutes": "9",
+            "description": "9 min · setting up a NAT router with nftables masquerading, so internal hosts reach the internet without being exposed. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "theurbanpenguin",
+            "name": "RHCSA 8 - Native Nftables Firewalls on Red Hat Enterprise Linux 8",
+            "channel_link": "https://www.youtube.com/@theurbanpenguin",
+            "link": "https://www.youtube.com/watch?v=Hpfcd7qZUis",
+            "minutes": "12",
+            "description": "12 min · a complete introduction to building a firewall with nftables, the firewall module in Red Hat Enterprise Linux 8 and CentOS 8. From 2019",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Linux Has a Hidden Routing System",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=iJb7V5jCgUY",
+            "minutes": "4",
+            "description": "4 min · policy-based routing, the layer above ip route — extra routing tables and the ip rule entries that decide which table a packet is routed by. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "How to Split Traffic Across Multiple Interfaces",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=9WnW6IH-kxk",
+            "minutes": "5",
+            "description": "5 min · sending web traffic (HTTP and HTTPS) out one network interface and everything else out another — routes in a separate table, marking packets with netfilter, and a policy rule that sends marked packets to that table. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Routing Network Traffic In Linux By UID",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=NuPV7eAo2iE",
+            "minutes": "5",
+            "description": "5 min · policy-based routing by user — ip rules that send one user's traffic along a different route from everyone else's, after setting up a small lab. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "This Linux Trick Makes Network Packets Disappear (eBPF XDP)",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=G-v9esv6O1A",
+            "minutes": "3",
+            "description": "3 min · XDP (eXpress Data Path), which runs an eBPF program on packets as they arrive, before the kernel's networking stack — so before tcpdump or iptables see them — writing a small program that drops chosen packets and attaching it to an interface. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Stop Using 10 Commands to Troubleshoot Linux Networking",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=J3OfoxG8T18",
+            "minutes": "6",
+            "description": "6 min · Network Doctor, a tool that runs the usual network troubleshooting checks in one go — he breaks the network on purpose to see what it reports, checks the connection to a host, watches a connection, and compares reports. From 2026",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "File Recovery: Snapshots, Backups, Undelete",
+        "videos": []
+      },
+      {
+        "name": "System Cloning: Imaging & Migration",
+        "videos": []
+      },
+      {
         "name": "Bash Scripting",
+        "videos": []
+      },
+      {
+        "name": "Disk Encryption",
         "videos": []
       }
     ]
@@ -717,7 +721,7 @@
     "name": "Web Tech",
     "sections": [
       {
-        "name": "Containers 2: Docker, Podman, ContainerD, LXC",
+        "name": "Containers",
         "videos": []
       },
       {
@@ -725,20 +729,15 @@
         "videos": []
       },
       {
-        "name": "Git",
-        "videos": []
-      }
-    ]
-  },
-  "3": {
-    "name": "Cryptography",
-    "sections": [
-      {
-        "name": "Cryptography 2: Web",
+        "name": "Databases",
         "videos": []
       },
       {
-        "name": "Cryptography 3: Disks",
+        "name": "Version Control",
+        "videos": []
+      },
+      {
+        "name": "Authentication & Encrypted App",
         "videos": []
       }
     ]
