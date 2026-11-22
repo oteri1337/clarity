@@ -1,4 +1,4 @@
-<title>Sally</title>
+<title>Series</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23e0245e'/%3E%3Cg fill='none' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='6.5' y='8' width='19' height='13.5' rx='2.5'/%3E%3Cpath d='M12.5 25.25h7'/%3E%3Cpath d='M14.25 12.25v5l4.25-2.5z' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif&display=swap">
@@ -214,7 +214,7 @@ button.ttl:hover{text-decoration-color:var(--line)}
 
 <main class="app">
   <header class="head">
-    <h1 id="appName">Sally</h1>
+    <h1 id="appName">Series</h1>
     <div class="htools">
       <a class="mode" href="index.html" aria-label="Home" title="Home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V19a1 1 0 0 0 1 1h3.5v-5.5h4V20h3.5a1 1 0 0 0 1-1V9.5"/></svg></a>
       <button type="button" class="mode" id="importBtn" aria-label="Import a list" title="Import a list">
@@ -282,11 +282,12 @@ button.ttl:hover{text-decoration-color:var(--line)}
     heart:  svg('<path d="M12 20s-7.3-4.4-9.3-8.9C1.3 7.8 3.4 4.2 7.1 4.2c2 0 3.5 1 4.9 2.9 1.4-1.9 2.9-2.9 4.9-2.9 3.7 0 5.8 3.6 4.4 6.9C19.3 15.6 12 20 12 20z"></path>')
   };
 
-  // Three lists, same app. Sally keeps the original storage keys so the existing list lives there.
+  // Three lists, same app. Series keeps the original storage keys so the existing list lives there.
+  // The ids (and so the #sally / #molly / #anna links) and storage suffixes keep the old names so saved lists still load.
   var TABS = [
-    {id:"sally", name:"Sally", type:"Series", suffix:""},
-    {id:"molly", name:"Molly", type:"Movie",  suffix:"-molly"},
-    {id:"anna",  name:"Anna",  type:"Series", suffix:"-anna"}
+    {id:"sally", name:"Series",   type:"Series", suffix:""},
+    {id:"molly", name:"Movies",   type:"Movie",  suffix:"-molly"},
+    {id:"anna",  name:"Animated", type:"Series", suffix:"-anna"}
   ];
   var TAB_KEY = "watch-ledger-tab", OLD_KEY = "watch-ledger-v1";
   var tab, KEY, SVC_KEY, TYPE_KEY;
@@ -307,7 +308,7 @@ button.ttl:hover{text-decoration-color:var(--line)}
     if(["queued","watching","loved"].indexOf(s) === -1) s = "queued";
     var svc = (!x.service || x.service === "Free / other") ? "YouTube" : x.service;
     var type = x.type === "Movie" ? "Movie" : "Series";
-    return {id: x.id || uid(), title: String(x.title), status: s, service: svc, type: type, done: s === "watching" && x.done === true, rewatch: x.rewatch === true};
+    return {id: x.id || uid(), title: String(x.title), status: s, service: svc, type: type, done: s === "watching" && x.done === true, rewatch: x.rewatch === true, hearted: s === "loved" && x.hearted === true};
   }
   function fromList(p){ return p.map(normalize).filter(Boolean); }
   function restore(){
@@ -335,8 +336,9 @@ button.ttl:hover{text-decoration-color:var(--line)}
   function actionsFor(it){
     switch(sectionOf(it)){
       case "queued":   return [["watching","Start watching",I.play,""],      ["remove","Remove",I.remove,""]];
-      case "watching": return [["loved","Love it",I.heart,""],               ["queued","Back to queue",I.down,""]];
-      default:         return [["watching","Unlove, back to watching",I.heart,"on"], ["watching","Back to watching",I.down,""]];
+      case "watching": return [["loved","Move to Loved",I.check,""],         ["queued","Back to queue",I.down,""]];
+      // Loved: the heart is a toggle that fills in place; the title stays in Loved
+      default:         return [["heart",it.hearted ? "Hearted, tap to undo" : "Heart it",I.heart,it.hearted ? "on" : ""], ["watching","Back to watching",I.down,""]];
     }
   }
   var BRAND = {
@@ -370,7 +372,8 @@ button.ttl:hover{text-decoration-color:var(--line)}
 
   function rowHtml(it){
     var btns = actionsFor(it).map(function(a){
-      return '<button type="button" class="ib '+a[3]+'" data-a="'+a[0]+'" aria-label="'+a[1]+'" title="'+a[1]+'">'+a[2]+'</button>';
+      var pressed = a[0] === "heart" ? ' aria-pressed="'+(a[3] === "on")+'"' : '';
+      return '<button type="button" class="ib '+a[3]+'" data-a="'+a[0]+'"'+pressed+' aria-label="'+a[1]+'" title="'+a[1]+'">'+a[2]+'</button>';
     }).join("");
     return '<li class="item" data-id="'+it.id+'"><div class="row'+(it.id===freshId?" fresh":"")+'">'+
       '<span class="tag" data-b="'+(BRAND[it.service]||"other")+'" data-name="'+esc(it.service)+'" tabindex="0" role="img" aria-label="'+esc(it.service)+'">'+esc(initial(it.service))+'</span>'+
@@ -418,7 +421,8 @@ button.ttl:hover{text-decoration-color:var(--line)}
     var neighbourId = neighbour && neighbour.getAttribute("data-id");
 
     if(a === "remove") items = items.filter(function(x){ return x.id !== it.id; });
-    else { it.status = a; it.done = false; }
+    else if(a === "heart") it.hearted = !it.hearted;
+    else { it.status = a; it.done = false; it.hearted = false; }
     store(); render();
 
     var focusId = a === "remove" ? neighbourId : it.id;
