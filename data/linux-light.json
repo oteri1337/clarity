@@ -395,6 +395,15 @@
           },
           {
             "channel_name": "Learn Linux TV",
+            "name": "Linux Crash Course - Scheduling Tasks with Cron",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=7cbP7fzn0D8",
+            "minutes": "19",
+            "description": "19 min · scheduling commands with cron — editing a crontab with crontab -e, the five time fields (minute, hour, day of month, month, day of week) and what an asterisk means, always giving the full path to the script, running jobs as root or as a purpose-made user such as www-data with crontab -u, listing a user's jobs with crontab -l, and building the line with crontabgenerator.org. From 2021",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
             "name": "Automate Your Tasks with systemd Timers: A Step-by-Step Guide",
             "channel_link": "https://www.youtube.com/@LearnLinuxTV",
             "link": "https://www.youtube.com/watch?v=n6BuUgkZ5T0",
@@ -508,15 +517,6 @@
             "link": "https://www.youtube.com/watch?v=fu84lWgfXpk",
             "minutes": "9",
             "description": "9 min · du for hunting down what is filling a disk — -a to list files as well as directories, piped through sort -nr and head -n 20 for the biggest, pointed at a directory such as /var/log with sudo and errors sent to /dev/null, then -h for human-readable sizes, which he finds harder to sort (sort -h handles them, which the video doesn’t mention), and du -h * for just the current directory’s entries. From 2021",
-            "type": "video"
-          },
-          {
-            "channel_name": "Learn Linux TV",
-            "name": "Linux Crash Course - Scheduling Tasks with Cron",
-            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
-            "link": "https://www.youtube.com/watch?v=7cbP7fzn0D8",
-            "minutes": "19",
-            "description": "19 min · scheduling commands with cron — editing a crontab with crontab -e, the five time fields (minute, hour, day of month, month, day of week) and what an asterisk means, always giving the full path to the script, running jobs as root or as a purpose-made user such as www-data with crontab -u, listing a user's jobs with crontab -l, and building the line with crontabgenerator.org. From 2021",
             "type": "video"
           },
           {
