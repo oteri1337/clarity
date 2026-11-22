@@ -290,7 +290,7 @@ try {
 'use strict';
 
 // ---------- Settings ----------
-// The PocketBase settings live in pocketbase.json next to this page: the server,
+// The PocketBase settings live in data/pocketbase.json: the server,
 // the collection, and the rating, photo and thumbnail limits. loadConfig() fills
 // these in before anything else runs. The file is public, so no passwords in it.
 
@@ -304,8 +304,8 @@ const SESSION_KEY = 'smells-admin';
 const THEME_KEY = 'smells-theme';
 
 async function loadConfig() {
-  const res = await fetch('pocketbase.json', { cache: 'no-cache' });
-  if (!res.ok) throw new Error(`pocketbase.json answered ${res.status}`);
+  const res = await fetch('data/pocketbase.json', { cache: 'no-cache' });
+  if (!res.ok) throw new Error(`data/pocketbase.json answered ${res.status}`);
   const c = await res.json();
   DEFAULT_SERVER = String(c.server).replace(/\/+$/, '');
   COLLECTION = c.collection;
@@ -1006,8 +1006,8 @@ addEventListener('hashchange', route);
     await loadConfig();
   } catch (err) {
     view.innerHTML = `<div class="card narrow">
-      <h1>Can’t read pocketbase.json</h1>
-      <p class="lede">This page reads its PocketBase settings from <code>pocketbase.json</code> next to it (${esc(err.message)}). Serve the folder over http(s) with that file in it, then reload.</p>
+      <h1>Can’t read data/pocketbase.json</h1>
+      <p class="lede">This page reads its PocketBase settings from <code>data/pocketbase.json</code> (${esc(err.message)}). Serve the site over http(s) with that file in its data folder, then reload.</p>
     </div>`;
     return;
   }

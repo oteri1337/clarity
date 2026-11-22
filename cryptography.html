@@ -612,8 +612,8 @@ const slug = (prefix, title) => {
 /* ---------- fetch both JSON files, then render ---------- */
 /* no-cache: always check with the server, so edits to the JSON show on the next load */
 Promise.all([
-    fetch("cryptography-light.json", { cache: "no-cache" }).then(r => r.json()),
-    fetch("cryptography-heavy.json", { cache: "no-cache" }).then(r => r.json()).catch(() => ({}))
+    fetch("data/cryptography-light.json", { cache: "no-cache" }).then(r => r.json()),
+    fetch("data/cryptography-heavy.json", { cache: "no-cache" }).then(r => r.json()).catch(() => ({}))
 ]).then(([light, heavy]) => {
     render(light, heavy);
     initInteractions();

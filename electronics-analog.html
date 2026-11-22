@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Digital Electronics</title>
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%231a1a18%22/%3E%3Crect x=%22.75%22 y=%22.75%22 width=%2230.5%22 height=%2230.5%22 rx=%227.25%22 fill=%22none%22 stroke=%22%23fff%22 stroke-opacity=%22.22%22 stroke-width=%221.5%22/%3E%3Cg fill=%22none%22 stroke=%22%23fff%22 stroke-width=%222.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M5 19h4.5v-9h6.5v9h6.5v-9H27%22/%3E%3Cpath d=%22M13 25h6%22 stroke=%22%23e07a6b%22/%3E%3C/g%3E%3C/svg%3E">
+    <title>Analog Electronics</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%231a1a18%22/%3E%3Crect x=%22.75%22 y=%22.75%22 width=%2230.5%22 height=%2230.5%22 rx=%227.25%22 fill=%22none%22 stroke=%22%23fff%22 stroke-opacity=%22.22%22 stroke-width=%221.5%22/%3E%3Cg fill=%22none%22 stroke=%22%23fff%22 stroke-width=%222.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M5 14c2.2-6 4.4-6 6.6 0s4.4 6 6.6 0 4.4-6 6.6 0%22/%3E%3Cpath d=%22M13 25h6%22 stroke=%22%23e07a6b%22/%3E%3C/g%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -445,7 +445,7 @@ code{font:400 12.5px var(--mono);background:var(--wall-deep);padding:1px 4px;bor
 
     <nav class="topbar">
         <a class="theme-toggle home" href="index.html" aria-label="Home" title="Home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V19a1 1 0 0 0 1 1h3.5v-5.5h4V20h3.5a1 1 0 0 0 1-1V9.5"/></svg></a>
-        <span class="brand">Digital Electronics</span>
+        <span class="brand">Analog Electronics</span>
         <div class="topbar-right">
             <button class="fold-all" id="fold-all" type="button">Close all</button>
             <div class="ring" id="ring" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
@@ -474,14 +474,14 @@ code{font:400 12.5px var(--mono);background:var(--wall-deep);padding:1px 4px;bor
 (() => {
 "use strict";
 
-const TITLE = "Digital Electronics";
+const TITLE = "Analog Electronics";
 /* all chapters count toward the total */
 const TICK = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.6 L6.2 12.2 L13.5 3.8"/></svg>';
 const SEC_RING = '<span class="sec-ring" role="img" aria-label="0% done"><svg viewBox="0 0 28 28" aria-hidden="true">'
     + '<circle class="sec-ring-track" cx="14" cy="14" r="11.5"/><circle class="sec-ring-fill" cx="14" cy="14" r="11.5"/>'
     + '</svg><span class="sec-ring-pct">0%</span></span>';
-const KEY = "alu-board-v1";
-const OPEN_KEY = "alu-board-collapsed-v1";
+const KEY = "analog-board-v1";
+const OPEN_KEY = "analog-board-collapsed-v1";
 const THEME_KEY = "infra-board-theme";
 
 const hhmm = s => { const m = Math.round(s / 60); return Math.floor(m / 60) + "h " + String(m % 60).padStart(2, "0") + "m"; };
@@ -502,7 +502,7 @@ const slug = (prefix, title) => {
 /* ---------- fetch both JSON files, then render ---------- */
 /* no-cache: always check with the server, so edits to the JSON show on the next load */
 Promise.all([
-    fetch("digital-electronics.json", { cache: "no-cache" }).then(r => r.json()),
+    fetch("data/electronics-analog.json", { cache: "no-cache" }).then(r => r.json()),
     Promise.resolve({}) /* this page has no Heavy column */
 ]).then(([light, heavy]) => {
     render(light, heavy);
