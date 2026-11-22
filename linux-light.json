@@ -296,7 +296,93 @@
         ]
       },
       {
-        "name": "Secure Shell",
+        "name": "Processes",
+        "videos": [
+          {
+            "channel_name": "Awesome Linux",
+            "name": "systemd vs OpenRC vs SysVinit",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=6czbpgL2UO8",
+            "minutes": "4",
+            "description": "4 min · the three init systems you'll meet — SysVinit's ordered shell scripts (still in Slackware), OpenRC from Gentoo adding dependencies and parallel starts on top of a simple PID 1 (Alpine, Gentoo, Artix), and systemd's declarative unit files used by most distributions — and why the choice still causes arguments. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "systemd: How Linux Starts 100 Things at Once",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=fpY8Av8ftKc",
+            "minutes": "3",
+            "description": "3 min · how systemd starts over a hundred services in seconds — replacing SysVinit's one-after-another shell scripts with unit files (service, socket, mount, timer) that declare their dependencies, a dependency graph that starts everything independent at once, and targets such as multi-user and graphical in place of runlevels. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "What PID 1 Actually Does",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=01BCyo5SvCo",
+            "minutes": "4",
+            "description": "4 min · why the first process is special — the root of the process tree, starting everything at boot, adopting and reaping orphans so they don't linger as zombies, ignoring signals it hasn't chosen to handle so it can't be killed by accident, and starting and stopping services in order; if it dies, the kernel panics. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "File Descriptors: The Number Behind Every Open File",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=_eFYGgrOj7I",
+            "minutes": "3",
+            "description": "3 min · the small integer behind every open file and socket — the per-process descriptor table pointing into the kernel's open file table and on to the inode, 0, 1 and 2 opened before main runs, and leaking descriptors until the per-process limit (often 1024) stops anything new from opening. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "The Life and Death of a Linux Process",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=kLh4E9TbcjA",
+            "minutes": "4",
+            "description": "4 min · a process from creation to clean-up — the task struct the kernel keeps for each one, fork then exec, the running, sleeping, stopped and zombie states, and the exit status the parent collects with wait. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "fork(): How One Program Becomes Two",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=M4ySXIUo2No",
+            "minutes": "4",
+            "description": "4 min · fork in C — the kernel copying the process's memory and file descriptors, fork returning twice (the child's PID to the parent, 0 to the child, a negative number on failure), and why the two processes' output can come out in either order. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "Zombie Processes: The Dead That Won't Leave",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=btoRQf3QlCM",
+            "minutes": "2",
+            "description": "2 min · a child that has exited but whose parent hasn't called wait, left behind as an entry in the process table — a Python demo that makes one, why zombies use no CPU or memory but can use up PIDs, and reaping them with wait or a SIGCHLD handler. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "CSE Practicals",
+            "name": "Linux Well known signals",
+            "channel_link": "https://www.youtube.com/@CSEPracticals",
+            "link": "https://www.youtube.com/watch?v=H_9tTOWG_KY",
+            "minutes": "9",
+            "description": "9 min · the signals you’ll meet most — SIGINT from Ctrl-C, SIGUSR1 and SIGUSR2 left for programs to define, SIGKILL from kill -9 (shown ending a process found with ps aux), SIGTERM, which plain kill sends and a program can catch to tidy up first, SIGABRT from abort(), SIGSEGV behind a segmentation fault, and SIGCHLD telling a parent its child has ended so it can wait for it. He says SIGABRT and SIGSEGV can’t be caught; in fact only SIGKILL and SIGSTOP can’t — the rest can have handlers. From 2018",
+            "type": "video"
+          },
+          {
+            "channel_name": "LinuxCloudHacks",
+            "name": "SystemD",
+            "channel_link": "https://www.youtube.com/@LinuxCloudHacks",
+            "link": "https://www.youtube.com/playlist?list=PLUF494I4KUvoHEw2RBakxJ6Alq-M8nBr8",
+            "minutes": "90",
+            "description": "course · 6 lessons · 1h 30m · using systemd to limit what users and services can take — resource limits on users' slices (for all users, each user or one user, freezing a slice, systemctl set-property), services a normal user runs without root (lingering, targets, starting at boot), locking down a service's network (IP accounting, allowing or denying addresses in and out, drop-in files, eBPF filters, restricting which ports it can bind, nftables integration), disk bandwidth and IOPS limits measured with fio and tried as transient units, memory explained (used, available, cache, swap, resident against virtual, overcommit and the OOM killer) before setting MemoryMax and MemoryHigh, and CPU limits on a service and on slices that group services. From 2025",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "Operations",
         "videos": [
           {
             "channel_name": "Learn Linux TV",
@@ -305,6 +391,24 @@
             "link": "https://www.youtube.com/watch?v=YS5Zh7KExvE",
             "minutes": "88",
             "description": "88 min · a full beginner's course on OpenSSH — what it is and the path a connection takes across the internet, the client, the ~/.ssh folder and known_hosts (and the warning you get when a server's host key changes, which can mean a man-in-the-middle), a client config file for short host names, then password logins against key pairs: making a key, why a passphrase protects a stolen key, what someone can do with a leaked private key, copying the public key into authorized_keys the manual way and the quick way, a separate key per client, and ssh-agent. Then the server side — the sshd service, its host keys, and turning password authentication off while testing before you log out — and troubleshooting with ssh -v, the log of failed login attempts, and the permissions ~/.ssh must have. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Automate Your Tasks with systemd Timers: A Step-by-Step Guide",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=n6BuUgkZ5T0",
+            "minutes": "33",
+            "description": "33 min · systemd timers as an alternative to cron. It covers how they differ: they need systemd, can run a job the machine was switched off for, and give finer control. Then it builds an example that sends a weather report to every logged-in user with wall and curl wttr.in. That starts with a service unit in /etc/systemd/system that waits for network-online.target, with its ExecStart wrapped in /bin/sh -c because a service doesn't get a full shell. Next come daemon-reload and a matching .timer unit with OnCalendar=Mon..Fri 10:00 and WantedBy=timers.target. It explains the difference between enabling a timer, which arms it at boot, and starting it, which starts the countdown now. After that: Persistent=true to catch up on missed runs, and OnBootSec to delay the first run after a boot. It shows the OnCalendar format (day of week, date and time, with * wildcards) through yearly, monthly, daily and every-minute schedules. Last, it combines OnBootSec with OnUnitActiveSec to repeat a job every few minutes. From 2023",
+            "type": "video"
+          },
+          {
+            "channel_name": "Codegiz — Built by Claude AI",
+            "name": "Zsh Shell Tutorial #24: Automate with cron & launchd",
+            "channel_link": "https://www.youtube.com/@codegiz",
+            "link": "https://www.youtube.com/watch?v=BQOxVGnYVxU&t=461s",
+            "minutes": "13",
+            "description": "13 min · part 24 of a Zsh shell series, on scheduling jobs. It covers cron syntax and managing a crontab, with a live cron job firing, then common cron patterns and shortcuts. On macOS it moves to launchd, scheduling a job with a plist agent. The link opens at 7:41, where the launchd part begins. The code is at github.com/GoCelesteAI/zsh_scheduling_tasks. From 2026",
             "type": "video"
           },
           {
@@ -369,12 +473,7 @@
             "minutes": "18",
             "description": "18 min · local port forwarding: reaching a service a firewall blocks, such as a Postgres database on port 5432, through the SSH port the firewall does allow. SSH carries the traffic inside its own connection and hands it out on a port on your machine, so your client talks to localhost. Then remote port forwarding, which does the reverse and exposes a service on your machine to the far end, and the GatewayPorts setting it needs. From 2020",
             "type": "video"
-          }
-        ]
-      },
-      {
-        "name": "Basic Tasks",
-        "videos": [
+          },
           {
             "channel_name": "Learn Linux TV",
             "name": "Linux Crash Course - The grep Command",
@@ -486,92 +585,6 @@
         ]
       },
       {
-        "name": "Processes",
-        "videos": [
-          {
-            "channel_name": "Awesome Linux",
-            "name": "systemd vs OpenRC vs SysVinit",
-            "channel_link": "https://www.youtube.com/@awesomelinux",
-            "link": "https://www.youtube.com/watch?v=6czbpgL2UO8",
-            "minutes": "4",
-            "description": "4 min · the three init systems you'll meet — SysVinit's ordered shell scripts (still in Slackware), OpenRC from Gentoo adding dependencies and parallel starts on top of a simple PID 1 (Alpine, Gentoo, Artix), and systemd's declarative unit files used by most distributions — and why the choice still causes arguments. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Awesome Linux",
-            "name": "systemd: How Linux Starts 100 Things at Once",
-            "channel_link": "https://www.youtube.com/@awesomelinux",
-            "link": "https://www.youtube.com/watch?v=fpY8Av8ftKc",
-            "minutes": "3",
-            "description": "3 min · how systemd starts over a hundred services in seconds — replacing SysVinit's one-after-another shell scripts with unit files (service, socket, mount, timer) that declare their dependencies, a dependency graph that starts everything independent at once, and targets such as multi-user and graphical in place of runlevels. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Awesome Linux",
-            "name": "What PID 1 Actually Does",
-            "channel_link": "https://www.youtube.com/@awesomelinux",
-            "link": "https://www.youtube.com/watch?v=01BCyo5SvCo",
-            "minutes": "4",
-            "description": "4 min · why the first process is special — the root of the process tree, starting everything at boot, adopting and reaping orphans so they don't linger as zombies, ignoring signals it hasn't chosen to handle so it can't be killed by accident, and starting and stopping services in order; if it dies, the kernel panics. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Awesome Linux",
-            "name": "File Descriptors: The Number Behind Every Open File",
-            "channel_link": "https://www.youtube.com/@awesomelinux",
-            "link": "https://www.youtube.com/watch?v=_eFYGgrOj7I",
-            "minutes": "3",
-            "description": "3 min · the small integer behind every open file and socket — the per-process descriptor table pointing into the kernel's open file table and on to the inode, 0, 1 and 2 opened before main runs, and leaking descriptors until the per-process limit (often 1024) stops anything new from opening. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Awesome Linux",
-            "name": "The Life and Death of a Linux Process",
-            "channel_link": "https://www.youtube.com/@awesomelinux",
-            "link": "https://www.youtube.com/watch?v=kLh4E9TbcjA",
-            "minutes": "4",
-            "description": "4 min · a process from creation to clean-up — the task struct the kernel keeps for each one, fork then exec, the running, sleeping, stopped and zombie states, and the exit status the parent collects with wait. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Awesome Linux",
-            "name": "fork(): How One Program Becomes Two",
-            "channel_link": "https://www.youtube.com/@awesomelinux",
-            "link": "https://www.youtube.com/watch?v=M4ySXIUo2No",
-            "minutes": "4",
-            "description": "4 min · fork in C — the kernel copying the process's memory and file descriptors, fork returning twice (the child's PID to the parent, 0 to the child, a negative number on failure), and why the two processes' output can come out in either order. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Awesome Linux",
-            "name": "Zombie Processes: The Dead That Won't Leave",
-            "channel_link": "https://www.youtube.com/@awesomelinux",
-            "link": "https://www.youtube.com/watch?v=btoRQf3QlCM",
-            "minutes": "2",
-            "description": "2 min · a child that has exited but whose parent hasn't called wait, left behind as an entry in the process table — a Python demo that makes one, why zombies use no CPU or memory but can use up PIDs, and reaping them with wait or a SIGCHLD handler. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "CSE Practicals",
-            "name": "Linux Well known signals",
-            "channel_link": "https://www.youtube.com/@CSEPracticals",
-            "link": "https://www.youtube.com/watch?v=H_9tTOWG_KY",
-            "minutes": "9",
-            "description": "9 min · the signals you’ll meet most — SIGINT from Ctrl-C, SIGUSR1 and SIGUSR2 left for programs to define, SIGKILL from kill -9 (shown ending a process found with ps aux), SIGTERM, which plain kill sends and a program can catch to tidy up first, SIGABRT from abort(), SIGSEGV behind a segmentation fault, and SIGCHLD telling a parent its child has ended so it can wait for it. He says SIGABRT and SIGSEGV can’t be caught; in fact only SIGKILL and SIGSTOP can’t — the rest can have handlers. From 2018",
-            "type": "video"
-          },
-          {
-            "channel_name": "LinuxCloudHacks",
-            "name": "SystemD",
-            "channel_link": "https://www.youtube.com/@LinuxCloudHacks",
-            "link": "https://www.youtube.com/playlist?list=PLUF494I4KUvoHEw2RBakxJ6Alq-M8nBr8",
-            "minutes": "90",
-            "description": "course · 6 lessons · 1h 30m · using systemd to limit what users and services can take — resource limits on users' slices (for all users, each user or one user, freezing a slice, systemctl set-property), services a normal user runs without root (lingering, targets, starting at boot), locking down a service's network (IP accounting, allowing or denying addresses in and out, drop-in files, eBPF filters, restricting which ports it can bind, nftables integration), disk bandwidth and IOPS limits measured with fio and tried as transient units, memory explained (used, available, cache, swap, resident against virtual, overcommit and the OOM killer) before setting MemoryMax and MemoryHigh, and CPU limits on a service and on slices that group services. From 2025",
-            "type": "playlist"
-          }
-        ]
-      },
-      {
         "name": "Networking",
         "videos": [
           {
@@ -666,7 +679,329 @@
             "type": "playlist"
           }
         ]
+      }
+    ]
+  },
+  "2": {
+    "name": "Web Tech",
+    "sections": [
+      {
+        "name": "Containers",
+        "videos": [
+          {
+            "channel_name": "LinuxCloudHacks",
+            "name": "Kubernetes",
+            "channel_link": "https://www.youtube.com/@LinuxCloudHacks",
+            "link": "https://www.youtube.com/playlist?list=PLUF494I4KUvrhxoXoA2GAb1LCYPTAkDRP",
+            "minutes": "242",
+            "description": "course · 11 lessons · 4h 2m · Kubernetes on your own hardware, networking first — getting around a cluster with the k9s terminal UI, how pods talk and the service types (headless, ClusterIP, external IP, NodePort, LoadBalancer) with MetalLB handing out addresses, building a dual-stack IPv4 and IPv6 cluster on Ubuntu 24.04 (preparing the OS, the container runtime, bootstrapping from a config file, the Flannel network plugin, adding worker nodes), a fully routed cluster with Calico and BGP (measured against Flannel, ECMP, MetalLB in BGP mode and the external traffic policy), Calico network policies with labels and selectors, then K3s home labs — Traefik ingress reached through a Cloudflare tunnel, MetalLB with MikroTik and ExternalDNS giving local names (Pi-hole, code-server), private access to workloads through Tailscale, three ways to put a highly available K3s cluster on the internet (a floating IP with keepalived, MetalLB, Cloudflare tunnels), and Cloudflare WARP with hostname routes for zero-trust access to private services. From 2024–2025",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "BashLab",
+            "name": "Introduction to Namespace: UTS Namespace Explained",
+            "channel_link": "https://www.youtube.com/@shashankpai4879",
+            "link": "https://www.youtube.com/watch?v=pGgpMk25ccQ",
+            "minutes": "21",
+            "description": "21 min · Part 1 of his namespaces series: how a container gets its own hostname without changing the host, from Linux up to Docker and Kubernetes. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Container Security 101: Linux Namespaces",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=Ps3X7WcwG_w",
+            "minutes": "8",
+            "description": "8 min · how PID namespaces isolate processes, how to identify and enter one, and how a --pid=host setting in a container configuration lets it reach the host. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "theurbanpenguin",
+            "name": "Linux Network Namespaces with ip netns",
+            "channel_link": "https://www.youtube.com/@theurbanpenguin",
+            "link": "https://www.youtube.com/watch?v=iN2RnYaFn-0",
+            "minutes": "9",
+            "description": "9 min · creating and managing network namespaces with ip netns, and the virtual interfaces inside them. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "All Things Systems",
+            "name": "Containers - Namespaces, Cgroups and Overlay Filesystem",
+            "channel_link": "https://www.youtube.com/@allthingssystems3997",
+            "link": "https://www.youtube.com/watch?v=wJdDWc6zO4U",
+            "minutes": "5",
+            "description": "5 min · the overview: a container is just a process, isolated by namespaces, limited by cgroups and given its root filesystem by an overlay. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "The Kernel Log",
+            "name": "The Invisible Engine of the Cloud: Linux Cgroups Explained",
+            "channel_link": "https://www.youtube.com/@TheKernelLog",
+            "link": "https://www.youtube.com/watch?v=GvLp2vv_I_4",
+            "minutes": "5",
+            "description": "5 min · how cgroups act as a bodyguard for the system, stopping runaway processes from taking every resource. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "All Things Systems",
+            "name": "How Containers work ? Demo with PID Namespaces",
+            "channel_link": "https://www.youtube.com/@allthingssystems3997",
+            "link": "https://www.youtube.com/watch?v=mjmMGD9MOvc",
+            "minutes": "11",
+            "description": "11 min · a demo of a PID namespace: a process that sees itself as PID 1 and cannot see anything on the host, while the host still sees it under its real PID. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "All Things Systems",
+            "name": "Network Namespaces - How they work?",
+            "channel_link": "https://www.youtube.com/@allthingssystems3997",
+            "link": "https://www.youtube.com/watch?v=PoBFSWENRYE",
+            "minutes": "12",
+            "description": "12 min · how a network namespace gives a container its own interfaces, routes and firewall, and how it is wired back to the host. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "All Things Systems",
+            "name": "Cgroups Introduction",
+            "channel_link": "https://www.youtube.com/@allthingssystems3997",
+            "link": "https://www.youtube.com/watch?v=b-zNzPRvwCY",
+            "minutes": "8",
+            "description": "8 min · what control groups are and the usual workflow: create a group, set a limit, move a process into it. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "All Things Systems",
+            "name": "Overlay Filesystems",
+            "channel_link": "https://www.youtube.com/@allthingssystems3997",
+            "link": "https://www.youtube.com/watch?v=DfENwtNRlD4",
+            "minutes": "13",
+            "description": "13 min · how an overlay, or union, filesystem stacks read-only image layers under one writable layer, which is how a container's root filesystem is built. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "The Only Container Networking Tutorial You'll Ever Need",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=2JSWa_EMhEM",
+            "minutes": "7",
+            "description": "7 min · how Docker container networking works — the veth pair with one end in the container and one on the host, matching a veth to its container, the docker0 bridge carrying traffic between containers, IP forwarding and routing for traffic to other networks, NAT and whether the container's IP survives it, and network isolation. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Why Hackers Love exec",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=zF6KORiypcQ",
+            "minutes": "5",
+            "description": "5 min · the shell's exec builtin — replacing the current shell with another program, opening and redirecting file descriptors, sending all of a shell's output somewhere else, and changing the name a process shows in process listings. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "BashLab",
+            "name": "# Episode 1: Who Actually Killed Your Pod? (It’s Not Kubernetes)?",
+            "channel_link": "https://www.youtube.com/@shashankpai4879",
+            "link": "https://www.youtube.com/watch?v=yjLqb384wKg",
+            "minutes": "45",
+            "description": "45 min · a pod that restarted overnight with exit code 137: Kubernetes does not kill for exceeding memory, so the trace goes down to the Linux kernel OOM killer. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "BashLab",
+            "name": "Pod Evicted? OOMKilled vs Evicted — Two Different Killers",
+            "channel_link": "https://www.youtube.com/@shashankpai4879",
+            "link": "https://www.youtube.com/watch?v=W15xLeVCjvA",
+            "minutes": "38",
+            "description": "38 min · why a Kubernetes pod can be OOMKilled by the kernel or evicted by the kubelet, and how to tell which happened. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Rob Braxman Tech",
+            "name": "Linux Tip - Understanding Chroot - Episode 2",
+            "channel_link": "https://www.youtube.com/@robbraxmantech",
+            "link": "https://www.youtube.com/watch?v=2wSJREC7RV8",
+            "minutes": "12",
+            "description": "12 min · chroot, the oldest form of isolation and the ancestor of containers: giving a process a different root directory, how that differs from a virtual machine, and how phone operating systems such as Android use it. Recorded on Ubuntu 18.04. From 2020",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "This Tiny Binary Replaces Dozens of Linux Commands",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=J7_87oqIT5E",
+            "minutes": "4",
+            "description": "4 min · BusyBox, one small binary that stands in for ls, ps, pwd and dozens of other commands — how it works, its built-in shell, and why it turns up in sandboxes and minimal container images, shown running in both. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "How to Safely Run Untrusted Exploits on Linux",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=WH72yuw2CqY",
+            "minutes": "3",
+            "description": "3 min · keeping a proof-of-concept exploit cloned from GitHub from harming the machine you test it on — isolating it from your own system, reading it before you run it, and cutting it off from the network so it can't reach anything you didn't intend. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "BashLab",
+            "name": "Why Your Container App Is Always PID 1",
+            "channel_link": "https://www.youtube.com/@shashankpai4879",
+            "link": "https://www.youtube.com/watch?v=5kRARwlbu-M",
+            "minutes": "13",
+            "description": "13 min · Part 2 of his namespaces series: the PID namespace, and why an application becomes PID 1 inside a container and what that means for signals. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "BashLab",
+            "name": "🎬 Episode 0: Containers Start as Linux Processes",
+            "channel_link": "https://www.youtube.com/@shashankpai4879",
+            "link": "https://www.youtube.com/watch?v=kfunRqcBeeY",
+            "minutes": "7",
+            "description": "7 min · the opening episode of his series on Linux for containers: a container is only a process. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "Datadog",
+            "name": "Container Security Fundamentals - Seccomp",
+            "channel_link": "https://www.youtube.com/@DatadogHQ",
+            "link": "https://www.youtube.com/watch?v=A8fUTO8vY4Q",
+            "minutes": "7",
+            "description": "7 min · part 10, the last of the series: seccomp choosing which of the 300-plus system calls (they differ between ARM and x86) a container may make — Docker's default profile, which has blocked several kernel CVEs, stopping unshare until the container runs with seccomp=unconfined, Kubernetes switching that default off unless you set it on each workload, and writing a custom profile. From 2023",
+            "type": "video"
+          },
+          {
+            "channel_name": "Datadog",
+            "name": "Container Security Fundamentals - AppArmor",
+            "channel_link": "https://www.youtube.com/@DatadogHQ",
+            "link": "https://www.youtube.com/watch?v=_O1V57heEjY",
+            "minutes": "4",
+            "description": "4 min · part 9 of Datadog’s container security series: mandatory access control, which still restricts a process running as root — AppArmor on Debian and Ubuntu against SELinux on Red Hat, aa-status listing the installed profiles, Docker putting every container under its docker-default profile (built for compatibility rather than strictness), and a one-rule custom profile that stops root inside a container from writing to /etc. From 2023",
+            "type": "video"
+          },
+          {
+            "channel_name": "Datadog",
+            "name": "Container Security Fundamentals - Datadog",
+            "channel_link": "https://www.youtube.com/@DatadogHQ",
+            "link": "https://www.youtube.com/playlist?list=PLyPJCkaAbecPfbYCQ9l0X0oO3NvmDIgAo",
+            "minutes": "52",
+            "description": "playlist · 8 videos · 52 min · Datadog's container security series in order, saved into one playlist by Jansen du Plessis — containers as ordinary processes, then the mount, PID, network and user namespaces one at a time, capabilities in two parts (what they are, then dropping Docker's default ones to harden a container), and cgroups limiting what a container can use. From 2023",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Container Security",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/playlist?list=PL08nYpWQJ_zNqguHA3G_Nolk3g269YUwW",
+            "minutes": "87",
+            "description": "playlist · 19 videos · 1h 27m · short demos, most under five minutes — containers as ordinary Linux processes, what root cannot do on its own and the capabilities its power is split into, each namespace in turn (PID, user, network, mount, IPC and time), cgroups limiting CPU and containing a fork bomb, why a container given every capability still could not escape, runc and containerd underneath Docker, the veth pairs and docker0 bridge behind container networking, the idea behind rootless Docker, Podman as a rootless and daemonless alternative to Docker, five Docker security myths — read-only containers and a mounted Docker socket among them — and sandboxing an AI coding agent in Docker. Also covers Podman and rootless Docker. Three entries are private, and it runs newest first. From 2026, and still being added to",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "theurbanpenguin",
+            "name": "Streaming Linux Desktops in Docker",
+            "channel_link": "https://www.youtube.com/@theurbanpenguin",
+            "link": "https://www.youtube.com/watch?v=rSWmkiXOwJ4",
+            "minutes": "6",
+            "description": "6 min · a full Rocky Linux desktop running in a container and opened in the browser, using Kasm’s VNC-based desktop images — setting up the container, using the desktop, then building a custom image on top of it, including getting sudo rights inside. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "Better Stack",
+            "name": "Podman vs Docker: what’s really different?",
+            "channel_link": "https://www.youtube.com/@betterstack",
+            "link": "https://www.youtube.com/watch?v=SIvoAOpXZPg",
+            "minutes": "6",
+            "description": "6 min · Podman against Docker — a near-identical command line, Podman Desktop and Compose support — then the real differences. Pods group containers (a web server, PHP and MySQL, say) on one network so they start and stop together, and export to Kubernetes YAML. And Podman has no daemon: each container is forked from the podman command and runs rootless by default, where Docker’s daemon runs as root behind a socket, so compromising it hands over the host. Docker keeps the bigger ecosystem, Docker Hub’s images and Swarm, which Podman doesn’t support, and the two can run side by side. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "KodeKloud",
+            "name": "Docker vs Containerd: Understanding the Differences and Choosing the Right Containerization Tool",
+            "channel_link": "https://www.youtube.com/@KodeKloud",
+            "link": "https://www.youtube.com/watch?v=21onkZfL2yM&t=2s",
+            "minutes": "14",
+            "description": "14 min · the key differences between Docker and Containerd — how Docker built on Containerd, what each one does, when you need the full Docker toolset and when Containerd alone is enough, especially in Kubernetes",
+            "type": "video"
+          },
+          {
+            "channel_name": "Awesome Linux",
+            "name": "Docker vs LXC",
+            "channel_link": "https://www.youtube.com/@awesomelinux",
+            "link": "https://www.youtube.com/watch?v=h7Lz_aNqdCw",
+            "minutes": "3",
+            "description": "3 min · two ways to use the same namespaces and cgroups — LXC runs a whole persistent distribution like a lightweight VM you can SSH into and manage with systemd, while Docker packages one application into a reproducible image built from a Dockerfile; and you can run Docker inside LXC. From 2026",
+            "type": "video"
+          }
+        ]
       },
+      {
+        "name": "Web Servers",
+        "videos": [
+          {
+            "channel_name": "medium guy",
+            "name": "What are a reverse proxy, an API gateway and an ingress controller?",
+            "channel_link": "https://www.youtube.com/@mediumguy6",
+            "link": "https://www.youtube.com/watch?v=9zay47f1RBY",
+            "minutes": "10",
+            "description": "10 min · three names for things that sit in front of your servers, told apart. A reverse proxy forwards each request to the right server by domain or path, and is worth having even with one server for rate limiting, IP filtering, authentication and caching. An ingress controller is a reverse proxy for Kubernetes, with Ingress objects as the routing rules it follows. An API gateway is a reverse proxy in front of microservices that adds service discovery, circuit breaking and combining several backend calls into one response. All three keep your backend services off the open internet. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "medium guy",
+            "name": "Caddy in Docker, feature by feature",
+            "channel_link": "https://www.youtube.com/@mediumguy6",
+            "link": "https://www.youtube.com/playlist?list=PLBm4OGt1_S7Zftw2eeOrgkRcJL_BskBg7",
+            "minutes": "530",
+            "description": "playlist · 23 videos · 8h 50m · one Caddy feature per episode, every one run in Docker — the basics of a reverse proxy and serving static files, then blocking bots and IP addresses, CORS, your own TLS certificates, forward authentication, load balancing, custom error pages and logs, rate limiting, caching, mock responses, basic and API-key authentication, a file server, Prometheus and Grafana metrics, request headers and correlation IDs, a layer-4 proxy for SSH, Docker containers as upstreams, rewriting responses and country-based content with GeoIP2. Rate limiting, caching, layer 4 and GeoIP2 come from plugins rather than stock Caddy. The last video is all the episodes joined into one 4-hour course; the episodes alone come to about 4h 40m. One video is unavailable, and two episodes are both numbered 21. From 2024–2026",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "medium guy",
+            "name": "nginx in Docker, feature by feature",
+            "channel_link": "https://www.youtube.com/@mediumguy6",
+            "link": "https://www.youtube.com/playlist?list=PLBm4OGt1_S7Ys5tmKX3eNvK1uSFwaxWOr",
+            "minutes": "458",
+            "description": "playlist · 21 videos · 7h 38m · one nginx feature per episode, using the free version and all run in Docker — worker processes, proxy_pass and load balancing, IP restrictions and bot blocking, CORS headers for several domains, TLS hardening with a self-signed certificate (labelled part 2; part 1 isn’t in the list), auth_request for checking each request against an auth service, custom error pages, log formats and logging to a remote server, rate limiting, GeoIP, cache control, mock API responses, basic and API-key authentication, a static and media file server, and a PHP and MySQL project behind nginx with Docker Compose. Ends with a comparison against OpenResty, nginx with Lua built in. One video is the episodes joined into a 3h 22m crash course; the episodes alone come to about 4h 17m. From 2023–2024",
+            "type": "playlist"
+          }
+        ]
+      },
+      {
+        "name": "Comprehensive",
+        "videos": [
+          {
+            "channel_name": "RKSR1960",
+            "name": "MariaDB Administration Tutorial",
+            "channel_link": "https://www.youtube.com/@RKSR1960",
+            "link": "https://www.youtube.com/playlist?list=PLnrmLjoInKWgUTezOTaIIrAwCIfO8JbTR",
+            "minutes": "417",
+            "description": "course · 63 lessons · 6h 57m · the first 63 lessons, a few minutes each — MariaDB administration that mostly applies to MySQL too, first at the command line and then in HeidiSQL: installing MariaDB on Windows and CentOS and moving its data directory, a Galera cluster, upgrading and migrating from MySQL, creating, renaming and dropping users, granting and revoking permissions on databases, tables and columns, GRANT OPTION and roles, seeing what a user can do, backups with mysqldump (every database, one database or table, zipped, timestamped, scheduled with crontab) and restoring them, resetting the root password, and the error, general, slow-query and binary logs; then in HeidiSQL, connecting, creating databases and tables, importing and exporting CSV and JSON, managing users and permissions, watching running queries, query history, scripting a database, loading large SQL files, synchronising two databases and changing server settings. From 2017–2018",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "You Suck at Programming",
+            "name": "The Complete Bash Scripting Course",
+            "channel_link": "https://www.youtube.com/@yousuckatprogramming",
+            "link": "https://www.youtube.com/playlist?list=PL-my9REMIFtGgiQAXqKPJ5UrLdSkxcLBT",
+            "minutes": "442",
+            "description": "playlist · 62 videos · 7h 22m · Dave Eddy’s full course, from the terminal up — files, hidden files, grep, less, man pages, vim and permissions, then scripting itself: variables, user input, functions, if with [ ] and [[ ]], for loops, case, indexed and associative arrays, IFS, command and process substitution, arithmetic, and stdin and stdout. Later chapters cover cut, tr, sed, awk and find, set -u and set -x, $PIPESTATUS, sourcing libraries, exit codes against output, parameter expansion, globbing and extglob, brace expansion, printf, regular expressions without grep, mapfile, trap, named pipes, ANSI colours and cursor control, the PS1 prompt and .bashrc, why not to parse ls, and a fork bomb to finish. Most episodes run 3 to 13 minutes, with a recap at the end of each chapter; the code and materials are at course.ysap.sh. From 2026",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Cameron McKenzie",
+            "name": "git commands tutorials",
+            "channel_link": "https://www.youtube.com/@cameronmcnz",
+            "link": "https://www.youtube.com/playlist?list=PL_RrEj88onS-SAZOGnaUlexOzgRqWrOPR",
+            "minutes": "584",
+            "description": "playlist · 106 videos · 9h 44m · one git task per video, mostly at the command line — init and bare repositories; clone by branch, by tag, shallow with --depth and into a chosen folder; log with oneline, graph, pretty and format, searching commit messages, a file’s history and the files a commit changed; config for user.name and user.email, global settings and where the config files live; status and the working tree; add and undoing it, removing a file, clean -fdx, .gitkeep and .gitignore, global ones included; stash list, untracked files, pop and its conflicts; branches created, checked out, switched, renamed and deleted locally and on the remote, and made from a tag, a commit or another branch; push with an upstream, fetch against pull; merges, fast-forwards, conflicts and aborting a merge; rebase, squash, revert, reflog and undoing commits; plus forks, git flow, and SSH keys and personal access tokens for GitHub, GitLab and Bitbucket. Most videos run 3 to 9 minutes. From 2020–2023",
+            "type": "playlist"
+          }
+        ]
+      }
+    ]
+  },
+  "3": {
+    "name": "Storage",
+    "sections": [
       {
         "name": "File Recovery: Snapshots, Backups, Undelete",
         "videos": [
@@ -1271,7 +1606,6 @@
           }
         ]
       },
-
       {
         "name": "Disk Encryption",
         "videos": [
@@ -1409,345 +1743,6 @@
             "minutes": "10",
             "description": "10 min · closing the way round the password through single-user boot",
             "type": "video"
-          }
-        ]
-      }
-    ]
-  },
-  "2": {
-    "name": "Web Tech",
-    "sections": [
-
-      {
-        "name": "Containers",
-        "videos": [
-          {
-            "channel_name": "LinuxCloudHacks",
-            "name": "Kubernetes",
-            "channel_link": "https://www.youtube.com/@LinuxCloudHacks",
-            "link": "https://www.youtube.com/playlist?list=PLUF494I4KUvrhxoXoA2GAb1LCYPTAkDRP",
-            "minutes": "242",
-            "description": "course · 11 lessons · 4h 2m · Kubernetes on your own hardware, networking first — getting around a cluster with the k9s terminal UI, how pods talk and the service types (headless, ClusterIP, external IP, NodePort, LoadBalancer) with MetalLB handing out addresses, building a dual-stack IPv4 and IPv6 cluster on Ubuntu 24.04 (preparing the OS, the container runtime, bootstrapping from a config file, the Flannel network plugin, adding worker nodes), a fully routed cluster with Calico and BGP (measured against Flannel, ECMP, MetalLB in BGP mode and the external traffic policy), Calico network policies with labels and selectors, then K3s home labs — Traefik ingress reached through a Cloudflare tunnel, MetalLB with MikroTik and ExternalDNS giving local names (Pi-hole, code-server), private access to workloads through Tailscale, three ways to put a highly available K3s cluster on the internet (a floating IP with keepalived, MetalLB, Cloudflare tunnels), and Cloudflare WARP with hostname routes for zero-trust access to private services. From 2024–2025",
-            "type": "playlist"
-          },
-          {
-            "channel_name": "BashLab",
-            "name": "Introduction to Namespace: UTS Namespace Explained",
-            "channel_link": "https://www.youtube.com/@shashankpai4879",
-            "link": "https://www.youtube.com/watch?v=pGgpMk25ccQ",
-            "minutes": "21",
-            "description": "21 min · Part 1 of his namespaces series: how a container gets its own hostname without changing the host, from Linux up to Docker and Kubernetes. From 2025",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "Container Security 101: Linux Namespaces",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=Ps3X7WcwG_w",
-            "minutes": "8",
-            "description": "8 min · how PID namespaces isolate processes, how to identify and enter one, and how a --pid=host setting in a container configuration lets it reach the host. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "theurbanpenguin",
-            "name": "Linux Network Namespaces with ip netns",
-            "channel_link": "https://www.youtube.com/@theurbanpenguin",
-            "link": "https://www.youtube.com/watch?v=iN2RnYaFn-0",
-            "minutes": "9",
-            "description": "9 min · creating and managing network namespaces with ip netns, and the virtual interfaces inside them. From 2020",
-            "type": "video"
-          },
-          {
-            "channel_name": "All Things Systems",
-            "name": "Containers - Namespaces, Cgroups and Overlay Filesystem",
-            "channel_link": "https://www.youtube.com/@allthingssystems3997",
-            "link": "https://www.youtube.com/watch?v=wJdDWc6zO4U",
-            "minutes": "5",
-            "description": "5 min · the overview: a container is just a process, isolated by namespaces, limited by cgroups and given its root filesystem by an overlay. From 2022",
-            "type": "video"
-          },
-          {
-            "channel_name": "The Kernel Log",
-            "name": "The Invisible Engine of the Cloud: Linux Cgroups Explained",
-            "channel_link": "https://www.youtube.com/@TheKernelLog",
-            "link": "https://www.youtube.com/watch?v=GvLp2vv_I_4",
-            "minutes": "5",
-            "description": "5 min · how cgroups act as a bodyguard for the system, stopping runaway processes from taking every resource. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "All Things Systems",
-            "name": "How Containers work ? Demo with PID Namespaces",
-            "channel_link": "https://www.youtube.com/@allthingssystems3997",
-            "link": "https://www.youtube.com/watch?v=mjmMGD9MOvc",
-            "minutes": "11",
-            "description": "11 min · a demo of a PID namespace: a process that sees itself as PID 1 and cannot see anything on the host, while the host still sees it under its real PID. From 2024",
-            "type": "video"
-          },
-          {
-            "channel_name": "All Things Systems",
-            "name": "Network Namespaces - How they work?",
-            "channel_link": "https://www.youtube.com/@allthingssystems3997",
-            "link": "https://www.youtube.com/watch?v=PoBFSWENRYE",
-            "minutes": "12",
-            "description": "12 min · how a network namespace gives a container its own interfaces, routes and firewall, and how it is wired back to the host. From 2024",
-            "type": "video"
-          },
-          {
-            "channel_name": "All Things Systems",
-            "name": "Cgroups Introduction",
-            "channel_link": "https://www.youtube.com/@allthingssystems3997",
-            "link": "https://www.youtube.com/watch?v=b-zNzPRvwCY",
-            "minutes": "8",
-            "description": "8 min · what control groups are and the usual workflow: create a group, set a limit, move a process into it. From 2022",
-            "type": "video"
-          },
-          {
-            "channel_name": "All Things Systems",
-            "name": "Overlay Filesystems",
-            "channel_link": "https://www.youtube.com/@allthingssystems3997",
-            "link": "https://www.youtube.com/watch?v=DfENwtNRlD4",
-            "minutes": "13",
-            "description": "13 min · how an overlay, or union, filesystem stacks read-only image layers under one writable layer, which is how a container's root filesystem is built. From 2022",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "The Only Container Networking Tutorial You'll Ever Need",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=2JSWa_EMhEM",
-            "minutes": "7",
-            "description": "7 min · how Docker container networking works — the veth pair with one end in the container and one on the host, matching a veth to its container, the docker0 bridge carrying traffic between containers, IP forwarding and routing for traffic to other networks, NAT and whether the container's IP survives it, and network isolation. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "Why Hackers Love exec",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=zF6KORiypcQ",
-            "minutes": "5",
-            "description": "5 min · the shell's exec builtin — replacing the current shell with another program, opening and redirecting file descriptors, sending all of a shell's output somewhere else, and changing the name a process shows in process listings. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "BashLab",
-            "name": "# Episode 1: Who Actually Killed Your Pod? (It’s Not Kubernetes)?",
-            "channel_link": "https://www.youtube.com/@shashankpai4879",
-            "link": "https://www.youtube.com/watch?v=yjLqb384wKg",
-            "minutes": "45",
-            "description": "45 min · a pod that restarted overnight with exit code 137: Kubernetes does not kill for exceeding memory, so the trace goes down to the Linux kernel OOM killer. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "BashLab",
-            "name": "Pod Evicted? OOMKilled vs Evicted — Two Different Killers",
-            "channel_link": "https://www.youtube.com/@shashankpai4879",
-            "link": "https://www.youtube.com/watch?v=W15xLeVCjvA",
-            "minutes": "38",
-            "description": "38 min · why a Kubernetes pod can be OOMKilled by the kernel or evicted by the kubelet, and how to tell which happened. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Rob Braxman Tech",
-            "name": "Linux Tip - Understanding Chroot - Episode 2",
-            "channel_link": "https://www.youtube.com/@robbraxmantech",
-            "link": "https://www.youtube.com/watch?v=2wSJREC7RV8",
-            "minutes": "12",
-            "description": "12 min · chroot, the oldest form of isolation and the ancestor of containers: giving a process a different root directory, how that differs from a virtual machine, and how phone operating systems such as Android use it. Recorded on Ubuntu 18.04. From 2020",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "This Tiny Binary Replaces Dozens of Linux Commands",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=J7_87oqIT5E",
-            "minutes": "4",
-            "description": "4 min · BusyBox, one small binary that stands in for ls, ps, pwd and dozens of other commands — how it works, its built-in shell, and why it turns up in sandboxes and minimal container images, shown running in both. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "How to Safely Run Untrusted Exploits on Linux",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=WH72yuw2CqY",
-            "minutes": "3",
-            "description": "3 min · keeping a proof-of-concept exploit cloned from GitHub from harming the machine you test it on — isolating it from your own system, reading it before you run it, and cutting it off from the network so it can't reach anything you didn't intend. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "BashLab",
-            "name": "Why Your Container App Is Always PID 1",
-            "channel_link": "https://www.youtube.com/@shashankpai4879",
-            "link": "https://www.youtube.com/watch?v=5kRARwlbu-M",
-            "minutes": "13",
-            "description": "13 min · Part 2 of his namespaces series: the PID namespace, and why an application becomes PID 1 inside a container and what that means for signals. From 2025",
-            "type": "video"
-          },
-          {
-            "channel_name": "BashLab",
-            "name": "🎬 Episode 0: Containers Start as Linux Processes",
-            "channel_link": "https://www.youtube.com/@shashankpai4879",
-            "link": "https://www.youtube.com/watch?v=kfunRqcBeeY",
-            "minutes": "7",
-            "description": "7 min · the opening episode of his series on Linux for containers: a container is only a process. From 2025",
-            "type": "video"
-          },
-          {
-            "channel_name": "Datadog",
-            "name": "Container Security Fundamentals - Seccomp",
-            "channel_link": "https://www.youtube.com/@DatadogHQ",
-            "link": "https://www.youtube.com/watch?v=A8fUTO8vY4Q",
-            "minutes": "7",
-            "description": "7 min · part 10, the last of the series: seccomp choosing which of the 300-plus system calls (they differ between ARM and x86) a container may make — Docker's default profile, which has blocked several kernel CVEs, stopping unshare until the container runs with seccomp=unconfined, Kubernetes switching that default off unless you set it on each workload, and writing a custom profile. From 2023",
-            "type": "video"
-          },
-          {
-            "channel_name": "Datadog",
-            "name": "Container Security Fundamentals - AppArmor",
-            "channel_link": "https://www.youtube.com/@DatadogHQ",
-            "link": "https://www.youtube.com/watch?v=_O1V57heEjY",
-            "minutes": "4",
-            "description": "4 min · part 9 of Datadog’s container security series: mandatory access control, which still restricts a process running as root — AppArmor on Debian and Ubuntu against SELinux on Red Hat, aa-status listing the installed profiles, Docker putting every container under its docker-default profile (built for compatibility rather than strictness), and a one-rule custom profile that stops root inside a container from writing to /etc. From 2023",
-            "type": "video"
-          },
-          {
-            "channel_name": "Datadog",
-            "name": "Container Security Fundamentals - Datadog",
-            "channel_link": "https://www.youtube.com/@DatadogHQ",
-            "link": "https://www.youtube.com/playlist?list=PLyPJCkaAbecPfbYCQ9l0X0oO3NvmDIgAo",
-            "minutes": "52",
-            "description": "playlist · 8 videos · 52 min · Datadog's container security series in order, saved into one playlist by Jansen du Plessis — containers as ordinary processes, then the mount, PID, network and user namespaces one at a time, capabilities in two parts (what they are, then dropping Docker's default ones to harden a container), and cgroups limiting what a container can use. From 2023",
-            "type": "playlist"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "Container Security",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/playlist?list=PL08nYpWQJ_zNqguHA3G_Nolk3g269YUwW",
-            "minutes": "87",
-            "description": "playlist · 19 videos · 1h 27m · short demos, most under five minutes — containers as ordinary Linux processes, what root cannot do on its own and the capabilities its power is split into, each namespace in turn (PID, user, network, mount, IPC and time), cgroups limiting CPU and containing a fork bomb, why a container given every capability still could not escape, runc and containerd underneath Docker, the veth pairs and docker0 bridge behind container networking, the idea behind rootless Docker, Podman as a rootless and daemonless alternative to Docker, five Docker security myths — read-only containers and a mounted Docker socket among them — and sandboxing an AI coding agent in Docker. Also covers Podman and rootless Docker. Three entries are private, and it runs newest first. From 2026, and still being added to",
-            "type": "playlist"
-          },
-
-
-          {
-            "channel_name": "theurbanpenguin",
-            "name": "Streaming Linux Desktops in Docker",
-            "channel_link": "https://www.youtube.com/@theurbanpenguin",
-            "link": "https://www.youtube.com/watch?v=rSWmkiXOwJ4",
-            "minutes": "6",
-            "description": "6 min · a full Rocky Linux desktop running in a container and opened in the browser, using Kasm’s VNC-based desktop images — setting up the container, using the desktop, then building a custom image on top of it, including getting sudo rights inside. From 2024",
-            "type": "video"
-          },
-          {
-            "channel_name": "Better Stack",
-            "name": "Podman vs Docker: what’s really different?",
-            "channel_link": "https://www.youtube.com/@betterstack",
-            "link": "https://www.youtube.com/watch?v=SIvoAOpXZPg",
-            "minutes": "6",
-            "description": "6 min · Podman against Docker — a near-identical command line, Podman Desktop and Compose support — then the real differences. Pods group containers (a web server, PHP and MySQL, say) on one network so they start and stop together, and export to Kubernetes YAML. And Podman has no daemon: each container is forked from the podman command and runs rootless by default, where Docker’s daemon runs as root behind a socket, so compromising it hands over the host. Docker keeps the bigger ecosystem, Docker Hub’s images and Swarm, which Podman doesn’t support, and the two can run side by side. From 2024",
-            "type": "video"
-          },
-          {
-            "channel_name": "KodeKloud",
-            "name": "Docker vs Containerd: Understanding the Differences and Choosing the Right Containerization Tool",
-            "channel_link": "https://www.youtube.com/@KodeKloud",
-            "link": "https://www.youtube.com/watch?v=21onkZfL2yM&t=2s",
-            "minutes": "14",
-            "description": "14 min · the key differences between Docker and Containerd — how Docker built on Containerd, what each one does, when you need the full Docker toolset and when Containerd alone is enough, especially in Kubernetes",
-            "type": "video"
-          },
-          {
-            "channel_name": "Awesome Linux",
-            "name": "Docker vs LXC",
-            "channel_link": "https://www.youtube.com/@awesomelinux",
-            "link": "https://www.youtube.com/watch?v=h7Lz_aNqdCw",
-            "minutes": "3",
-            "description": "3 min · two ways to use the same namespaces and cgroups — LXC runs a whole persistent distribution like a lightweight VM you can SSH into and manage with systemd, while Docker packages one application into a reproducible image built from a Dockerfile; and you can run Docker inside LXC. From 2026",
-            "type": "video"
-          }
-        ]
-      },
-      {
-        "name": "Web Servers",
-        "videos": [
-          {
-            "channel_name": "medium guy",
-            "name": "What are a reverse proxy, an API gateway and an ingress controller?",
-            "channel_link": "https://www.youtube.com/@mediumguy6",
-            "link": "https://www.youtube.com/watch?v=9zay47f1RBY",
-            "minutes": "10",
-            "description": "10 min · three names for things that sit in front of your servers, told apart. A reverse proxy forwards each request to the right server by domain or path, and is worth having even with one server for rate limiting, IP filtering, authentication and caching. An ingress controller is a reverse proxy for Kubernetes, with Ingress objects as the routing rules it follows. An API gateway is a reverse proxy in front of microservices that adds service discovery, circuit breaking and combining several backend calls into one response. All three keep your backend services off the open internet. From 2024",
-            "type": "video"
-          },
-          {
-            "channel_name": "medium guy",
-            "name": "Caddy in Docker, feature by feature",
-            "channel_link": "https://www.youtube.com/@mediumguy6",
-            "link": "https://www.youtube.com/playlist?list=PLBm4OGt1_S7Zftw2eeOrgkRcJL_BskBg7",
-            "minutes": "530",
-            "description": "playlist · 23 videos · 8h 50m · one Caddy feature per episode, every one run in Docker — the basics of a reverse proxy and serving static files, then blocking bots and IP addresses, CORS, your own TLS certificates, forward authentication, load balancing, custom error pages and logs, rate limiting, caching, mock responses, basic and API-key authentication, a file server, Prometheus and Grafana metrics, request headers and correlation IDs, a layer-4 proxy for SSH, Docker containers as upstreams, rewriting responses and country-based content with GeoIP2. Rate limiting, caching, layer 4 and GeoIP2 come from plugins rather than stock Caddy. The last video is all the episodes joined into one 4-hour course; the episodes alone come to about 4h 40m. One video is unavailable, and two episodes are both numbered 21. From 2024–2026",
-            "type": "playlist"
-          },
-          {
-            "channel_name": "medium guy",
-            "name": "nginx in Docker, feature by feature",
-            "channel_link": "https://www.youtube.com/@mediumguy6",
-            "link": "https://www.youtube.com/playlist?list=PLBm4OGt1_S7Ys5tmKX3eNvK1uSFwaxWOr",
-            "minutes": "458",
-            "description": "playlist · 21 videos · 7h 38m · one nginx feature per episode, using the free version and all run in Docker — worker processes, proxy_pass and load balancing, IP restrictions and bot blocking, CORS headers for several domains, TLS hardening with a self-signed certificate (labelled part 2; part 1 isn’t in the list), auth_request for checking each request against an auth service, custom error pages, log formats and logging to a remote server, rate limiting, GeoIP, cache control, mock API responses, basic and API-key authentication, a static and media file server, and a PHP and MySQL project behind nginx with Docker Compose. Ends with a comparison against OpenResty, nginx with Lua built in. One video is the episodes joined into a 3h 22m crash course; the episodes alone come to about 4h 17m. From 2023–2024",
-            "type": "playlist"
-          }
-        ]
-      },
-      {
-        "name": "Comprehensive",
-        "videos": [
-          {
-            "channel_name": "You Suck at Programming",
-            "name": "The Complete Bash Scripting Course",
-            "channel_link": "https://www.youtube.com/@yousuckatprogramming",
-            "link": "https://www.youtube.com/playlist?list=PL-my9REMIFtGgiQAXqKPJ5UrLdSkxcLBT",
-            "minutes": "442",
-            "description": "playlist · 62 videos · 7h 22m · Dave Eddy’s full course, from the terminal up — files, hidden files, grep, less, man pages, vim and permissions, then scripting itself: variables, user input, functions, if with [ ] and [[ ]], for loops, case, indexed and associative arrays, IFS, command and process substitution, arithmetic, and stdin and stdout. Later chapters cover cut, tr, sed, awk and find, set -u and set -x, $PIPESTATUS, sourcing libraries, exit codes against output, parameter expansion, globbing and extglob, brace expansion, printf, regular expressions without grep, mapfile, trap, named pipes, ANSI colours and cursor control, the PS1 prompt and .bashrc, why not to parse ls, and a fork bomb to finish. Most episodes run 3 to 13 minutes, with a recap at the end of each chapter; the code and materials are at course.ysap.sh. From 2026",
-            "type": "playlist"
-          },
-          {
-            "channel_name": "Ejoghomedaro Harris",
-            "name": "Postgres Database Administration",
-            "channel_link": "https://www.youtube.com/@ejoghomedaroharris9329",
-            "link": "https://www.youtube.com/playlist?list=PLwxrtuGg5dNGv4jvDY3TEddn2HIn4-uF9",
-            "minutes": "809",
-            "description": "playlist · 55 videos · 13h 29m · PostgreSQL administration, mostly in psql on Linux and listed out of order — its architecture, installing it on Windows, Linux and in Docker, moving the data directory, starting and stopping the service, postgresql.conf, pg_hba.conf, the password file and remote access, users and roles, the default user and internal authentication, schemas, tablespaces and clusters, creating databases and tables, a psql cheatsheet, indexes, EXPLAIN, pg_stat_statements, slow and blocked queries, logging and pgBadger, vacuum, autovacuum, bloat and pg_repack, write-ahead logging, backups (pg_dump, pg_dumpall, pg_basebackup, pgBackRest, Barman and point-in-time recovery), pg_upgrade, logical replication and failover with repmgr, connection pooling with PgBouncer, pg_cron, dblink, kernel parameters, comparing schemas in pgAdmin and in DBeaver, and Postgres against MySQL. From 2020–2021",
-            "type": "playlist"
-          },
-          {
-            "channel_name": "Case Study Circuit",
-            "name": "PostgreSQL Zero to Production DBA",
-            "channel_link": "https://www.youtube.com/@CaseStudyCircuit29",
-            "link": "https://www.youtube.com/playlist?list=PLWDZ4gOddv4M",
-            "minutes": "186",
-            "description": "playlist · 14 videos · 3h 6m · a PostgreSQL DBA course — installing and checking a server on Windows and Linux; psql for connecting, finding your way around and inspecting a server; how a cluster, its databases, schemas, roles and tablespaces fit together; roles, users and passwords, covering LOGIN, role membership and why a login gets refused; GRANT, REVOKE and object ownership, worked through a case where an application’s role can’t insert into an invoices table and is fixed with the smallest grant that works; pg_hba.conf record types, rule order, CIDR ranges and authentication methods; where a setting comes from (SHOW, SET, ALTER ROLE, ALTER DATABASE, ALTER SYSTEM); postgresql.conf, postgresql.auto.conf and the other startup files; finding and reading the logs; data types; and tables with primary key, foreign key, unique, check and not-null constraints. Each lesson starts from a production incident and has a hands-on lab and a knowledge check. Interview questions from beginner to architect level take up the last quarter to third. Three of the videos are one-minute shorts. The rest run 10 to 24 minutes. The course is still in progress, with recovery, high availability, cloud and capstone labs planned. From 2026",
-            "type": "playlist"
-          },
-          {
-            "channel_name": "Chirag Mahto",
-            "name": "MariaDB DBA Mastery Tutorials",
-            "channel_link": "https://www.youtube.com/@ChiragMahtoOfficial",
-            "link": "https://www.youtube.com/playlist?list=PLnhCEnSnZuz66n4bKhvoL4z-OcSprkn60",
-            "minutes": "278",
-            "description": "playlist · 20 videos · 4h 38m · MariaDB server administration at the command line on Ubuntu 24.04 — installing it and allowing remote connections, with and without SSL; audit logging of local and remote logins and of queries; backup and restore, and scheduled backup scripts that dump all databases to one file, each database to its own file, or a single database; master–slave, master–master, semi-synchronous and bidirectional replication; Galera multi-master clusters, with a virtual IP for failover and fixes for a node that won’t start; Spider sharding; and a shared-nothing cluster. Two of the topics also come as 2- to 3-minute short versions. Most videos run 10 to 20 minutes. From 2025–2026",
-            "type": "playlist"
-          }
-,
-          {
-            "channel_name": "Cameron McKenzie",
-            "name": "git commands tutorials",
-            "channel_link": "https://www.youtube.com/@cameronmcnz",
-            "link": "https://www.youtube.com/playlist?list=PL_RrEj88onS-SAZOGnaUlexOzgRqWrOPR",
-            "minutes": "584",
-            "description": "playlist · 106 videos · 9h 44m · one git task per video, mostly at the command line — init and bare repositories; clone by branch, by tag, shallow with --depth and into a chosen folder; log with oneline, graph, pretty and format, searching commit messages, a file’s history and the files a commit changed; config for user.name and user.email, global settings and where the config files live; status and the working tree; add and undoing it, removing a file, clean -fdx, .gitkeep and .gitignore, global ones included; stash list, untracked files, pop and its conflicts; branches created, checked out, switched, renamed and deleted locally and on the remote, and made from a tag, a commit or another branch; push with an upstream, fetch against pull; merges, fast-forwards, conflicts and aborting a merge; rebase, squash, revert, reflog and undoing commits; plus forks, git flow, and SSH keys and personal access tokens for GitHub, GitLab and Bitbucket. Most videos run 3 to 9 minutes. From 2020–2023",
-            "type": "playlist"
           }
         ]
       }

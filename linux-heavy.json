@@ -7,7 +7,174 @@
         "videos": []
       },
       {
-        "name": "Secure Shell",
+        "name": "Processes",
+        "videos": [
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Linux Crash Course - systemd: Using the systemctl command",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=5JVBpXiYMKo",
+            "minutes": "27",
+            "description": "27 min · a first look at systemd and the systemctl command — starting, stopping, restarting and enabling units. From 2021",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "journalctl Basics: How to Easily Check Your Linux Logs",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=0dG3vUYt7Uk",
+            "minutes": "20",
+            "description": "20 min · the basics of journalctl, now the standard way to read logs on a systemd machine. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "Low Orbit Flux",
+            "name": "Linux: create a systemd service, run as root and non-root",
+            "channel_link": "https://www.youtube.com/@LowOrbitFlux",
+            "link": "https://www.youtube.com/watch?v=af_UjI__TOo",
+            "minutes": "11",
+            "description": "11 min · writing your own service — a looping bash script in /usr/local/bin that logs a line every 10 seconds, a unit file in /etc/systemd/system, then systemctl daemon-reload, enable, start and status, with ps showing systemd, PID 1, as its parent. He then runs it as an ordinary user with User=, adds Restart=always, RestartSec and After= ordering on the network, and kills the process to show systemd bringing it straight back under a new PID. daemon-reload alone left it running as root; the new user took effect only after a stop and start. From 2025",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Linux Crash Course - The ps Command",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=wYwGNgsfN3I",
+            "minutes": "15",
+            "description": "15 min · the basics of ps for looking at running processes, and the variations that show its output in different ways. From 2021",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Demystifying the top Command in Linux",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=WsR11EGF9PA",
+            "minutes": "27",
+            "description": "27 min · the top command with hands-on examples — its options and fields, watching resource use and running processes in real time. From 2023",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Linux Crash Course - htop",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=tU9cO9FwDx0",
+            "minutes": "17",
+            "description": "17 min · an overview of htop, the friendlier take on top, with its meters for CPU, RAM and swap. From 2022",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "How to use the kill command in Linux",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=5ER65GtElmo",
+            "minutes": "16",
+            "description": "16 min · the kill command — sending signals to processes to stop them, politely or by force. From 2024",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "This Linux Init System Is Surprisingly Simple",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=c3xNvgkz83E",
+            "minutes": "4",
+            "description": "4 min · runit, a far smaller init system than systemd — creating a service with it, setting up the service's logging, and what it does more simply than systemd. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Stop Grepping ps: Smarter Linux Process Hunting",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=ZSQC3165PZg",
+            "minutes": "6",
+            "description": "6 min · getting more out of ps than ps aux | grep — choosing columns with -o, hiding kernel threads, -u for one user's processes instead of grepping, -C to find a command by name without grep matching itself, inverting a match, leaving out children of PID 1, and showing when each process started. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "This Linux Directory Leaks Everything",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=vgTpbMvImWs",
+            "minutes": "5",
+            "description": "5 min · what /proc shows about every process with no other tools installed — a process's working directory and executable, listening ports from /proc/net/tcp, its environment and command-line arguments, mounts, memory maps and the kernel version — and why that makes it one of the first places an attacker looks. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "You Can't Master Linux Without Knowing fork()",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=LakYAHb1PPE",
+            "minutes": "6",
+            "description": "6 min · what happens when a process forks, shown with a Python demo — the parent and child appearing in the process table, pausing them to watch, zombie processes, and copy-on-write memory. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "How Linux fork() Can Crash a System",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=dhGQbyK6LTk",
+            "minutes": "4",
+            "description": "4 min · fork() from another angle — copy-on-write, a killed child left as a zombie until the parent calls wait(), an orphan adopted by init when its parent dies, what fork returns to the parent and to the child in a small C program, and how forking without limit can bring a system down. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "A Trick Hackers Love (Linux File Descriptors)",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=LA4PI5PX_20",
+            "minutes": "5",
+            "description": "5 min · file descriptors as the numbers a process uses for files, pipes and sockets — 0, 1 and 2 in /proc/<pid>/fd, opening descriptor 3 on a file with exec, still writing and reading through it after the file is deleted, and closing it — then why the redirections in reverse shell one-liners look the way they do. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Unusual Linux Signals Hackers Actually Use",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=uqnteEtbIVM",
+            "minutes": "4",
+            "description": "4 min · Linux signals beyond kill -9 — SIGSTOP and SIGCONT pausing and resuming a script, trapping SIGTERM so it is ignored, why SIGKILL can't be trapped, kill -0 to test whether a PID exists, and real-time signals, which can carry a small payload from one process to another. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Learn Linux TV",
+            "name": "Linux Crash Course - The lsof Command",
+            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
+            "link": "https://www.youtube.com/watch?v=n9nZ1ellaV0",
+            "minutes": "24",
+            "description": "24 min · lsof for seeing which files, and which network ports, are open and by which process. From 2023",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Stop Guessing. Debug Faster with witr",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=gfskSUqILr0",
+            "minutes": "3",
+            "description": "3 min · witr (\"why is this running\"), which explains a listening port or a process in one step — the user, the command, the exact start time, what launched it and its systemd unit — set against working the same out by hand with ps, /proc and pstree. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Unix Domain Sockets: The Linux IPC Tricks Hackers Should Know",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=KQBgPLlpUBE",
+            "minutes": "5",
+            "description": "5 min · Unix domain sockets, which connect processes on the same machine through a file instead of a port — creating one, abstract sockets that have no file at all, and why anyone who can write to the Docker socket effectively has root. From 2026",
+            "type": "video"
+          },
+          {
+            "channel_name": "Hack the Clown",
+            "name": "Unix Sockets Can Control Who Gets Access",
+            "channel_link": "https://www.youtube.com/@hacktheclown",
+            "link": "https://www.youtube.com/watch?v=1AJsIzu2rwA",
+            "minutes": "2",
+            "description": "2 min · how a Unix domain socket can decide which users get to use a service on the machine. From 2026",
+            "type": "video"
+          }
+        ]
+      },
+      {
+        "name": "Operations",
         "videos": [
           {
             "channel_name": "Linux from SysAdmin",
@@ -363,177 +530,6 @@
         ]
       },
       {
-        "name": "Basic Tasks",
-        "videos": []
-      },
-      {
-        "name": "Processes",
-        "videos": [
-          {
-            "channel_name": "Learn Linux TV",
-            "name": "Linux Crash Course - systemd: Using the systemctl command",
-            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
-            "link": "https://www.youtube.com/watch?v=5JVBpXiYMKo",
-            "minutes": "27",
-            "description": "27 min · a first look at systemd and the systemctl command — starting, stopping, restarting and enabling units. From 2021",
-            "type": "video"
-          },
-          {
-            "channel_name": "Learn Linux TV",
-            "name": "journalctl Basics: How to Easily Check Your Linux Logs",
-            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
-            "link": "https://www.youtube.com/watch?v=0dG3vUYt7Uk",
-            "minutes": "20",
-            "description": "20 min · the basics of journalctl, now the standard way to read logs on a systemd machine. From 2025",
-            "type": "video"
-          },
-          {
-            "channel_name": "Low Orbit Flux",
-            "name": "Linux: create a systemd service, run as root and non-root",
-            "channel_link": "https://www.youtube.com/@LowOrbitFlux",
-            "link": "https://www.youtube.com/watch?v=af_UjI__TOo",
-            "minutes": "11",
-            "description": "11 min · writing your own service — a looping bash script in /usr/local/bin that logs a line every 10 seconds, a unit file in /etc/systemd/system, then systemctl daemon-reload, enable, start and status, with ps showing systemd, PID 1, as its parent. He then runs it as an ordinary user with User=, adds Restart=always, RestartSec and After= ordering on the network, and kills the process to show systemd bringing it straight back under a new PID. daemon-reload alone left it running as root; the new user took effect only after a stop and start. From 2025",
-            "type": "video"
-          },
-          {
-            "channel_name": "Learn Linux TV",
-            "name": "Linux Crash Course - The ps Command",
-            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
-            "link": "https://www.youtube.com/watch?v=wYwGNgsfN3I",
-            "minutes": "15",
-            "description": "15 min · the basics of ps for looking at running processes, and the variations that show its output in different ways. From 2021",
-            "type": "video"
-          },
-          {
-            "channel_name": "Learn Linux TV",
-            "name": "Demystifying the top Command in Linux",
-            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
-            "link": "https://www.youtube.com/watch?v=WsR11EGF9PA",
-            "minutes": "27",
-            "description": "27 min · the top command with hands-on examples — its options and fields, watching resource use and running processes in real time. From 2023",
-            "type": "video"
-          },
-          {
-            "channel_name": "Learn Linux TV",
-            "name": "Linux Crash Course - htop",
-            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
-            "link": "https://www.youtube.com/watch?v=tU9cO9FwDx0",
-            "minutes": "17",
-            "description": "17 min · an overview of htop, the friendlier take on top, with its meters for CPU, RAM and swap. From 2022",
-            "type": "video"
-          },
-          {
-            "channel_name": "Learn Linux TV",
-            "name": "How to use the kill command in Linux",
-            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
-            "link": "https://www.youtube.com/watch?v=5ER65GtElmo",
-            "minutes": "16",
-            "description": "16 min · the kill command — sending signals to processes to stop them, politely or by force. From 2024",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "This Linux Init System Is Surprisingly Simple",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=c3xNvgkz83E",
-            "minutes": "4",
-            "description": "4 min · runit, a far smaller init system than systemd — creating a service with it, setting up the service's logging, and what it does more simply than systemd. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "Stop Grepping ps: Smarter Linux Process Hunting",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=ZSQC3165PZg",
-            "minutes": "6",
-            "description": "6 min · getting more out of ps than ps aux | grep — choosing columns with -o, hiding kernel threads, -u for one user's processes instead of grepping, -C to find a command by name without grep matching itself, inverting a match, leaving out children of PID 1, and showing when each process started. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "This Linux Directory Leaks Everything",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=vgTpbMvImWs",
-            "minutes": "5",
-            "description": "5 min · what /proc shows about every process with no other tools installed — a process's working directory and executable, listening ports from /proc/net/tcp, its environment and command-line arguments, mounts, memory maps and the kernel version — and why that makes it one of the first places an attacker looks. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "You Can't Master Linux Without Knowing fork()",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=LakYAHb1PPE",
-            "minutes": "6",
-            "description": "6 min · what happens when a process forks, shown with a Python demo — the parent and child appearing in the process table, pausing them to watch, zombie processes, and copy-on-write memory. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "How Linux fork() Can Crash a System",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=dhGQbyK6LTk",
-            "minutes": "4",
-            "description": "4 min · fork() from another angle — copy-on-write, a killed child left as a zombie until the parent calls wait(), an orphan adopted by init when its parent dies, what fork returns to the parent and to the child in a small C program, and how forking without limit can bring a system down. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "A Trick Hackers Love (Linux File Descriptors)",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=LA4PI5PX_20",
-            "minutes": "5",
-            "description": "5 min · file descriptors as the numbers a process uses for files, pipes and sockets — 0, 1 and 2 in /proc/<pid>/fd, opening descriptor 3 on a file with exec, still writing and reading through it after the file is deleted, and closing it — then why the redirections in reverse shell one-liners look the way they do. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "Unusual Linux Signals Hackers Actually Use",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=uqnteEtbIVM",
-            "minutes": "4",
-            "description": "4 min · Linux signals beyond kill -9 — SIGSTOP and SIGCONT pausing and resuming a script, trapping SIGTERM so it is ignored, why SIGKILL can't be trapped, kill -0 to test whether a PID exists, and real-time signals, which can carry a small payload from one process to another. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Learn Linux TV",
-            "name": "Linux Crash Course - The lsof Command",
-            "channel_link": "https://www.youtube.com/@LearnLinuxTV",
-            "link": "https://www.youtube.com/watch?v=n9nZ1ellaV0",
-            "minutes": "24",
-            "description": "24 min · lsof for seeing which files, and which network ports, are open and by which process. From 2023",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "Stop Guessing. Debug Faster with witr",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=gfskSUqILr0",
-            "minutes": "3",
-            "description": "3 min · witr (\"why is this running\"), which explains a listening port or a process in one step — the user, the command, the exact start time, what launched it and its systemd unit — set against working the same out by hand with ps, /proc and pstree. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "Unix Domain Sockets: The Linux IPC Tricks Hackers Should Know",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=KQBgPLlpUBE",
-            "minutes": "5",
-            "description": "5 min · Unix domain sockets, which connect processes on the same machine through a file instead of a port — creating one, abstract sockets that have no file at all, and why anyone who can write to the Docker socket effectively has root. From 2026",
-            "type": "video"
-          },
-          {
-            "channel_name": "Hack the Clown",
-            "name": "Unix Sockets Can Control Who Gets Access",
-            "channel_link": "https://www.youtube.com/@hacktheclown",
-            "link": "https://www.youtube.com/watch?v=1AJsIzu2rwA",
-            "minutes": "2",
-            "description": "2 min · how a Unix domain socket can decide which users get to use a service on the machine. From 2026",
-            "type": "video"
-          }
-        ]
-      },
-      {
         "name": "Networking",
         "videos": []
       },
@@ -698,18 +694,6 @@
             "type": "video"
           }
         ]
-      },
-      {
-        "name": "File Recovery: Snapshots, Backups, Undelete",
-        "videos": []
-      },
-      {
-        "name": "System Cloning: Imaging & Migration",
-        "videos": []
-      },
-      {
-        "name": "Disk Encryption",
-        "videos": []
       }
     ]
   },
@@ -728,12 +712,30 @@
         "name": "Comprehensive",
         "videos": [
           {
-            "channel_name": "RKSR1960",
-            "name": "MariaDB Administration Tutorial",
-            "channel_link": "https://www.youtube.com/@RKSR1960",
-            "link": "https://www.youtube.com/watch?v=hDKnsUrz0nM&list=PLnrmLjoInKWgUTezOTaIIrAwCIfO8JbTR",
-            "minutes": "417",
-            "description": "course · 63 lessons · 6h 57m · the first 63 lessons, a few minutes each — MariaDB administration that mostly applies to MySQL too, first at the command line and then in HeidiSQL: installing MariaDB on Windows and CentOS and moving its data directory, a Galera cluster, upgrading and migrating from MySQL, creating, renaming and dropping users, granting and revoking permissions on databases, tables and columns, GRANT OPTION and roles, seeing what a user can do, backups with mysqldump (every database, one database or table, zipped, timestamped, scheduled with crontab) and restoring them, resetting the root password, and the error, general, slow-query and binary logs; then in HeidiSQL, connecting, creating databases and tables, importing and exporting CSV and JSON, managing users and permissions, watching running queries, query history, scripting a database, loading large SQL files, synchronising two databases and changing server settings. From 2017–2018",
+            "channel_name": "Ejoghomedaro Harris",
+            "name": "Postgres Database Administration",
+            "channel_link": "https://www.youtube.com/@ejoghomedaroharris9329",
+            "link": "https://www.youtube.com/playlist?list=PLwxrtuGg5dNGv4jvDY3TEddn2HIn4-uF9",
+            "minutes": "809",
+            "description": "playlist · 55 videos · 13h 29m · PostgreSQL administration, mostly in psql on Linux and listed out of order — its architecture, installing it on Windows, Linux and in Docker, moving the data directory, starting and stopping the service, postgresql.conf, pg_hba.conf, the password file and remote access, users and roles, the default user and internal authentication, schemas, tablespaces and clusters, creating databases and tables, a psql cheatsheet, indexes, EXPLAIN, pg_stat_statements, slow and blocked queries, logging and pgBadger, vacuum, autovacuum, bloat and pg_repack, write-ahead logging, backups (pg_dump, pg_dumpall, pg_basebackup, pgBackRest, Barman and point-in-time recovery), pg_upgrade, logical replication and failover with repmgr, connection pooling with PgBouncer, pg_cron, dblink, kernel parameters, comparing schemas in pgAdmin and in DBeaver, and Postgres against MySQL. From 2020–2021",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Case Study Circuit",
+            "name": "PostgreSQL Zero to Production DBA",
+            "channel_link": "https://www.youtube.com/@CaseStudyCircuit29",
+            "link": "https://www.youtube.com/playlist?list=PLWDZ4gOddv4M",
+            "minutes": "186",
+            "description": "playlist · 14 videos · 3h 6m · a PostgreSQL DBA course — installing and checking a server on Windows and Linux; psql for connecting, finding your way around and inspecting a server; how a cluster, its databases, schemas, roles and tablespaces fit together; roles, users and passwords, covering LOGIN, role membership and why a login gets refused; GRANT, REVOKE and object ownership, worked through a case where an application’s role can’t insert into an invoices table and is fixed with the smallest grant that works; pg_hba.conf record types, rule order, CIDR ranges and authentication methods; where a setting comes from (SHOW, SET, ALTER ROLE, ALTER DATABASE, ALTER SYSTEM); postgresql.conf, postgresql.auto.conf and the other startup files; finding and reading the logs; data types; and tables with primary key, foreign key, unique, check and not-null constraints. Each lesson starts from a production incident and has a hands-on lab and a knowledge check. Interview questions from beginner to architect level take up the last quarter to third. Three of the videos are one-minute shorts. The rest run 10 to 24 minutes. The course is still in progress, with recovery, high availability, cloud and capstone labs planned. From 2026",
+            "type": "playlist"
+          },
+          {
+            "channel_name": "Chirag Mahto",
+            "name": "MariaDB DBA Mastery Tutorials",
+            "channel_link": "https://www.youtube.com/@ChiragMahtoOfficial",
+            "link": "https://www.youtube.com/playlist?list=PLnhCEnSnZuz66n4bKhvoL4z-OcSprkn60",
+            "minutes": "278",
+            "description": "playlist · 20 videos · 4h 38m · MariaDB server administration at the command line on Ubuntu 24.04 — installing it and allowing remote connections, with and without SSL; audit logging of local and remote logins and of queries; backup and restore, and scheduled backup scripts that dump all databases to one file, each database to its own file, or a single database; master–slave, master–master, semi-synchronous and bidirectional replication; Galera multi-master clusters, with a virtual IP for failover and fixes for a node that won’t start; Spider sharding; and a shared-nothing cluster. Two of the topics also come as 2- to 3-minute short versions. Most videos run 10 to 20 minutes. From 2025–2026",
             "type": "playlist"
           },
           {
@@ -745,7 +747,6 @@
             "description": "course · 31 lessons · 9h 38m · the numbered MySQL 8 DBA course on Linux, lessons 1–31 — MySQL’s architecture, storage engines and InnoDB’s internals, installing it from the Yum repository, RPM packages and generic binaries, connecting, creating databases and tables and loading sample data, creating users, password management, granting privileges and GRANT OPTION, roles and mandatory roles, transactions, isolation levels and InnoDB locking, the binary log and extracting statements from it, backups with mysqldump, mysqlpump and mydumper, and point-in-time recovery. From 2020–2021",
             "type": "playlist"
           },
-
           {
             "channel_name": "Database Star",
             "name": "pgAdmin Tutorial - How to Use pgAdmin",
@@ -837,6 +838,23 @@
             "type": "video"
           }
         ]
+      }
+    ]
+  },
+  "3": {
+    "name": "Storage",
+    "sections": [
+      {
+        "name": "File Recovery: Snapshots, Backups, Undelete",
+        "videos": []
+      },
+      {
+        "name": "System Cloning: Imaging & Migration",
+        "videos": []
+      },
+      {
+        "name": "Disk Encryption",
+        "videos": []
       }
     ]
   }
