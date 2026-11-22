@@ -217,10 +217,10 @@ button.ttl:hover{text-decoration-color:var(--line)}
     <h1 id="appName">Series</h1>
     <div class="htools">
       <a class="mode" href="index.html" aria-label="Home" title="Home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V19a1 1 0 0 0 1 1h3.5v-5.5h4V20h3.5a1 1 0 0 0 1-1V9.5"/></svg></a>
-      <button type="button" class="mode" id="importBtn" aria-label="Import a list" title="Import a list">
+      <button type="button" class="mode" id="importBtn" aria-label="Import all three lists" title="Import all three lists">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4.5M7.8 8.7 12 4.5l4.2 4.2"></path><path d="M4.5 14.5v3.3a1.7 1.7 0 0 0 1.7 1.7h11.6a1.7 1.7 0 0 0 1.7-1.7v-3.3"></path></svg>
       </button>
-      <button type="button" class="mode" id="exportBtn" aria-label="Export your list" title="Export your list">
+      <button type="button" class="mode" id="exportBtn" aria-label="Export all three lists" title="Export all three lists">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5V15M7.8 10.8 12 15l4.2-4.2"></path><path d="M4.5 14.5v3.3a1.7 1.7 0 0 0 1.7 1.7h11.6a1.7 1.7 0 0 0 1.7-1.7v-3.3"></path></svg>
       </button>
       <button type="button" class="mode" id="modeBtn"></button>
@@ -311,8 +311,10 @@ button.ttl:hover{text-decoration-color:var(--line)}
     return {id: x.id || uid(), title: String(x.title), status: s, service: svc, type: type, done: s === "watching" && x.done === true, rewatch: x.rewatch === true, hearted: s === "loved" && x.hearted === true};
   }
   function fromList(p){ return p.map(normalize).filter(Boolean); }
-  function restore(){
-    var keys = tab.suffix ? [KEY] : [KEY, OLD_KEY];
+  function listKey(t){ return "watch-ledger-v2" + t.suffix; }
+  function restore(t){
+    t = t || tab;
+    var keys = t.suffix ? [listKey(t)] : [listKey(t), OLD_KEY];
     for(var i=0;i<keys.length;i++){
       var raw = get(keys[i]);
       if(raw){ try{ var p = JSON.parse(raw); if(Array.isArray(p) && p.length) return fromList(p); }catch(e){} }
@@ -514,12 +516,18 @@ button.ttl:hover{text-decoration-color:var(--line)}
 
   // ---------- export ----------
   function pad(n){ return (n < 10 ? "0" : "") + n; }
+  // One file holds all three lists: {app, version:2, exported, lists:{sally:[…], molly:[…], anna:[…]}}
+  function countsText(lists){
+    return TABS.map(function(t){ return (lists[t.id] || []).length + " " + t.name; }).join(", ");
+  }
   function exportList(){
-    if(!items.length){ notify("Your list is empty, so there's nothing to export yet."); return; }
+    var lists = {}, total = 0;
+    TABS.forEach(function(t){ lists[t.id] = t === tab ? items : restore(t); total += lists[t.id].length; });
+    if(!total){ notify("All three lists are empty, so there's nothing to export yet."); return; }
     var d = new Date();
-    var fn = tab.id + "-" + d.getFullYear() + "-" + pad(d.getMonth()+1) + "-" + pad(d.getDate()) + ".json";
-    var payload = JSON.stringify({app:"wendy", list:tab.id, version:1, exported:d.toISOString(), items:items}, null, 2);
-    var done = "Exported " + items.length + " titles to " + fn + ".";
+    var fn = "wendy-" + d.getFullYear() + "-" + pad(d.getMonth()+1) + "-" + pad(d.getDate()) + ".json";
+    var payload = JSON.stringify({app:"wendy", version:2, exported:d.toISOString(), lists:lists}, null, 2);
+    var done = "Exported " + total + " titles (" + countsText(lists) + ") to " + fn + ".";
 
     var ask = (window.claude && typeof window.claude.use === "function") ? window.claude.use("downloads") : Promise.resolve(null);
     ask.then(function(dl){
@@ -555,16 +563,31 @@ button.ttl:hover{text-decoration-color:var(--line)}
     r.onload = function(){
       var data;
       try{ data = JSON.parse(String(r.result)); }catch(e){ data = null; }
-      var list = Array.isArray(data) ? data : (data && Array.isArray(data.items) ? data.items : null);
-      if(!list){ notify("That file isn't a list export. Pick the .json file you exported."); return; }
-      var next = fromList(list);
-      if(!next.length){ notify("That file has no titles in it."); return; }
-      function apply(){
-        items = next; q = ""; $("#q").value = "";
-        store(); render();
-        notify("Imported " + next.length + " titles.");
+      var incoming = {};
+      if(data && data.lists && typeof data.lists === "object"){
+        TABS.forEach(function(t){ if(Array.isArray(data.lists[t.id])) incoming[t.id] = fromList(data.lists[t.id]); });
+      } else {
+        // An older export of a single list: it goes back into the list it came from, or the open one
+        var one = Array.isArray(data) ? data : (data && Array.isArray(data.items) ? data.items : null);
+        if(one) incoming[findTab(data && data.list) ? data.list : tab.id] = fromList(one);
       }
-      if(items.length) askReplace("Replace your " + items.length + " titles with the " + next.length + " in " + file.name + "?", apply);
+      var ids = Object.keys(incoming);
+      if(!ids.length){ notify("That file isn't a Wendy export. Pick the .json file you exported."); return; }
+      var newTotal = 0, oldTotal = 0;
+      ids.forEach(function(id){
+        newTotal += incoming[id].length;
+        oldTotal += (id === tab.id ? items : restore(findTab(id))).length;
+      });
+      if(!newTotal){ notify("That file has no titles in it."); return; }
+      var names = ids.map(function(id){ return findTab(id).name; });
+      var where = names.length > 1 ? names.slice(0, -1).join(", ") + " and " + names[names.length - 1] : names[0];
+      function apply(){
+        ids.forEach(function(id){ set(listKey(findTab(id)), JSON.stringify(incoming[id])); });
+        items = restore(tab); q = ""; $("#q").value = "";
+        store(); render();
+        notify("Imported " + newTotal + " titles (" + ids.map(function(id){ return incoming[id].length + " " + findTab(id).name; }).join(", ") + ").");
+      }
+      if(oldTotal) askReplace("Replace your " + oldTotal + " titles in " + where + " with the " + newTotal + " in " + file.name + "?", apply);
       else apply();
     };
     r.onerror = function(){ notify("That file couldn't be read. Try exporting it again."); };
@@ -595,7 +618,7 @@ button.ttl:hover{text-decoration-color:var(--line)}
     q = ""; $("#q").value = ""; freshId = null;
     addTitle.value = ""; addForm.classList.remove("ready");
     restorePicks();
-    items = restore();
+    items = restore(tab);
     store();
     render();
   }
