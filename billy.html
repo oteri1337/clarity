@@ -732,11 +732,11 @@ function render() {
 function renderColumn(column) {
   const list = bills.filter((b) => b.type === column.dataset.type);
 
-  // Once something in this column is ticked, show what's still left to pay (nothing once it's all paid).
-  const left = column.querySelector('.n');
-  const leftAmount = sum(list.filter((b) => !b.paid));
-  left.hidden = !list.some((b) => b.paid) || leftAmount === 0;
-  left.textContent = formatCurrency(leftAmount);
+  // Once something in this column is ticked, show the total of what's been ticked.
+  const ticked = column.querySelector('.n');
+  const paid = list.filter((b) => b.paid);
+  ticked.hidden = paid.length === 0;
+  ticked.textContent = formatCurrency(sum(paid));
 
   const items = list.length ? sortBills(list).map(renderBill) : [el('li', 'none', column.dataset.empty)];
   column.querySelector('.list').replaceChildren(...items);
