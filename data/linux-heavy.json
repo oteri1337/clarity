@@ -811,42 +811,6 @@
         "name": "Comprehensive",
         "videos": [
           {
-            "channel_name": "Ejoghomedaro Harris",
-            "name": "Postgres Database Administration",
-            "channel_link": "https://www.youtube.com/@ejoghomedaroharris9329",
-            "link": "https://www.youtube.com/playlist?list=PLwxrtuGg5dNGv4jvDY3TEddn2HIn4-uF9",
-            "minutes": "809",
-            "description": "playlist · 55 videos · 13h 29m · PostgreSQL administration, mostly in psql on Linux and listed out of order — its architecture, installing it on Windows, Linux and in Docker, moving the data directory, starting and stopping the service, postgresql.conf, pg_hba.conf, the password file and remote access, users and roles, the default user and internal authentication, schemas, tablespaces and clusters, creating databases and tables, a psql cheatsheet, indexes, EXPLAIN, pg_stat_statements, slow and blocked queries, logging and pgBadger, vacuum, autovacuum, bloat and pg_repack, write-ahead logging, backups (pg_dump, pg_dumpall, pg_basebackup, pgBackRest, Barman and point-in-time recovery), pg_upgrade, logical replication and failover with repmgr, connection pooling with PgBouncer, pg_cron, dblink, kernel parameters, comparing schemas in pgAdmin and in DBeaver, and Postgres against MySQL. From 2020–2021",
-            "type": "playlist"
-          },
-          {
-            "channel_name": "Case Study Circuit",
-            "name": "PostgreSQL Zero to Production DBA",
-            "channel_link": "https://www.youtube.com/@CaseStudyCircuit29",
-            "link": "https://www.youtube.com/playlist?list=PLWDZ4gOddv4M",
-            "minutes": "186",
-            "description": "playlist · 14 videos · 3h 6m · a PostgreSQL DBA course — installing and checking a server on Windows and Linux; psql for connecting, finding your way around and inspecting a server; how a cluster, its databases, schemas, roles and tablespaces fit together; roles, users and passwords, covering LOGIN, role membership and why a login gets refused; GRANT, REVOKE and object ownership, worked through a case where an application’s role can’t insert into an invoices table and is fixed with the smallest grant that works; pg_hba.conf record types, rule order, CIDR ranges and authentication methods; where a setting comes from (SHOW, SET, ALTER ROLE, ALTER DATABASE, ALTER SYSTEM); postgresql.conf, postgresql.auto.conf and the other startup files; finding and reading the logs; data types; and tables with primary key, foreign key, unique, check and not-null constraints. Each lesson starts from a production incident and has a hands-on lab and a knowledge check. Interview questions from beginner to architect level take up the last quarter to third. Three of the videos are one-minute shorts. The rest run 10 to 24 minutes. The course is still in progress, with recovery, high availability, cloud and capstone labs planned. From 2026",
-            "type": "playlist"
-          },
-          {
-            "channel_name": "Chirag Mahto",
-            "name": "MariaDB DBA Mastery Tutorials",
-            "channel_link": "https://www.youtube.com/@ChiragMahtoOfficial",
-            "link": "https://www.youtube.com/playlist?list=PLnhCEnSnZuz66n4bKhvoL4z-OcSprkn60",
-            "minutes": "278",
-            "description": "playlist · 20 videos · 4h 38m · MariaDB server administration at the command line on Ubuntu 24.04 — installing it and allowing remote connections, with and without SSL; audit logging of local and remote logins and of queries; backup and restore, and scheduled backup scripts that dump all databases to one file, each database to its own file, or a single database; master–slave, master–master, semi-synchronous and bidirectional replication; Galera multi-master clusters, with a virtual IP for failover and fixes for a node that won’t start; Spider sharding; and a shared-nothing cluster. Two of the topics also come as 2- to 3-minute short versions. Most videos run 10 to 20 minutes. From 2025–2026",
-            "type": "playlist"
-          },
-          {
-            "channel_name": "Mughees Ahmed",
-            "name": "MySQL DBA Tutorial",
-            "channel_link": "https://www.youtube.com/@mughees52",
-            "link": "https://www.youtube.com/watch?v=Szr4DrM4E8Q&list=PLd5sTGXltJ-l9PKT2Bynhg0Ou2uESOJiH",
-            "minutes": "578",
-            "description": "course · 31 lessons · 9h 38m · the numbered MySQL 8 DBA course on Linux, lessons 1–31 — MySQL’s architecture, storage engines and InnoDB’s internals, installing it from the Yum repository, RPM packages and generic binaries, connecting, creating databases and tables and loading sample data, creating users, password management, granting privileges and GRANT OPTION, roles and mandatory roles, transactions, isolation levels and InnoDB locking, the binary log and extracting statements from it, backups with mysqldump, mysqlpump and mydumper, and point-in-time recovery. From 2020–2021",
-            "type": "playlist"
-          },
-          {
             "channel_name": "Database Star",
             "name": "pgAdmin Tutorial - How to Use pgAdmin",
             "channel_link": "https://www.youtube.com/@DatabaseStar",
