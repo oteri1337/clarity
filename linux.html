@@ -630,6 +630,8 @@ function render(light, heavy) {
     const heavyKeys = Object.keys(heavy).sort((a, b) => +a - +b);
     /* merge chapter names from Light when Heavy is empty for that chapter */
     const allChKeys = [...new Set([...chKeys, ...heavyKeys])].sort((a, b) => +a - +b);
+    /* numbering: same as Light, playlists get p1.., singles get v1.. across all of Heavy */
+    let hp = 0, hv = 0;
 
     colHeavy.innerHTML = `
         <div class="col-head">
@@ -652,6 +654,7 @@ function render(light, heavy) {
                 chItems += sec.videos.length;
                 for (const v of sec.videos) {
                     const secs = (+v.minutes || 0) * 60;
+                    const tag = v.type === "playlist" ? "p" + (++hp) : "v" + (++hv);
                     const id = slug(chId, v.name);
                     const byHtml = v.channel_name
                         ? (v.channel_link
@@ -663,7 +666,7 @@ function render(light, heavy) {
                         <li class="gap" data-id="${esc(id)}"${secs ? ` data-secs="${secs}"` : ""}>
                             <button class="box" role="checkbox" aria-checked="false" aria-label="Mark done: ${esc(v.name)}">${TICK}</button>
                             <div class="body">
-                                <div class="ttl"><a href="${esc(v.link)}" target="_blank" rel="noopener">${esc(v.name)}</a></div>
+                                <div class="ttl"><span class="tag">${tag}</span><a href="${esc(v.link)}" target="_blank" rel="noopener">${esc(v.name)}</a></div>
                                 <div class="meta">${metaHtml}</div>
                             </div>
                         </li>`;
