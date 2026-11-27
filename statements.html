@@ -143,11 +143,6 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
 .tabs a { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 14px; font-weight: 500; text-decoration: none; white-space: nowrap; }
 .tabs a:hover { color: var(--ink); }
 .tabs a[aria-current='page'] { color: var(--ink); font-weight: 600; }
-.badge {
-  min-width: 18px; height: 17px; padding: 0 5px; border-radius: 9px;
-  background: var(--accent); color: #fff;
-  font: 600 10.5px/17px var(--sans); text-align: center; font-variant-numeric: tabular-nums;
-}
 .tools { display: flex; align-items: center; gap: 2px; }
 
 .btn {
@@ -256,9 +251,6 @@ select.sel { height: 34px; padding: 0 8px; border: 1px solid var(--rule); border
 .imp .x:hover { background: var(--soft); color: var(--ink); }
 .unlock { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
 .unlock input { flex: 1 1 200px; height: 32px; padding: 0 10px; border: 1px solid var(--rule-strong); border-radius: 8px; background: var(--surface); }
-.imp-sum { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); }
-.imp-list[hidden] + .imp-sum { margin-top: 0; padding-top: 0; border-top: 0; }
-.imp-sum p { margin: 0; color: var(--ink-soft); font-size: 14px; }
 
 /* ---- overview: two columns, import + tag pies + highest on the left, a chart per year on the right ---- */
 .dash { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 20px; align-items: start; }
@@ -286,7 +278,6 @@ select.sel { height: 34px; padding: 0 8px; border: 1px solid var(--rule); border
 .pie-legend i { width: 11px; height: 11px; border-radius: 3px; flex: none; }
 .pie-legend .tg { font-weight: 500; text-transform: capitalize; }
 .pie-legend .v { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.pie-note { margin: 14px 0 0; font-size: 13px; color: var(--muted); }
 
 .ylist-label { margin-bottom: 8px; font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 .ylist-row { display: flex; align-items: baseline; gap: 12px; padding: 3px 0; }
@@ -302,6 +293,8 @@ select.sel { height: 34px; padding: 0 8px; border: 1px solid var(--rule); border
 .yblock { scroll-margin-top: 96px; }
 .yhead { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
 .yhead h3 { margin: 0; font-size: 18px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.yhead h3 a { color: inherit; text-decoration: none; }
+.yhead h3 a:hover { text-decoration: underline; }
 .ystats { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; text-align: right; }
 .ystat { font-size: 12px; color: var(--muted); }
 .ystat strong { font-weight: 700; font-variant-numeric: tabular-nums; }
@@ -334,20 +327,21 @@ select.sel { height: 34px; padding: 0 8px; border: 1px solid var(--rule); border
 
 /* ---- horizontal bars (by tag) ---- */
 .hbars { list-style: none; margin: 0; padding: 0; }
-.hbars a, .hbars .hb-row {
+.hbars a {
   display: grid; grid-template-columns: minmax(84px, 9.5rem) minmax(0, 1fr) auto 3.2rem; align-items: center; gap: 12px;
   padding: 6px 6px; margin: 0 -6px; border-radius: 7px; text-decoration: none; font-size: 14px;
 }
 .hbars a:hover, .hbars a:focus-visible { background: var(--hover); }
-.hb-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hb-name { display: flex; align-items: baseline; gap: 4px; min-width: 0; white-space: nowrap; }
+.hb-name .nm { overflow: hidden; text-overflow: ellipsis; }
+.hb-name .cap { text-transform: capitalize; }
+.hb-name .cnt { flex: none; color: var(--muted); font-variant-numeric: tabular-nums; }
 .hb-track { height: 10px; }
 .hb-bar { display: block; height: 100%; min-width: 2px; border-radius: 0 4px 4px 0; }
 .hb-bar.out { background: var(--out-mark); }
 .hb-bar.in { background: var(--in-mark); }
-.hb-bar.rest { background: var(--faint); }
 .hb-val { font: 500 13px/1 var(--sans); font-variant-numeric: tabular-nums; text-align: right; }
 .hb-pct { font-size: 12px; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
-.hbars .muted-row .hb-name { color: var(--muted); }
 
 /* ---- people + transfer rows ---- */
 .rows { list-style: none; margin: 0; padding: 0; }
@@ -411,6 +405,10 @@ a.name:hover { text-decoration: underline; }
 .stats b { display: block; font: 600 17px/1.3 var(--sans); color: var(--ink); font-variant-numeric: tabular-nums; }
 .stats b.in { color: var(--in); }
 .pager { display: flex; gap: 6px; margin-top: 12px; }
+/* Month and year pages: the title on the left, ← / → on the right */
+.period-head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 10px 16px; }
+.period-head .pager { margin-top: 0; }
+.period-head .summary { margin: 6px 0 0; }
 .people-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
 
 /* ---- tags page ---- */
@@ -481,7 +479,7 @@ dialog .acts { display: flex; justify-content: flex-end; gap: 8px; margin-top: 2
   .tx { grid-template-columns: minmax(0, 1fr) auto; }
   .tx .when { grid-column: 1 / -1; display: flex; gap: 8px; }
   .tx .when a { display: inline; }
-  .hbars a, .hbars .hb-row { grid-template-columns: minmax(70px, 7rem) minmax(0, 1fr) auto; }
+  .hbars a { grid-template-columns: minmax(70px, 7rem) minmax(0, 1fr) auto; }
   .hb-pct { display: none; }
   .ychart { grid-template-columns: 40px minmax(0, 1fr); column-gap: 6px; }
   .yhead { flex-direction: column; }
@@ -508,7 +506,7 @@ try {
   <a class="brand" href="#/">Statements</a>
   <nav class="tabs" id="tabs" aria-label="Views">
     <a href="#/" data-view="overview">Overview</a>
-    <a href="#/label" data-view="label">Label <span class="badge" id="label-count" hidden></span></a>
+    <a href="#/label" data-view="label">Label</a>
     <a href="#/transfers" data-view="transfers">Transfers</a>
     <a href="#/tags" data-view="tags">Tags</a>
     <a href="#/banks" data-view="banks">Banks</a>
@@ -527,7 +525,6 @@ try {
   <section class="card importer" id="importer" aria-live="polite" hidden>
     <h2 class="sect"><span id="imp-title">Importing</span></h2>
     <ul class="imp-list" id="imp-list"></ul>
-    <div class="imp-sum" id="imp-sum" hidden></div>
   </section>
 
   <main class="view" id="view"><p class="empty-note">Opening your statements…</p></main>
@@ -1975,8 +1972,6 @@ const DEFAULT_TAGS = [
   'charity', 'savings', 'investment', 'business income', 'business expense',
   'client', 'staff salary', 'work payment', 'gratitude', 'referral bonus', 'cut', 'travel', 'coin',
 ];
-// Anyone who has paid in more than ₦40,000 in one go is tagged "client" on import.
-const CLIENT_MIN = 40000 * 100;
 const BANK_LABELS = { Kuda: 'Kuda', GTBank: 'GTBank', OPay: 'OPay', Moniepoint: 'Moniepoint', Alat: 'ALAT', Barter: 'Barter', Chipper: 'Chipper Cash' };
 const SUPPORTED = 'Kuda, GTBank, OPay, Moniepoint, ALAT, Barter and Chipper Cash';
 const THEME_KEY = 'statements-theme';
@@ -2097,7 +2092,7 @@ const freshData = () => ({
   names: {}, // account number -> the name you gave it
   tagList: [...DEFAULT_TAGS],
   recent: [], // recently used tags, newest first
-  imports: [], // { file, bank, inserted, skipped, clients, at }
+  imports: [], // { file, bank, inserted, skipped, at }
   nextId: 1,
   nextAccountId: 1,
 });
@@ -2288,9 +2283,8 @@ function tagsChanged(key) {
   document.querySelectorAll(`[data-party="${CSS.escape(key)}"] .tags`).forEach((el) => {
     el.innerHTML = tagCell(key);
   });
-  paintLabelCount();
   const v = current.view;
-  if (v === 'overview' || v === 'month') paintTagPanels();
+  if (v === 'month' || v === 'year') paintTagPanels();
   else if (v === 'label') {
     paintLabelSeg();
     paintLabelProgress();
@@ -2308,31 +2302,13 @@ function tagCell(key) {
   return chips + add;
 }
 
-// On import, anyone who paid in more than ₦40,000 in a single credit and has no
-// tag yet gets "client" (StatementImporter::tagCreditorsAsClient). Only the new
-// rows are checked, so removing the tag sticks.
-function tagNewClients(rows) {
-  let n = 0;
-  for (const t of rows) {
-    if (t.transfer_type !== 'credit' || t.amount <= CLIENT_MIN) continue;
-    const name = (t.account_name || '').trim();
-    if (/reversal/i.test(name)) continue;
-    const key = partyKeyOf(t);
-    if (!key || tagsOf(key).size) continue;
-    data.tags.push({ party: t.account_number || name, tag: 'client' });
-    resolveTags();
-    n++;
-  }
-  return n;
-}
-
 // ---------- Import ----------
 
 const fpKey = (t) => `${t.created_at}|${t.transfer_type}|${t.balance_after}|${t.balance_before}`;
 
 // Add parsed rows to one bank's account, skipping any already there (same
 // time, direction and balances), exactly as the server de-duplicates.
-function mergeRows(bankName, rows, { tagClients = true } = {}) {
+function mergeRows(bankName, rows) {
   let account = data.accounts.find((a) => a.bank_name === bankName);
   if (!account) {
     account = { id: data.nextAccountId++, bank_name: bankName, account_number: null };
@@ -2366,8 +2342,7 @@ function mergeRows(bankName, rows, { tagClients = true } = {}) {
   }
   for (const t of fresh) data.transfers.push(t);
   buildIndex();
-  const clients = tagClients ? tagNewClients(fresh) : 0;
-  return { inserted: fresh.length, skipped, clients };
+  return { inserted: fresh.length, skipped };
 }
 
 let pdfjsPromise = null;
@@ -2426,6 +2401,14 @@ async function runQueue() {
     renderImporter();
   }
   importing = false;
+  // Files that went in fine leave the panel; a toast sums them up.
+  const done = queue.filter((q) => q.status === 'done');
+  if (done.length) {
+    const added = done.reduce((s, q) => s + q.result.inserted, 0);
+    const dupes = done.reduce((s, q) => s + q.result.skipped, 0);
+    for (const q of done) queue.splice(queue.indexOf(q), 1);
+    toast(`Added ${plural(added, 'transfer')} from ${plural(done.length, 'file')}${dupes ? `, skipped ${dupes.toLocaleString()} already here` : ''}.`);
+  }
   renderImporter();
   route();
 }
@@ -2481,7 +2464,6 @@ async function importPdf(item) {
 function describeResult(r) {
   const bits = [`${bankLabel(r.bank)}: ${plural(r.inserted, 'new transfer')}`];
   if (r.skipped) bits.push(`${r.skipped.toLocaleString()} already here`);
-  if (r.clients) bits.push(`${plural(r.clients, 'client')} tagged`);
   return bits.join(' · ');
 }
 
@@ -2585,7 +2567,7 @@ async function importBackup(item) {
   let inserted = 0;
   let skipped = bad;
   for (const [bank, rows] of byBank) {
-    const r = mergeRows(bank, rows, { tagClients: false });
+    const r = mergeRows(bank, rows);
     inserted += r.inserted;
     skipped += r.skipped;
   }
@@ -2604,46 +2586,26 @@ async function importBackup(item) {
   }
   repairBankNames();
   buildIndex();
-  data.imports.unshift({ file: item.file.name, bank: 'Backup', inserted, skipped, clients: 0, at: new Date().toISOString() });
+  data.imports.unshift({ file: item.file.name, bank: 'Backup', inserted, skipped, at: new Date().toISOString() });
   save(true);
   item.status = 'done';
-  item.result = { bank: 'Backup', inserted, skipped, clients: 0 };
+  item.result = { bank: 'Backup', inserted, skipped };
   item.note = `Backup: ${plural(inserted, 'new transfer')}${skipped ? ` · ${skipped.toLocaleString()} already here` : ''}${tagsAdded ? ` · ${plural(tagsAdded, 'tag')} restored` : ''}`;
 }
 
 // ---------- Importer panel ----------
 
-// Once a batch finishes, files that went fine fold away behind a toggle;
-// problems and password prompts stay in view.
-let showDoneFiles = false;
-
+// Files show here while they import. Once the batch is done, the ones that
+// went in fine are cleared (see runQueue); problems and password prompts stay
+// until you remove them.
 function renderImporter() {
   const panel = $('importer');
   panel.hidden = !queue.length;
   if (!queue.length) return;
   const busy = queue.some((q) => ['queued', 'reading', 'parsing'].includes(q.status));
-  const shown = busy || showDoneFiles ? queue : queue.filter((q) => q.status !== 'done');
-  $('imp-list').innerHTML = shown.map(impRow).join('');
-  $('imp-list').hidden = !shown.length;
-  $('imp-title').textContent = busy ? `Importing ${plural(queue.length, 'file')}` : 'Import finished';
-  const sum = $('imp-sum');
-  sum.hidden = busy;
-  if (busy) return;
-  const done = queue.filter((q) => q.status === 'done');
-  const added = done.reduce((s, q) => s + q.result.inserted, 0);
-  const dupes = done.reduce((s, q) => s + q.result.skipped, 0);
-  const clients = done.reduce((s, q) => s + q.result.clients, 0);
-  const left = labelable().filter((p) => !tagsOf(p.key).size).length;
-  const parts = [];
-  if (done.length) parts.push(`Added ${plural(added, 'transfer')} from ${plural(done.length, 'file')}`);
-  if (dupes) parts.push(`skipped ${dupes.toLocaleString()} already here`);
-  if (clients) parts.push(`tagged ${plural(clients, 'person', 'people')} who paid you over ₦40,000 as “client”`);
-  sum.innerHTML = `<p>${parts.length ? esc(parts.join(', ')) + '.' : 'Nothing was imported.'}</p>
-    <span style="display:flex;flex-wrap:wrap;gap:8px">
-      ${done.length ? `<button type="button" class="btn small" data-imp="toggle" aria-expanded="${showDoneFiles}">${showDoneFiles ? 'Hide files' : `Show ${plural(done.length, 'file')}`}</button>` : ''}
-      <button type="button" class="btn small" data-imp="dismiss">Dismiss</button>
-      ${left ? `<a class="btn small primary" href="#/label" data-imp="dismiss">Label ${plural(left, 'person', 'people')} →</a>` : ''}
-    </span>`;
+  $('imp-list').innerHTML = queue.map(impRow).join('');
+  const n = queue.filter((q) => !['error', 'locked'].includes(q.status)).length;
+  $('imp-title').textContent = busy ? `Importing ${plural(n, 'file')}` : 'Not imported';
 }
 
 function impRow(q) {
@@ -2674,11 +2636,6 @@ $('importer').addEventListener('click', (e) => {
   if (btn.dataset.imp === 'remove') {
     const i = queue.findIndex((q) => String(q.id) === btn.dataset.id);
     if (i >= 0) queue.splice(i, 1);
-  } else if (btn.dataset.imp === 'toggle') {
-    showDoneFiles = !showDoneFiles;
-  } else if (btn.dataset.imp === 'dismiss') {
-    for (let i = queue.length - 1; i >= 0; i--) if (!['queued', 'reading', 'parsing', 'locked'].includes(queue[i].status)) queue.splice(i, 1);
-    showDoneFiles = false;
   }
   renderImporter();
 });
@@ -2710,28 +2667,19 @@ function route() {
   const changed = current.view !== (view || 'overview') || current.arg !== arg;
   current.view = view || 'overview';
   current.arg = arg;
-  const tab = { party: 'label', tag: 'tags', month: 'overview', day: 'overview', bank: 'banks' }[current.view] || current.view;
+  const tab = { party: 'label', tag: 'tags', month: 'overview', year: 'overview', day: 'overview', bank: 'banks' }[current.view] || current.view;
   document.querySelectorAll('#tabs a').forEach((a) => {
     const on = a.dataset.view === tab;
     if (on) a.setAttribute('aria-current', 'page');
     else a.removeAttribute('aria-current');
   });
-  paintLabelCount();
   if (listObserver) listObserver.disconnect();
 
-  const views = { overview: viewOverview, label: viewLabel, transfers: viewTransfers, tags: viewTags, banks: viewBanks, party: viewParty, tag: viewTag, month: viewMonth, day: viewDay, bank: viewBank };
+  const views = { overview: viewOverview, label: viewLabel, transfers: viewTransfers, tags: viewTags, banks: viewBanks, party: viewParty, tag: viewTag, month: viewMonth, year: viewYear, day: viewDay, bank: viewBank };
   const render = views[current.view] || viewOverview;
   if (!data.transfers.length && current.view !== 'banks' && current.view !== 'tags') renderEmpty();
   else render(arg);
   if (changed) window.scrollTo(0, 0);
-}
-
-function paintLabelCount() {
-  const n = labelable().filter((p) => !tagsOf(p.key).size).length;
-  const badge = $('label-count');
-  badge.hidden = !n;
-  badge.textContent = n > 999 ? '999+' : n;
-  badge.setAttribute('aria-label', `${n} untagged`);
 }
 
 const view = $('view');
@@ -2820,7 +2768,6 @@ function viewOverview() {
             <span class="hint">or drop statements here — you can add as many as you like</span>
           </div>
         </section>
-        <div class="dash-col" id="tag-pies"></div>
         ${yearList(banks)}
         <section class="highest">
           <h2>Highest</h2>
@@ -2830,16 +2777,18 @@ function viewOverview() {
       </div>
       <div class="dash-col">${yearCharts(banks)}</div>
     </div>`;
-  paintTagPanels();
 }
 
-// Overview: two tag pies. A month: tag bars.
+// A month's tag pies, with its tag bars under them, shown only once some of
+// its money is tagged.
 function paintTagPanels() {
-  if ($('tag-pies')) $('tag-pies').innerHTML = tagPies(overviewRows);
-  if ($('tag-out')) {
-    $('tag-out').innerHTML = tagBars(overviewRows, 'debit');
-    $('tag-in').innerHTML = tagBars(overviewRows, 'credit');
-  }
+  if (!$('tag-bars')) return;
+  const tagged = overviewRows.some((t) => t.transfer_category !== 'charge' && tagsOf(partyKeyOf(t)).size);
+  $('tag-pies').hidden = $('tag-bars').hidden = !tagged;
+  if (!tagged) return;
+  $('tag-pies').innerHTML = tagPies(overviewRows);
+  $('tag-out').innerHTML = tagBars(overviewRows, 'debit');
+  $('tag-in').innerHTML = tagBars(overviewRows, 'credit');
 }
 
 function pieSvg(parts) {
@@ -2858,21 +2807,12 @@ function pieSvg(parts) {
   return `<svg class="pie" viewBox="0 0 200 200" aria-hidden="true">${paths}</svg>`;
 }
 
-// Money out and money in by tag, leaving out bank charges. Money from people
-// with no tag yet, or no name on the statement, is noted under each pie.
+// Money out and money in by tag, leaving out bank charges.
 function tagPies(rows) {
   const sums = { debit: new Map(), credit: new Map() };
-  const left = { debit: { unlabelled: 0, nameless: 0 }, credit: { unlabelled: 0, nameless: 0 } };
   for (const t of rows) {
     if (t.transfer_category === 'charge') continue;
-    const key = partyKeyOf(t);
-    if (!key) {
-      left[t.transfer_type].nameless += t.amount;
-      continue;
-    }
-    const tags = tagsOf(key);
-    if (!tags.size) left[t.transfer_type].unlabelled += t.amount;
-    for (const tag of tags) sums[t.transfer_type].set(tag, (sums[t.transfer_type].get(tag) || 0) + t.amount);
+    for (const tag of tagsOf(partyKeyOf(t))) sums[t.transfer_type].set(tag, (sums[t.transfer_type].get(tag) || 0) + t.amount);
   }
   const both = (tag) => (sums.debit.get(tag) || 0) + (sums.credit.get(tag) || 0);
   const ranked = [...new Set([...sums.debit.keys(), ...sums.credit.keys()])].sort((a, b) => both(b) - both(a));
@@ -2880,18 +2820,15 @@ function tagPies(rows) {
   const card = (title, type) => {
     const slices = [...sums[type]].sort((a, b) => b[1] - a[1]);
     const total = slices.reduce((s, [, v]) => s + v, 0);
-    const notes = [];
-    if (left[type].unlabelled) notes.push(`<a class="link" href="#/label">${naira(left[type].unlabelled)} not labelled yet</a>`);
-    if (left[type].nameless) notes.push(`${naira(left[type].nameless)} with no name on the statement`);
     const body = total
       ? `<div class="pie-body">${pieSvg(slices.map(([tag, v]) => [v, color.get(tag)]))}
           <ul class="pie-legend">${slices
             .map(([tag, v]) => `<li><a href="#/tag/${enc(tag)}"><i style="background:${color.get(tag)}"></i><span class="tg">${esc(tag)}</span><span class="v">${naira(v)} · ${percent(v, total)}</span></a></li>`)
             .join('')}</ul></div>`
-      : `<p class="empty-note" style="padding-top:0">No tagged money ${type === 'credit' ? 'in' : 'out'} yet.</p>`;
-    return `<section class="card"><h2 class="sect"><span>${title}</span></h2>${body}${notes.length ? `<p class="pie-note">${notes.join(' · ')}</p>` : ''}</section>`;
+      : `<p class="empty-note" style="padding-top:0">No tagged money ${type === 'credit' ? 'in' : 'out'} here.</p>`;
+    return `<section class="card"><h2 class="sect"><span>${title}</span></h2>${body}</section>`;
   };
-  return card('Debits by tag — money out', 'debit') + card('Credits by tag — money in', 'credit');
+  return card('Debits', 'debit') + card('Credits', 'credit');
 }
 
 // Each year with any transfers, newest first, with the banks it came from.
@@ -2962,7 +2899,7 @@ function yearCharts(banks) {
         .join('');
       return `<section class="card yblock" id="year-${y}">
         <div class="yhead">
-          <h3>${y}</h3>
+          <h3><a href="#/year/${y}" title="Open ${y}">${y}</a></h3>
           <div class="ystats">
             <span class="ystat${pct === null ? '' : pct >= 0 ? ' ok' : ' bad'}">Monthly avg: <strong>${naira(a)}</strong>${pct === null ? '' : `<span class="ydelta"><b>${pct >= 0 ? '▲' : '▼'} ${Math.abs(pct).toFixed(1)}%</b> vs ${prev[0]}</span>`}</span>
             <span class="ystat">Total credits: <strong>${naira(total)}</strong></span>
@@ -2984,41 +2921,37 @@ function yearCharts(banks) {
     .join('');
 }
 
+// Money in or out by tag, leaving out bank charges, with how many people under
+// each tag that money went to or came from. A tag's share is of all that
+// money, tagged or not.
 function tagBars(rows, type) {
   const totals = new Map();
-  let unlabelled = 0;
-  let nameless = 0;
+  const people = new Map(); // tag -> party keys
   let total = 0;
   for (const t of rows) {
     if (t.transfer_type !== type || t.transfer_category === 'charge') continue;
     total += t.amount;
     const key = partyKeyOf(t);
-    if (!key) {
-      nameless += t.amount;
-      continue;
+    for (const tag of tagsOf(key)) {
+      totals.set(tag, (totals.get(tag) || 0) + t.amount);
+      if (!people.has(tag)) people.set(tag, new Set());
+      people.get(tag).add(key);
     }
-    const tags = tagsOf(key);
-    if (!tags.size) unlabelled += t.amount;
-    for (const tag of tags) totals.set(tag, (totals.get(tag) || 0) + t.amount);
   }
-  if (!total) return `<p class="empty-note">No money ${type === 'credit' ? 'in' : 'out'} here.</p>`;
-  const sorted = [...totals].sort((a, b) => b[1] - a[1]);
-  const items = sorted.slice(0, 8).map(([tag, v]) => ({ name: tag, v, href: `#/tag/${enc(tag)}` }));
-  const rest = sorted.slice(8);
-  if (rest.length) items.push({ name: `${rest.length} more tags`, v: rest.reduce((s, x) => s + x[1], 0), href: '#/tags', rest: true });
-  if (unlabelled) items.push({ name: 'Not labelled yet', v: unlabelled, href: '#/label', rest: true });
-  // GTBank and Chipper statements don't name the other side, so there's no one to tag.
-  if (nameless) items.push({ name: 'No name given', v: nameless, rest: true });
-  const max = Math.max(...items.map((i) => i.v));
+  if (!totals.size) return `<p class="empty-note">No tagged money ${type === 'credit' ? 'in' : 'out'} here.</p>`;
+  // Every tag, biggest first.
+  const items = [...totals].sort((a, b) => b[1] - a[1]);
+  const max = items[0][1];
   const cls = type === 'credit' ? 'in' : 'out';
   return `<ul class="hbars">${items
-    .map((i) => {
-      const inner = `<span class="hb-name">${esc(i.name)}</span>
-        <span class="hb-track"><span class="hb-bar ${i.rest ? 'rest' : cls}" style="width:${((i.v / max) * 100).toFixed(2)}%"></span></span>
-        <span class="hb-val">${compact(i.v)}</span>
-        <span class="hb-pct">${percent(i.v, total)}</span>`;
-      const title = `${esc(i.name)}: ${naira(i.v)}`;
-      return `<li class="${i.rest ? 'muted-row' : ''}">${i.href ? `<a href="${i.href}" title="${title}">${inner}</a>` : `<div class="hb-row" title="${title}">${inner}</div>`}</li>`;
+    .map(([tag, v]) => {
+      const n = people.get(tag).size;
+      return `<li><a href="#/tag/${enc(tag)}" title="${esc(tag)} (${plural(n, 'person', 'people')}): ${naira(v)}">
+        <span class="hb-name"><span class="nm cap">${esc(tag)}</span><span class="cnt">(${n})</span></span>
+        <span class="hb-track"><span class="hb-bar ${cls}" style="width:${((v / max) * 100).toFixed(2)}%"></span></span>
+        <span class="hb-val">${compact(v)}</span>
+        <span class="hb-pct">${percent(v, total)}</span>
+      </a></li>`;
     })
     .join('')}</ul>`;
 }
@@ -3200,6 +3133,8 @@ function renderLabelList() {
   paintLabelProgress();
   const list = $('label-list');
   if (!labelState.keys.length) {
+    // Stop the previous list's scroll loader, or it keeps adding its rows.
+    if (listObserver) listObserver.disconnect();
     list.innerHTML = '';
     $('label-more').innerHTML = labelState.q
       ? 'No one matches that search.'
@@ -3306,7 +3241,8 @@ function mountChunks(list, more, items, render, noun) {
 
 const listState = { rows: [], q: '', type: '', sort: 'new', search: false, source: true, party: null };
 
-function listShell({ search = false } = {}) {
+// summary: false when the page shows the count and totals elsewhere (#tx-summary).
+function listShell({ search = false, summary = true } = {}) {
   return `<section class="card">
     <div class="toolbar">
       ${search ? `<input type="search" class="search" id="tx-q" placeholder="Search names, account numbers, banks and remarks" value="${esc(listState.q)}" aria-label="Search transfers">` : ''}
@@ -3321,8 +3257,9 @@ function listShell({ search = false } = {}) {
         <option value="big">Largest first</option>
         <option value="small">Smallest first</option>
       </select>
+      <button type="button" class="btn" data-act="charges" id="tx-charges" hidden></button>
     </div>
-    <div class="summary" id="tx-summary"></div>
+    ${summary ? '<div class="summary" id="tx-summary"></div>' : ''}
     <ul class="rows" id="tx-list"></ul>
     <div class="more" id="tx-more"></div>
   </section>`;
@@ -3333,6 +3270,7 @@ function mountList(rows, opts = {}) {
   listState.search = !!opts.search;
   listState.source = data.accounts.length > 1 && !opts.oneBank;
   listState.party = opts.party || null;
+  listState.range = opts.range !== false; // month and year pages leave out the date range
   if (!opts.keepFilters) {
     listState.type = '';
     listState.sort = 'new';
@@ -3355,7 +3293,13 @@ function txMatches(t, q) {
 
 function renderTxList() {
   const q = listState.search ? listState.q.trim().toLowerCase() : '';
-  let rows = listState.rows.filter((t) => (!listState.type || t.transfer_type === listState.type) && txMatches(t, q));
+  const all = listState.rows.filter((t) => (!listState.type || t.transfer_type === listState.type) && txMatches(t, q));
+  // Bank charges (levies, SMS and stamp duty) can be hidden; the choice is remembered.
+  const charges = all.filter((t) => t.transfer_category === 'charge').length;
+  const toggle = $('tx-charges');
+  toggle.hidden = !charges;
+  toggle.textContent = prefs.hideCharges ? `Show ${plural(charges, 'charge')}` : 'Hide charges';
+  let rows = prefs.hideCharges ? all.filter((t) => t.transfer_category !== 'charge') : all;
   const by = {
     new: (a, b) => (a.created_at < b.created_at ? 1 : a.created_at > b.created_at ? -1 : b.id - a.id),
     old: (a, b) => (a.created_at > b.created_at ? 1 : a.created_at < b.created_at ? -1 : a.id - b.id),
@@ -3365,11 +3309,13 @@ function renderTxList() {
   rows = [...rows].sort(by[listState.sort] || by.new);
   const s = totalsOf(rows);
   $('tx-summary').innerHTML = rows.length
-    ? `<span>${plural(rows.length, 'transfer')}${s.first ? ` · ${esc(fmtRange(s.first, s.last))}` : ''}</span>
+    ? `<span>${plural(rows.length, 'transfer')}${s.first && listState.range ? ` · ${esc(fmtRange(s.first, s.last))}` : ''}</span>
        ${s.in ? `<span>In <b class="in">+${naira(s.in)}</b></span>` : ''}
        ${s.out ? `<span>Out <b>−${naira(s.out)}</b></span>` : ''}`
     : '';
   if (!rows.length) {
+    // Stop the previous list's scroll loader, or it keeps adding its rows.
+    if (listObserver) listObserver.disconnect();
     $('tx-list').innerHTML = '';
     $('tx-more').textContent = q ? 'Nothing matches that search.' : 'No transfers here.';
     return;
@@ -3473,26 +3419,38 @@ function viewTag(tag) {
 
 // ---------- Month & day ----------
 
+// A month or a year: its tag pies and bars (once some of its money is tagged),
+// then its transfers, searchable. prev / next are [href, label].
+function periodView(title, prev, next, rows) {
+  overviewRows = rows;
+  view.innerHTML = `
+    <header class="view-head period-head">
+      <div><h2>${esc(title)}</h2><div class="summary" id="tx-summary"></div></div>
+      <div class="pager"><a class="btn small" href="${prev[0]}">← ${esc(prev[1])}</a><a class="btn small" href="${next[0]}">${esc(next[1])} →</a></div>
+    </header>
+    ${rows.length ? `<div class="grid2" id="tag-pies" hidden></div>
+    <div class="grid2" id="tag-bars" hidden>
+      <section class="card"><h2 class="sect"><span>Debits</span></h2><div id="tag-out"></div></section>
+      <section class="card"><h2 class="sect"><span>Credits</span></h2><div id="tag-in"></div></section>
+    </div>` : ''}
+    ${listShell({ search: true, summary: false })}`;
+  paintTagPanels();
+  mountList(rows, { search: true, range: false });
+}
+
 function viewMonth(ym) {
   if (!/^\d{4}-\d{2}$/.test(ym)) return notFound('That isn’t a month.');
-  const rows = data.transfers.filter((t) => t.created_at.startsWith(ym));
   const [y, m] = ym.split('-').map(Number);
   const prev = m === 1 ? `${y - 1}-12` : `${y}-${pad2(m - 1)}`;
   const next = m === 12 ? `${y + 1}-01` : `${y}-${pad2(m + 1)}`;
-  overviewRows = rows;
-  view.innerHTML = `
-    <header class="view-head">
-      <p class="crumbs"><a href="#/">Overview</a></p>
-      <h2>${fmtMonth(ym)}</h2>
-      <div class="pager"><a class="btn small" href="#/month/${prev}">← ${MON[+prev.slice(5) - 1]}</a><a class="btn small" href="#/month/${next}">${MON[+next.slice(5) - 1]} →</a></div>
-    </header>
-    ${rows.length ? `<div class="grid2">
-      <section class="card"><h2 class="sect"><span>Money out by tag</span></h2><div id="tag-out"></div></section>
-      <section class="card"><h2 class="sect"><span>Money in by tag</span></h2><div id="tag-in"></div></section>
-    </div>` : ''}
-    ${listShell()}`;
-  paintTagPanels();
-  mountList(rows);
+  const rows = data.transfers.filter((t) => t.created_at.startsWith(ym));
+  periodView(fmtMonth(ym), [`#/month/${prev}`, MON[+prev.slice(5) - 1]], [`#/month/${next}`, MON[+next.slice(5) - 1]], rows);
+}
+
+function viewYear(y) {
+  if (!/^\d{4}$/.test(y)) return notFound('That isn’t a year.');
+  const rows = data.transfers.filter((t) => t.created_at.startsWith(y));
+  periodView(y, [`#/year/${+y - 1}`, String(+y - 1)], [`#/year/${+y + 1}`, String(+y + 1)], rows);
 }
 
 function viewDay(day) {
@@ -3655,6 +3613,11 @@ view.addEventListener('click', (e) => {
   }
   else if (act === 'untag' && key) removeTag(key, btn.dataset.tag);
   else if (act === 'export') exportBackup();
+  else if (act === 'charges') {
+    prefs.hideCharges = !prefs.hideCharges;
+    savePrefs();
+    renderTxList();
+  }
   else if (act === 'pick') {
     loadPdfjs().catch(() => {});
     $('file-input').click();
@@ -3672,7 +3635,6 @@ view.addEventListener('click', (e) => {
       resolveTags();
       save();
       route();
-      paintLabelCount();
     });
   } else if (act === 'drop-bank') {
     const a = ix.accounts.get(+btn.dataset.id);
