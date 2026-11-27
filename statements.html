@@ -5,106 +5,109 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Statements</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235b4bd1'/%3E%3Cg fill='none' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5.75 12.25L16 6.5l10.25 5.75z'/%3E%3Cpath d='M10 15.25v6.25M16 15.25v6.25M22 15.25v6.25M6.25 25h19.5'/%3E%3C/g%3E%3C/svg%3E">
-<meta name="theme-color" content="#f4f4f2" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap">
 <style>
 /* Layout: header (name, tabs, import / backup / theme), then one view at a time.
    Views: Overview (charts), Label (people to tag), Transfers, Tags, Banks, plus
    drill-downs for a person, tag, month, day or bank. */
 :root {
-  --bg: #f4f4f2;
+  --bg: #fafaf9;
   --surface: #ffffff;
-  --soft: #ebebe7;
-  --hover: #f6f6f3;
-  --ink: #1a1a18;
-  --ink-soft: #5d6059;
-  --muted: #6b6a65;
-  --faint: #a9a7a0;
-  --rule: rgba(26, 26, 24, 0.11);
-  --rule-strong: rgba(26, 26, 24, 0.2);
-  --accent: #3d5afe;
-  --accent-soft: #e8ecff;
-  --in: #0a7a43;
-  --in-mark: #13a06c;
-  --out-mark: #eb6834;
-  --danger: #c4382b;
-  --danger-soft: #fbeceb;
+  --soft: #f1f5f9;
+  --hover: #f8fafc;
+  --ink: #0f172a;
+  --ink-soft: #475569;
+  --muted: #64748b;
+  --faint: #94a3b8;
+  --rule: #e2e8f0;
+  --rule-strong: #cbd5e1;
+  --accent: #2563eb;
+  --accent-soft: #eff6ff;
+  --in: #16a34a;
+  --in-mark: #16a34a;
+  --out-mark: #ea580c;
+  --danger: #dc2626;
+  --danger-soft: #fef2f2;
+  --danger-line: #fecaca;
   --on-danger: #ffffff;
-  --chip: #efeee9;
-  --shadow: 0 1px 2px rgb(0 0 0 / 0.05), 0 12px 32px rgb(0 0 0 / 0.12);
+  --chip: #f1f5f9;
+  --shadow: 0 1px 2px rgb(15 23 42 / 0.05), 0 12px 32px rgb(15 23 42 / 0.12);
   --bank-gtbank: #c2410c;
   --bank-kuda: #7c3aed;
   --bank-moniepoint: #2563eb;
   --bank-alat: #dc2626;
-  --bank-barter: #ca8a04;
-  --bank-opay: #059669;
-  --bank-chipper: #1a1a18;
-  --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --bank-barter: #eab308;
+  --bank-opay: #10b981;
+  --bank-chipper: #111827;
+  --sans: 'Signika Negative', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --mono: var(--sans);
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
-    --bg: #141416;
-    --surface: #1e1e22;
-    --soft: #29292e;
-    --hover: #24242a;
-    --ink: #e8e8e4;
-    --ink-soft: #b4b6ae;
-    --muted: #8f9189;
-    --faint: #5f615b;
-    --rule: rgba(232, 232, 228, 0.1);
-    --rule-strong: rgba(232, 232, 228, 0.2);
-    --accent: #8fa2ff;
-    --accent-soft: #232a4d;
-    --in: #45c98a;
-    --in-mark: #199e70;
-    --out-mark: #d95926;
-    --danger: #ff7a6b;
-    --danger-soft: #3a1d1b;
-    --on-danger: #1e1e22;
-    --chip: #2b2b31;
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --soft: #334155;
+    --hover: #243044;
+    --ink: #f1f5f9;
+    --ink-soft: #cbd5e1;
+    --muted: #94a3b8;
+    --faint: #64748b;
+    --rule: #334155;
+    --rule-strong: #475569;
+    --accent: #60a5fa;
+    --accent-soft: #172554;
+    --in: #4ade80;
+    --in-mark: #22c55e;
+    --out-mark: #fb923c;
+    --danger: #f87171;
+    --danger-soft: #3b1414;
+    --danger-line: #7f1d1d;
+    --on-danger: #0f172a;
+    --chip: #334155;
     --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 12px 32px rgb(0 0 0 / 0.5);
     --bank-gtbank: #f97316;
     --bank-kuda: #a78bfa;
     --bank-moniepoint: #60a5fa;
     --bank-alat: #f87171;
-    --bank-barter: #eab308;
+    --bank-barter: #facc15;
     --bank-opay: #34d399;
-    --bank-chipper: #d4d4d0;
+    --bank-chipper: #e2e8f0;
     color-scheme: dark;
   }
 }
 :root[data-theme='dark'] {
-  --bg: #141416;
-  --surface: #1e1e22;
-  --soft: #29292e;
-  --hover: #24242a;
-  --ink: #e8e8e4;
-  --ink-soft: #b4b6ae;
-  --muted: #8f9189;
-  --faint: #5f615b;
-  --rule: rgba(232, 232, 228, 0.1);
-  --rule-strong: rgba(232, 232, 228, 0.2);
-  --accent: #8fa2ff;
-  --accent-soft: #232a4d;
-  --in: #45c98a;
-  --in-mark: #199e70;
-  --out-mark: #d95926;
-  --danger: #ff7a6b;
-  --danger-soft: #3a1d1b;
-  --on-danger: #1e1e22;
-  --chip: #2b2b31;
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --soft: #334155;
+  --hover: #243044;
+  --ink: #f1f5f9;
+  --ink-soft: #cbd5e1;
+  --muted: #94a3b8;
+  --faint: #64748b;
+  --rule: #334155;
+  --rule-strong: #475569;
+  --accent: #60a5fa;
+  --accent-soft: #172554;
+  --in: #4ade80;
+  --in-mark: #22c55e;
+  --out-mark: #fb923c;
+  --danger: #f87171;
+  --danger-soft: #3b1414;
+  --danger-line: #7f1d1d;
+  --on-danger: #0f172a;
+  --chip: #334155;
   --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 12px 32px rgb(0 0 0 / 0.5);
   --bank-gtbank: #f97316;
   --bank-kuda: #a78bfa;
   --bank-moniepoint: #60a5fa;
   --bank-alat: #f87171;
-  --bank-barter: #eab308;
+  --bank-barter: #facc15;
   --bank-opay: #34d399;
-  --bank-chipper: #d4d4d0;
+  --bank-chipper: #e2e8f0;
   color-scheme: dark;
 }
 
@@ -113,7 +116,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font: 400 15px/1.5 var(--sans);
+  font: 400 14px/1.4 var(--sans);
   -webkit-font-smoothing: antialiased;
 }
 a { color: inherit; }
@@ -121,76 +124,75 @@ button, input, select { font: inherit; color: inherit; }
 button { cursor: pointer; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 [hidden] { display: none !important; }
-.mono { font-family: var(--mono); font-size: 0.92em; }
+.mono { font-variant-numeric: tabular-nums; }
 .num { font-variant-numeric: tabular-nums; }
 .muted { color: var(--muted); }
 .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
 
-.shell { max-width: 1120px; margin: 0 auto; padding: 28px 20px 96px; }
+.shell { padding: 28px 28px 96px; }
 
-/* ---- header ---- */
-.top { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 22px; }
-.brand { text-decoration: none; }
-.brand h1 { margin: 0; font: 600 30px/1 var(--sans); letter-spacing: -0.02em; }
-.brand p { margin: 5px 0 0; font: 400 12px/1.3 var(--mono); color: var(--muted); }
-.tabs { display: flex; gap: 2px; padding: 3px; border-radius: 10px; background: var(--soft); overflow-x: auto; scrollbar-width: none; }
-.tabs a {
-  display: flex; align-items: center; gap: 6px;
-  height: 32px; padding: 0 12px; border-radius: 8px;
-  color: var(--ink-soft); font-size: 14px; text-decoration: none; white-space: nowrap;
-  transition: background-color 0.12s, color 0.12s;
+/* ---- top bar: name on the left, views and tools on the right ---- */
+.nav {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; gap: 32px;
+  padding: 22px 40px; background: var(--bg); border-bottom: 1px solid var(--rule);
 }
+.brand { font-weight: 700; font-size: 19px; letter-spacing: -0.01em; color: var(--ink); text-decoration: none; white-space: nowrap; }
+.tabs { margin-left: auto; display: flex; align-items: center; gap: 28px; overflow-x: auto; scrollbar-width: none; }
+.tabs a { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 14px; font-weight: 500; text-decoration: none; white-space: nowrap; }
 .tabs a:hover { color: var(--ink); }
-.tabs a[aria-current='page'] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgb(0 0 0 / 0.07); }
+.tabs a[aria-current='page'] { color: var(--ink); font-weight: 600; }
 .badge {
-  min-width: 20px; height: 18px; padding: 0 6px; border-radius: 9px;
-  background: var(--accent); color: var(--surface);
-  font: 500 11px/18px var(--sans); text-align: center; font-variant-numeric: tabular-nums;
+  min-width: 18px; height: 17px; padding: 0 5px; border-radius: 9px;
+  background: var(--accent); color: #fff;
+  font: 600 10.5px/17px var(--sans); text-align: center; font-variant-numeric: tabular-nums;
 }
-.tools { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+.tools { display: flex; align-items: center; gap: 2px; }
 
 .btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  height: 36px; padding: 0 14px; border-radius: 9px;
-  border: 1px solid var(--rule-strong); background: var(--surface);
-  font-size: 14px; font-weight: 500; text-decoration: none; white-space: nowrap;
-  transition: background-color 0.12s, border-color 0.12s;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  height: 32px; padding: 0 12px; border-radius: 6px;
+  border: 1px solid var(--rule); background: var(--surface); color: var(--ink);
+  font-size: 13px; font-weight: 500; text-decoration: none; white-space: nowrap;
+  transition: background-color 0.12s, border-color 0.12s, color 0.12s;
 }
-.btn:hover { background: var(--hover); }
-.btn.primary { background: var(--ink); border-color: var(--ink); color: var(--bg); }
-.btn.primary:hover { opacity: 0.9; }
-.btn.danger { color: var(--danger); }
-.btn.danger:hover { background: var(--danger-soft); border-color: var(--danger); }
+.btn:hover { background: var(--soft); }
+.btn.primary { background: var(--ink); border-color: var(--ink); color: var(--surface); }
+.btn.primary:hover { background: var(--ink); opacity: 0.9; }
+.btn.quiet { color: var(--muted); }
+.btn.quiet:hover { color: var(--ink); }
+.btn.danger { color: var(--danger); border-color: var(--danger-line); }
+.btn.danger:hover { background: var(--danger-soft); }
 .btn.danger-solid { background: var(--danger); border-color: var(--danger); color: var(--on-danger); }
 .btn.danger-solid:hover { opacity: 0.9; }
-.btn.small { height: 30px; padding: 0 11px; font-size: 13px; border-radius: 8px; }
+.btn.small { height: 28px; padding: 0 10px; font-size: 12.5px; }
 .btn:disabled { opacity: 0.5; cursor: default; }
 .icon-btn {
-  width: 36px; height: 36px; flex: none; display: grid; place-items: center;
-  border: 0; border-radius: 9px; background: var(--soft); color: var(--ink-soft);
-  transition: color 0.12s;
+  width: 32px; height: 32px; flex: none; display: grid; place-items: center;
+  border: 0; border-radius: 6px; background: none; color: var(--muted);
+  transition: color 0.12s, background-color 0.12s;
 }
-.icon-btn:hover { color: var(--ink); }
+.icon-btn:hover { color: var(--ink); background: var(--soft); }
 
 /* ---- generic blocks ---- */
-.view { margin-top: 26px; }
-.card { background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; padding: 18px 20px; min-width: 0; }
+.view { margin-top: 0; }
+.card { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 20px; min-width: 0; }
 .view > * + * { margin-top: 16px; }
 .sect {
-  display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 4px 14px;
-  margin: 0 0 12px; font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px 14px;
+  margin: 0 0 14px; font-size: 15px; font-weight: 600; color: var(--ink);
 }
-.sect .n { letter-spacing: 0; text-transform: none; font-variant-numeric: tabular-nums; }
+.sect .n { color: var(--muted); font-size: 13px; font-weight: 400; font-variant-numeric: tabular-nums; }
 .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .view-head { margin-bottom: 20px; }
-.view-head h2 { margin: 0; font: 600 24px/1.2 var(--sans); letter-spacing: -0.015em; overflow-wrap: anywhere; }
+.view-head h2 { margin: 0; font: 600 22px/1.2 var(--sans); letter-spacing: -0.01em; overflow-wrap: anywhere; }
 .view-head .lede { margin: 6px 0 0; color: var(--ink-soft); max-width: 640px; }
 .view-head .crumbs { margin: 0 0 6px; font-size: 13px; color: var(--muted); }
 .view-head .crumbs a { color: var(--muted); }
 .subline { margin-top: 6px; color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; }
 .empty-note { padding: 22px 0 8px; color: var(--muted); font-size: 14px; }
-.amt { font-family: var(--mono); font-size: 14px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.amt { font-size: 14px; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .amt.in { color: var(--in); }
 .link { color: var(--accent); text-decoration: none; font-weight: 500; }
 .link:hover { text-decoration: underline; }
@@ -199,9 +201,9 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
 
 /* ---- segmented filters ---- */
 .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 14px; }
-.seg { display: inline-flex; gap: 2px; padding: 3px; border-radius: 9px; background: var(--soft); font-size: 13px; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+.seg { display: inline-flex; gap: 2px; padding: 3px; border-radius: 8px; background: var(--soft); font-size: 13px; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
 .seg button {
-  height: 28px; padding: 0 10px; border: 0; border-radius: 7px; background: none; color: var(--ink-soft); white-space: nowrap;
+  height: 28px; padding: 0 10px; border: 0; border-radius: 6px; background: none; color: var(--ink-soft); white-space: nowrap;
   transition: background-color 0.12s, color 0.12s;
 }
 .seg button:hover { color: var(--ink); }
@@ -209,35 +211,35 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
 .seg .n { color: var(--muted); margin-left: 4px; font-variant-numeric: tabular-nums; }
 .search {
   flex: 1 1 220px; min-width: 0; height: 34px; padding: 0 12px;
-  border: 1px solid var(--rule-strong); border-radius: 9px; background: var(--surface); font-size: 14px;
+  border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); font-size: 14px;
 }
 .search::placeholder { color: var(--faint); }
-select.sel { height: 34px; padding: 0 8px; border: 1px solid var(--rule-strong); border-radius: 9px; background: var(--surface); font-size: 13px; }
+select.sel { height: 34px; padding: 0 8px; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); font-size: 13px; }
 
 /* ---- empty state ---- */
 .hero { padding: 0; overflow: hidden; }
 .drop {
   display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px;
   margin: 18px; padding: 54px 24px 46px;
-  border: 1.5px dashed var(--rule-strong); border-radius: 12px; cursor: pointer;
+  border: 1px dashed var(--rule-strong); border-radius: 8px; background: var(--hover); cursor: pointer;
   transition: border-color 0.15s, background-color 0.15s;
 }
 .drop:hover { border-color: var(--accent); background: var(--accent-soft); }
 .drop .doc { width: 44px; height: 44px; color: var(--accent); stroke-width: 1.4; }
-.drop h2 { margin: 6px 0 0; font: 600 22px/1.25 var(--sans); letter-spacing: -0.01em; }
+.drop h2 { margin: 6px 0 0; font: 600 20px/1.25 var(--sans); letter-spacing: -0.01em; }
 .drop p { margin: 0; max-width: 460px; color: var(--ink-soft); }
 .drop .btn { margin-top: 10px; }
 .privacy { display: flex; gap: 10px; align-items: flex-start; margin: 0; padding: 14px 22px 18px; color: var(--ink-soft); font-size: 13.5px; }
 .privacy svg { margin-top: 1px; color: var(--in); }
 .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-.steps li { list-style: none; padding: 16px 18px; border-radius: 12px; border: 1px solid var(--rule); background: var(--surface); }
+.steps li { list-style: none; padding: 16px 18px; border-radius: 10px; border: 1px solid var(--rule); background: var(--surface); }
 .steps b { display: block; font-weight: 600; margin-bottom: 2px; }
 .steps span { color: var(--ink-soft); font-size: 14px; }
-.steps i { font: 500 12px/1 var(--mono); color: var(--muted); font-style: normal; display: block; margin-bottom: 8px; }
+.steps i { font: 600 12px/1 var(--sans); color: var(--muted); font-style: normal; display: block; margin-bottom: 8px; }
 .steps { padding: 0; margin-bottom: 0; }
 
 /* ---- importer ---- */
-.importer { margin-top: 22px; }
+.importer { margin: 0 0 20px; }
 .imp-list { list-style: none; margin: 0; padding: 0; }
 .imp {
   display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 14px; align-items: center;
@@ -258,70 +260,77 @@ select.sel { height: 34px; padding: 0 8px; border: 1px solid var(--rule-strong);
 .imp-list[hidden] + .imp-sum { margin-top: 0; padding-top: 0; border-top: 0; }
 .imp-sum p { margin: 0; color: var(--ink-soft); font-size: 14px; }
 
-/* ---- stat tiles ---- */
-.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin: 0; }
-.kpi { padding: 16px 18px; }
-.kpi dt { font-size: 13px; color: var(--ink-soft); }
-.kpi dd { margin: 4px 0 0; font: 600 26px/1.15 var(--sans); letter-spacing: -0.02em; overflow-wrap: anywhere; }
-.kpi .sub { margin-top: 4px; font-size: 13px; color: var(--muted); }
-.kpi .key { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: 0; }
-.meter { height: 6px; border-radius: 3px; background: var(--accent-soft); overflow: hidden; margin-top: 10px; }
-.meter i { display: block; height: 100%; background: var(--accent); border-radius: 3px; }
-
-.years { display: flex; flex-wrap: wrap; gap: 6px; }
-.years button {
-  height: 30px; padding: 0 12px; border-radius: 15px; border: 1px solid var(--rule-strong);
-  background: var(--surface); color: var(--ink-soft); font-size: 13px; font-variant-numeric: tabular-nums;
-}
-.years button:hover { color: var(--ink); }
-.years button[aria-pressed='true'] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
-
-/* ---- month chart: money in above the line, money out below, one scale ---- */
-.legend { display: flex; gap: 14px; font-size: 12px; color: var(--ink-soft); letter-spacing: 0; text-transform: none; }
+/* ---- overview: two columns, import + tag pies + highest on the left, a chart per year on the right ---- */
+.dash { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 20px; align-items: start; }
+.dash-col { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.legend { display: flex; gap: 14px; font-size: 12px; font-weight: 400; color: var(--ink-soft); }
 .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
-.year + .year { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--rule); }
-.year-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; margin-bottom: 10px; }
-.year-head h3 { margin: 0; font: 600 17px/1.2 var(--sans); font-variant-numeric: tabular-nums; }
-.year-head span { font-size: 13px; color: var(--muted); }
-.year-head b { font-weight: 500; color: var(--ink-soft); }
-.delta.up { color: var(--in); }
-.mchart { display: grid; grid-template-columns: 52px minmax(0, 1fr); column-gap: 6px; }
-.maxis { display: grid; grid-template-rows: var(--up) var(--down) 24px; font-size: 11px; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
-.maxis span:first-child { align-self: start; margin-top: -2px; }
-.maxis span:nth-child(2) { align-self: end; margin-bottom: -2px; }
-.mgrid { position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); }
-.mgrid::before { content: ''; position: absolute; left: 0; right: 0; top: var(--up); height: 1px; margin-top: -0.5px; background: var(--rule-strong); }
-.mgrid::after { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--rule); }
-.mcol { display: grid; grid-template-rows: var(--up) var(--down) 24px; border-radius: 6px; text-decoration: none; outline-offset: -2px; }
-.mcol:hover, .mcol:focus-visible { background: var(--hover); }
-.mcell { display: flex; justify-content: center; }
-.mcell.up { align-items: flex-end; padding-bottom: 1px; }
-.mcell.down { align-items: flex-start; padding-top: 1px; }
-.mbar { width: min(22px, 58%); }
-.mbar.in { background: var(--in-mark); border-radius: 4px 4px 0 0; }
-.mbar.out { background: var(--out-mark); border-radius: 0 0 4px 4px; }
-.mlabel { align-self: center; text-align: center; font-size: 11px; color: var(--muted); }
-.mcol.empty .mlabel { color: var(--faint); }
-details.table { margin-top: 10px; font-size: 13px; }
-details.table summary { cursor: pointer; color: var(--muted); width: max-content; }
-details.table summary:hover { color: var(--ink); }
-.tablewrap { overflow-x: auto; }
-table.data { width: 100%; border-collapse: collapse; margin-top: 8px; font-variant-numeric: tabular-nums; }
-table.data th, table.data td { padding: 6px 10px 6px 0; text-align: right; border-top: 1px solid var(--rule); white-space: nowrap; }
-table.data th:first-child, table.data td:first-child { text-align: left; }
-table.data th { font-weight: 500; color: var(--muted); border-top: 0; }
 
-.tip {
-  position: fixed; z-index: 30; pointer-events: none; min-width: 170px;
-  padding: 10px 12px; border-radius: 10px; background: var(--surface); border: 1px solid var(--rule);
-  box-shadow: var(--shadow); font-size: 13px;
+.card-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 12px; margin-bottom: 14px; }
+.card-head h2 { margin: 0; font-size: 15px; font-weight: 600; }
+.card-acts { display: flex; flex-wrap: wrap; gap: 8px; }
+.import-card .lead { margin: 0; padding: 0 16px 16px; color: var(--muted); font-size: 14px; }
+.upload-drop {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 14px;
+  border: 1px dashed var(--rule); border-radius: 8px; background: var(--hover);
 }
-.tip .t { color: var(--muted); margin-bottom: 4px; }
-.tip .r { display: flex; align-items: center; gap: 8px; }
-.tip .r b { font: 500 13px/1.6 var(--mono); }
-.tip .r span { color: var(--ink-soft); }
-.tip .r i { width: 10px; height: 2px; border-radius: 1px; flex: none; }
-.tip .f { margin-top: 4px; padding-top: 4px; border-top: 1px solid var(--rule); color: var(--ink-soft); }
+.upload-drop .btn { height: 34px; padding: 0 14px; }
+.upload-drop .hint { flex: 1; min-width: 180px; color: var(--muted); font-size: 13px; }
+
+.pie-body { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.pie { width: 200px; height: 200px; flex: none; }
+.pie-legend { list-style: none; margin: 0; padding: 0; flex: 1; min-width: 220px; display: flex; flex-direction: column; gap: 4px; }
+.pie-legend li { font-size: 13px; }
+.pie-legend a { display: flex; align-items: center; gap: 8px; padding: 3px 0; color: inherit; text-decoration: none; }
+.pie-legend a:hover .tg { text-decoration: underline; }
+.pie-legend i { width: 11px; height: 11px; border-radius: 3px; flex: none; }
+.pie-legend .tg { font-weight: 500; text-transform: capitalize; }
+.pie-legend .v { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pie-note { margin: 14px 0 0; font-size: 13px; color: var(--muted); }
+
+.ylist-label { margin-bottom: 8px; font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.ylist-row { display: flex; align-items: baseline; gap: 12px; padding: 3px 0; }
+.ylist-row button { flex: none; min-width: 48px; padding: 0; border: 0; background: none; color: var(--accent); font-weight: 700; text-align: left; }
+.ylist-row button:hover { text-decoration: underline; }
+.ylist-banks { display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.ylist-banks span { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); }
+.ylist-banks i { width: 9px; height: 9px; border-radius: 2px; flex: none; }
+
+.highest > h2 { margin: 0 0 12px; font-size: 20px; font-weight: 600; }
+.highest .card + .card { margin-top: 16px; }
+
+.yblock { scroll-margin-top: 96px; }
+.yhead { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.yhead h3 { margin: 0; font-size: 18px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.ystats { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; text-align: right; }
+.ystat { font-size: 12px; color: var(--muted); }
+.ystat strong { font-weight: 700; font-variant-numeric: tabular-nums; }
+.ystat.ok { color: var(--in); }
+.ystat.bad { color: var(--danger); }
+.ydelta { margin-left: 10px; }
+.ydelta b { font-weight: 600; }
+.ychart { position: relative; display: grid; grid-template-columns: 52px minmax(0, 1fr); column-gap: 8px; }
+.yaxis { position: relative; height: 150px; font-size: 10px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.yaxis span { position: absolute; right: 0; transform: translateY(-50%); white-space: nowrap; }
+.yplot { position: relative; min-width: 0; }
+.ybox { position: relative; height: 150px; }
+.ybox .gl { position: absolute; left: 0; right: 0; height: 0; border-top: 1px dashed var(--rule); }
+.ybox svg { position: absolute; inset: 0; display: block; width: 100%; height: 100%; overflow: visible; }
+.ym { outline: none; }
+.ym .hit { fill: transparent; }
+.ym:focus-visible .hit { fill: var(--accent-soft); }
+.ym .bar { opacity: 0.95; transition: opacity 0.12s; }
+.ychart.hovering .ym:not(.on) .bar { opacity: 0.4; }
+.ymonths { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); margin-top: 6px; font-size: 10px; color: var(--muted); text-align: center; }
+.ytip {
+  position: absolute; top: 4px; right: 8px; z-index: 2; pointer-events: none;
+  display: flex; flex-direction: column; gap: 2px;
+  padding: 6px 10px; border-radius: 6px; background: rgb(17 24 39 / 0.92); color: #fff; font-size: 12px;
+}
+.ytip strong { font-weight: 600; }
+.ytip span { display: inline-flex; align-items: center; gap: 6px; }
+.ytip i { width: 8px; height: 8px; border-radius: 2px; flex: none; }
+.ytip .tot { margin-top: 2px; color: #86efac; }
 
 /* ---- horizontal bars (by tag) ---- */
 .hbars { list-style: none; margin: 0; padding: 0; }
@@ -336,7 +345,7 @@ table.data th { font-weight: 500; color: var(--muted); border-top: 0; }
 .hb-bar.out { background: var(--out-mark); }
 .hb-bar.in { background: var(--in-mark); }
 .hb-bar.rest { background: var(--faint); }
-.hb-val { font: 500 13px/1 var(--mono); font-variant-numeric: tabular-nums; text-align: right; }
+.hb-val { font: 500 13px/1 var(--sans); font-variant-numeric: tabular-nums; text-align: right; }
 .hb-pct { font-size: 12px; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
 .hbars .muted-row .hb-name { color: var(--muted); }
 
@@ -389,7 +398,7 @@ a.name:hover { text-decoration: underline; }
 .more { padding: 16px 0 4px; text-align: center; color: var(--muted); font-size: 13px; }
 
 .summary { display: flex; flex-wrap: wrap; gap: 6px 22px; align-items: baseline; margin-bottom: 8px; font-size: 14px; color: var(--ink-soft); }
-.summary b { font: 500 14px/1 var(--mono); color: var(--ink); }
+.summary b { font: 600 14px/1 var(--sans); color: var(--ink); font-variant-numeric: tabular-nums; }
 .summary b.in { color: var(--in); }
 
 /* ---- person / tag / month heads ---- */
@@ -399,7 +408,7 @@ a.name:hover { text-decoration: underline; }
 .rename input { height: 32px; width: 240px; max-width: 100%; padding: 0 10px; border: 1px solid var(--rule-strong); border-radius: 8px; background: var(--surface); }
 .stats { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 16px; }
 .stats div { font-size: 13px; color: var(--muted); }
-.stats b { display: block; font: 500 17px/1.3 var(--mono); color: var(--ink); }
+.stats b { display: block; font: 600 17px/1.3 var(--sans); color: var(--ink); font-variant-numeric: tabular-nums; }
 .stats b.in { color: var(--in); }
 .pager { display: flex; gap: 6px; margin-top: 12px; }
 .people-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
@@ -425,7 +434,7 @@ a.name:hover { text-decoration: underline; }
 /* ---- tag picker ---- */
 .picker {
   position: absolute; z-index: 40; width: 260px; padding: 8px;
-  background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; box-shadow: var(--shadow);
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; box-shadow: var(--shadow);
 }
 .picker input { width: 100%; height: 34px; padding: 0 10px; border: 1px solid var(--rule-strong); border-radius: 8px; background: var(--surface); font-size: 14px; }
 .picker ul { list-style: none; margin: 6px 0 0; padding: 0; max-height: 272px; overflow-y: auto; }
@@ -447,7 +456,7 @@ a.name:hover { text-decoration: underline; }
   max-width: calc(100vw - 32px); padding: 10px 16px; border-radius: 10px;
   background: var(--ink); color: var(--bg); font-size: 14px; box-shadow: var(--shadow);
 }
-.banner { margin-top: 18px; padding: 10px 14px; border-radius: 10px; background: var(--danger-soft); color: var(--danger); font-size: 14px; }
+.banner { margin: 0 0 20px; padding: 10px 14px; border-radius: 8px; background: var(--danger-soft); color: var(--danger); font-size: 14px; }
 dialog { border: 1px solid var(--rule); border-radius: 14px; padding: 22px; max-width: 420px; width: calc(100vw - 32px); background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
 dialog::backdrop { background: rgb(0 0 0 / 0.35); }
 dialog h3 { margin: 0 0 6px; font-size: 17px; }
@@ -455,18 +464,15 @@ dialog p { margin: 0; color: var(--ink-soft); font-size: 14px; }
 dialog .acts { display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px; }
 
 @media (max-width: 900px) {
-  .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .grid2 { grid-template-columns: minmax(0, 1fr); }
+  .grid2, .dash { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 720px) {
   .shell { padding: 20px 16px 88px; }
-  .top { gap: 12px; }
-  .brand h1 { font-size: 26px; }
-  .tabs { order: 3; width: 100%; }
-  .tabs a { flex: 1 0 auto; justify-content: center; gap: 4px; padding: 0 7px; font-size: 13.5px; }
+  .nav { flex-wrap: wrap; gap: 10px 16px; padding: 14px 16px; }
+  .tools { margin-left: auto; }
+  .tabs { order: 3; width: 100%; margin-left: 0; gap: 22px; }
   .seg { width: 100%; }
   .seg button { flex: 1 0 auto; padding: 0 8px; }
-  .tools .label-long { display: none; }
   .steps { grid-template-columns: minmax(0, 1fr); }
   .card { padding: 16px; }
   .prow, .prow.norank { grid-template-columns: minmax(0, 1fr) auto; }
@@ -477,18 +483,16 @@ dialog .acts { display: flex; justify-content: flex-end; gap: 8px; margin-top: 2
   .tx .when a { display: inline; }
   .hbars a, .hbars .hb-row { grid-template-columns: minmax(70px, 7rem) minmax(0, 1fr) auto; }
   .hb-pct { display: none; }
-  .mchart { grid-template-columns: 40px minmax(0, 1fr); }
-  .mlabel .long { display: none; }
+  .ychart { grid-template-columns: 40px minmax(0, 1fr); column-gap: 6px; }
+  .yhead { flex-direction: column; }
+  .ystats { align-items: flex-start; text-align: left; }
+  .ydelta { margin-left: 6px; }
+  .pie { width: 160px; height: 160px; }
   /* Pinned to the top so the on-screen keyboard can't cover it. */
   .picker.sheet { position: fixed; left: 8px !important; right: 8px; top: 8px !important; width: auto; }
   .picker.sheet ul { max-height: 38vh; }
 }
-@media (min-width: 721px) { .mlabel .short { display: none; } }
 @media (hover: none) { .picker .foot { display: none; } }
-@media (max-width: 480px) {
-  .kpis { grid-template-columns: minmax(0, 1fr); }
-  .kpi dd { font-size: 22px; }
-}
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 <script>
@@ -500,33 +504,23 @@ try {
 </script>
 </head>
 <body>
-<div class="shell">
-  <header class="top">
+<header class="nav">
+  <a class="brand" href="#/">Statements</a>
+  <nav class="tabs" id="tabs" aria-label="Views">
+    <a href="#/" data-view="overview">Overview</a>
+    <a href="#/label" data-view="label">Label <span class="badge" id="label-count" hidden></span></a>
+    <a href="#/transfers" data-view="transfers">Transfers</a>
+    <a href="#/tags" data-view="tags">Tags</a>
+    <a href="#/banks" data-view="banks">Banks</a>
+  </nav>
+  <div class="tools">
     <a class="icon-btn" href="index.html" aria-label="Home" title="Home"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V19a1 1 0 0 0 1 1h3.5v-5.5h4V20h3.5a1 1 0 0 0 1-1V9.5"/></svg></a>
-    <a class="brand" href="#/">
-      <h1>Statements</h1>
-      <p>read on your device · nothing uploaded</p>
-    </a>
-    <nav class="tabs" id="tabs" aria-label="Views">
-      <a href="#/" data-view="overview">Overview</a>
-      <a href="#/label" data-view="label">Label <span class="badge" id="label-count" hidden></span></a>
-      <a href="#/transfers" data-view="transfers">Transfers</a>
-      <a href="#/tags" data-view="tags">Tags</a>
-      <a href="#/banks" data-view="banks">Banks</a>
-    </nav>
-    <div class="tools">
-      <button type="button" class="btn primary" id="import-btn">
-        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4.5M7.8 8.7 12 4.5l4.2 4.2"></path><path d="M4.5 14.5v3.3a1.7 1.7 0 0 0 1.7 1.7h11.6a1.7 1.7 0 0 0 1.7-1.7v-3.3"></path></svg>
-        <span>Import<span class="label-long"> statements</span></span>
-      </button>
-      <button type="button" class="icon-btn" id="export-btn" aria-label="Download a backup" title="Download a backup" hidden>
-        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5V15M7.8 10.8 12 15l4.2-4.2"></path><path d="M4.5 14.5v3.3a1.7 1.7 0 0 0 1.7 1.7h11.6a1.7 1.7 0 0 0 1.7-1.7v-3.3"></path></svg>
-      </button>
-      <button type="button" class="icon-btn" id="figures-btn"></button>
-      <button type="button" class="icon-btn" id="theme-btn"></button>
-      <input type="file" id="file-input" accept=".pdf,application/pdf,.json,application/json" multiple hidden>
-    </div>
-  </header>
+    <button type="button" class="icon-btn" id="figures-btn"></button>
+    <button type="button" class="icon-btn" id="theme-btn"></button>
+    <input type="file" id="file-input" accept=".pdf,application/pdf,.json,application/json" multiple hidden>
+  </div>
+</header>
+<div class="shell">
 
   <div class="banner" id="storage-banner" role="alert" hidden>This browser isn’t letting the page save, so everything is lost when you close the tab. Download a backup before you go.</div>
 
@@ -544,7 +538,6 @@ try {
   <ul id="picker-list" role="listbox" aria-label="Tags"></ul>
   <div class="foot">↑ ↓ to move · Enter to choose · Esc to close</div>
 </div>
-<div class="tip" id="tip" aria-hidden="true" hidden></div>
 <div class="dropzone" id="dropzone" hidden><div>Drop statements to import</div></div>
 <div class="toast" id="toast" role="status" hidden></div>
 <dialog id="confirm">
@@ -1949,11 +1942,11 @@ const nextFrame = () =>
 // return a mask instead — the same length whatever the amount.
 const nf = new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' });
 const naira = (kobo) => (prefs.hideFigures ? '₦•••••' : nf.format(Math.abs(kobo) / 100));
-function compact(kobo) {
+function compact(kobo, digits = 1) {
   if (prefs.hideFigures) return '₦•••';
   const n = Math.abs(kobo) / 100;
   const [v, unit] = n >= 1e9 ? [n / 1e9, 'B'] : n >= 1e6 ? [n / 1e6, 'M'] : n >= 1e3 ? [n / 1e3, 'K'] : [n, ''];
-  const shown = !unit || v >= 100 ? Math.round(v) : v.toFixed(1).replace(/\.0$/, '');
+  const shown = !unit || v >= 100 ? Math.round(v) : v.toFixed(digits).replace(/\.?0+$/, '');
   return '₦' + shown + unit;
 }
 const signed = (t) => (t.transfer_type === 'credit' ? '+' : '−') + naira(t.amount);
@@ -2598,7 +2591,6 @@ let listObserver = null;
 
 function route() {
   closePicker();
-  hideTip();
   const raw = location.hash.replace(/^#\/?/, '');
   const [view = '', ...rest] = raw.split('/');
   let arg = rest.join('/');
@@ -2614,7 +2606,6 @@ function route() {
     if (on) a.setAttribute('aria-current', 'page');
     else a.removeAttribute('aria-current');
   });
-  $('export-btn').hidden = !data.transfers.length;
   paintLabelCount();
   if (listObserver) listObserver.disconnect();
 
@@ -2680,146 +2671,205 @@ function totalsOf(rows) {
 
 let overviewRows = [];
 
-function viewOverview() {
-  const years = yearsWithData();
-  const year = years.includes(prefs.year) ? prefs.year : 'all';
-  overviewRows = year === 'all' ? data.transfers : data.transfers.filter((t) => t.created_at.startsWith(year));
-  const s = totalsOf(overviewRows);
-  const banks = new Set(overviewRows.map((t) => t.account_id)).size;
+// Tag colours for the two pies: the biggest tags get the most distinct hues, and
+// a tag has the same colour in both pies.
+const PIE_COLORS = [
+  '#2563eb', '#16a34a', '#f59e0b', '#dc2626', '#7c3aed', '#0891b2', '#db2777',
+  '#65a30d', '#ea580c', '#0d9488', '#9333ea', '#ca8a04', '#e11d48', '#4f46e5',
+  '#84cc16', '#f97316', '#06b6d4', '#a855f7', '#10b981', '#eab308', '#f43f5e',
+  '#3b82f6', '#14b8a6', '#8b5cf6', '#ef4444', '#22c55e', '#6366f1', '#ec4899',
+  '#0ea5e9', '#d946ef', '#475569', '#78716c',
+];
+const bankOf = (t) => ix.accounts.get(t.account_id)?.bank_name || '?';
 
+// Banks by all-time money in, biggest first: the year charts stack them in
+// this order, bottom up.
+function banksByCredits() {
+  const sums = new Map(data.accounts.map((a) => [a.bank_name, 0]));
+  for (const t of data.transfers) if (t.transfer_type === 'credit') sums.set(bankOf(t), (sums.get(bankOf(t)) || 0) + t.amount);
+  return [...sums].sort((a, b) => b[1] - a[1]).map(([bank]) => bank);
+}
+
+function viewOverview() {
+  overviewRows = data.transfers;
+  const banks = banksByCredits();
   view.innerHTML = `
-    <div class="years" role="group" aria-label="Year">
-      ${['all', ...years].map((y) => `<button type="button" data-year="${y}" aria-pressed="${y === year}">${y === 'all' ? 'All years' : y}</button>`).join('')}
-    </div>
-    <dl class="kpis">
-      <div class="card kpi"><dt><span class="key" style="background:var(--in-mark)"></span>Money in</dt><dd title="${naira(s.in)}">${compact(s.in)}</dd><div class="sub">${naira(s.in)}</div></div>
-      <div class="card kpi"><dt><span class="key" style="background:var(--out-mark)"></span>Money out</dt><dd title="${naira(s.out)}">${compact(s.out)}</dd><div class="sub">${s.charges ? `incl. ${naira(s.charges)} in bank charges` : naira(s.out)}</div></div>
-      <div class="card kpi" id="kpi-labelled"></div>
-      <div class="card kpi"><dt>Covering</dt><dd>${plural(s.count, 'transfer')}</dd><div class="sub">${esc(fmtRange(s.first, s.last))} · ${plural(banks, 'bank')}</div></div>
-    </dl>
-    <section class="card">
-      <h2 class="sect"><span>Month by month</span><span class="legend"><span><i style="background:var(--in-mark)"></i>Money in</span><span><i style="background:var(--out-mark)"></i>Money out</span></span></h2>
-      ${monthCharts(year, years)}
-    </section>
-    <div class="grid2">
-      <section class="card"><h2 class="sect"><span>Money out by tag</span></h2><div id="tag-out"></div></section>
-      <section class="card"><h2 class="sect"><span>Money in by tag</span></h2><div id="tag-in"></div></section>
-    </div>
-    <div class="grid2">
-      <section class="card"><h2 class="sect"><span>Sent the most to</span></h2>${topPeople(overviewRows, 'debit')}</section>
-      <section class="card"><h2 class="sect"><span>Received the most from</span></h2>${topPeople(overviewRows, 'credit')}</section>
+    <div class="dash">
+      <div class="dash-col">
+        <section class="card import-card">
+          <div class="card-head">
+            <h2>Import a statement</h2>
+            <div class="card-acts">
+              <button type="button" class="btn quiet" data-act="export" title="Download one file with every transfer, tag and name. Import it here to restore it.">⬇ Export combined</button>
+              <button type="button" class="btn danger" data-act="wipe" title="Delete every transfer from this browser. Tags and names stay.">Delete all transfers</button>
+            </div>
+          </div>
+          <p class="lead">Add bank statement PDFs, or a combined-export JSON to restore a backup. Duplicates are detected automatically, and nothing leaves this browser.</p>
+          <div class="upload-drop">
+            <button type="button" class="btn" data-act="pick">Choose PDFs</button>
+            <span class="hint">or drop statements here — you can add as many as you like</span>
+          </div>
+        </section>
+        <div class="dash-col" id="tag-pies"></div>
+        ${yearList(banks)}
+        <section class="highest">
+          <h2>Highest</h2>
+          <section class="card"><h2 class="sect"><span>Received the most from</span></h2>${topPeople(overviewRows, 'credit')}</section>
+          <section class="card"><h2 class="sect"><span>Sent the most to</span></h2>${topPeople(overviewRows, 'debit')}</section>
+        </section>
+      </div>
+      <div class="dash-col">${yearCharts(banks)}</div>
     </div>`;
   paintTagPanels();
 }
 
+// Overview: two tag pies. A month: tag bars.
 function paintTagPanels() {
-  if (!$('tag-out')) return;
-  $('tag-out').innerHTML = tagBars(overviewRows, 'debit');
-  $('tag-in').innerHTML = tagBars(overviewRows, 'credit');
-  if (!$('kpi-labelled')) return;
-  // Share of the money you can label (not bank charges, and with someone named
-  // on the statement) whose counterparty carries a tag.
-  let total = 0;
-  let tagged = 0;
-  for (const t of overviewRows) {
+  if ($('tag-pies')) $('tag-pies').innerHTML = tagPies(overviewRows);
+  if ($('tag-out')) {
+    $('tag-out').innerHTML = tagBars(overviewRows, 'debit');
+    $('tag-in').innerHTML = tagBars(overviewRows, 'credit');
+  }
+}
+
+function pieSvg(parts) {
+  const total = parts.reduce((s, [v]) => s + v, 0);
+  if (parts.length === 1) return `<svg class="pie" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="100" fill="${parts[0][1]}"/></svg>`;
+  const at = (a) => `${(100 + 100 * Math.cos(a)).toFixed(2)} ${(100 + 100 * Math.sin(a)).toFixed(2)}`;
+  let a = -Math.PI / 2; // from 12 o'clock, clockwise
+  const paths = parts
+    .map(([v, color]) => {
+      const frac = v / total;
+      const a0 = a;
+      a += frac * 2 * Math.PI;
+      return `<path d="M100 100 L${at(a0)} A100 100 0 ${frac > 0.5 ? 1 : 0} 1 ${at(a)}Z" fill="${color}"/>`;
+    })
+    .join('');
+  return `<svg class="pie" viewBox="0 0 200 200" aria-hidden="true">${paths}</svg>`;
+}
+
+// Money out and money in by tag, leaving out bank charges. Money from people
+// with no tag yet, or no name on the statement, is noted under each pie.
+function tagPies(rows) {
+  const sums = { debit: new Map(), credit: new Map() };
+  const left = { debit: { unlabelled: 0, nameless: 0 }, credit: { unlabelled: 0, nameless: 0 } };
+  for (const t of rows) {
+    if (t.transfer_category === 'charge') continue;
     const key = partyKeyOf(t);
-    if (t.transfer_category === 'charge' || !key) continue;
-    total += t.amount;
-    if (tagsOf(key).size) tagged += t.amount;
-  }
-  const share = total ? tagged / total : 0;
-  const left = labelable().filter((p) => !tagsOf(p.key).size).length;
-  $('kpi-labelled').innerHTML = `<dt>Labelled</dt><dd>${Math.round(share * 100)}%</dd>
-    <div class="meter" role="meter" aria-label="Share of money labelled" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(share * 100)}"><i style="width:${(share * 100).toFixed(1)}%"></i></div>
-    <div class="sub">${left ? `<a class="link" href="#/label">${plural(left, 'person', 'people')} to label →</a>` : 'Everyone is labelled'}</div>`;
-}
-
-// Average money in per month with any money in, by year, from every transfer,
-// so one selected year can still be compared with the year before.
-function averageInByYear() {
-  const byMonth = new Map();
-  for (const t of data.transfers) {
-    if (t.transfer_type !== 'credit') continue;
-    const ym = t.created_at.slice(0, 7);
-    byMonth.set(ym, (byMonth.get(ym) || 0) + t.amount);
-  }
-  const sums = new Map();
-  for (const [ym, v] of byMonth) {
-    const s = sums.get(ym.slice(0, 4)) || { v: 0, n: 0 };
-    s.v += v;
-    s.n++;
-    sums.set(ym.slice(0, 4), s);
-  }
-  return new Map([...sums].map(([y, s]) => [y, s.v / s.n]));
-}
-
-function monthCharts(year, years) {
-  const shown = year === 'all' ? years : [year];
-  const byYear = new Map(shown.map((y) => [y, Array.from({ length: 12 }, () => ({ in: 0, out: 0, n: 0, banks: new Map() }))]));
-  for (const t of overviewRows) {
-    const months = byYear.get(t.created_at.slice(0, 4));
-    if (!months) continue;
-    const m = months[+t.created_at.slice(5, 7) - 1];
-    m.n++;
-    if (t.transfer_type === 'credit') {
-      m.in += t.amount;
-      const bank = ix.accounts.get(t.account_id)?.bank_name || '?';
-      m.banks.set(bank, (m.banks.get(bank) || 0) + t.amount);
-    } else m.out += t.amount;
-  }
-  // One scale for every year, so bars compare across years.
-  let maxIn = 0;
-  let maxOut = 0;
-  for (const months of byYear.values()) {
-    for (const m of months) {
-      maxIn = Math.max(maxIn, m.in);
-      maxOut = Math.max(maxOut, m.out);
+    if (!key) {
+      left[t.transfer_type].nameless += t.amount;
+      continue;
     }
+    const tags = tagsOf(key);
+    if (!tags.size) left[t.transfer_type].unlabelled += t.amount;
+    for (const tag of tags) sums[t.transfer_type].set(tag, (sums[t.transfer_type].get(tag) || 0) + t.amount);
   }
-  const H = 168;
-  const up = maxIn + maxOut ? Math.max(24, Math.round((H * maxIn) / (maxIn + maxOut))) : H / 2;
-  const down = Math.max(24, H - up);
-  const avgIn = averageInByYear();
+  const both = (tag) => (sums.debit.get(tag) || 0) + (sums.credit.get(tag) || 0);
+  const ranked = [...new Set([...sums.debit.keys(), ...sums.credit.keys()])].sort((a, b) => both(b) - both(a));
+  const color = new Map(ranked.map((tag, i) => [tag, PIE_COLORS[i % PIE_COLORS.length]]));
+  const card = (title, type) => {
+    const slices = [...sums[type]].sort((a, b) => b[1] - a[1]);
+    const total = slices.reduce((s, [, v]) => s + v, 0);
+    const notes = [];
+    if (left[type].unlabelled) notes.push(`<a class="link" href="#/label">${naira(left[type].unlabelled)} not labelled yet</a>`);
+    if (left[type].nameless) notes.push(`${naira(left[type].nameless)} with no name on the statement`);
+    const body = total
+      ? `<div class="pie-body">${pieSvg(slices.map(([tag, v]) => [v, color.get(tag)]))}
+          <ul class="pie-legend">${slices
+            .map(([tag, v]) => `<li><a href="#/tag/${enc(tag)}"><i style="background:${color.get(tag)}"></i><span class="tg">${esc(tag)}</span><span class="v">${naira(v)} · ${percent(v, total)}</span></a></li>`)
+            .join('')}</ul></div>`
+      : `<p class="empty-note" style="padding-top:0">No tagged money ${type === 'credit' ? 'in' : 'out'} yet.</p>`;
+    return `<section class="card"><h2 class="sect"><span>${title}</span></h2>${body}${notes.length ? `<p class="pie-note">${notes.join(' · ')}</p>` : ''}</section>`;
+  };
+  return card('Debits by tag — money out', 'debit') + card('Credits by tag — money in', 'credit');
+}
 
-  return shown
-    .map((y) => {
-      const months = byYear.get(y);
-      const tin = months.reduce((s, m) => s + m.in, 0);
-      const tout = months.reduce((s, m) => s + m.out, 0);
-      const a = avgIn.get(y) || 0;
-      const pa = avgIn.get(String(+y - 1)) || 0;
-      const delta = pa ? ((a - pa) / pa) * 100 : null;
-      const cols = months
-        .map((m, i) => {
-          const hIn = maxIn ? (m.in / maxIn) * 100 : 0;
-          const hOut = maxOut ? (m.out / maxOut) * 100 : 0;
-          const banks = [...m.banks].sort((x, z) => z[1] - x[1]).map(([b, v]) => `${b}:${v}`).join('|');
-          return `<a class="mcol${m.n ? '' : ' empty'}" href="#/month/${y}-${pad2(i + 1)}" data-tip="${y}-${pad2(i + 1)}|${m.in}|${m.out}|${m.n}" data-banks="${esc(banks)}"
-              aria-label="${MONTHS[i]} ${y}: ${naira(m.in)} in, ${naira(m.out)} out, ${plural(m.n, 'transfer')}">
-            <span class="mcell up"><span class="mbar in" style="height:${m.in ? `max(2px, ${hIn.toFixed(2)}%)` : '0'}"></span></span>
-            <span class="mcell down"><span class="mbar out" style="height:${m.out ? `max(2px, ${hOut.toFixed(2)}%)` : '0'}"></span></span>
-            <span class="mlabel"><span class="long">${MON[i]}</span><span class="short">${MON[i][0]}</span></span>
-          </a>`;
+// Each year with any transfers, newest first, with the banks it came from.
+function yearList(banks) {
+  const per = new Map();
+  for (const t of data.transfers) {
+    const y = t.created_at.slice(0, 4);
+    if (!per.has(y)) per.set(y, new Set());
+    per.get(y).add(bankOf(t));
+  }
+  const years = [...per.keys()].sort().reverse();
+  if (!years.length) return '';
+  return `<div class="ylist"><div class="ylist-label">Available years</div>${years
+    .map((y) => `<div class="ylist-row"><button type="button" data-scroll="${y}">${y}</button><span class="ylist-banks">${banks
+      .filter((b) => per.get(y).has(b))
+      .map((b) => `<span><i style="background:${bankVar(b)}"></i>${esc(bankLabel(b))}</span>`)
+      .join('')}</span></div>`)
+    .join('')}</div>`;
+}
+
+// One card per year: money in by month, stacked by bank, all on one scale so
+// years compare. A month's average counts only months with money in.
+function yearCharts(banks) {
+  const years = new Map();
+  const yearOf = (y) => {
+    if (!years.has(y)) years.set(y, { months: Array.from({ length: 12 }, () => ({ total: 0, by: new Map() })), charges: 0, chargeCount: 0 });
+    return years.get(y);
+  };
+  for (const t of data.transfers) {
+    const yr = yearOf(t.created_at.slice(0, 4));
+    if (t.transfer_category === 'charge') {
+      yr.charges += t.amount;
+      yr.chargeCount++;
+    }
+    if (t.transfer_type !== 'credit') continue;
+    const m = yr.months[+t.created_at.slice(5, 7) - 1];
+    m.by.set(bankOf(t), (m.by.get(bankOf(t)) || 0) + t.amount);
+    m.total += t.amount;
+  }
+  const list = [...years].sort((a, b) => b[0].localeCompare(a[0]));
+  const max = Math.max(1, ...list.flatMap(([, yr]) => yr.months.map((m) => m.total)));
+  const avg = (yr) => {
+    const active = yr.months.filter((m) => m.total > 0);
+    return active.length ? active.reduce((s, m) => s + m.total, 0) / active.length : 0;
+  };
+  const ticks = [0, 0.25, 0.5, 0.75, 1].map((k) => k * max);
+  const pos = (v) => (100 - (v / max) * 100).toFixed(2);
+  return list
+    .map(([y, yr], i) => {
+      const total = yr.months.reduce((s, m) => s + m.total, 0);
+      const a = avg(yr);
+      const prev = list[i + 1];
+      const pa = prev ? avg(prev[1]) : 0;
+      const pct = pa ? ((a - pa) / pa) * 100 : null;
+      const bars = yr.months
+        .map((m, k) => {
+          let below = 0;
+          const parts = banks.filter((b) => m.by.get(b)).map((b) => [b, m.by.get(b)]);
+          const segs = parts
+            .map(([b, v]) => {
+              below += v;
+              return `<rect class="bar" x="${k * 100 + 20}" y="${pos(below)}" width="60" height="${((v / max) * 100).toFixed(3)}" style="fill:${bankVar(b)}"/>`;
+            })
+            .join('');
+          const ym = `${y}-${pad2(k + 1)}`;
+          return `<a class="ym" href="#/month/${ym}" data-ym="${ym}" data-total="${m.total}" data-by="${esc(JSON.stringify(parts))}" aria-label="${MONTHS[k]} ${y}: ${naira(m.total)} in"><rect class="hit" x="${k * 100}" y="0" width="100" height="100"/>${segs}</a>`;
         })
         .join('');
-      const rows = months
-        .map((m, i) => (m.n ? `<tr><td>${MONTHS[i]}</td><td>${naira(m.in)}</td><td>${naira(m.out)}</td><td>${m.in >= m.out ? '+' : '−'}${naira(m.in - m.out)}</td><td>${m.n.toLocaleString()}</td></tr>` : ''))
-        .join('');
-      return `<div class="year">
-        <div class="year-head">
+      return `<section class="card yblock" id="year-${y}">
+        <div class="yhead">
           <h3>${y}</h3>
-          <span>In <b>${naira(tin)}</b></span>
-          <span>Out <b>${naira(tout)}</b></span>
-          <span>Average in <b>${compact(a)}</b> a month${delta === null ? '' : ` <span class="delta ${delta >= 0 ? 'up' : ''}">${delta >= 0 ? '▲' : '▼'} ${Math.abs(delta).toFixed(1)}%</span> vs ${+y - 1}`}</span>
+          <div class="ystats">
+            <span class="ystat${pct === null ? '' : pct >= 0 ? ' ok' : ' bad'}">Monthly avg: <strong>${naira(a)}</strong>${pct === null ? '' : `<span class="ydelta"><b>${pct >= 0 ? '▲' : '▼'} ${Math.abs(pct).toFixed(1)}%</b> vs ${prev[0]}</span>`}</span>
+            <span class="ystat">Total credits: <strong>${naira(total)}</strong></span>
+            ${yr.chargeCount ? `<span class="ystat">Charges: <strong>${naira(yr.charges)}</strong> (${yr.chargeCount.toLocaleString()})</span>` : ''}
+          </div>
         </div>
-        <div class="mchart" style="--up:${up}px;--down:${down}px">
-          <div class="maxis" aria-hidden="true"><span>${compact(maxIn)}</span><span>${compact(maxOut)}</span></div>
-          <div class="mgrid">${cols}</div>
+        <div class="ychart">
+          <div class="yaxis" aria-hidden="true">${ticks.map((v) => `<span style="top:${pos(v)}%">${compact(v, 2)}</span>`).join('')}</div>
+          <div class="yplot">
+            <div class="ybox">${ticks.map((v) => `<i class="gl" style="top:${pos(v)}%"></i>`).join('')}
+              <svg viewBox="0 0 1200 100" preserveAspectRatio="none" role="group" aria-label="Money in by month, ${y}">${bars}</svg>
+            </div>
+            <div class="ymonths" aria-hidden="true">${MON.map((mn) => `<span>${mn}</span>`).join('')}</div>
+          </div>
+          <div class="ytip" hidden></div>
         </div>
-        <details class="table"><summary>Show ${y} as a table</summary><div class="tablewrap"><table class="data">
-          <thead><tr><th>Month</th><th>In</th><th>Out</th><th>Net</th><th>Transfers</th></tr></thead><tbody>${rows}</tbody>
-        </table></div></details>
-      </div>`;
+      </section>`;
     })
     .join('');
 }
@@ -2890,68 +2940,66 @@ function topPeople(rows, type, limit = 8) {
 }
 
 view.addEventListener('click', (e) => {
-  const y = e.target.closest('[data-year]');
-  if (!y) return;
-  prefs.year = y.dataset.year;
-  savePrefs();
-  viewOverview();
+  const b = e.target.closest('[data-scroll]');
+  if (!b) return;
+  const smooth = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  $('year-' + b.dataset.scroll)?.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
 });
 
-// Month tooltip: values lead, the month follows.
-const tip = $('tip');
-function showTip(col) {
-  const [ym, vin, vout, n] = col.dataset.tip.split('|');
-  const net = vin - vout;
-  tip.replaceChildren();
-  const add = (cls, text) => {
-    const el = document.createElement('div');
-    el.className = cls;
-    el.textContent = text;
-    tip.append(el);
-    return el;
-  };
-  add('t', fmtMonth(ym));
-  for (const [label, v, color] of [['in', +vin, 'var(--in-mark)'], ['out', +vout, 'var(--out-mark)']]) {
-    const r = add('r', '');
-    const key = document.createElement('i');
-    key.style.background = color;
-    const b = document.createElement('b');
-    b.textContent = naira(v);
+// Year chart tooltip: the month, each bank's money in, the total. The other
+// months fade while one is pointed at or focused.
+function showYearTip(ym) {
+  const chart = ym.closest('.ychart');
+  const box = chart.querySelector('.ytip');
+  chart.classList.add('hovering');
+  chart.querySelectorAll('.ym.on').forEach((x) => x.classList.remove('on'));
+  ym.classList.add('on');
+  const line = (text, cls = '') => {
     const s = document.createElement('span');
-    s.textContent = label;
-    r.append(key, b, s);
+    if (cls) s.className = cls;
+    s.textContent = text;
+    box.append(s);
+    return s;
+  };
+  box.replaceChildren();
+  const head = document.createElement('strong');
+  head.textContent = fmtMonth(ym.dataset.ym);
+  box.append(head);
+  const parts = JSON.parse(ym.dataset.by || '[]');
+  if (!parts.length) line('No money in');
+  for (const [bank, v] of parts) {
+    const key = document.createElement('i');
+    key.style.background = bankVar(bank);
+    line(`${bankLabel(bank)}: ${naira(v)}`).prepend(key);
   }
-  const banks = col.dataset.banks ? col.dataset.banks.split('|').map((x) => x.split(':')) : [];
-  const via = banks.length > 1 ? ` · in via ${banks.map(([b]) => bankLabel(b)).join(', ')}` : '';
-  add('f', `Net ${net >= 0 ? '+' : '−'}${naira(net)} · ${plural(+n, 'transfer')}${via}`);
-  tip.hidden = false;
-  const r = col.getBoundingClientRect();
-  const w = tip.offsetWidth;
-  const h = tip.offsetHeight;
-  const left = Math.min(Math.max(8, r.left + r.width / 2 - w / 2), innerWidth - w - 8);
-  const top = r.top - h - 8 > 8 ? r.top - h - 8 : r.bottom + 8;
-  tip.style.left = left + 'px';
-  tip.style.top = top + 'px';
+  line(`Total: ${naira(+ym.dataset.total)}`, 'tot');
+  box.hidden = false;
 }
-function hideTip() {
-  tip.hidden = true;
+function hideYearTip(chart) {
+  chart.classList.remove('hovering');
+  chart.querySelectorAll('.ym.on').forEach((x) => x.classList.remove('on'));
+  chart.querySelector('.ytip').hidden = true;
 }
 view.addEventListener('pointerover', (e) => {
-  const col = e.target.closest('.mcol');
-  if (col) showTip(col);
+  const ym = e.target.closest('.ym');
+  if (ym) showYearTip(ym);
+  // Start fetching the PDF reader as soon as the pointer nears a "Choose PDFs" button.
+  if (e.target.closest('[data-act="pick"], .drop')) loadPdfjs().catch(() => {});
 });
 view.addEventListener('pointerout', (e) => {
-  const col = e.target.closest('.mcol');
-  if (col && !col.contains(e.relatedTarget)) hideTip();
+  const ym = e.target.closest('.ym');
+  if (!ym || ym.contains(e.relatedTarget)) return;
+  const chart = ym.closest('.ychart');
+  if (!e.relatedTarget?.closest?.('.ym') || !chart.contains(e.relatedTarget)) hideYearTip(chart);
 });
 view.addEventListener('focusin', (e) => {
-  const col = e.target.closest('.mcol');
-  if (col) showTip(col);
+  const ym = e.target.closest('.ym');
+  if (ym) showYearTip(ym);
 });
 view.addEventListener('focusout', (e) => {
-  if (e.target.closest('.mcol')) hideTip();
+  const ym = e.target.closest('.ym');
+  if (ym && !ym.closest('.ychart').contains(e.relatedTarget)) hideYearTip(ym.closest('.ychart'));
 });
-addEventListener('scroll', hideTip, { passive: true });
 
 // ---------- Label ----------
 
@@ -3445,6 +3493,7 @@ function viewBanks() {
       <h2 class="sect"><span>Your data</span></h2>
       <p class="muted" style="margin:0;font-size:14px">Everything is stored in this browser only. Download a backup to move it to another device or keep it safe; import the file (or drop it here) to restore.</p>
       <div class="data-acts">
+        <button type="button" class="btn primary" data-act="pick">Import statements</button>
         <button type="button" class="btn" data-act="export">Download backup</button>
         <label class="btn" for="file-input">Restore a backup</label>
         <button type="button" class="btn danger" data-act="wipe" ${data.transfers.length ? '' : 'disabled'}>Delete all transfers…</button>
@@ -3496,6 +3545,10 @@ view.addEventListener('click', (e) => {
   }
   else if (act === 'untag' && key) removeTag(key, btn.dataset.tag);
   else if (act === 'export') exportBackup();
+  else if (act === 'pick') {
+    loadPdfjs().catch(() => {});
+    $('file-input').click();
+  }
   else if (act === 'tag-all') {
     const tag = btn.dataset.tag;
     if (openTags.has(tag)) openTags.delete(tag);
@@ -3718,16 +3771,10 @@ function toast(message) {
 
 // ---------- Files in ----------
 
-$('import-btn').addEventListener('click', () => {
-  loadPdfjs().catch(() => {});
-  $('file-input').click();
-});
-$('import-btn').addEventListener('pointerenter', () => loadPdfjs().catch(() => {}), { once: true });
 $('file-input').addEventListener('change', (e) => {
   addFiles(e.target.files);
   e.target.value = '';
 });
-$('export-btn').addEventListener('click', exportBackup);
 
 let dragDepth = 0;
 const hasFiles = (e) => [...(e.dataTransfer?.types || [])].includes('Files');
