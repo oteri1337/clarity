@@ -273,7 +273,8 @@ select.sel { height: 34px; padding: 0 8px; border: 1px solid var(--rule); border
 .pie { width: 200px; height: 200px; flex: none; }
 .pie-legend { list-style: none; margin: 0; padding: 0; flex: 1; min-width: 220px; display: flex; flex-direction: column; gap: 4px; }
 .pie-legend li { font-size: 13px; }
-.pie-legend a { display: flex; align-items: center; gap: 8px; padding: 3px 0; color: inherit; text-decoration: none; }
+.pie-legend a, .pie-legend .row { display: flex; align-items: center; gap: 8px; padding: 3px 0; color: inherit; text-decoration: none; }
+.pie-legend .extra .tg { color: var(--muted); }
 .pie-legend a:hover .tg { text-decoration: underline; }
 .pie-legend i { width: 11px; height: 11px; border-radius: 3px; flex: none; }
 .pie-legend .tg { font-weight: 500; text-transform: capitalize; }
@@ -2023,6 +2024,16 @@ function compact(kobo, digits = 1) {
 }
 const signed = (t) => (t.transfer_type === 'credit' ? '+' : '−') + naira(t.amount);
 const percent = (part, whole) => (whole ? Math.round((part / whole) * 100) + '%' : '–');
+// Like percent(), with one decimal under 10% ("2.3%", "0.4%"), and "<0.1%"
+// rather than 0% for a sliver.
+function share(part, whole) {
+  if (!whole) return '–';
+  const p = (part / whole) * 100;
+  if (p > 0 && p < 0.05) return '<0.1%';
+  return (p < 10 ? p.toFixed(1).replace(/\.0$/, '') : Math.round(p)) + '%';
+}
+// A period's income: all its money in.
+const incomeOf = (rows) => rows.reduce((s, t) => (t.transfer_type === 'credit' ? s + t.amount : s), 0);
 
 // created_at is "YYYY-MM-DD HH:MM:SS" as the statement printed it; never let a
 // time zone shift it.
@@ -2807,26 +2818,48 @@ function pieSvg(parts) {
   return `<svg class="pie" viewBox="0 0 200 200" aria-hidden="true">${paths}</svg>`;
 }
 
-// Money out and money in by tag, leaving out bank charges.
+// Money out and money in by tag, then, if you choose to show them, what's
+// untagged and (for money out) bank charges. The slices divide that money;
+// each share is of the period's income.
 function tagPies(rows) {
+  const income = incomeOf(rows);
   const sums = { debit: new Map(), credit: new Map() };
+  const untagged = { debit: 0, credit: 0 };
+  const charges = { debit: 0, credit: 0 };
   for (const t of rows) {
-    if (t.transfer_category === 'charge') continue;
-    for (const tag of tagsOf(partyKeyOf(t))) sums[t.transfer_type].set(tag, (sums[t.transfer_type].get(tag) || 0) + t.amount);
+    if (t.transfer_category === 'charge') {
+      charges[t.transfer_type] += t.amount;
+      continue;
+    }
+    const tags = tagsOf(partyKeyOf(t));
+    if (!tags.size) untagged[t.transfer_type] += t.amount;
+    for (const tag of tags) sums[t.transfer_type].set(tag, (sums[t.transfer_type].get(tag) || 0) + t.amount);
   }
   const both = (tag) => (sums.debit.get(tag) || 0) + (sums.credit.get(tag) || 0);
   const ranked = [...new Set([...sums.debit.keys(), ...sums.credit.keys()])].sort((a, b) => both(b) - both(a));
   const color = new Map(ranked.map((tag, i) => [tag, PIE_COLORS[i % PIE_COLORS.length]]));
   const card = (title, type) => {
-    const slices = [...sums[type]].sort((a, b) => b[1] - a[1]);
-    const total = slices.reduce((s, [, v]) => s + v, 0);
-    const body = total
-      ? `<div class="pie-body">${pieSvg(slices.map(([tag, v]) => [v, color.get(tag)]))}
-          <ul class="pie-legend">${slices
-            .map(([tag, v]) => `<li><a href="#/tag/${enc(tag)}"><i style="background:${color.get(tag)}"></i><span class="tg">${esc(tag)}</span><span class="v">${naira(v)} · ${percent(v, total)}</span></a></li>`)
-            .join('')}</ul></div>`
-      : `<p class="empty-note" style="padding-top:0">No tagged money ${type === 'credit' ? 'in' : 'out'} here.</p>`;
-    return `<section class="card"><h2 class="sect"><span>${title}</span></h2>${body}</section>`;
+    // Tags biggest first, then (when shown) the money no tag covers and bank charges.
+    const slices = [...sums[type]].sort((a, b) => b[1] - a[1]).map(([tag, v]) => ({ label: tag, v, color: color.get(tag), href: `#/tag/${enc(tag)}` }));
+    const rest = untagged[type] || charges[type];
+    if (prefs.showRest && untagged[type]) slices.push({ label: 'Untagged', v: untagged[type], color: '#94a3b8', href: '#/label', extra: true });
+    if (prefs.showRest && charges[type]) slices.push({ label: 'Charges', v: charges[type], color: '#a8a29e', extra: true });
+    const what = charges[type] ? 'untagged & charges' : 'untagged';
+    const toggle = rest
+      ? `<button type="button" class="btn small quiet" data-act="pie-rest" data-type="${type}" aria-pressed="${!!prefs.showRest}">${prefs.showRest ? 'Hide' : 'Show'} ${what}</button>`
+      : '';
+    const body = slices.length
+      ? `<div class="pie-body"><ul class="pie-legend">${[...slices]
+            // The key reads shortest line first; the slices stay biggest first.
+            .map((s) => ({ ...s, text: `${s.label} ${naira(s.v)} · ${share(s.v, income)}` }))
+            .sort((a, b) => a.text.length - b.text.length || b.v - a.v)
+            .map((s) => {
+              const inner = `<i style="background:${s.color}"></i><span class="tg">${esc(s.label)}</span><span class="v">${naira(s.v)} · ${share(s.v, income)}</span>`;
+              return `<li${s.extra ? ' class="extra"' : ''}>${s.href ? `<a href="${s.href}">${inner}</a>` : `<span class="row">${inner}</span>`}</li>`;
+            })
+            .join('')}</ul>${pieSvg(slices.map((s) => [s.v, s.color]))}</div>`
+      : `<p class="empty-note" style="padding-top:0">No ${prefs.showRest ? '' : 'tagged '}money ${type === 'credit' ? 'in' : 'out'} here.</p>`;
+    return `<section class="card"><div class="card-head"><h2>${title}</h2>${toggle}</div>${body}</section>`;
   };
   return card('Debits', 'debit') + card('Credits', 'credit');
 }
@@ -2922,15 +2955,14 @@ function yearCharts(banks) {
 }
 
 // Money in or out by tag, leaving out bank charges, with how many people under
-// each tag that money went to or came from. A tag's share is of all that
-// money, tagged or not.
+// each tag that money went to or came from. A tag's share is of the period's
+// income.
 function tagBars(rows, type) {
+  const income = incomeOf(rows);
   const totals = new Map();
   const people = new Map(); // tag -> party keys
-  let total = 0;
   for (const t of rows) {
     if (t.transfer_type !== type || t.transfer_category === 'charge') continue;
-    total += t.amount;
     const key = partyKeyOf(t);
     for (const tag of tagsOf(key)) {
       totals.set(tag, (totals.get(tag) || 0) + t.amount);
@@ -2950,7 +2982,7 @@ function tagBars(rows, type) {
         <span class="hb-name"><span class="nm cap">${esc(tag)}</span><span class="cnt">(${n})</span></span>
         <span class="hb-track"><span class="hb-bar ${cls}" style="width:${((v / max) * 100).toFixed(2)}%"></span></span>
         <span class="hb-val">${compact(v)}</span>
-        <span class="hb-pct">${percent(v, total)}</span>
+        <span class="hb-pct">${share(v, income)}</span>
       </a></li>`;
     })
     .join('')}</ul>`;
@@ -3613,6 +3645,13 @@ view.addEventListener('click', (e) => {
   }
   else if (act === 'untag' && key) removeTag(key, btn.dataset.tag);
   else if (act === 'export') exportBackup();
+  else if (act === 'pie-rest') {
+    // One switch for both pies; remembered.
+    prefs.showRest = !prefs.showRest;
+    savePrefs();
+    paintTagPanels();
+    $('tag-pies').querySelector(`[data-act="pie-rest"][data-type="${btn.dataset.type}"]`)?.focus();
+  }
   else if (act === 'charges') {
     prefs.hideCharges = !prefs.hideCharges;
     savePrefs();
