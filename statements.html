@@ -715,6 +715,33 @@ const Parsers = (() => {
     return prtrim(mbSubstr(line, start, end - start));
   }
 
+  // Where `text` last appears in [from, to) of `line`, in characters; -1 if not.
+  function lastAt(line, text, from, to) {
+    const cps = Array.from(line).slice(from, to ?? undefined);
+    const tx = Array.from(text);
+    for (let i = cps.length - tx.length; i >= 0; i--) if (tx.every((c, j) => cps[i + j] === c)) return from + i;
+    return -1;
+  }
+
+  // Character boundaries for a left cell [start, end) and the cell to its right
+  // (whose own data starts at `from`), when the left cell can run on past the
+  // right one's heading: "…Obi/0123456789/Opay" crosses into Description.
+  // A word crossing `end` that began before `from`, and holds a "/" like a
+  // "Name/Account/Bank" cell does, stays with the left cell.
+  function straddle(line, start, end, from) {
+    if (end == null || from == null || end <= start) return [end, from];
+    const ch = hasAstral(line) ? Array.from(line) : line;
+    const word = (c) => c !== undefined && c !== ' ';
+    if (!word(ch[end - 1]) || !word(ch[end])) return [end, from];
+    let s = end - 1;
+    while (s > start && word(ch[s - 1])) s--;
+    let e = end;
+    while (word(ch[e])) e++;
+    const w = Array.isArray(ch) ? ch.slice(s, e).join('') : ch.slice(s, e);
+    if (s >= from || !w.includes('/')) return [end, from];
+    return [e, Math.max(from, e)];
+  }
+
   // A number is never part of a name: pull a 10-digit NUBAN out of it, drop the
   // digits and payment-channel noise, and Title Case what's left.
   function cleanCounterpartyName(name, acct) {
@@ -777,7 +804,49 @@ const Parsers = (() => {
     const b = ptrim(bank == null ? '' : String(bank));
     if (b === '') return null;
     for (const [re, name] of BANKS) if (re.test(b)) return name;
+    // A wrapped column can split a word ("Paycom(Op ay)"): try it without spaces.
+    const flat = b.replace(/\s+/g, '');
+    for (const [re, name] of BANKS) if (re.test(flat)) return name;
     return b;
+  }
+
+  // OPay goes by several names on statements: "Opay Digital Services Limited"
+  // (often clipped to "…Services L", "Opay Digit Services Ltd"), "Paycom(Opay)"
+  // and "Paycom Nigeria Limited". Wherever a column wraps, clips or overruns,
+  // that's the bank, never part of the person's name.
+  const OPAY_IN_NAME = [
+    // "Opay Digital Services Limited/Ltd/L", split anywhere by a wrap; a
+    // reversal of a card payment at an OPay terminal reads the same.
+    /(?:\breversal\s+of\s+)?\bo\s?p\s?a\s?y\s+digit\w*\s+serv\w*(?:\s+(?:limited|ltd|l)\b)?/gi,
+    // "Paycom(Opay)", "Paycom(Op Ay)", "Paycom( Opay)", or clipped "Paycom(Opay"
+    /\bpaycom\s*\([^)]*\)?/gi,
+    /\bpaycom\s+nigeria(?:\s+(?:limited|ltd))?\b/gi,
+    // a word run into "(Opay)"
+    /\S*\(\s*o\s?p\s?a\s?y\s*\)/gi,
+    // "/Opay" lost to the next column, leaving "Digital Services Limited"
+    /\bdigital\s+services\s+limited\b/gi,
+    // a bare "Opay" before or after a name: "Opay Ada Stores", "Ada Obi Opay"
+    /^\s*o\s?pay\b/i,
+    /\bopay\s*$/i,
+  ];
+
+  // Take OPay out of a counterparty name: [name left (or null), bank]. The bank
+  // is OPay unless the row already had one.
+  function splitBankFromName(name, bank) {
+    if (!name) return [name, bank];
+    let found = null;
+    let rest = String(name);
+    for (const re of OPAY_IN_NAME) {
+      rest = rest.replace(re, (m) => {
+        found ??= m;
+        return ' ';
+      });
+    }
+    if (found === null) return [name, bank];
+    rest = ptrim(rest.replace(/\s{2,}/g, ' '), ' \t/,-|.:');
+    if (rest.replace(/[^\p{L}]/gu, '').length < 2) rest = null;
+    const hasBank = bank != null && ptrim(String(bank)) !== '';
+    return [rest, hasBank ? bank : /paycom/i.test(found) ? 'Paycom (OPay)' : 'Opay Digital Services Limited'];
   }
 
   // ---------- Bank detection ----------
@@ -1024,8 +1093,9 @@ const Parsers = (() => {
       const category = [];
       for (const l of g.lines) {
         const cat = ptrim(mbSliceCol(l, cols.category, tfStart));
-        let tf = ptrim(mbSliceCol(l, tfStart, cols.description));
-        let ds = ptrim(mbSliceCol(l, dsStart, cols.balance));
+        const [tfEnd, dsFrom] = straddle(l, tfStart, cols.description, dsStart);
+        let tf = ptrim(mbSliceCol(l, tfStart, tfEnd));
+        let ds = ptrim(mbSliceCol(l, dsFrom, cols.balance));
         // A negative balance's "-₦" bleeds into the description slice.
         ds = ptrim(ds.replace(/\s*-?\s*₦[\d,.]*\s*$/gu, ''));
         // The description's first letters can land at the tail of To/From
@@ -1037,6 +1107,10 @@ const Parsers = (() => {
           if (mbStrlen(frag) < mbStrlen(ds) && mbStartsWithI(ds, frag)) {
             tf = prtrim(mbSubstr(tf, 0, mbStrlen(tf) - mbStrlen(frag)));
           }
+        } else if (tf !== '' && ds !== '' && mbStrlen(tf) <= 3 && mbStrlen(tf) < mbStrlen(ds) && mbStartsWithI(ds, tf) && lastAt(l, tf, tfStart, tfEnd) >= dsStart) {
+          // To/From is empty and the description starts a little early, so its
+          // first letter or two are all To/From got ("o" of "opay …").
+          tf = '';
         }
         if (cat !== '' && !/\d/.test(cat)) category.push(cat);
         if (tf !== '') toFrom.push(tf);
@@ -1048,10 +1122,12 @@ const Parsers = (() => {
       let cpAcct = null;
       let cpBank = null;
       if (toFromFull !== '') {
-        const cpm = /^(.+?)\s*\/\s*(\d*)\s*\/\s*(.+?)\s*$/.exec(toFromFull);
+        // The column wraps mid-word, so an account number can come back as
+        // "012345 6789".
+        const cpm = /^(.+?)\s*\/\s*(\d(?: ?\d)*)?\s*\/\s*(.+?)\s*$/.exec(toFromFull);
         if (cpm) {
           cpName = ptrim(cpm[1]) !== '' ? ptrim(cpm[1]) : null;
-          cpAcct = ptrim(cpm[2]) !== '' ? ptrim(cpm[2]) : null;
+          cpAcct = cpm[2] ? cpm[2].replace(/ /g, '') : null;
           cpBank = ptrim(cpm[3]) !== '' ? ptrim(cpm[3]) : null;
         } else {
           cpName = toFromFull;
@@ -1179,10 +1255,10 @@ const Parsers = (() => {
       let cpName = null;
       let cpAcct = null;
       let cpBank = null;
-      const cpm = /^(.*?)\/\s*(\d{6,})\s*\/\s*(.*)$/.exec(tfBlob);
+      const cpm = /^(.*?)\/\s*(\d(?: ?\d){5,})\s*\/\s*(.*)$/.exec(tfBlob);
       if (cpm) {
         cpName = ptrim(cpm[1]) !== '' ? ptrim(cpm[1]) : null;
-        cpAcct = ptrim(cpm[2]) !== '' ? ptrim(cpm[2]) : null;
+        cpAcct = cpm[2].replace(/ /g, '');
         const bankGuess = ptrim(cpm[3]) !== '' ? ptrim(cpm[3]) : descBlob;
         cpBank = bankGuess !== '' ? bankGuess : null;
       }
@@ -1828,6 +1904,7 @@ const Parsers = (() => {
       row.amount = Math.abs(row.balance_after - row.balance_before);
       if (row.amount < 6000) row.transfer_category = 'charge';
       [row.account_name, row.account_number] = cleanCounterpartyName(row.account_name, row.account_number);
+      [row.account_name, row.bank_name] = splitBankFromName(row.account_name, row.bank_name);
       row.bank_name = canonicalBank(row.bank_name);
       rows.push(row);
     }
@@ -1880,7 +1957,7 @@ const Parsers = (() => {
     return lines.join('\n');
   }
 
-  return { importText, layoutPage, cleanCounterpartyName, canonicalBank, titleCase, BANK_NAMES: RULES.map((r) => r[0]) };
+  return { importText, layoutPage, cleanCounterpartyName, canonicalBank, splitBankFromName, titleCase, BANK_NAMES: RULES.map((r) => r[0]) };
 })();
 </script>
 <script>
@@ -2074,6 +2151,38 @@ async function load() {
   } catch {
     $('storage-banner').hidden = false;
   }
+  if (repairBankNames()) save(true);
+}
+
+// Transfers read before OPay was always taken as a bank can carry it in the
+// name ("Ada Obi Opay Digital Services Limited"). Take it out, set
+// the bank, and move any tag on the old name to the new one. Returns how many
+// transfers changed.
+function repairBankNames() {
+  const renamed = new Map(); // old name, lower-cased -> new name
+  let changed = 0;
+  for (const t of data.transfers) {
+    if (!t.account_name) continue;
+    const [name, bank] = Parsers.splitBankFromName(t.account_name, t.bank_name);
+    if (name === t.account_name) continue;
+    if (name) renamed.set(t.account_name.toLowerCase(), name);
+    t.account_name = name;
+    t.bank_name = Parsers.canonicalBank(bank);
+    changed++;
+  }
+  if (!changed) return 0;
+  for (const m of data.tags) {
+    const to = renamed.get(String(m.party).toLowerCase());
+    if (to) m.party = to;
+  }
+  const seen = new Set();
+  data.tags = data.tags.filter((m) => {
+    const k = `${String(m.party).toLowerCase()}\n${m.tag}`;
+    if (seen.has(k)) return false;
+    seen.add(k);
+    return true;
+  });
+  return changed;
 }
 
 // ---------- Index ----------
@@ -2493,6 +2602,7 @@ async function importBackup(item) {
   for (const [acct, name] of Object.entries(payload.names || {})) {
     if (/^\d{10}$/.test(acct) && typeof name === 'string' && name.trim() && !data.names[acct]) data.names[acct] = name.trim();
   }
+  repairBankNames();
   buildIndex();
   data.imports.unshift({ file: item.file.name, bank: 'Backup', inserted, skipped, clients: 0, at: new Date().toISOString() });
   save(true);
