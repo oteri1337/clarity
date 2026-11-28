@@ -811,6 +811,15 @@
         "name": "Comprehensive",
         "videos": [
           {
+            "channel_name": "r2schools",
+            "name": "PostgreSQL Tutorials",
+            "channel_link": "https://www.youtube.com/@r2schools",
+            "link": "https://www.youtube.com/playlist?list=PLJiv0pK43OksnynRmXl47bkbqjZcUxvky",
+            "minutes": "663",
+            "description": "course · 382 lessons · 11h 03m for the first 100 · r2schools’ numbered PostgreSQL DBA series, one task per lesson, mostly 2 to 13 minutes — installing PostgreSQL 10 to 16 on Windows, macOS, Ubuntu, Debian, CentOS, Red Hat, Fedora, AlmaLinux, Oracle Linux, Linux Mint and Kali, and uninstalling it; starting, stopping and checking the server, its uptime and killing a process; creating databases and users, changing and resetting passwords, locking and unlocking users, granting and revoking privileges and superuser, renaming roles, changing a database’s owner and dropping a user without losing their data; finding the data directory, the configuration files and the error log, moving postgresql.conf, and fixing peer and ident authentication errors; listing, describing, renaming and sizing tables, moving them between schemas and adding or dropping columns; backing up and restoring a whole database, single tables or the schema only, archive mode and streaming replication; COPY, importing and exporting CSV, running script files, tablespaces, PostGIS and pg_stat_statements; upgrading from 10 to 11 and 11 to 12; installing pgAdmin 4; and creating PostgreSQL servers on Azure, AWS RDS, Aurora, Google Cloud and EC2. From 2018–2023",
+            "type": "playlist"
+          },
+          {
             "channel_name": "Database Star",
             "name": "pgAdmin Tutorial - How to Use pgAdmin",
             "channel_link": "https://www.youtube.com/@DatabaseStar",

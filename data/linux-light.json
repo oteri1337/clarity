@@ -870,12 +870,12 @@
         "name": "Comprehensive",
         "videos": [
           {
-            "channel_name": "r2schools",
-            "name": "PostgreSQL Tutorials",
-            "channel_link": "https://www.youtube.com/@r2schools",
-            "link": "https://www.youtube.com/playlist?list=PLJiv0pK43OksnynRmXl47bkbqjZcUxvky",
-            "minutes": "663",
-            "description": "course · 382 lessons · 11h 03m for the first 100 · r2schools’ numbered PostgreSQL DBA series, one task per lesson, mostly 2 to 13 minutes — installing PostgreSQL 10 to 16 on Windows, macOS, Ubuntu, Debian, CentOS, Red Hat, Fedora, AlmaLinux, Oracle Linux, Linux Mint and Kali, and uninstalling it; starting, stopping and checking the server, its uptime and killing a process; creating databases and users, changing and resetting passwords, locking and unlocking users, granting and revoking privileges and superuser, renaming roles, changing a database’s owner and dropping a user without losing their data; finding the data directory, the configuration files and the error log, moving postgresql.conf, and fixing peer and ident authentication errors; listing, describing, renaming and sizing tables, moving them between schemas and adding or dropping columns; backing up and restoring a whole database, single tables or the schema only, archive mode and streaming replication; COPY, importing and exporting CSV, running script files, tablespaces, PostGIS and pg_stat_statements; upgrading from 10 to 11 and 11 to 12; installing pgAdmin 4; and creating PostgreSQL servers on Azure, AWS RDS, Aurora, Google Cloud and EC2. From 2018–2023",
+            "channel_name": "Arcade Cat Academy",
+            "name": "Guide to managing databases using PostgreSQL",
+            "channel_link": "https://www.youtube.com/@ArcadeCatAcademy",
+            "link": "https://www.youtube.com/playlist?list=PLowddb-adq50rlXbwtTgsLEtPBeI733-v",
+            "minutes": "70",
+            "description": "course · 4 lessons · 1h 10m · beginner PostgreSQL management told through a fictional cat hotel — choosing how to install Postgres (a standard install with psql and pgAdmin, Docker or Docker Compose, a managed cloud service, or an easier app on a Mac); the postgres system account against the postgres database role, fixing “command not found: psql” and failed logins, peer authentication and account separation; creating group roles and users in psql and pgAdmin, granting rights, changing passwords, least privilege and giving a developer a schema; and database normalisation from the first to the fifth normal form. From 2025",
             "type": "playlist"
           },
           {
